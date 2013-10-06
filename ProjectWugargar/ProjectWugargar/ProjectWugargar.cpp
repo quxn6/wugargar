@@ -16,6 +16,7 @@ ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
+void SetMoveWindow(HWND hWnd, WPARAM wParam); 
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -155,6 +156,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+	case WM_KEYDOWN:
+		SetMoveWindow(hWnd, wParam);
+		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
@@ -179,4 +183,39 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return (INT_PTR)FALSE;
+}
+
+
+void SetMoveWindow(HWND hWnd, WPARAM wParam) 
+{
+	RECT rt;
+	GetWindowRect(hWnd, &rt);
+
+	int moveOffset = 10;
+
+	switch(wParam)
+	{
+
+	case 'W':
+		rt.top -= moveOffset;
+		rt.bottom -= moveOffset;
+		break;
+	case 'A':
+		rt.left -= moveOffset;
+		rt.right -= moveOffset;
+		break;
+	case 'S':
+		rt.top += moveOffset;
+		rt.bottom += moveOffset;
+		break;
+	case 'D':
+		rt.left += moveOffset;
+		rt.right += moveOffset;
+		break;
+	default:
+		break;
+	}
+
+	MoveWindow(hWnd, rt.left, rt.top, rt.right-rt.left, rt.bottom - rt.top, TRUE);
+
 }
