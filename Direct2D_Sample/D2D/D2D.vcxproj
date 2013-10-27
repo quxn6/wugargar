@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0F468BF6-ABBE-4518-BC44-964E1BF6EE43}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>D2D</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="CustomObject.cpp" />
+    <ClCompile Include="CustomObjectExample.cpp" />
+    <ClCompile Include="InputExamle.cpp" />
+    <ClCompile Include="LabelExample.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NNAudioSystem.cpp" />
+    <ClCompile Include="NND2DRenderer.cpp" />
+    <ClCompile Include="NNApplication.cpp" />
+    <ClCompile Include="NNInputSystem.cpp" />
+    <ClCompile Include="NNLabel.cpp" />
+    <ClCompile Include="NNObject.cpp" />
+    <ClCompile Include="NNPoint.cpp" />
+    <ClCompile Include="NNScene.cpp" />
+    <ClCompile Include="NNSize.cpp" />
+    <ClCompile Include="NNSound.cpp" />
+    <ClCompile Include="NNSprite.cpp" />
+    <ClCompile Include="NNSceneDirector.cpp" />
+    <ClCompile Include="NNTexture.cpp" />
+    <ClCompile Include="NNResourceManager.cpp" />
+    <ClCompile Include="PoorZombie.cpp" />
+    <ClCompile Include="SoundExample.cpp" />
+    <ClCompile Include="SpriteExample.cpp" />
+    <ClCompile Include="Wugargar.cpp" />
+    <ClCompile Include="ZombieBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="CustomObject.h" />
+    <ClInclude Include="CustomObjectExample.h" />
+    <ClInclude Include="InputExample.h" />
+    <ClInclude Include="LabelExample.h" />
+    <ClInclude Include="NNAudioSystem.h" />
+    <ClInclude Include="NNApplication.h" />
+    <ClInclude Include="NNConfig.h" />
+    <ClInclude Include="NND2DRenderer.h" />
+    <ClInclude Include="NNIncludeSet.h" />
+    <ClInclude Include="NNInputSystem.h" />
+    <ClInclude Include="NNLabel.h" />
+    <ClInclude Include="NNLibSet.h" />
+    <ClInclude Include="NNPoint.h" />
+    <ClInclude Include="NNRenderer.h" />
+    <ClInclude Include="NNScene.h" />
+    <ClInclude Include="NNObject.h" />
+    <ClInclude Include="NNMacroSet.h" />
+    <ClInclude Include="NNSize.h" />
+    <ClInclude Include="NNSound.h" />
+    <ClInclude Include="NNSprite.h" />
+    <ClInclude Include="NNSceneDirector.h" />
+    <ClInclude Include="NNResourceManager.h" />
+    <ClInclude Include="NNTexture.h" />
+    <ClInclude Include="PoorZombie.h" />
+    <ClInclude Include="SoundExample.h" />
+    <ClInclude Include="SpriteExample.h" />
+    <ClInclude Include="Wugargar.h" />
+    <ClInclude Include="ZombieBase.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="NNObject.cpp">
+      <Filter>Core\Node\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="NNScene.cpp">
+      <Filter>Core\Node\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NNApplication.cpp">
+      <Filter>Core\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="NNPoint.cpp">
+      <Filter>Core\DataType\Point</Filter>
+    </ClCompile>
+    <ClCompile Include="NNSize.cpp">
+      <Filter>Core\DataType\Size</Filter>
+    </ClCompile>
+    <ClCompile Include="NNSprite.cpp">
+      <Filter>Core\Node\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="NND2DRenderer.cpp">
+      <Filter>Core\Renderer\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="NNSceneDirector.cpp">
+      <Filter>Core\SceneDirector</Filter>
+    </ClCompile>
+    <ClCompile Include="NNInputSystem.cpp">
+      <Filter>Core\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="NNAudioSystem.cpp">
+      <Filter>Core\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="NNSound.cpp">
+      <Filter>Core\Audio\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="NNLabel.cpp">
+      <Filter>Core\Node\Label</Filter>
+    </ClCompile>
+    <ClCompile Include="NNResourceManager.cpp">
+      <Filter>Core\Resource\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="NNTexture.cpp">
+      <Filter>Core\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteExample.cpp">
+      <Filter>Example\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="LabelExample.cpp">
+      <Filter>Example\Label</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundExample.cpp">
+      <Filter>Example\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomObjectExample.cpp">
+      <Filter>Example\CustomObject</Filter>
+    </ClCompile>
+    <ClCompile Include="InputExamle.cpp">
+      <Filter>Example\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomObject.cpp">
+      <Filter>Example\CustomObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Wugargar.cpp">
+      <Filter>Wugargar\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Wugargar\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PoorZombie.cpp">
+      <Filter>Wugargar\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombieBase.cpp">
+      <Filter>Wugargar\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{3895cce2-3d59-4bc1-8cf5-b9b5637e9d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Application">
+      <UniqueIdentifier>{53c747df-0f5a-4072-ac49-92ff700726dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\SceneDirector">
+      <UniqueIdentifier>{6cc23fc3-d46d-4594-a594-abcaa33d4039}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Macro">
+      <UniqueIdentifier>{dbf42298-eaae-4813-a6dc-1708861162df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Node">
+      <UniqueIdentifier>{20ab5e4f-123d-4511-9802-4c0ddccdf15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Node\Object">
+      <UniqueIdentifier>{4b93d09d-cff5-4539-bae0-8cf47452a965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Node\Scene">
+      <UniqueIdentifier>{0509088d-541f-40fa-97bc-e0bed490724d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Node\Sprite">
+      <UniqueIdentifier>{e6a8902f-8855-4f33-ba3d-5591cb77d8bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DataType">
+      <UniqueIdentifier>{6aabf0f0-08cf-4a6d-acc3-220ad8130f3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DataType\Point">
+      <UniqueIdentifier>{9efdc084-ad2c-4810-b8af-e6fba86ef47b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DataType\Size">
+      <UniqueIdentifier>{d4582f2a-8c28-40d9-914c-091513a7f907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer">
+      <UniqueIdentifier>{acd471ca-f238-4a73-8fb8-2e3d7f0d388f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Direct2D">
+      <UniqueIdentifier>{c5e35815-de45-4454-ad2e-73a56526f829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\InputSystem">
+      <UniqueIdentifier>{b0478df7-1d13-40bc-8ea0-61927e587b0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Audio">
+      <UniqueIdentifier>{4ef4b488-ce39-4168-95c2-94aadcdc0a0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Audio\Sound">
+      <UniqueIdentifier>{fe71d093-2962-4aab-8a6a-ca553b1b84fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Node\Label">
+      <UniqueIdentifier>{5084d7e4-0174-4f29-8687-62efe03ca876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Resource">
+      <UniqueIdentifier>{6c153ebf-a565-4e18-8116-f19f7a2e9306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Resource\ResourceManager">
+      <UniqueIdentifier>{68735cf5-613b-4607-b9f7-8152a46fa9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Resource\Texture">
+      <UniqueIdentifier>{7bcc719b-38e5-4210-a4fb-2ae864fc1f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example">
+      <UniqueIdentifier>{5726bfd9-10dd-4a69-8270-3eac777c41aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example\CustomObject">
+      <UniqueIdentifier>{122781cc-b3b1-4797-9052-11c7c5ca79ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example\Label">
+      <UniqueIdentifier>{1e887844-91f8-44ba-9924-54e5ef933241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example\Sound">
+      <UniqueIdentifier>{f0a84e74-f556-4547-9df9-f3e0df3ca2f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example\Sprite">
+      <UniqueIdentifier>{37bc7267-9cc8-4db2-9539-e6dc9e57f538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example\Input">
+      <UniqueIdentifier>{62623a13-cd0c-4e38-b21f-c405dc3243f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wugargar">
+      <UniqueIdentifier>{9e9b4bda-5f4f-4c0a-9a03-5cd12cef19b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wugargar\Source Files">
+      <UniqueIdentifier>{898c980b-692a-4756-afa8-fe965b6120c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wugargar\Header Files">
+      <UniqueIdentifier>{cb0f1fa2-8aa2-4d80-a4b1-45307aaf426b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NNObject.h">
+      <Filter>Core\Node\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="NNScene.h">
+      <Filter>Core\Node\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NNApplication.h">
+      <Filter>Core\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="NNMacroSet.h">
+      <Filter>Core\Macro</Filter>
+    </ClInclude>
+    <ClInclude Include="NNPoint.h">
+      <Filter>Core\DataType\Point</Filter>
+    </ClInclude>
+    <ClInclude Include="NNSize.h">
+      <Filter>Core\DataType\Size</Filter>
+    </ClInclude>
+    <ClInclude Include="NNSprite.h">
+      <Filter>Core\Node\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="NNRenderer.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="NNLibSet.h">
+      <Filter>Core\Macro</Filter>
+    </ClInclude>
+    <ClInclude Include="NND2DRenderer.h">
+      <Filter>Core\Renderer\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="NNSceneDirector.h">
+      <Filter>Core\SceneDirector</Filter>
+    </ClInclude>
+    <ClInclude Include="NNIncludeSet.h">
+      <Filter>Core\Macro</Filter>
+    </ClInclude>
+    <ClInclude Include="NNConfig.h">
+      <Filter>Core\Macro</Filter>
+    </ClInclude>
+    <ClInclude Include="NNInputSystem.h">
+      <Filter>Core\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="NNSound.h">
+      <Filter>Core\Audio\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="NNAudioSystem.h">
+      <Filter>Core\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="NNLabel.h">
+      <Filter>Core\Node\Label</Filter>
+    </ClInclude>
+    <ClInclude Include="NNResourceManager.h">
+      <Filter>Core\Resource\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="NNTexture.h">
+      <Filter>Core\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteExample.h">
+      <Filter>Example\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="InputExample.h">
+      <Filter>Example\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="LabelExample.h">
+      <Filter>Example\Label</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundExample.h">
+      <Filter>Example\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomObjectExample.h">
+      <Filter>Example\CustomObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomObject.h">
+      <Filter>Example\CustomObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Wugargar.h">
+      <Filter>Wugargar\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Wugargar\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PoorZombie.h">
+      <Filter>Wugargar\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieBase.h">
+      <Filter>Wugargar\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
