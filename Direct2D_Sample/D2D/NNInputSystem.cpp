@@ -65,4 +65,12 @@ KeyState NNInputSystem::GetKeyState( int key )
 	return KEY_NOTPRESSED;
 }
 
+POINT NNInputSystem::GetCurrentCursorPosition( void )
+{
+	POINT pt;
+	GetCursorPos(&pt);
+	
+	return pt;
+}
+
 
