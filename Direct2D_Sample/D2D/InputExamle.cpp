@@ -25,17 +25,17 @@ void InputExample::Render()
 }
 void InputExample::Update( float dTime )
 {
-	if ( NNInputSystem::GetInstance()->GetKeyState( VK_RETURN ) == KEY_DOWN )
+	if ( NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) == KEY_DOWN )
 	{
 		m_Label->SetString( L"KEY DOWN" );
 		++DownCount;
 	}
-	else if ( NNInputSystem::GetInstance()->GetKeyState( VK_RETURN ) == KEY_PRESSED )
+	else if ( NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) == KEY_PRESSED )
 	{
 		m_Label->SetString( L"KEY PRESSED" );
 		++PressedCount;
 	}
-	else if ( NNInputSystem::GetInstance()->GetKeyState( VK_RETURN ) == KEY_UP )
+	else if ( NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) == KEY_UP )
 	{
 		m_Label->SetString( L"KEY UP" );
 		++UpCount;

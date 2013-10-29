@@ -102,6 +102,7 @@ bool NNApplication::Run()
 
 			m_ElapsedTime += m_DeltaTime;
 
+
 			NNInputSystem::GetInstance()->UpdateKeyState();
 
 			m_pSceneDirector->UpdateScene( m_DeltaTime );
@@ -110,6 +111,8 @@ bool NNApplication::Run()
 			m_Renderer->Clear();
 			m_pSceneDirector->RenderScene();
 			m_Renderer->End();
+
+
 
 			if ( NNInputSystem::GetInstance()->GetKeyState( VK_ESCAPE ) == KEY_DOWN )
 			{
@@ -166,7 +169,7 @@ bool NNApplication::_CreateRenderer( RendererStatus renderStatus )
 LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
 	switch( message )
-	{
+	{	
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;

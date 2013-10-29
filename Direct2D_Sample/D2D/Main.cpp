@@ -18,7 +18,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	NNApplication* Application = NNApplication::GetInstance();
 
-	Application->Init( L"D2D Test", 1280, 800, D2D );
+	Application->Init( L"D2D Test", 1024, 768, D2D );
 	 
 	// Sprite Example
 	// NNSceneDirector::GetInstance()->ChangeScene( SpriteExample::Create() );
@@ -36,7 +36,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	// NNSceneDirector::GetInstance()->ChangeScene( CustomObjectExample::Create() );
 
 	// Wugargar game
-	NNSceneDirector::GetInstance()->ChangeScene( CWugargar::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( CWugargar::Create() );
 
 
 	Application->Run();
