@@ -74,6 +74,15 @@
       <Filter>Wugargar\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Podol.cpp">
+      <Filter>PracticeCode\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>PracticeCode\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>PracticeCode\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -163,6 +172,15 @@
     <Filter Include="Wugargar\Header Files">
       <UniqueIdentifier>{cb0f1fa2-8aa2-4d80-a4b1-45307aaf426b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PracticeCode">
+      <UniqueIdentifier>{40093da7-857e-419f-ae04-31c013a70980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PracticeCode\Header Files">
+      <UniqueIdentifier>{7ae74d93-cd24-4601-8f28-ebdcfe567c1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PracticeCode\Source Files">
+      <UniqueIdentifier>{7ab21b33-23f5-4837-93f8-a58df481d7b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNObject.h">
@@ -251,6 +269,15 @@
     </ClInclude>
     <ClInclude Include="ZombieBase.h">
       <Filter>Wugargar\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>PracticeCode\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Podol.h">
+      <Filter>PracticeCode\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>PracticeCode\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
