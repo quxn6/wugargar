@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="CustomObject.cpp" />
     <ClCompile Include="CustomObjectExample.cpp" />
     <ClCompile Include="InputExamle.cpp" />
@@ -97,17 +98,17 @@
     <ClCompile Include="NNSceneDirector.cpp" />
     <ClCompile Include="NNTexture.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
-    <ClCompile Include="Podol.cpp" />
+    <ClCompile Include="Police.cpp" />
     <ClCompile Include="PoorZombie.cpp" />
     <ClCompile Include="SoundExample.cpp" />
     <ClCompile Include="SpriteExample.cpp" />
-    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Wugargar.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="CustomObject.h" />
     <ClInclude Include="CustomObjectExample.h" />
     <ClInclude Include="InputExample.h" />
@@ -131,11 +132,10 @@
     <ClInclude Include="NNSceneDirector.h" />
     <ClInclude Include="NNResourceManager.h" />
     <ClInclude Include="NNTexture.h" />
-    <ClInclude Include="Podol.h" />
+    <ClInclude Include="Police.h" />
     <ClInclude Include="PoorZombie.h" />
     <ClInclude Include="SoundExample.h" />
     <ClInclude Include="SpriteExample.h" />
-    <ClInclude Include="Unit.h" />
     <ClInclude Include="Wugargar.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieBase.h" />

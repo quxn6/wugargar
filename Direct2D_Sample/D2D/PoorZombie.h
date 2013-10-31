@@ -1,8 +1,10 @@
 #pragma once
 #include "nnobject.h"
 #include "NNSprite.h"
+#include "Zombie.h"
 
-class CPoorZombie :	public NNObject
+class CPoorZombie :	
+	public CZombie
 {
 public:
 	CPoorZombie(void);
