@@ -268,7 +268,7 @@
       <Filter>Wugargar\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Police.h">
-      <Filter>Wugargar</Filter>
+      <Filter>Wugargar\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,13 +1,22 @@
 #pragma once
-#include "unit.h"
+#include "Police.h"
+#include "Character.h"
+
+
 class CZombie :
-	public CUnit
+	public CCharacter
 {
 public:
 	CZombie(void);
 	~CZombie(void);
 
-	CPodol *GetCloserEnemy();
+public:
+	void Render();
+	void Update( float dTime );
+
+	NNCREATE_FUNC(CZombie);
+
+	CPolice *GetCloserEnemy();
 
 
 };
