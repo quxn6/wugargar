@@ -4,6 +4,7 @@
 #include "NNLabel.h"
 #include "NNApplication.h"
 #include <tchar.h>
+#include <time.h>
 
 CWugargar::CWugargar(void)
 {
@@ -59,9 +60,12 @@ void CWugargar::Update( float dTime )
 	}
 
 	
+	
 
 	if( m_PoorZombie != NULL ) {
-		m_PoorZombie->SetPosition( m_PoorZombie->GetPosition() + NNPoint(-10.0f, 0.0f) * dTime );
+		srand((unsigned int)time(NULL));
+		float random_speed = rand()%20;
+		m_PoorZombie->SetPosition( m_PoorZombie->GetPosition() + NNPoint((-5.0f-random_speed), 0.0f) * dTime );// 매순간 속도가 갱신되는게 함정
 	}
 
 }
