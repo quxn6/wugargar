@@ -11,9 +11,13 @@
 *.lai
 *.la
 *.a
+
 # Debug floder
 Debug/
+
 # Release folder
 Release/
+
+# etc files
 *.sdf
 *.opensdf
