@@ -76,5 +76,3 @@ bool NNSceneDirector::UpdateScene( float dTime )
 
 	return true;
 }
-
-

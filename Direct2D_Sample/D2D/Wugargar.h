@@ -5,6 +5,8 @@
 #include "PoorZombie.h"
 #include "ZombieBase.h"
 #include "NNLabel.h"
+#include "NNPoint.h"
+#include "UIButton.h"
 
 class CWugargar : public NNScene
 {
@@ -12,8 +14,9 @@ private :
 	CBackground *m_Background;
 	CPoorZombie *m_PoorZombie;
 	CZombieBase *m_ZombieBase;
+	CUIButton	*m_UIButton1;
 	NNLabel		*m_ShowMouseStatus;
-	POINT		m_CursorPos;
+	NNPoint		m_CursorPos;
 	wchar_t		temp[256];
 
 public:

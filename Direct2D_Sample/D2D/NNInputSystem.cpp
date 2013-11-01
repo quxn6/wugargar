@@ -1,5 +1,6 @@
 
 #include "NNInputSystem.h"
+#include "NNApplication.h"
 #include <windows.h>
 
 NNInputSystem* NNInputSystem::m_pInstance = nullptr;
@@ -65,12 +66,11 @@ KeyState NNInputSystem::GetKeyState( int key )
 	return KEY_NOTPRESSED;
 }
 
-POINT NNInputSystem::GetCurrentCursorPosition( void )
+NNPoint NNInputSystem::GetMousePosition()
 {
 	POINT pt;
-	GetCursorPos(&pt);
-	
-	return pt;
+	GetCursorPos( &pt );
+	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt );
+
+	return NNPoint((float)pt.x,(float)pt.y);
 }
-
-

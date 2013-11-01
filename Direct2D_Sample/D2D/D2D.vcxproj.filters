@@ -61,27 +61,30 @@
     <ClCompile Include="CustomObject.cpp">
       <Filter>Example\CustomObject</Filter>
     </ClCompile>
-    <ClCompile Include="Wugargar.cpp">
-      <Filter>Wugargar\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>Wugargar\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PoorZombie.cpp">
-      <Filter>Wugargar\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZombieBase.cpp">
-      <Filter>Wugargar\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Zombie.cpp">
-      <Filter>Wugargar\Source Files</Filter>
+    <ClCompile Include="Police.cpp">
+      <Filter>Wugargar\Character</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Wugargar\Source Files</Filter>
+      <Filter>Wugargar\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Police.cpp">
-      <Filter>Wugargar\Source Files</Filter>
+    <ClCompile Include="PoorZombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombieBase.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Wugargar.cpp">
+      <Filter>Wugargar\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Wugargar\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,11 +169,17 @@
     <Filter Include="Wugargar">
       <UniqueIdentifier>{9e9b4bda-5f4f-4c0a-9a03-5cd12cef19b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Wugargar\Source Files">
-      <UniqueIdentifier>{898c980b-692a-4756-afa8-fe965b6120c5}</UniqueIdentifier>
+    <Filter Include="Wugargar\Character">
+      <UniqueIdentifier>{d79d4332-c355-46c4-9ccb-481063a834a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Wugargar\Header Files">
+    <Filter Include="Wugargar\Map">
+      <UniqueIdentifier>{c0a01105-0516-46ab-a7c5-7d2e3e10221c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wugargar\Scene">
       <UniqueIdentifier>{cb0f1fa2-8aa2-4d80-a4b1-45307aaf426b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wugargar\Util">
+      <UniqueIdentifier>{d2511dd6-41b3-443b-b0f6-a35051814ce1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -250,25 +259,28 @@
       <Filter>Example\CustomObject</Filter>
     </ClInclude>
     <ClInclude Include="Wugargar.h">
-      <Filter>Wugargar\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>Wugargar\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PoorZombie.h">
-      <Filter>Wugargar\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZombieBase.h">
-      <Filter>Wugargar\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Zombie.h">
-      <Filter>Wugargar\Header Files</Filter>
+      <Filter>Wugargar\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Wugargar\Header Files</Filter>
+      <Filter>Wugargar\Character</Filter>
     </ClInclude>
     <ClInclude Include="Police.h">
-      <Filter>Wugargar\Header Files</Filter>
+      <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="PoorZombie.h">
+      <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieBase.h">
+      <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>Wugargar\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

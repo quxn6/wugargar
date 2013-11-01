@@ -39,7 +39,7 @@ public:
 
 	void SetImageWidth( float width ) { m_ImageWidth = width; }
 	void SetImageHeight( float height ) { m_ImageHeight = height; }
-	void SetOpacity( float opacity ) { m_Opacity = opacity; } 
+	void SetOpacity( float opacity ) { m_Opacity = opacity; }
 };
 
 class NND2DSprite : public NNSprite

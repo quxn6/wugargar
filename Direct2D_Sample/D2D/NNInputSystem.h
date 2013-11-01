@@ -2,6 +2,7 @@
 #pragma once
 
 #include "NNConfig.h"
+#include "NNPoint.h"
 
 /* */
 /* NNInputSystem
@@ -36,7 +37,7 @@ public:
 public:
 	void UpdateKeyState();
 	KeyState GetKeyState( int key );
-	POINT GetCurrentCursorPosition(void );
+	NNPoint GetMousePosition();
 };
 
 
