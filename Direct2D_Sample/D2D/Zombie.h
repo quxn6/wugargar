@@ -3,12 +3,11 @@
 #include "Character.h"
 
 
-class CZombie :
-	public CCharacter
+class CZombie : public CCharacter
 {
 public:
 	CZombie(void);
-	~CZombie(void);
+	virtual ~CZombie(void);
 
 public:
 	void Render();

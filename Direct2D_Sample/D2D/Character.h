@@ -1,9 +1,11 @@
 #pragma once
-class CCharacter
+#include "NNMacroSet.h"
+#include "NNObject.h"
+class CCharacter : public NNObject
 {
 public:
 	CCharacter(void);
-	~CCharacter(void);
+	virtual ~CCharacter(void);
 
 public:
 	void Render();

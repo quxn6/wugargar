@@ -3,8 +3,7 @@
 #include "NNSprite.h"
 #include "Zombie.h"
 
-class CPoorZombie :	
-	public CZombie
+class CPoorZombie :	public CZombie
 {
 public:
 	CPoorZombie(void);
