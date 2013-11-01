@@ -14,7 +14,7 @@ public :
 
 	void Render();
 	void Update( float dTime );
-
+	void GetRandomPosition();
 	NNCREATE_FUNC(CPoorZombie);
 
 };
