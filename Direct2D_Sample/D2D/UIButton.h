@@ -18,7 +18,7 @@ public :
 
 	NNCREATE_FUNC (CUIButton);
 
-private :
+protected :
 	NNSprite *m_pPressedImage;
 	NNSprite *m_pNormalImage;
 

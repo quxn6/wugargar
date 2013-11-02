@@ -7,6 +7,8 @@ public:
 	CCharacter(void);
 	virtual ~CCharacter(void);
 
+
+
 public:
 	void Render();
 	void Update( float dTime );

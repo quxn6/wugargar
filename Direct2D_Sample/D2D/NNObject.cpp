@@ -79,7 +79,6 @@ void NNObject::RemoveChild( NNObject* object, bool memoryDel )
 
 	for (auto& iter=m_ChildList.begin(); iter!=m_ChildList.end(); iter++ )
 	{
-		// iter안으로 들어가질 못함 ㅠ
 		if ( (*iter) == object )
 
 		{
