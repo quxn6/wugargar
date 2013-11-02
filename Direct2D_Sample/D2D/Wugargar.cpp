@@ -13,6 +13,7 @@ CWugargar::CWugargar(void)
 	m_ZombieBase = CZombieBase::Create();
 	m_UIButton1 = CUIButton::Create();
 	m_UIButton1->SetPosition(20.0f, 500.0f);
+//	m_character = CCharacter::Create();
 	//m_UIButton1->SetScale(220.0f, 220.0f);
 
 	m_ShowMouseStatus = NNLabel::Create( L"cursor position", L"¸¼Àº °íµñ", 35.f );

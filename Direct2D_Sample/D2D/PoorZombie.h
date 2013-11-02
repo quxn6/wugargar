@@ -15,6 +15,8 @@ public :
 	void Render();
 	void Update( float dTime );
 	void GetRandomPosition();
+	CPolice *GetCloserEnemy();
+
 	NNCREATE_FUNC(CPoorZombie);
 
 };

@@ -15,7 +15,7 @@ public:
 
 	NNCREATE_FUNC(CZombie);
 
-	CPolice *GetCloserEnemy();
+	//CPolice *GetCloserEnemy();
 
 
 };

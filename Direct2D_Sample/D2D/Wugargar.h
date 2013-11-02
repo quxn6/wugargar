@@ -17,6 +17,8 @@ private :
 	CUIButton	*m_UIButton1;
 	NNLabel		*m_ShowMouseStatus;
 	NNPoint		m_CursorPos;
+	CPoorZombie	*m_PoorZombieList[3];
+	CPolice		*m_PoliceList[3];
 	wchar_t		temp[256];
 
 public:

@@ -34,3 +34,8 @@ void CPoorZombie::GetRandomPosition()
 	m_PoorZombie->SetPosition((700.0f+random_location_x),(300.0f+random_location_y));
 
 }
+
+/*CPolice * CPoorZombie::GetCloserEnemy()
+{
+
+}*/

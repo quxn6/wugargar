@@ -38,6 +38,7 @@ public:
 	}
 	inline float GetDistanceTwoPoint(NNPoint& point_1, NNPoint& point_2){
 		return sqrtf(pow(point_1.GetX() - point_2.GetX(),2) + pow(point_1.GetY() - point_2.GetY(),2));
+	
 	}
 
 
