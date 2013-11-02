@@ -21,3 +21,6 @@ Release/
 # etc files
 *.sdf
 *.opensdf
+
+# VS solution user option file
+*.suo
