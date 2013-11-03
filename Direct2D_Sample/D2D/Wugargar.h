@@ -11,24 +11,35 @@
 class CWugargar : public NNScene
 {
 private :
+	static CWugargar* m_pInstance;
+
+private:
+	CWugargar(void);
+	~CWugargar(void);
+
+
+private :
 	CBackground *m_Background;
+	CPoorZombie *m_PoorZombie;
 	CZombieBase *m_ZombieBase;
 	CUIButton	*m_UIButton1;
 	NNLabel		*m_ShowMouseStatus;
 	NNPoint		m_CursorPos;
-	CPoorZombie	*m_PoorZombieList[3];
-	CPolice		*m_PoliceList[3];
 	wchar_t		temp[256];
+	
+
+private:	
+	std::list<CZombie*>		m_llistZombie;
+	std::list<CPolice*>		m_llistPolice;
 
 public:
-	CWugargar(void);
-	virtual ~CWugargar(void);
-
 	void Render();
 	void Update( float dTime );
+	std::list<CZombie*> GetZombieList() { return m_llistZombie; }
 
-	NNCREATE_FUNC (CWugargar);
 
+public :
+	static CWugargar* GetInstance();
+	static void ReleaseInstance();
 
 };
-

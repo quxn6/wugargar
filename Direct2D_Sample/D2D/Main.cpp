@@ -36,7 +36,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	// NNSceneDirector::GetInstance()->ChangeScene( CustomObjectExample::Create() );
 
 	// Wugargar game
-	 NNSceneDirector::GetInstance()->ChangeScene( CWugargar::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( CWugargar::GetInstance() );
 
 
 	Application->Run();

@@ -1,4 +1,5 @@
 #include "Background.h"
+#include "Wugargar.h"
 
 
 CBackground::CBackground(void)
