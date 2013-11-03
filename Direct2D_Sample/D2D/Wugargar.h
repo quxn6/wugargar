@@ -12,7 +12,6 @@ class CWugargar : public NNScene
 {
 private :
 	CBackground *m_Background;
-	CPoorZombie *m_PoorZombie;
 	CZombieBase *m_ZombieBase;
 	CUIButton	*m_UIButton1;
 	NNLabel		*m_ShowMouseStatus;

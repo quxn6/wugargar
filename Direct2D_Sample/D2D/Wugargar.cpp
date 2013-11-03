@@ -8,7 +8,6 @@
 
 CWugargar::CWugargar(void)
 {
-	m_PoorZombie = NULL;
 	m_Background = CBackground::Create();
 	m_ZombieBase = CZombieBase::Create();
 	m_UIButton1 = CUIButton::Create();
@@ -51,21 +50,14 @@ void CWugargar::Update( float dTime )
 	m_ShowMouseStatus->SetString(temp);
 	// 마우스 포지션용 끝 
 
-
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_DOWN ) {	
 		if ( m_UIButton1->CheckButtonArea() ) {
-			if ( m_PoorZombie != NULL) {			
-				RemoveChild( m_PoorZombie, true);
-			}		
-			m_PoorZombie = CPoorZombie::Create();
-			AddChild( m_PoorZombie , 3);
-		}		
-	}	
 
-	if( m_PoorZombie != NULL ) {
-		srand((unsigned int)time(NULL));
-		float random_speed = (float)(rand()%20);
-		m_PoorZombie->SetPosition( m_PoorZombie->GetPosition() + NNPoint((-5.0f-random_speed), 0.0f) * dTime );// 매순간 속도가 갱신되는게 함정
+			// 좀비 객체를 가리키는 포인터가 하나밖에 없다.
+		
+			AddChild( CPoorZombie::Create(), 3);
+		}		
+	//	SetPosition( m_PoorZombie->GetPosition() + NNPoint(-5.0f, 0.0f) * dTime );// 좀비 객체에 이동로직 다시만들기
 	}
 
 }
