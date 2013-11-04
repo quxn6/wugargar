@@ -89,6 +89,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>Wugargar\Player</Filter>
     </ClCompile>
+    <ClCompile Include="CreatePolice.cpp">
+      <Filter>Wugargar\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalPolice.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -186,6 +192,9 @@
     </Filter>
     <Filter Include="Wugargar\Player">
       <UniqueIdentifier>{5aab2901-b9f1-4f9f-a9b3-ad58c6ce2e56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wugargar\AI">
+      <UniqueIdentifier>{59ed9b07-662d-4d7b-852f-b33df9b6d994}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +299,12 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Wugargar\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatePolice.h">
+      <Filter>Wugargar\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalPolice.h">
+      <Filter>Wugargar\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

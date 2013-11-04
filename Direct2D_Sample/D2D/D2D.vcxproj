@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CreatePolice.cpp" />
     <ClCompile Include="CustomObject.cpp" />
     <ClCompile Include="CustomObjectExample.cpp" />
     <ClCompile Include="InputExamle.cpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="NNSceneDirector.cpp" />
     <ClCompile Include="NNTexture.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
+    <ClCompile Include="NormalPolice.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Police.cpp" />
     <ClCompile Include="PoorZombie.cpp" />
@@ -111,6 +113,7 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CreatePolice.h" />
     <ClInclude Include="CustomObject.h" />
     <ClInclude Include="CustomObjectExample.h" />
     <ClInclude Include="InputExample.h" />
@@ -134,6 +137,7 @@
     <ClInclude Include="NNSceneDirector.h" />
     <ClInclude Include="NNResourceManager.h" />
     <ClInclude Include="NNTexture.h" />
+    <ClInclude Include="NormalPolice.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Police.h" />
     <ClInclude Include="PoorZombie.h" />

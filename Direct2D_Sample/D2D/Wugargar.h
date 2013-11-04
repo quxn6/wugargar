@@ -31,18 +31,17 @@ private :
 	CUIButton	*m_pUIButton6;
 	NNLabel		*m_pShowMouseStatus;
 	NNPoint		m_CursorPos;
-	wchar_t		temp[256];
 	
-
-private:	
 	std::list<CZombie*>		m_llistZombie;
 	std::list<CPolice*>		m_llistPolice;
+
+	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 
 public:
 	void Render();
 	void Update( float dTime );
 	std::list<CZombie*> GetZombieList() { return m_llistZombie; }
-
+	std::list<CPolice*> GetPoliceList() { return m_llistPolice; }
 
 public :
 	static CWugargar* GetInstance();
