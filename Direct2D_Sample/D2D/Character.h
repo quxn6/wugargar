@@ -1,6 +1,12 @@
 #pragma once
 #include "NNMacroSet.h"
 #include "NNObject.h"
+
+enum CharacterIdentity{
+	Zombie,
+	Police
+};
+
 class CCharacter : public NNObject
 {
 public:
@@ -12,7 +18,7 @@ public:
 public:
 	void Render();
 	void Update( float dTime );
-
+	CCharacter *GetCloseEnemy();
 
 	NNCREATE_FUNC(CCharacter);
 
@@ -24,6 +30,8 @@ private:
 	float m_attackRange;
 	int m_numberOfTarget;
 	int m_attackSpeed;
+	CharacterIdentity m_identity;
+	CCharacter *m_attack_target;
 
 public:
 	int GetHP() {return m_hp;};
@@ -33,6 +41,8 @@ public:
 	float GetAttackRange() {return m_attackRange;};
 	int GetNumberOfTarget() {return m_numberOfTarget;};
 	int GetAttackSpeed() {return m_attackSpeed;};
+	CharacterIdentity GetIdentity() {return m_identity;}
+	void SetIdentity(CharacterIdentity set_id) {m_identity = set_id;}
 
 };
 

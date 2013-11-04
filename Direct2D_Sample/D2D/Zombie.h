@@ -17,10 +17,8 @@ public:
 
 public:
 	float GetInfectingAccuracyRate() {return m_infectingAccuracyRate;};
-	CCharacter *GetCloseEnemy();
 
 private:
 	float m_infectingAccuracyRate;
-	CCharacter *m_attack_target;
 };
 
