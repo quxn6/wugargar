@@ -17,6 +17,11 @@ public:
 
 	//CPolice *GetCloserEnemy();
 
+private:
+	float m_infectingAccuracyRate;
+
+public:
+	float GetInfectingAccuracyRate() {return m_infectingAccuracyRate;};
 
 };
 

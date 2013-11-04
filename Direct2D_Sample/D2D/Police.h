@@ -11,6 +11,15 @@ public:
 	void Update( float dTime );
 
 	NNCREATE_FUNC(CPolice);
+
+private:
+	bool m_infected;
+	float m_infectingEvationRate;
+
+public:
+	bool IsInfected() {return m_infected;};
+	float GetInfectingEvationRate() {return m_infectingEvationRate;};
+
 };
 
 

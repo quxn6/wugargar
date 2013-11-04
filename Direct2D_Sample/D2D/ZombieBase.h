@@ -17,5 +17,12 @@ public :
 
 	NNCREATE_FUNC(CZombieBase);
 
+private:
+	int m_baseHP;
+	int m_baseDefensivePower;
+
+public:
+	int GetBaseHP() {return m_baseHP;};
+	int GetBaseDefensivePower(){return m_baseDefensivePower;};
 };
 
