@@ -19,11 +19,17 @@ private:
 
 
 private :
-	CBackground *m_Background;
-	CPoorZombie *m_PoorZombie;
-	CZombieBase *m_ZombieBase;
-	CUIButton	*m_UIButton1;
-	NNLabel		*m_ShowMouseStatus;
+	CBackground *m_pBackground;
+	CPoorZombie *m_pPoorZombie;
+	CZombieBase *m_pZombieBase;
+	NNSprite	*m_pUIBackground;
+	CUIButton	*m_pUIButton1;
+	CUIButton	*m_pUIButton2;
+	CUIButton	*m_pUIButton3;
+	CUIButton	*m_pUIButton4;
+	CUIButton	*m_pUIButton5;
+	CUIButton	*m_pUIButton6;
+	NNLabel		*m_pShowMouseStatus;
 	NNPoint		m_CursorPos;
 	wchar_t		temp[256];
 	

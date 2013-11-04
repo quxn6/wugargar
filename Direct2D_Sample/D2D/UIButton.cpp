@@ -4,16 +4,34 @@
 
 CUIButton::CUIButton(void)
 {
-	m_pPressedImage = NNSprite::Create(L"wugargar/UIbuttons/button_pressed_poorZombie.png");
-	m_pNormalImage = NNSprite::Create(L"wugargar/UIbuttons/button_normal_poorZombie.png");
-	m_pPressedImage->SetPosition(m_Position.GetX(), m_Position.GetY());
-	m_pNormalImage->SetPosition(m_Position.GetX(), m_Position.GetY());
+	std::wstring defaultNormalImagePath = L"UIButton/button_default_normal.png";
+	std::wstring defaultPressedImagePath = L"UIButton/button_default_pressed.png";
+	CUIButton(defaultNormalImagePath, defaultPressedImagePath);
+}
 
-	m_pPressedImage->SetVisible(true);
+CUIButton::CUIButton( std::wstring normalImagePath, std::wstring pressedImagePath )
+{
+	m_pNormalImage = NNSprite::Create(normalImagePath);
+	m_pPressedImage = NNSprite::Create(pressedImagePath);
+	m_pNormalImage->SetPosition(m_Position.GetX(), m_Position.GetY());
+	m_pPressedImage->SetPosition(m_Position.GetX(), m_Position.GetY());
+		
 	m_pNormalImage->SetVisible(true);
+	m_pPressedImage->SetVisible(true);
 
 	AddChild( m_pPressedImage, 10);
 	AddChild( m_pNormalImage, 10);
+}
+
+// 이미지 두 장을 이용하여 button을 생성하는 함수
+// input : 기본 이미지 경로, 버튼이 눌렸을 때 바뀌는 이미지 경로
+// output : 버튼 pointer
+CUIButton* CUIButton::Create( std::wstring normalImagePath, std::wstring pressedImagePath )
+{
+	CUIButton* pInstance = nullptr;
+	pInstance = new CUIButton(normalImagePath, pressedImagePath);
+
+	return pInstance;
 }
 
 
