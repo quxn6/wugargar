@@ -98,6 +98,7 @@
     <ClCompile Include="NNSceneDirector.cpp" />
     <ClCompile Include="NNTexture.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Police.cpp" />
     <ClCompile Include="PoorZombie.cpp" />
     <ClCompile Include="SoundExample.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="NNSceneDirector.h" />
     <ClInclude Include="NNResourceManager.h" />
     <ClInclude Include="NNTexture.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Police.h" />
     <ClInclude Include="PoorZombie.h" />
     <ClInclude Include="SoundExample.h" />
