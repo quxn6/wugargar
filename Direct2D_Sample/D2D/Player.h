@@ -24,6 +24,9 @@ private:
 public:
 	int GetGlobalMoney(){return m_globalMoney;};
 	float GetClearedStage() {return m_clearedStage;};
+	
+	void SetGlobalMoney(int money) {m_globalMoney = money;};
+	void SetClearedStage(float ClearedStage) {m_clearedStage = ClearedStage;};
 
 };
 

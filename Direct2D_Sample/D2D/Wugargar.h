@@ -46,5 +46,6 @@ public:
 public :
 	static CWugargar* GetInstance();
 	static void ReleaseInstance();
-
+	void MakeZombie();
+	void MakeZombieWalk(float dTime);
 };

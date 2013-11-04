@@ -24,5 +24,8 @@ private:
 public:
 	int GetBaseHP() {return m_baseHP;};
 	int GetBaseDefensivePower(){return m_baseDefensivePower;};
+
+	void SetBaseHP(int hp) {m_baseHP = hp;};
+	void SetBaseDefensivePower(int DP) {m_baseDefensivePower = DP;};
 };
 

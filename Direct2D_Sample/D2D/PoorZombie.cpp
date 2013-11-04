@@ -7,6 +7,7 @@ CPoorZombie::CPoorZombie(void)
 	m_PoorZombie = NNSprite::Create( L"wugargar/poor_zombie.png");
 	this->GetRandomPosition();
 	AddChild( m_PoorZombie );
+	SetSpeed(10);
 }
 
 

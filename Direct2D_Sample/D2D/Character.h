@@ -44,5 +44,13 @@ public:
 	CharacterIdentity GetIdentity() {return m_identity;}
 	void SetIdentity(CharacterIdentity set_id) {m_identity = set_id;}
 
+	void SetHP(int hp) {m_hp = hp;};
+	void SetSpeed(float speed) {m_speed = speed;};
+	void SetAttackPower(int AP) {m_attackPower = AP;};
+	void SetDefensivePower(int DP) {m_defensivePower = DP;};
+	void SetAttackRange(float AR) {m_attackRange = AR;};
+	void SetNumberOfTarget(int NT) {m_numberOfTarget = NT;};
+	void SetAttackSpeed(int AS) {m_attackSpeed = AS;};
+
 };
 

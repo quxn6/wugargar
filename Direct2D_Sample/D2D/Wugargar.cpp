@@ -111,15 +111,22 @@ void CWugargar::Update( float dTime )
 	// button1을 좌클릭했을 때 좀비 생성
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_DOWN ) {	
 		if ( m_pUIButton1->CheckButtonArea() ) {			
-			CZombie *tmp_zombie = CPoorZombie::Create();
-			AddChild( tmp_zombie , 10 );
-			m_llistZombie.push_back(tmp_zombie);
-		}		
-	}
+			MakeZombie();// 좀비 생성
+		}	
+	}	
+	MakeZombieWalk(dTime);// 생성된 좀비 이동
+}
 
-	// 생성된 좀비 이동
+void CWugargar::MakeZombie()
+{
+	CZombie *tmp_zombie = CPoorZombie::Create();
+	AddChild( tmp_zombie , 10 );
+	m_llistZombie.push_back(tmp_zombie);
+}
+
+void CWugargar::MakeZombieWalk(float dTime)
+{
 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( (-5.0f), 0.0f) * dTime );
+		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( -((*iter)->GetSpeed()), 0.0f) * dTime );
 	}
-	
 }
