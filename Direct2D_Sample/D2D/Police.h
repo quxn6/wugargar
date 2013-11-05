@@ -12,8 +12,7 @@ public:
 	void Update( float dTime );
 	NNCREATE_FUNC(CPolice);
 
-public:
-	CCharacter *GetCloseEnemy();
+public:	
 	bool IsInfected() {return m_infected;};
 	float GetInfectingEvationRate() {return m_infectingEvationRate;};
 	

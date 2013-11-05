@@ -13,8 +13,8 @@ CUIButton::CUIButton( std::wstring normalImagePath, std::wstring pressedImagePat
 {
 	m_pNormalImage = NNSprite::Create(normalImagePath);
 	m_pPressedImage = NNSprite::Create(pressedImagePath);
-	m_pNormalImage->SetPosition(m_Position.GetX(), m_Position.GetY());
-	m_pPressedImage->SetPosition(m_Position.GetX(), m_Position.GetY());
+	m_pNormalImage->SetPosition(0, 0);
+	m_pPressedImage->SetPosition(0, 0);
 		
 	m_pNormalImage->SetVisible(true);
 	m_pPressedImage->SetVisible(true);

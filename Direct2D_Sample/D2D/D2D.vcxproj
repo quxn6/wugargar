@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Base.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CreatePolice.cpp" />
     <ClCompile Include="CustomObject.cpp" />
@@ -85,6 +86,7 @@
     <ClCompile Include="InputExamle.cpp" />
     <ClCompile Include="LabelExample.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapCreator.cpp" />
     <ClCompile Include="NNAudioSystem.cpp" />
     <ClCompile Include="NND2DRenderer.cpp" />
     <ClCompile Include="NNApplication.cpp" />
@@ -112,12 +114,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Base.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CreatePolice.h" />
     <ClInclude Include="CustomObject.h" />
     <ClInclude Include="CustomObjectExample.h" />
     <ClInclude Include="InputExample.h" />
     <ClInclude Include="LabelExample.h" />
+    <ClInclude Include="MapCreator.h" />
     <ClInclude Include="NNAudioSystem.h" />
     <ClInclude Include="NNApplication.h" />
     <ClInclude Include="NNConfig.h" />

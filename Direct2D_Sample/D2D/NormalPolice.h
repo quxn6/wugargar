@@ -16,8 +16,5 @@ public:
 	void Update( float dTime );
 
 
-	NNSprite *m_normalPolice;
-	void	GetRandomPosition();
-
 };
 

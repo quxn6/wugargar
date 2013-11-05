@@ -38,7 +38,8 @@ void CCreatePolice::Update( float dTime )
 반환값 : 지정된 파일에서 CreateEnemyTable의 형식에 맞춰 데이터를 삽입하고 반환
 **현재 임시로 직접 값을 넣어줌. 차후 파일 I/O로 수정될 예정
 */
-CreateEnemyTable	* CCreatePolice::ReturnTableByFile()
+// 리턴하는 포인터가 local variable를 가리킴, local variable은 함수가 끝나면 사라지므로 결국 없는 값을 반환하게 됨.
+CreateEnemyTable* CCreatePolice::ReturnTableByFile()
 {
 	CreateEnemyTable tmp_enemy_table[5];
 	tmp_enemy_table[0].time = 2;

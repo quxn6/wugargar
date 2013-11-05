@@ -9,7 +9,7 @@ public:
 	virtual ~CBackground(void);
 
 public : 
-	NNSprite		*m_BackgroundImage;
+	NNSprite*		m_pBackgroundImage;
 	
 	void Render();
 	void Update( float dTime );

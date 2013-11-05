@@ -31,11 +31,10 @@ void CWugargar::ReleaseInstance()
 
 CWugargar::CWugargar(void)
 {	
-	m_pBackground = CBackground::Create(); 
-	m_pZombieBase = CZombieBase::Create();
-	m_pUIBackground = NNSprite::Create(L"wugargar/UIbuttons/UIBackground.png");
-	m_pUIBackground->SetPosition(0.0f, 500.0f);
 
+//	m_pZombieBase = CZombieBase::Create();
+//	AddChild( m_pZombieBase , 5);
+	
 	std::wstring buttonpath_normal_poorZombie = L"wugargar/UIbuttons/button_normal_poorZombie.png";
 	std::wstring buttonpath_pressed_poorZombie = L"wugargar/UIbuttons/button_pressed_poorZombie.png";
 	std::wstring buttonpath_normal_vomitZombie = L"wugargar/UIbuttons/button_normal_vomitZombie.png";
@@ -49,6 +48,9 @@ CWugargar::CWugargar(void)
 	std::wstring buttonpath_normal_iceZombie = L"wugargar/UIbuttons/button_normal_iceZombie.png";
 	std::wstring buttonpath_pressed_iceZombie = L"wugargar/UIbuttons/button_pressed_iceZombie.png";
 	
+	m_pUIBackground = NNSprite::Create(L"wugargar/UIbuttons/UIBackground.jpg");
+	m_pUIBackground->SetPosition(0.0f, 520.0f);
+
 	m_pUIButton1 = CUIButton::Create(buttonpath_normal_poorZombie, buttonpath_pressed_poorZombie);
 	m_pUIButton1->SetPosition(15.0f, 550.0f);
 	m_pUIButton2 = CUIButton::Create(buttonpath_normal_vomitZombie, buttonpath_pressed_vomitZombie);
@@ -62,16 +64,7 @@ CWugargar::CWugargar(void)
 	m_pUIButton6 = CUIButton::Create(buttonpath_normal_iceZombie, buttonpath_pressed_iceZombie);
 	m_pUIButton6->SetPosition(840.0f, 550.0f);
 
-	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"맑은 고딕", 35.f );
-	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
-
-
-	AddChild( m_pBackground , 0);
-	AddChild( m_pZombieBase , 5);
-	AddChild( m_pShowMouseStatus , 20);
-
 	AddChild( m_pUIBackground , 19);
-
 	AddChild( m_pUIButton1 , 20);
 	AddChild( m_pUIButton2 , 20);
 	AddChild( m_pUIButton3 , 20);
@@ -79,6 +72,19 @@ CWugargar::CWugargar(void)
 	AddChild( m_pUIButton5 , 20);
 	AddChild( m_pUIButton6 , 20);
 
+
+	// temporary
+	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"맑은 고딕", 35.f );
+	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
+	AddChild( m_pShowMouseStatus , 20);
+
+	// initbackground
+	m_pBackground = CBackground::Create(); 
+	AddChild( m_pBackground , 0);
+
+	// initmap
+	m_pMapCreator = CMapCreator::Create();
+	AddChild( m_pMapCreator , 1);
 }
 
 CWugargar::~CWugargar(void)
@@ -95,18 +101,19 @@ void CWugargar::Update( float dTime )
 {
 	// 마우스 포지션을 가져오기 위한 임시 구문	
 	// wsprintf가 float형을 사용할 수 없어 임시방편으로 사용중
-	POINT pt;
-	GetCursorPos(&pt);
-	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);
-
-	POINT pt2;
-	pt2.x = (int)m_pUIButton1->GetPositionX();
-	pt2.y = (int)m_pUIButton1->GetPositionY();
-
-	ZeroMemory(temp, 256);	
-	wsprintf(temp, L"image coord x : %4d y : %4d\nwindowcoord x : %4d y : %4d", pt2.x, pt2.y, pt.x, pt.y  );
-	m_pShowMouseStatus->SetString(temp);
+// 	POINT pt;
+// 	GetCursorPos(&pt);
+// 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);
+// 
+// 	POINT pt2;
+// 	pt2.x = (int)m_pUIButton1->GetPositionX();
+// 	pt2.y = (int)m_pUIButton1->GetPositionY();
+// 
+// 	ZeroMemory(temp, 256);	
+// 	wsprintf(temp, L"image coord x : %4d y : %4d\nwindowcoord x : %4d y : %4d", pt2.x, pt2.y, pt.x, pt.y  );
+// 	m_pShowMouseStatus->SetString(temp);
 	// 마우스 포지션용 끝 
+
 
 	// button1을 좌클릭했을 때 좀비 생성
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_DOWN ) {	
@@ -119,14 +126,18 @@ void CWugargar::Update( float dTime )
 
 void CWugargar::MakeZombie()
 {
-	CZombie *tmp_zombie = CPoorZombie::Create();
-	AddChild( tmp_zombie , 10 );
-	m_llistZombie.push_back(tmp_zombie);
+	CZombie *tmpZombieObject = CPoorZombie::Create();
+	tmpZombieObject->SetRandomPositionAroundBase();
+	tmpZombieObject->InitSprite(L"wugargar/poor_zombie.png");
+	AddChild( tmpZombieObject , 10 );
+
+	// insert into zombie list
+	m_llistZombie.push_back(tmpZombieObject);
 }
 
 void CWugargar::MakeZombieWalk(float dTime)
 {
 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( -((*iter)->GetSpeed()), 0.0f) * dTime );
+		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetSpeed()), 0.0f) * dTime );
 	}
 }

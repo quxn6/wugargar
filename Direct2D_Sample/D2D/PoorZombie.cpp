@@ -1,13 +1,8 @@
 #include "PoorZombie.h"
-#include <time.h>
-#include <stdlib.h>
 
 CPoorZombie::CPoorZombie(void)
 {
-	m_PoorZombie = NNSprite::Create( L"wugargar/poor_zombie.png");
-	this->GetRandomPosition();
-	AddChild( m_PoorZombie );
-	SetSpeed(10);
+	initStatus();
 }
 
 
@@ -15,6 +10,20 @@ CPoorZombie::~CPoorZombie(void)
 {
 
 }
+
+
+void CPoorZombie::initStatus( void )
+{
+	m_HealthPoint = 100;
+	m_MovingSpeed = 2.0f;
+	m_AttackPoint = 10;
+	m_DefensivePower = 2;
+	m_AttackRange = 10.0f;
+	m_NumberOfTarget = 1;
+	m_AttackSpeed = 1;
+	m_Identity = Zombie;
+}
+
 
 void CPoorZombie::Render()
 {
@@ -25,18 +34,3 @@ void CPoorZombie::Update( float dTime )
 {
 
 }
-
-void CPoorZombie::GetRandomPosition()
-{
-	srand((unsigned int)time(NULL));
-	int random_location_x = rand() % 100;
-	int random_location_y = rand() % 200;
-
-	m_PoorZombie->SetPosition((700.0f+random_location_x),(300.0f+random_location_y));
-
-}
-
-/*CPolice * CPoorZombie::GetCloserEnemy()
-{
-
-}*/

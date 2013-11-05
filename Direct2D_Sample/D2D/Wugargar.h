@@ -7,6 +7,7 @@
 #include "NNLabel.h"
 #include "NNPoint.h"
 #include "UIButton.h"
+#include "MapCreator.h"
 
 class CWugargar : public NNScene
 {
@@ -21,7 +22,7 @@ private:
 private :
 	CBackground *m_pBackground;
 	CPoorZombie *m_pPoorZombie;
-	CZombieBase *m_pZombieBase;
+	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
 	CUIButton	*m_pUIButton1;
 	CUIButton	*m_pUIButton2;
@@ -42,6 +43,7 @@ public:
 	void Update( float dTime );
 	std::list<CZombie*> GetZombieList() { return m_llistZombie; }
 	std::list<CPolice*> GetPoliceList() { return m_llistPolice; }
+	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
 
 public :
 	static CWugargar* GetInstance();

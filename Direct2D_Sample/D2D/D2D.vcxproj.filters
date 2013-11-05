@@ -95,6 +95,12 @@
     <ClCompile Include="NormalPolice.cpp">
       <Filter>Wugargar\Character</Filter>
     </ClCompile>
+    <ClCompile Include="MapCreator.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -305,6 +311,12 @@
     </ClInclude>
     <ClInclude Include="NormalPolice.h">
       <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCreator.h">
+      <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Wugargar\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

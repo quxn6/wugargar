@@ -10,7 +10,7 @@ public:
 	virtual ~CZombieBase(void);
 
 public :
-	NNSprite		*m_ZombieBase;
+	NNSprite*		m_ZombieBase;
 
 	void Render();
 	void Update( float dTime );
