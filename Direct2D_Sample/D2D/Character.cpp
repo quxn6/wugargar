@@ -105,13 +105,11 @@ void CCharacter::SetRandomPositionAroundBase()
 	default:
 		break;
 	}
-
-	srand((unsigned int)time(NULL));
+	
 	int random_location_x = rand() % TILE_SIZE_X;
 	int random_location_y = rand() % TILE_SIZE_Y;
 
 	SetPosition((baseLocation.GetX()+random_location_x),(baseLocation.GetY()+random_location_y));
-
 }
 
 

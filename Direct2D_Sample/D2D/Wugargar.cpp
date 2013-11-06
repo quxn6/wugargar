@@ -116,7 +116,7 @@ void CWugargar::Update( float dTime )
 
 
 	// button1을 좌클릭했을 때 좀비 생성
-	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_DOWN ) {	
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		if ( m_pUIButton1->CheckButtonArea() ) {			
 			MakeZombie();// 좀비 생성
 		}	

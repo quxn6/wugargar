@@ -17,7 +17,7 @@ CUIButton::CUIButton( std::wstring normalImagePath, std::wstring pressedImagePat
 	m_pPressedImage->SetPosition(0, 0);
 		
 	m_pNormalImage->SetVisible(true);
-	m_pPressedImage->SetVisible(true);
+	m_pPressedImage->SetVisible(false);
 
 	AddChild( m_pPressedImage, 10);
 	AddChild( m_pNormalImage, 10);
@@ -58,23 +58,20 @@ bool CUIButton::CheckButtonArea( void )
 	bool isInXCoordRange = (m_Position.GetX() < cursorPosition.GetX()) && ( ( m_Position.GetX() + m_pNormalImage->GetImageWidth() ) > cursorPosition.GetX() );
 	bool isInYCoordRange = (m_Position.GetY() < cursorPosition.GetY()) && ( ( m_Position.GetY() + m_pNormalImage->GetImageHeight() ) > cursorPosition.GetY() );
 	
-
-	m_pPressedImage->SetVisible(false);
-	m_pNormalImage->SetVisible(false);
-
-	// //visible이 false가 되도 이미지가 계속 나오는 문제가 있음
-	// 1. 선협이 framework상 문제인데 상위 object가 자식들에게 지정해준 zIndex값이 
-	// 자식의 자식이 갖는 zIndex보다 우선하기 때문에 자식의 자식이 갖는 zIndex가 무시됨
-	// 2. SetVisible했을 때 false구문이 이상하게 안 먹는 것 같음, 
-	if ( isInXCoordRange && isInYCoordRange ) {
-//		m_pNormalImage->SetVisible(false);
-
-// 		if (NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) == KEY_NOTPRESSED ) {
-// 			m_pNormalImage->SetVisible(true);
-// 			m_pPressedImage->SetVisible(false);
-// 		}
-
-		return true;
+	if ( !(isInXCoordRange && isInYCoordRange) ) {
+		m_pNormalImage->SetVisible(true);
+		m_pPressedImage->SetVisible(false);
+		return false;
+	} else {
+		if (NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) == KEY_PRESSED ) {
+			m_pNormalImage->SetVisible(false);
+			m_pPressedImage->SetVisible(true);
+		}
+		if (NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) == KEY_UP ){
+			m_pNormalImage->SetVisible(true);
+			m_pPressedImage->SetVisible(false);
+			return true;
+		}
 	}
 	
 	return false;
