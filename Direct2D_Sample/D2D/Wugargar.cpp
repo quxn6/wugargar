@@ -124,45 +124,42 @@ void CWugargar::Update( float dTime )
 
 void CWugargar::MakeZombie(ZombieType type)
 {
-	//CZombie *zombiePtr[6] = { CPoorZombie };// CVomitZombie, &CSmogZombie, &CIceZombie, &CKamikazeZombie, &CMuscleZombie};
 	CZombie *tmpZombieObject = nullptr;
- 
+	std::wstring imagePath[6];
+
+	imagePath[POOR_ZOMBIE] = L"wugargar/poor_zombie.png";
+	imagePath[ICE_ZOMBIE] = L"wugargar/ice_zombie.png";
+	imagePath[VOMIT_ZOMBIE] = L"wugargar/vomit_zombie.png";
+	imagePath[SMOG_ZOMBIE] = L"wugargar/smog_zombie.png";
+	imagePath[MUSCLE_ZOMBIE] = L"wugargar/muscle_zombie.png";
+	imagePath[KAMIKAJE_ZOMBIE] = L"wugargar/kamikaze_zombie.png";
+
  	switch(type)
  	{
  	case POOR_ZOMBIE :
  		tmpZombieObject = CPoorZombie::Create();
-		tmpZombieObject->SetRandomPositionAroundBase();
-		tmpZombieObject->InitSprite(L"wugargar/poor_zombie.png");
  		break;
  	case ICE_ZOMBIE :
  		tmpZombieObject = CIceZombie::Create();
-		tmpZombieObject->SetRandomPositionAroundBase();
-		tmpZombieObject->InitSprite(L"wugargar/ice_zombie.png");
 		break;
 	case VOMIT_ZOMBIE :
 		tmpZombieObject = CVomitZombie::Create();
-		tmpZombieObject->SetRandomPositionAroundBase();
-		tmpZombieObject->InitSprite(L"wugargar/vomit_zombie.png");
 		break;
 	case SMOG_ZOMBIE :
 		tmpZombieObject = CSmogZombie::Create();
-		tmpZombieObject->SetRandomPositionAroundBase();
-		tmpZombieObject->InitSprite(L"wugargar/smog_zombie.png");
 		break;
 	case MUSCLE_ZOMBIE :
 		tmpZombieObject = CMuscleZombie::Create();
-		tmpZombieObject->SetRandomPositionAroundBase();
-		tmpZombieObject->InitSprite(L"wugargar/muscle_zombie.png");
 		break;
 	case KAMIKAJE_ZOMBIE :
 		tmpZombieObject = CKamikazeZombie::Create();
-		tmpZombieObject->SetRandomPositionAroundBase();
-		tmpZombieObject->InitSprite(L"wugargar/kamikaze_zombie.png");
 		break;
 	default:
 		break; // 클래스를 매개변수로 입력받아 깔끔하게 만들어 보려고 했으나 계속 실패해서 일단 하드코딩함
  	}
 
+	tmpZombieObject->SetRandomPositionAroundBase();
+	tmpZombieObject->InitSprite(imagePath[type]);
 	AddChild( tmpZombieObject , 10 );
 
 	// insert into zombie list
@@ -197,22 +194,22 @@ void CWugargar::MakeZombieButtonOperate(float dTime)
 	}
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		if ( m_pUIButton3->CheckButtonArea() ) {			
-			MakeZombie(SMOG_ZOMBIE);// 좀비 생성
+			MakeZombie(MUSCLE_ZOMBIE);// 좀비 생성
 		}	
 	}
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		if ( m_pUIButton4->CheckButtonArea() ) {			
-			MakeZombie(ICE_ZOMBIE);// 좀비 생성
+			MakeZombie(KAMIKAJE_ZOMBIE);// 좀비 생성
 		}	
 	}
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		if ( m_pUIButton5->CheckButtonArea() ) {			
-			MakeZombie(KAMIKAJE_ZOMBIE);// 좀비 생성
+			MakeZombie(SMOG_ZOMBIE);// 좀비 생성
 		}
 	}
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		if ( m_pUIButton6->CheckButtonArea() ) {			
-			MakeZombie(MUSCLE_ZOMBIE);// 좀비 생성
+			MakeZombie(ICE_ZOMBIE);// 좀비 생성
 		}	
 	}
 

@@ -14,10 +14,10 @@ enum ZombieType
 {
 	POOR_ZOMBIE,
 	VOMIT_ZOMBIE,
+	MUSCLE_ZOMBIE,
+	KAMIKAJE_ZOMBIE,
 	SMOG_ZOMBIE,
 	ICE_ZOMBIE,
-	KAMIKAJE_ZOMBIE,
-	MUSCLE_ZOMBIE,
 }; // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
 
 class CWugargar : public NNScene
