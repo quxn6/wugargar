@@ -5,6 +5,11 @@
 #include "NNApplication.h"
 #include <tchar.h>
 #include <time.h>
+#include "IceZombie.h"
+#include "VomitZombie.h"
+#include "SmogZombie.h"
+#include "MuscleZombie.h"
+#include "KamikazeZombie.h"
 
 CWugargar* CWugargar::m_pInstance = nullptr;
 
@@ -108,42 +113,56 @@ void CWugargar::Render()
 
 void CWugargar::Update( float dTime )
 {
-	// 마우스 포지션을 가져오기 위한 임시 구문	
-	// wsprintf가 float형을 사용할 수 없어 임시방편으로 사용중
-// 	POINT pt;
-// 	GetCursorPos(&pt);
-// 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);
-// 
-// 	POINT pt2;
-// 	pt2.x = (int)m_pUIButton1->GetPositionX();
-// 	pt2.y = (int)m_pUIButton1->GetPositionY();
-// 
-// 	ZeroMemory(temp, 256);	
-// 	wsprintf(temp, L"image coord x : %4d y : %4d\nwindowcoord x : %4d y : %4d", pt2.x, pt2.y, pt.x, pt.y  );
-// 	m_pShowMouseStatus->SetString(temp);
-	// 마우스 포지션용 끝 
-
-	// fps 출력용 임시
-	ZeroMemory(temp, 256);	
- 	swprintf_s(temp, _countof(temp), L"FPS = %0.3f", NNApplication::GetInstance()->GetFPS() );
- 	m_pShowMouseStatus->SetString(temp);
-	// fps 출력용 끝
+	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
+	Test_ShowFPS(); //FPS출력 임시 테스트
 
 
-	// button1을 좌클릭했을 때 좀비 생성
-	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
-		if ( m_pUIButton1->CheckButtonArea() ) {			
-			MakeZombie();// 좀비 생성
-		}	
-	}	
-	MakeCharacterWalk(dTime);// 생성된 좀비 이동
+	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
+	MakeZombieButtonOperate(dTime);
+
 }
 
-void CWugargar::MakeZombie()
+void CWugargar::MakeZombie(ZombieType type)
 {
-	CZombie *tmpZombieObject = CPoorZombie::Create();
-	tmpZombieObject->SetRandomPositionAroundBase();
-	tmpZombieObject->InitSprite(L"wugargar/poor_zombie.png");
+	//CZombie *zombiePtr[6] = { CPoorZombie };// CVomitZombie, &CSmogZombie, &CIceZombie, &CKamikazeZombie, &CMuscleZombie};
+	CZombie *tmpZombieObject = nullptr;
+ 
+ 	switch(type)
+ 	{
+ 	case POOR_ZOMBIE :
+ 		tmpZombieObject = CPoorZombie::Create();
+		tmpZombieObject->SetRandomPositionAroundBase();
+		tmpZombieObject->InitSprite(L"wugargar/poor_zombie.png");
+ 		break;
+ 	case ICE_ZOMBIE :
+ 		tmpZombieObject = CIceZombie::Create();
+		tmpZombieObject->SetRandomPositionAroundBase();
+		tmpZombieObject->InitSprite(L"wugargar/ice_zombie.png");
+		break;
+	case VOMIT_ZOMBIE :
+		tmpZombieObject = CVomitZombie::Create();
+		tmpZombieObject->SetRandomPositionAroundBase();
+		tmpZombieObject->InitSprite(L"wugargar/vomit_zombie.png");
+		break;
+	case SMOG_ZOMBIE :
+		tmpZombieObject = CSmogZombie::Create();
+		tmpZombieObject->SetRandomPositionAroundBase();
+		tmpZombieObject->InitSprite(L"wugargar/smog_zombie.png");
+		break;
+	case MUSCLE_ZOMBIE :
+		tmpZombieObject = CMuscleZombie::Create();
+		tmpZombieObject->SetRandomPositionAroundBase();
+		tmpZombieObject->InitSprite(L"wugargar/muscle_zombie.png");
+		break;
+	case KAMIKAJE_ZOMBIE :
+		tmpZombieObject = CKamikazeZombie::Create();
+		tmpZombieObject->SetRandomPositionAroundBase();
+		tmpZombieObject->InitSprite(L"wugargar/kamikaze_zombie.png");
+		break;
+	default:
+		break; // 클래스를 매개변수로 입력받아 깔끔하게 만들어 보려고 했으나 계속 실패해서 일단 하드코딩함
+ 	}
+
 	AddChild( tmpZombieObject , 10 );
 
 	// insert into zombie list
@@ -160,4 +179,71 @@ void CWugargar::MakeCharacterWalk(float dTime)
 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
 		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
 	}
+}
+
+void CWugargar::MakeZombieButtonOperate(float dTime)
+{
+	// button1을 좌클릭했을 때 좀비 생성
+	// 모든 종류의 좀비 생성을 처리함 -채원
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		if ( m_pUIButton1->CheckButtonArea() ) {			
+			MakeZombie(POOR_ZOMBIE);// 좀비 생성
+		}	
+	}
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		if ( m_pUIButton2->CheckButtonArea() ) {			
+			MakeZombie(VOMIT_ZOMBIE);// 좀비 생성
+		}	
+	}
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		if ( m_pUIButton3->CheckButtonArea() ) {			
+			MakeZombie(SMOG_ZOMBIE);// 좀비 생성
+		}	
+	}
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		if ( m_pUIButton4->CheckButtonArea() ) {			
+			MakeZombie(ICE_ZOMBIE);// 좀비 생성
+		}	
+	}
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		if ( m_pUIButton5->CheckButtonArea() ) {			
+			MakeZombie(KAMIKAJE_ZOMBIE);// 좀비 생성
+		}
+	}
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		if ( m_pUIButton6->CheckButtonArea() ) {			
+			MakeZombie(MUSCLE_ZOMBIE);// 좀비 생성
+		}	
+	}
+
+	MakeCharacterWalk(dTime);// 생성된 좀비 이동
+}
+
+/////////////////////////////////////////////////////////
+///////////////////test 함수 /////////////////////////////
+void CWugargar::Test_ShowMousePosition()
+{
+	// 마우스 포지션을 가져오기 위한 임시 구문	
+	// wsprintf가 float형을 사용할 수 없어 임시방편으로 사용중
+	 	POINT pt;
+	 	GetCursorPos(&pt);
+	 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);
+	 
+	 	POINT pt2;
+	 	pt2.x = (int)m_pUIButton1->GetPositionX();
+	 	pt2.y = (int)m_pUIButton1->GetPositionY();
+	 
+	 	ZeroMemory(temp, 256);	
+	 	wsprintf(temp, L"image coord x : %4d y : %4d\nwindowcoord x : %4d y : %4d", pt2.x, pt2.y, pt.x, pt.y  );
+	 	m_pShowMouseStatus->SetString(temp);
+	// 마우스 포지션용 끝 
+}
+
+void CWugargar::Test_ShowFPS()
+{
+	// fps 출력용 임시
+	ZeroMemory(temp, 256);	
+	swprintf_s(temp, _countof(temp), L"FPS = %0.3f", NNApplication::GetInstance()->GetFPS() );
+	m_pShowMouseStatus->SetString(temp);
+	// fps 출력용 끝
 }
