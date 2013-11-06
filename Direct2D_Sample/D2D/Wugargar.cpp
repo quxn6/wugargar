@@ -121,7 +121,7 @@ void CWugargar::Update( float dTime )
 			MakeZombie();// 좀비 생성
 		}	
 	}	
-	MakeZombieWalk(dTime);// 생성된 좀비 이동
+	MakeCharacterWalk(dTime);// 생성된 좀비 이동
 }
 
 void CWugargar::MakeZombie()
@@ -135,8 +135,13 @@ void CWugargar::MakeZombie()
 	m_llistZombie.push_back(tmpZombieObject);
 }
 
-void CWugargar::MakeZombieWalk(float dTime)
+void CWugargar::MakeCharacterWalk(float dTime)
 {
+	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
+		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetSpeed()), 0.0f) * dTime );
+	}
+
+
 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
 		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetSpeed()), 0.0f) * dTime );
 	}

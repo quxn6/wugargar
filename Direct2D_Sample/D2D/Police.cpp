@@ -5,7 +5,6 @@
 
 CPolice::CPolice(void)
 {
-//	this->SetIdentity(Police);
 }
 
 

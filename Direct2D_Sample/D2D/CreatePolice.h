@@ -48,7 +48,7 @@ public:
 	clock_t current_time;
 	int gap_time;
 	int table_top_index;
-	CreateEnemyTable	*ReturnTableByFile();
+	void				ReturnTableByFile();
 	void				CreateEnemy();
 	NNCREATE_FUNC (CCreatePolice);
 

@@ -21,7 +21,7 @@ public:
 
 	void InitSprite(std::wstring imagePath);
 	void SetRandomPositionAroundBase();
-	CCharacter *GetCloseEnemy();
+	void GetCloseEnemy();
 
 	// gets & sets
 	int GetHP() {return m_HealthPoint;};

@@ -8,7 +8,8 @@ CCreatePolice::CCreatePolice(void)
 {
 	begin_time = clock();
 	table_top_index = 0;
-	create_enemy_table = ReturnTableByFile();
+	create_enemy_table = new CreateEnemyTable;
+	ReturnTableByFile();
 }
 
 
@@ -39,27 +40,26 @@ void CCreatePolice::Update( float dTime )
 **현재 임시로 직접 값을 넣어줌. 차후 파일 I/O로 수정될 예정
 */
 // 리턴하는 포인터가 local variable를 가리킴, local variable은 함수가 끝나면 사라지므로 결국 없는 값을 반환하게 됨.
-CreateEnemyTable* CCreatePolice::ReturnTableByFile()
+// 수정 완료
+void CCreatePolice::ReturnTableByFile()
 {
-	CreateEnemyTable tmp_enemy_table[5];
-	tmp_enemy_table[0].time = 2;
-	tmp_enemy_table[0].enemy_type = NORMAL_POLICE;
-	tmp_enemy_table[0].num_enemy = 1;
-	tmp_enemy_table[1].time = 3;
-	tmp_enemy_table[1].enemy_type = NORMAL_POLICE;
-	tmp_enemy_table[1].num_enemy = 2;
-	tmp_enemy_table[2].time = 5;
-	tmp_enemy_table[2].enemy_type = NORMAL_POLICE;
-	tmp_enemy_table[2].num_enemy = 3;
-	tmp_enemy_table[3].time = 7;
-	tmp_enemy_table[3].enemy_type = NORMAL_POLICE;
-	tmp_enemy_table[3].num_enemy = 2;
-	tmp_enemy_table[4].time = 10;
-	tmp_enemy_table[4].enemy_type = NORMAL_POLICE;
-	tmp_enemy_table[4].num_enemy = 1;
+	create_enemy_table[0].time = 2;
+	create_enemy_table[0].enemy_type = NORMAL_POLICE;
+	create_enemy_table[0].num_enemy = 1;
+	create_enemy_table[1].time = 3;
+	create_enemy_table[1].enemy_type = NORMAL_POLICE;
+	create_enemy_table[1].num_enemy = 2;
+	create_enemy_table[2].time = 5;
+	create_enemy_table[2].enemy_type = NORMAL_POLICE;
+	create_enemy_table[2].num_enemy = 3;
+	create_enemy_table[3].time = 7;
+	create_enemy_table[3].enemy_type = NORMAL_POLICE;
+	create_enemy_table[3].num_enemy = 2;
+	create_enemy_table[4].time = 10;
+	create_enemy_table[4].enemy_type = NORMAL_POLICE;
+	create_enemy_table[4].num_enemy = 1;
 
 
-	return tmp_enemy_table;
 }
 
 

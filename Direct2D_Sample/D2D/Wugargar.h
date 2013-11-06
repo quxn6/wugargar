@@ -8,6 +8,7 @@
 #include "NNPoint.h"
 #include "UIButton.h"
 #include "MapCreator.h"
+#include "CreatePolice.h"
 
 class CWugargar : public NNScene
 {
@@ -32,6 +33,7 @@ private :
 	CUIButton	*m_pUIButton6;
 	NNLabel		*m_pShowMouseStatus;
 	NNPoint		m_CursorPos;
+	CCreatePolice *m_pCreatePolice;
 	
 	std::list<CZombie*>		m_llistZombie;
 	std::list<CPolice*>		m_llistPolice;
@@ -49,5 +51,5 @@ public :
 	static CWugargar* GetInstance();
 	static void ReleaseInstance();
 	void MakeZombie();
-	void MakeZombieWalk(float dTime);
+	void MakeCharacterWalk(float dTime);
 };

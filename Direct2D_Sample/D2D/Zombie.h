@@ -16,7 +16,6 @@ public:
 	NNCREATE_FUNC(CZombie);
 
 public:
-	CCharacter *GetCloseEnemy();
 	float GetInfectingAccuracyRate() {return m_infectingAccuracyRate;};
 
 	void SetInfectingAccuracyRate(float IAR) {m_infectingAccuracyRate = IAR;};

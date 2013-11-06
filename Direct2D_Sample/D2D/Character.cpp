@@ -30,8 +30,9 @@ void CCharacter::initStatus( void )
 최종 수정일 : 2013/11/04
 
 ISSUE : 1차 통합. switch문의 반복되는 For문을 하나로 줄일 방법을 찾아야 됨.
+수정 요망.
 */
-CCharacter * CCharacter::GetCloseEnemy()
+void  CCharacter::GetCloseEnemy()
 {
 	float return_distnace = 1000000.0f;
 	float next_distance;
@@ -48,12 +49,9 @@ CCharacter * CCharacter::GetCloseEnemy()
 			 	if(return_distnace > next_distance)
 			 	{
 			 		return_distnace = next_distance;
-			 		tmp_closer_target_police = child;
+			 		m_AttackTarget = child;
 			 	}
-
-				
 		}
-		return_target = tmp_closer_target_police;
 		break;
 
 	case Police:
@@ -63,17 +61,14 @@ CCharacter * CCharacter::GetCloseEnemy()
 			 	if(return_distnace > next_distance)
 			 	{
 			 		return_distnace = next_distance;
-			 		tmp_closer_target_zombie = child;
+			 		m_AttackTarget = child;
 			 	}
-
 		}
-		return_target = tmp_closer_target_zombie;
 		break;
 	default:
 		break;
 	}
 
-	return return_target;
 
 }
 

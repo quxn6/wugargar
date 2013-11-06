@@ -4,7 +4,6 @@
 
 CZombie::CZombie(void)
 {
-	this->SetIdentity(Zombie);
 }
 
 
