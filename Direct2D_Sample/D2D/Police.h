@@ -16,6 +16,6 @@ public:
 	bool IsInfected() {return m_infected;};
 	void SetInfectedStatus(bool infected) {m_infected = infected;};
 
-private:
+protected:
 	bool m_infected;
 };
