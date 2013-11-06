@@ -25,8 +25,8 @@ public:
 
 	// gets & sets
 	int GetHP() {return m_HealthPoint;};
-	float GetSpeed() {return m_MovingSpeed;};
-	int GetAttackPower() {return m_AttackPoint;};
+	float GetMovingSpeed() {return m_MovingSpeed;};
+	int GetAttackPower() {return m_AttackPower;};
 	int GetDefensivePower() {return m_DefensivePower;};
 	float GetAttackRange() {return m_AttackRange;};
 	int GetNumberOfTarget() {return m_NumberOfTarget;};
@@ -35,7 +35,7 @@ public:
 	
 	void SetHP(int hp) {m_HealthPoint = hp;};
 	void SetSpeed(float speed) {m_MovingSpeed = speed;};
-	void SetAttackPower(int AP) {m_AttackPoint = AP;};
+	void SetAttackPower(int AP) {m_AttackPower = AP;};
 	void SetDefensivePower(int DP) {m_DefensivePower = DP;};
 	void SetAttackRange(float AR) {m_AttackRange = AR;};
 	void SetNumberOfTarget(int NT) {m_NumberOfTarget = NT;};
@@ -48,7 +48,7 @@ protected:
 protected:
 	int m_HealthPoint;
 	float m_MovingSpeed;
-	int m_AttackPoint;
+	int m_AttackPower;
 	int m_DefensivePower;
 	float m_AttackRange;
 	int m_NumberOfTarget;

@@ -95,6 +95,23 @@ bool NNApplication::Run()
 		}
 		else
 		{
+			m_FrameCount++;
+			m_NowTime = timeGetTime();
+			if ( m_PrevTime == 0.f )
+			{
+				m_PrevTime = m_NowTime;
+			}
+			m_DeltaTime = (static_cast<float>(m_NowTime - m_PrevTime)) / 1000.f;
+			m_ElapsedTime += m_DeltaTime;
+			if(m_ElapsedTime > 0.1f)
+			{
+				m_Fps = ((float)m_FrameCount) / m_ElapsedTime;
+				m_FrameCount = 0;
+				m_ElapsedTime = 0.f;
+			}
+			m_PrevTime = m_NowTime;
+
+			/*
 			m_NowTime = timeGetTime();
 			if ( m_PrevTime == 0.f )
 			{
@@ -105,7 +122,7 @@ bool NNApplication::Run()
 			m_Fps = 1.f / m_DeltaTime;
 
 			m_ElapsedTime += m_DeltaTime;
-
+			*/
 			NNInputSystem::GetInstance()->UpdateKeyState();
 
 			m_pSceneDirector->UpdateScene( m_DeltaTime );

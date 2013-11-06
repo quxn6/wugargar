@@ -153,11 +153,11 @@ void CWugargar::MakeZombie()
 void CWugargar::MakeCharacterWalk(float dTime)
 {
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
-		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetSpeed()), 0.0f) * dTime );
+		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
 	}
 
 
 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetSpeed()), 0.0f) * dTime );
+		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
 	}
 }

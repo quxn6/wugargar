@@ -10,7 +10,7 @@ void CBase::initStatus( void )
 {
 	m_HealthPoint = 1000;
 	m_MovingSpeed = 0.0f;
-	m_AttackPoint = 0;
+	m_AttackPower = 0;
 	m_DefensivePower = 0;
 	m_AttackRange = 0.0f;
 	m_NumberOfTarget = 0;

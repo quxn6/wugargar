@@ -55,7 +55,8 @@ private:
 	float m_Fps;
 	float m_ElapsedTime;
 	float m_DeltaTime;
-
+	
+	int m_FrameCount;
 	int m_PrevTime;
 	int m_NowTime;
 

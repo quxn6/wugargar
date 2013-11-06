@@ -15,8 +15,8 @@ CPoorZombie::~CPoorZombie(void)
 void CPoorZombie::initStatus( void )
 {
 	m_HealthPoint = 100;
-	m_MovingSpeed = 2.0f;
-	m_AttackPoint = 10;
+	m_MovingSpeed = 40.0f;
+	m_AttackPower = 10;
 	m_DefensivePower = 2;
 	m_AttackRange = 10.0f;
 	m_NumberOfTarget = 1;
