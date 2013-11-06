@@ -77,9 +77,6 @@
     <ClCompile Include="Background.cpp">
       <Filter>Wugargar\Map</Filter>
     </ClCompile>
-    <ClCompile Include="ZombieBase.cpp">
-      <Filter>Wugargar\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Wugargar.cpp">
       <Filter>Wugargar\Scene</Filter>
     </ClCompile>
@@ -295,9 +292,6 @@
       <Filter>Wugargar\Character</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
-      <Filter>Wugargar\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="ZombieBase.h">
       <Filter>Wugargar\Map</Filter>
     </ClInclude>
     <ClInclude Include="UIButton.h">

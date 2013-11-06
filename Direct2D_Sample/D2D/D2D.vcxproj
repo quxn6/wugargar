@@ -110,7 +110,6 @@
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="Wugargar.cpp" />
     <ClCompile Include="Zombie.cpp" />
-    <ClCompile Include="ZombieBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -150,7 +149,6 @@
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="Wugargar.h" />
     <ClInclude Include="Zombie.h" />
-    <ClInclude Include="ZombieBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
