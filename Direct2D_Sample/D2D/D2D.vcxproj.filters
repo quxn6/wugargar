@@ -98,6 +98,21 @@
     <ClCompile Include="Base.cpp">
       <Filter>Wugargar\Map</Filter>
     </ClCompile>
+    <ClCompile Include="IceZombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="KamikazeZombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="MuscleZombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="SmogZombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="VomitZombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -311,6 +326,21 @@
     </ClInclude>
     <ClInclude Include="Base.h">
       <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="IceZombie.h">
+      <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="KamikazeZombie.h">
+      <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="MuscleZombie.h">
+      <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="SmogZombie.h">
+      <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="VomitZombie.h">
+      <Filter>Wugargar\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

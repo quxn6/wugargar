@@ -83,10 +83,13 @@
     <ClCompile Include="CreatePolice.cpp" />
     <ClCompile Include="CustomObject.cpp" />
     <ClCompile Include="CustomObjectExample.cpp" />
+    <ClCompile Include="IceZombie.cpp" />
     <ClCompile Include="InputExamle.cpp" />
+    <ClCompile Include="KamikazeZombie.cpp" />
     <ClCompile Include="LabelExample.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapCreator.cpp" />
+    <ClCompile Include="MuscleZombie.cpp" />
     <ClCompile Include="NNAudioSystem.cpp" />
     <ClCompile Include="NND2DRenderer.cpp" />
     <ClCompile Include="NNApplication.cpp" />
@@ -105,9 +108,11 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Police.cpp" />
     <ClCompile Include="PoorZombie.cpp" />
+    <ClCompile Include="SmogZombie.cpp" />
     <ClCompile Include="SoundExample.cpp" />
     <ClCompile Include="SpriteExample.cpp" />
     <ClCompile Include="UIButton.cpp" />
+    <ClCompile Include="VomitZombie.cpp" />
     <ClCompile Include="Wugargar.cpp" />
     <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
@@ -118,9 +123,12 @@
     <ClInclude Include="CreatePolice.h" />
     <ClInclude Include="CustomObject.h" />
     <ClInclude Include="CustomObjectExample.h" />
+    <ClInclude Include="IceZombie.h" />
     <ClInclude Include="InputExample.h" />
+    <ClInclude Include="KamikazeZombie.h" />
     <ClInclude Include="LabelExample.h" />
     <ClInclude Include="MapCreator.h" />
+    <ClInclude Include="MuscleZombie.h" />
     <ClInclude Include="NNAudioSystem.h" />
     <ClInclude Include="NNApplication.h" />
     <ClInclude Include="NNConfig.h" />
@@ -144,9 +152,11 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Police.h" />
     <ClInclude Include="PoorZombie.h" />
+    <ClInclude Include="SmogZombie.h" />
     <ClInclude Include="SoundExample.h" />
     <ClInclude Include="SpriteExample.h" />
     <ClInclude Include="UIButton.h" />
+    <ClInclude Include="VomitZombie.h" />
     <ClInclude Include="Wugargar.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
