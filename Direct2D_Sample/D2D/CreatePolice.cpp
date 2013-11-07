@@ -8,7 +8,7 @@ CCreatePolice::CCreatePolice(void)
 {
 	begin_time = clock();
 	table_top_index = 0;
-	create_enemy_table = new CreateEnemyTable;
+	create_enemy_table = new CreateEnemyTable[5];
 	ReturnTableByFile();
 }
 
@@ -26,11 +26,6 @@ void CCreatePolice::Render()
 
 void CCreatePolice::Update( float dTime )
 {
-	current_time = clock();
-	
-	gap_time = (int)(current_time - begin_time)/(CLOCKS_PER_SEC);
-
-	CreateEnemy();
 }
 
 
@@ -73,6 +68,11 @@ void CCreatePolice::ReturnTableByFile()
 */
 void CCreatePolice::CreateEnemy()
 {
+	current_time = clock();
+
+	gap_time = (int)(current_time - begin_time)/(CLOCKS_PER_SEC);
+
+
 	CPolice *tmp_police;
 	if((gap_time) >= create_enemy_table[table_top_index].time)
 	{
@@ -82,7 +82,9 @@ void CCreatePolice::CreateEnemy()
 			{
 			case NORMAL_POLICE:
 				tmp_police = CNormalPolice::Create();
-				AddChild(tmp_police);
+				tmp_police->SetRandomPositionAroundBase();
+				tmp_police->InitSprite(L"wugargar/normal_police.png");
+				AddChild(tmp_police, 10);
 				CWugargar::GetInstance()->GetPoliceList().push_back(tmp_police);
 				break;
 			case GUN_POLICE:

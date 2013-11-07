@@ -16,6 +16,8 @@ public:
 	void Update( float dTime );
 
 	NNCREATE_FUNC(CNormalPolice);
+	NNSprite *m_NormalPolice;
+
 
 protected:
 	virtual void initStatus( void );

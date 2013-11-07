@@ -1,6 +1,7 @@
 #pragma once
 #include <time.h>
 #include "NNObject.h"
+#include "Police.h"
 /*
 클래스 이름 : CCreatePolice
 클래스 목적 : 적(경찰)이 생성되는 기준을 세우고 해당 기준에 맞게
@@ -36,7 +37,7 @@ class CCreatePolice : public NNObject
 {
 public:
 	CCreatePolice(void);
-	~CCreatePolice(void);
+	virtual ~CCreatePolice(void);
 
 public:
 	void Render();
@@ -44,12 +45,14 @@ public:
 
 	CreateEnemyTable *create_enemy_table;
 
+	//CPolice *tmp_police;
 	clock_t begin_time;
 	clock_t current_time;
 	int gap_time;
 	int table_top_index;
 	void				ReturnTableByFile();
 	void				CreateEnemy();
+
 	NNCREATE_FUNC (CCreatePolice);
 
 

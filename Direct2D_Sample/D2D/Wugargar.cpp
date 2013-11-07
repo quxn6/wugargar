@@ -42,6 +42,11 @@ CWugargar::CWugargar(void)
 	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"맑은 고딕", 35.f );
 	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
 	AddChild( m_pShowMouseStatus , 20);
+
+	m_pCreatePolice = CCreatePolice::Create();
+	//AddChild(m_pCreatePolice, 21);
+
+
 }
 
 CWugargar::~CWugargar(void)
@@ -120,6 +125,8 @@ void CWugargar::Update( float dTime )
 	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
 
+
+	//m_pCreatePolice->CreateEnemy();
 }
 
 void CWugargar::MakeZombie(ZombieType type)
