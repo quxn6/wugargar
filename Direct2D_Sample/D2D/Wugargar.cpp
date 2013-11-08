@@ -44,7 +44,7 @@ CWugargar::CWugargar(void)
 	AddChild( m_pShowMouseStatus , 20);
 
 	m_pCreatePolice = CCreatePolice::Create();
-	//AddChild(m_pCreatePolice, 21);
+	AddChild(m_pCreatePolice, 21);
 
 
 }
@@ -126,7 +126,7 @@ void CWugargar::Update( float dTime )
 	MakeZombieButtonOperate(dTime);
 
 
-	//m_pCreatePolice->CreateEnemy();
+	m_pCreatePolice->CreateEnemy();
 }
 
 void CWugargar::MakeZombie(ZombieType type)

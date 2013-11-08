@@ -108,6 +108,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Police.cpp" />
     <ClCompile Include="PoorZombie.cpp" />
+    <ClCompile Include="PrintConsole.cpp" />
     <ClCompile Include="SmogZombie.cpp" />
     <ClCompile Include="SoundExample.cpp" />
     <ClCompile Include="SpriteExample.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Police.h" />
     <ClInclude Include="PoorZombie.h" />
+    <ClInclude Include="PrintConsole.h" />
     <ClInclude Include="SmogZombie.h" />
     <ClInclude Include="SoundExample.h" />
     <ClInclude Include="SpriteExample.h" />

@@ -113,6 +113,9 @@
     <ClCompile Include="VomitZombie.cpp">
       <Filter>Wugargar\Character</Filter>
     </ClCompile>
+    <ClCompile Include="PrintConsole.cpp">
+      <Filter>Wugargar\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -341,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="VomitZombie.h">
       <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintConsole.h">
+      <Filter>Wugargar\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
