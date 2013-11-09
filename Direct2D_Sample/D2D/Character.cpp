@@ -121,5 +121,15 @@ void CCharacter::Render()
 
 void CCharacter::Update( float dTime )
 {
+	
+}
 
+void CCharacter::Attack()
+{
+	CCharacter* target = this->m_AttackTarget;
+
+	if(this->m_AttackTarget){
+		int damage = this->GetAttackPower() - target->GetDefensivePower();
+		target->SetHP(target->GetHP()-damage) ;
+	}
 }

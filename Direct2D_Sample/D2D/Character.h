@@ -43,6 +43,8 @@ public:
 	void SetNumberOfTarget(int NT) {m_NumberOfTarget = NT;};
 	void SetAttackSpeed(int AS) {m_AttackSpeed = AS;};
 	void SetIdentity(CharacterIdentity set_id) {m_Identity = set_id;}
+
+	void Attack();
 	
 protected: 
 	virtual void initStatus( void );	

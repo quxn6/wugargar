@@ -41,6 +41,7 @@ public:
 	void MakeZombie(ZombieType type);
 	void MakeCharacterWalk(float dTime);
 	void MakeZombieButtonOperate(float dTime);
+	void KillCharacter();
 
 
 private :

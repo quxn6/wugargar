@@ -128,7 +128,6 @@ void CWugargar::Update( float dTime )
 	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
 
-
 	m_pCreatePolice->CreateEnemy();
 }
 
@@ -225,6 +224,25 @@ void CWugargar::MakeZombieButtonOperate(float dTime)
 
 	MakeCharacterWalk(dTime);// 생성된 좀비 이동
 }
+// 에러 해결 못한 함수
+void CWugargar::KillCharacter()
+{
+
+
+	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
+		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < 0)){
+			m_llistPolice.erase(iter);
+			RemoveChild(*iter,true);
+		}
+	}
+
+	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
+		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > 1024)){
+			m_llistZombie.erase(iter);
+			RemoveChild(*iter,true);
+		}
+	}
+}
 
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
@@ -254,3 +272,5 @@ void CWugargar::Test_ShowFPS()
 	m_pShowMouseStatus->SetString(temp);
 	// fps 출력용 끝
 }
+
+
