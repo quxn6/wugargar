@@ -10,6 +10,7 @@
 #include "SmogZombie.h"
 #include "MuscleZombie.h"
 #include "KamikazeZombie.h"
+#include "PrintConsole.h"
 
 CWugargar* CWugargar::m_pInstance = nullptr;
 
@@ -37,6 +38,7 @@ CWugargar::CWugargar(void)
 	_initBackground();
 	_initMap();
 	_initUI();
+	//CPrintConsole* print_console = new CPrintConsole;
 
 	// temporary
 	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"¸¼Àº °íµñ", 35.f );
@@ -108,6 +110,7 @@ void CWugargar::_initUI( void )
 	AddChild( m_pUIButton4 , 20);
 	AddChild( m_pUIButton5 , 20);
 	AddChild( m_pUIButton6 , 20);
+
 }
 
 

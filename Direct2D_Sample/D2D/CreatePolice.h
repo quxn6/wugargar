@@ -29,7 +29,7 @@ typedef struct CreateEnemyTable
 {
 	int time;
 	enemyType enemy_type;
-	int num_enemy;
+	//int num_enemy;
 }CreateEnemyTable;
 
 

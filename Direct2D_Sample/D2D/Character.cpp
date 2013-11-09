@@ -3,6 +3,7 @@
 #include <time.h>
 #include <stdlib.h>
 
+
 CCharacter::CCharacter(void)
 {
 }

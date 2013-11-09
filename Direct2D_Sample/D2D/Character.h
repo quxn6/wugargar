@@ -3,6 +3,8 @@
 #include "NNObject.h"
 #include "NNSprite.h"
 
+
+
 enum CharacterIdentity{
 	Zombie,
 	Police
