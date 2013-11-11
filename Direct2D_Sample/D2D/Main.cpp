@@ -19,7 +19,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	srand((unsigned int)time(NULL));
 	NNApplication* Application = NNApplication::GetInstance();
 
-	Application->Init( L"D2D Test", 1024, 768, D2D );
+	Application->Init( L"D2D Test", GAME_SCREEN_MAX_SIZE_X, GAME_SCREEN_MAX_SIZE_Y, D2D );
 	 
 	CPlayer::GetInstance();
 	// Sprite Example
