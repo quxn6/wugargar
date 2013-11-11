@@ -1,6 +1,6 @@
 #include "Police.h"
 #include "Zombie.h"
-#include "Wugargar.h"
+#include "PlayScene.h"
 
 
 CPolice::CPolice(void)
