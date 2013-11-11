@@ -26,7 +26,7 @@ void CNormalPolice::Update( float dTime )
 void CNormalPolice::initStatus( void )
 {
 	m_HealthPoint = 100;
-	m_MovingSpeed = 2.0f;
+	m_MovingSpeed = 35.0f;
 	m_AttackPower = 10;
 	m_DefensivePower = 2;
 	m_AttackRange = 50.0f;
