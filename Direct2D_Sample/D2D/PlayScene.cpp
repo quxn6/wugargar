@@ -12,6 +12,7 @@
 #include "KamikazeZombie.h"
 #include "PrintConsole.h"
 #include "NormalPolice.h"
+#include "Player.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -113,7 +114,6 @@ void CPlayScene::Update( float dTime )
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
 	Test_ShowFPS(); //FPS출력 임시 테스트
 
-
 	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
 
@@ -121,6 +121,7 @@ void CPlayScene::Update( float dTime )
 	// 버튼 입력처리 안에 있을 필요가 없는것 같아 update 함수로 뺌 - 성환
 	MakeCharacterWalk(dTime);
 
+	KillCharacter();
 
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
 	if(m_pCreatePolice->table_top_index < 4) {
@@ -183,8 +184,8 @@ void CPlayScene::MakeZombie(ZombieType type)
 	tmpZombieObject->SetRandomPositionAroundBase();
 	tmpZombieObject->InitSprite(imagePath[type]);
 	// z_index설정시 y축 값이 클수록 앞에 배치하여 앞에 있는 캐릭터에 발밑에 표시되지 않게 함.
-	// 나중에 추가로 수정할 필요가 있어보임
-	AddChild( tmpZombieObject , 10 + tmpZombieObject->GetPositionY() / 10);
+	// 나중에 추가로 수정할 필요가 있어보임, z_index도 한번 날 잡아서 #define으로 주는 것이 좋을 거같음.
+	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
 
 	// insert into zombie list
 	m_llistZombie.push_back(tmpZombieObject);
@@ -238,8 +239,31 @@ void CPlayScene::MakePoliceByFile()
 	
 }
 
+void CPlayScene::KillCharacter()
+{	
+	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
+		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < GAME_SCREEN_MIN_SIZE_X)){
+			CCharacter *tmpCharacter;
+			tmpCharacter = *iter;
+			m_llistPolice.erase(iter);
+			RemoveChild(tmpCharacter,true);
+			break;
+		}
+	}
+
+	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
+		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > GAME_SCREEN_MAX_SIZE_X)){
+			CCharacter *tmpCharacter;
+			tmpCharacter = *iter;
+			m_llistZombie.erase(iter);
+			RemoveChild(tmpCharacter,true);
+			break;
+		}
+	}
+}
 
 // 에러 해결 못한 함수
+/*
 void CPlayScene::KillCharacter()
 {
 
@@ -258,6 +282,7 @@ void CPlayScene::KillCharacter()
 		}
 	}
 }
+*/
 
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
