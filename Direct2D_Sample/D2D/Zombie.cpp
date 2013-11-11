@@ -1,5 +1,5 @@
 #include "Zombie.h"
-#include "Wugargar.h"
+#include "PlayScene.h"
 
 
 CZombie::CZombie(void)
