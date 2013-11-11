@@ -33,7 +33,7 @@ void CCharacter::initStatus( void )
 ISSUE : 1차 통합. switch문의 반복되는 For문을 하나로 줄일 방법을 찾아야 됨.
 수정 요망.
 */
-void  CCharacter::GetCloseEnemy()
+void  CCharacter::DetermineAttackTarget()
 {
 	float return_distnace = 1000000.0f;
 	float next_distance;
@@ -121,7 +121,10 @@ void CCharacter::Render()
 
 void CCharacter::Update( float dTime )
 {
-	
+	DetermineAttackTarget();
+	GoToAttackTarget();
+	if(IsAttack())
+		Attack();
 }
 
 void CCharacter::Attack()
@@ -132,4 +135,22 @@ void CCharacter::Attack()
 		int damage = this->GetAttackPower() - target->GetDefensivePower();
 		target->SetHP(target->GetHP()-damage) ;
 	}
+}
+
+void CCharacter::GoToAttackTarget()
+{
+
+}
+
+bool CCharacter::IsAttack()
+{
+	float distance_attacktarget;
+
+	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
+
+	if(distance_attacktarget <= m_AttackRange)
+		return true;
+	else
+		return false;
+
 }

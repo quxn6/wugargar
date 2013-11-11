@@ -128,7 +128,9 @@ void CWugargar::Update( float dTime )
 	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
 
-	MakePoliceByFile();
+	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
+	if(m_pCreatePolice->table_top_index < 4)
+		MakePoliceByFile();
 
 }
 
@@ -216,7 +218,7 @@ void CWugargar::MakeZombie(ZombieType type)
 void CWugargar::MakeCharacterWalk(float dTime)
 {
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
-		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
+		(*iter)->SetPosition((*iter)->GetPosition() - NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
 	}
 
 

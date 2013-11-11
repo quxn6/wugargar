@@ -23,7 +23,9 @@ public:
 
 	void InitSprite(std::wstring imagePath);
 	void SetRandomPositionAroundBase();
-	void GetCloseEnemy();
+	void DetermineAttackTarget();
+	void GoToAttackTarget();
+	bool IsAttack();
 
 	// gets & sets
 	int GetHP() {return m_HealthPoint;};
