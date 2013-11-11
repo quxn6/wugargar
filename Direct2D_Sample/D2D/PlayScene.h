@@ -18,6 +18,7 @@ enum ZombieType
 	KAMIKAJE_ZOMBIE,
 	SMOG_ZOMBIE,
 	ICE_ZOMBIE,
+	NUMBER_OF_ZOMBIES
 }; // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
 
 class CPlayScene : public NNScene
