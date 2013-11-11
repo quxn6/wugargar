@@ -42,6 +42,7 @@ public:
 	void MakeCharacterWalk(float dTime);
 	void MakeZombieButtonOperate(float dTime);
 	void KillCharacter();
+	void MakePoliceByFile();
 
 
 private :

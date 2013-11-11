@@ -14,6 +14,7 @@
 
 //적(경찰)의 타입. 이 타입에 맞춰서 해당하는 유닛을 생성함
 enum enemyType{
+	NOT_TIME,
 	NORMAL_POLICE,
 	GUN_POLICE,
 	SHILD_POLICE,
@@ -33,15 +34,15 @@ typedef struct CreateEnemyTable
 }CreateEnemyTable;
 
 
-class CCreatePolice : public NNObject
+class CCreatePolice
 {
 public:
 	CCreatePolice(void);
 	virtual ~CCreatePolice(void);
 
 public:
-	void Render();
-	void Update( float dTime );
+	//void Render();
+	//void Update( float dTime );
 
 	CreateEnemyTable *create_enemy_table;
 
@@ -51,9 +52,8 @@ public:
 	int gap_time;
 	int table_top_index;
 	void				ReturnTableByFile();
-	void				CreateEnemy();
+	enemyType				GetCreateEnemyInfo();
 
-	NNCREATE_FUNC (CCreatePolice);
 
 
 };

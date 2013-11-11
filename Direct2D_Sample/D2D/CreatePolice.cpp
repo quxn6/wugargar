@@ -12,8 +12,8 @@ CCreatePolice::CCreatePolice(void)
 	create_enemy_table = new CreateEnemyTable[5];
 	ReturnTableByFile();
 	
-	printf_s("CreatePolice 생성자\n");
-	printf_s("beginetime : %d\n", begin_time);
+	//printf_s("CreatePolice 생성자\n");
+	//printf_s("beginetime : %d\n", begin_time);
 }
 
 
@@ -22,7 +22,7 @@ CCreatePolice::~CCreatePolice(void)
 
 }
 
-
+/*
 void CCreatePolice::Render()
 {
 
@@ -33,7 +33,7 @@ void CCreatePolice::Update( float dTime )
 	printf_s("CreatePolice 업데이트\n");
 }
 
-
+*/
 /*
 함수명 : ReturnTableByFile
 반환값 : 지정된 파일에서 CreateEnemyTable의 형식에 맞춰 데이터를 삽입하고 반환
@@ -66,7 +66,7 @@ void CCreatePolice::ReturnTableByFile()
 			gap_time이 지정된 테이블의 생성 시간보다 큰 경우 지정된 갯수만큼 지정된 타입의 경찰 생성
 			생성후엔 index를 늘려주어 다음에 지정된 부분으로 이동하게 함.
 */
-void CCreatePolice::CreateEnemy()
+enemyType CCreatePolice::GetCreateEnemyInfo()
 {
 	
 	current_time = clock();
@@ -74,30 +74,13 @@ void CCreatePolice::CreateEnemy()
 	gap_time = (int)(current_time - begin_time)/(CLOCKS_PER_SEC);
 	printf_s("CreateEnemy. current : %d, gap : %d\n", current_time, gap_time);
 
-	CPolice *tmp_police;
 	if((gap_time) >= create_enemy_table[table_top_index].time)
 	{
-		switch (create_enemy_table[table_top_index].enemy_type)
-		{
-			case NORMAL_POLICE:
-				printf_s("노말 폴리스 생성\n");
-				tmp_police = CNormalPolice::Create();
-				tmp_police->SetRandomPositionAroundBase();
-				tmp_police->InitSprite(L"wugargar/normal_police.png");
-				AddChild(tmp_police, 10);
-				CWugargar::GetInstance()->GetPoliceList().push_back(tmp_police);
-				break;
-			case GUN_POLICE:
-				break;
-			case SHILD_POLICE:
-				break;
-			case HELLICOPTER:
-				break;
-			default:
-				break;
-		}
-
 		++table_top_index;
+		return create_enemy_table[table_top_index].enemy_type;
+
 	}
+
+	return NOT_TIME;
 }
 

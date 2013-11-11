@@ -11,6 +11,7 @@
 #include "MuscleZombie.h"
 #include "KamikazeZombie.h"
 #include "PrintConsole.h"
+#include "NormalPolice.h"
 
 CWugargar* CWugargar::m_pInstance = nullptr;
 
@@ -38,15 +39,14 @@ CWugargar::CWugargar(void)
 	_initBackground();
 	_initMap();
 	_initUI();
-	//CPrintConsole* print_console = new CPrintConsole;
+	CPrintConsole* print_console = new CPrintConsole;
 
 	// temporary
 	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"맑은 고딕", 35.f );
 	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
 	AddChild( m_pShowMouseStatus , 20);
 
-	m_pCreatePolice = CCreatePolice::Create();
-	AddChild(m_pCreatePolice, 21);
+	m_pCreatePolice = new CCreatePolice;
 
 
 }
@@ -128,7 +128,41 @@ void CWugargar::Update( float dTime )
 	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
 
-	m_pCreatePolice->CreateEnemy();
+	MakePoliceByFile();
+
+}
+
+void CWugargar::MakePoliceByFile()
+{
+	enemyType create_enemy_type;
+	CPolice *tmpPoliceObject = nullptr;
+	create_enemy_type =	m_pCreatePolice->GetCreateEnemyInfo();
+	std::wstring imagePath[5];
+	imagePath[NORMAL_POLICE] = L"wugargar/normal_police.png";
+
+	switch (create_enemy_type)
+	{
+	case NORMAL_POLICE:
+		tmpPoliceObject = CNormalPolice::Create();
+		break;
+	case GUN_POLICE:
+		break;
+	case SHILD_POLICE:
+		break;
+	case HELLICOPTER:
+		break;
+	default:
+		break;
+	}
+
+	if(create_enemy_type != NOT_TIME){
+		tmpPoliceObject->SetRandomPositionAroundBase();
+		tmpPoliceObject->InitSprite( imagePath[create_enemy_type]);
+		AddChild(tmpPoliceObject, 10);
+		m_llistPolice.push_back(tmpPoliceObject);
+
+	}
+	
 }
 
 void CWugargar::MakeZombie(ZombieType type)
@@ -167,6 +201,9 @@ void CWugargar::MakeZombie(ZombieType type)
 		break; // 클래스를 매개변수로 입력받아 깔끔하게 만들어 보려고 했으나 계속 실패해서 일단 하드코딩함
  	}
 
+
+	
+
 	tmpZombieObject->SetRandomPositionAroundBase();
 	tmpZombieObject->InitSprite(imagePath[type]);
 	AddChild( tmpZombieObject , 10 );
@@ -175,6 +212,7 @@ void CWugargar::MakeZombie(ZombieType type)
 	m_llistZombie.push_back(tmpZombieObject);
 }
 
+//11/11 정상 작동 확인
 void CWugargar::MakeCharacterWalk(float dTime)
 {
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
