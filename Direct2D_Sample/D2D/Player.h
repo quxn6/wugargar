@@ -18,7 +18,7 @@ public:
 
 private:
 	int m_globalMoney;
-	float m_clearedStage;//2.1, 3.4 등으로 진행된 스테이지 표시하려고
+	float m_clearedStage;	//2.1, 3.4 등으로 진행된 스테이지 표시하려고
 	//업데이트 현황 가지고 있기
 
 public:
