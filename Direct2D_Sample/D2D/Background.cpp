@@ -1,5 +1,5 @@
 #include "Background.h"
-#include "Wugargar.h"
+#include "PlayScene.h"
 
 
 CBackground::CBackground(void)

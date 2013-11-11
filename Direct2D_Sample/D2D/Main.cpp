@@ -7,7 +7,7 @@
 #include "SoundExample.h"
 #include "InputExample.h"
 #include "CustomObjectExample.h"
-#include "Wugargar.h"
+#include "PlayScene.h"
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
@@ -36,7 +36,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	// NNSceneDirector::GetInstance()->ChangeScene( CustomObjectExample::Create() );
 
 	// Wugargar game
-	 NNSceneDirector::GetInstance()->ChangeScene( CWugargar::GetInstance() );
+	 NNSceneDirector::GetInstance()->ChangeScene( CPlayScene::GetInstance() );
 
 
 	Application->Run();
