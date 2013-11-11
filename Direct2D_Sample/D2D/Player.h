@@ -1,32 +1,35 @@
 #pragma once
+
 class CPlayer
 {
 
 private:
 	static CPlayer* m_pInstance;
 
-public:
 	CPlayer(void);
-	~CPlayer(void);
+	virtual ~CPlayer(void);
 
 public:
 	static CPlayer* GetInstance();
 	static void ReleaseInstance();
 
 public:
+
 	bool Init();
 
-private:
-	int m_globalMoney;
-	float m_clearedStage;	//2.1, 3.4 등으로 진행된 스테이지 표시하려고
-	//업데이트 현황 가지고 있기
+	int GetGlobalMoney(){return m_GlobalMoney;}
+	int GetLocalMoney(){return m_LocalMoney;}
+	int GetClearedStage() {return m_ClearedStage;}
 
-public:
-	int GetGlobalMoney(){return m_globalMoney;};
-	float GetClearedStage() {return m_clearedStage;};
+	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney;}
+	void SetLocalMoney(int localMoney) {m_GlobalMoney = localMoney;}
+	void SetClearedStage(int ClearedStage) {m_ClearedStage = ClearedStage;}
 	
-	void SetGlobalMoney(int money) {m_globalMoney = money;};
-	void SetClearedStage(float ClearedStage) {m_clearedStage = ClearedStage;};
+private:
+	int m_GlobalMoney;
+	int m_LocalMoney;
+	int m_ClearedStage;		//201, 301 등으로 진행된 스테이지 표시
+	//업데이트 현황 가지고 있기
 
 };
 

@@ -52,7 +52,6 @@ private :
 
 private :
 	CBackground *m_pBackground;
-//	CPoorZombie *m_pPoorZombie; 왜있는지 모르겠음.. 지워도 되는건지? - 채원
 	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
 	CUIButton	*m_pUIButton1;
@@ -70,7 +69,7 @@ private :
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 
-public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다
+public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다 // Good job~
 	void Test_ShowMousePosition();
 	void Test_ShowFPS();
 };
