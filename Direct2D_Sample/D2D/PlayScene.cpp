@@ -262,28 +262,6 @@ void CPlayScene::KillCharacter()
 	}
 }
 
-// 에러 해결 못한 함수
-/*
-void CPlayScene::KillCharacter()
-{
-
-
-	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
-		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < 0)){
-			m_llistPolice.erase(iter);
-			RemoveChild(*iter,true);
-		}
-	}
-
-	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > 1024)){
-			m_llistZombie.erase(iter);
-			RemoveChild(*iter,true);
-		}
-	}
-}
-*/
-
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
 void CPlayScene::Test_ShowMousePosition()
