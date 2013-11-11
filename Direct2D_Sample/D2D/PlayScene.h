@@ -20,10 +20,8 @@ class CPlayScene : public NNScene
 {
 private :
 	static CPlayScene* m_pInstance;
-
-private:
 	CPlayScene(void);
-	~CPlayScene(void);
+	virtual ~CPlayScene(void);
 
 public:
 	void Render();
@@ -51,12 +49,6 @@ private :
 	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
 	CUIButton	*m_pUIMakeZombieButton[NUMBER_OF_ZOMBIE_TYPES];
-	CUIButton	*m_pUIButton1;
-	CUIButton	*m_pUIButton2;
-	CUIButton	*m_pUIButton3;
-	CUIButton	*m_pUIButton4;
-	CUIButton	*m_pUIButton5;
-	CUIButton	*m_pUIButton6;
 	NNLabel		*m_pShowMouseStatus;
 	NNPoint		m_CursorPos;
 	CCreatePolice *m_pCreatePolice;

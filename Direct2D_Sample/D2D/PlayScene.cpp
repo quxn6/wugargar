@@ -13,6 +13,8 @@
 #include "KamikazeZombie.h"
 #include "SmogZombie.h"
 #include "IceZombie.h"
+#include "NNSceneDirector.h"
+#include "NextStageScene.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -40,15 +42,17 @@ CPlayScene::CPlayScene(void)
 	_initBackground();
 	_initMap();
 	_initUI();
-	CPrintConsole* print_console = new CPrintConsole;
+	
 
 	// temporary
+	// FPS를 표시하고, 콘솔창을 띄움
 	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"맑은 고딕", 35.f );
 	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
 	AddChild( m_pShowMouseStatus , 20);
+	CPrintConsole* print_console = new CPrintConsole;
 
 	m_pCreatePolice = new CCreatePolice;
-
+	CPlayer::GetInstance()->SetPlayerForNewStage();
 
 }
 
@@ -126,6 +130,13 @@ void CPlayScene::Update( float dTime )
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
 	if(m_pCreatePolice->table_top_index < 4) {
 		MakePoliceFromScript();
+	}
+
+	// next stage 화면으로 이동하기 위한 임시 구문
+	// 엔터 치면 이동함
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN ) {
+		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+		m_pInstance = nullptr;
 	}
 }
 
@@ -262,28 +273,6 @@ void CPlayScene::CheckDeadCharacter()
 	}
 }
 
-// 에러 해결 못한 함수
-/*
-void CPlayScene::KillCharacter()
-{
-
-
-	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
-		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < 0)){
-			m_llistPolice.erase(iter);
-			RemoveChild(*iter,true);
-		}
-	}
-
-	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > 1024)){
-			m_llistZombie.erase(iter);
-			RemoveChild(*iter,true);
-		}
-	}
-}
-*/
-
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
 void CPlayScene::Test_ShowMousePosition()
@@ -292,14 +281,10 @@ void CPlayScene::Test_ShowMousePosition()
 	// wsprintf가 float형을 사용할 수 없어 임시방편으로 사용중
 	 	POINT pt;
 	 	GetCursorPos(&pt);
-	 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);
-	 
-	 	POINT pt2;
-	 	pt2.x = (int)m_pUIButton1->GetPositionX();
-	 	pt2.y = (int)m_pUIButton1->GetPositionY();
+	 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);	 
 	 
 	 	ZeroMemory(temp, 256);	
-	 	wsprintf(temp, L"image coord x : %4d y : %4d\nwindowcoord x : %4d y : %4d", pt2.x, pt2.y, pt.x, pt.y  );
+	 	wsprintf(temp, L"windowcoord x : %4d y : %4d", pt.x, pt.y  );
 	 	m_pShowMouseStatus->SetString(temp);
 	// 마우스 포지션용 끝 
 }

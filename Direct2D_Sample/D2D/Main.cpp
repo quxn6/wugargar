@@ -9,6 +9,7 @@
 #include "CustomObjectExample.h"
 #include "PlayScene.h"
 #include "Player.h"
+#include "NextStageScene.h"
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
@@ -40,6 +41,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	// Wugargar game
 	 NNSceneDirector::GetInstance()->ChangeScene( CPlayScene::GetInstance() );
 
+	 // UPGRADE SCENE
+	// NNSceneDirector::GetInstance()->ChangeScene( CNextStageScene::Create() );
 
 	Application->Run();
 	Application->Release();
