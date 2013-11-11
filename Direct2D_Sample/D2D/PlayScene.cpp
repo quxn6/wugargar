@@ -1,18 +1,18 @@
 #include "PlayScene.h"
 #include "NNPoint.h"
 #include "NNInputSystem.h"
-#include "NNLabel.h"
 #include "NNApplication.h"
-#include <tchar.h>
-#include <time.h>
-#include "IceZombie.h"
+
+#include "PrintConsole.h"
+
+#include "Player.h"
+#include "NormalPolice.h"
+#include "PoorZombie.h"
 #include "VomitZombie.h"
-#include "SmogZombie.h"
 #include "MuscleZombie.h"
 #include "KamikazeZombie.h"
-#include "PrintConsole.h"
-#include "NormalPolice.h"
-#include "Player.h"
+#include "SmogZombie.h"
+#include "IceZombie.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -98,7 +98,7 @@ void CPlayScene::_initUI( void )
 	// zombie type을 사용하여 refactoring - 성환
 	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
 		m_pUIMakeZombieButton[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
-		m_pUIMakeZombieButton[i]->SetPosition(static_cast<float>(GAP_BETWEEN_UIBUTTONS + i*(GAP_BETWEEN_UIBUTTONS+SIZE_OF_UIBUTTONS) ), static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + 30) );
+		m_pUIMakeZombieButton[i]->SetPosition(static_cast<float>(GAP_BETWEEN_UIBUTTONS + i*(GAP_BETWEEN_UIBUTTONS+SIZE_OF_UIBUTTON) ), static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + 30) );
 		AddChild( m_pUIMakeZombieButton[i] , 20);
 	}
 }
@@ -121,11 +121,11 @@ void CPlayScene::Update( float dTime )
 	// 버튼 입력처리 안에 있을 필요가 없는것 같아 update 함수로 뺌 - 성환
 	MakeCharacterWalk(dTime);
 
-	KillCharacter();
+	CheckDeadCharacter();
 
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
 	if(m_pCreatePolice->table_top_index < 4) {
-		MakePoliceByFile();
+		MakePoliceFromScript();
 	}
 }
 
@@ -206,7 +206,7 @@ void CPlayScene::MakeCharacterWalk(float dTime)
 }
 
 
-void CPlayScene::MakePoliceByFile()
+void CPlayScene::MakePoliceFromScript()
 {
 	enemyType create_enemy_type;
 	CPolice *tmpPoliceObject = nullptr;
@@ -239,7 +239,7 @@ void CPlayScene::MakePoliceByFile()
 	
 }
 
-void CPlayScene::KillCharacter()
+void CPlayScene::CheckDeadCharacter()
 {	
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
 		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < GAME_SCREEN_MIN_SIZE_X)){
@@ -261,6 +261,28 @@ void CPlayScene::KillCharacter()
 		}
 	}
 }
+
+// 에러 해결 못한 함수
+/*
+void CPlayScene::KillCharacter()
+{
+
+
+	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
+		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < 0)){
+			m_llistPolice.erase(iter);
+			RemoveChild(*iter,true);
+		}
+	}
+
+	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
+		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > 1024)){
+			m_llistZombie.erase(iter);
+			RemoveChild(*iter,true);
+		}
+	}
+}
+*/
 
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
