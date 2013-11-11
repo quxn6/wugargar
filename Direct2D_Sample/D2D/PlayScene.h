@@ -20,14 +20,14 @@ enum ZombieType
 	ICE_ZOMBIE,
 }; // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
 
-class CWugargar : public NNScene
+class CPlayScene : public NNScene
 {
 private :
-	static CWugargar* m_pInstance;
+	static CPlayScene* m_pInstance;
 
 private:
-	CWugargar(void);
-	~CWugargar(void);
+	CPlayScene(void);
+	~CPlayScene(void);
 
 public:
 	void Render();
@@ -36,7 +36,7 @@ public:
 	std::list<CPolice*> GetPoliceList() { return m_llistPolice; }
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
 
-	static CWugargar* GetInstance();
+	static CPlayScene* GetInstance();
 	static void ReleaseInstance();
 	void MakeZombie(ZombieType type);
 	void MakeCharacterWalk(float dTime);

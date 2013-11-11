@@ -1,4 +1,4 @@
-#include "Wugargar.h"
+#include "PlayScene.h"
 #include "NNPoint.h"
 #include "NNInputSystem.h"
 #include "NNLabel.h"
@@ -13,19 +13,19 @@
 #include "PrintConsole.h"
 #include "NormalPolice.h"
 
-CWugargar* CWugargar::m_pInstance = nullptr;
+CPlayScene* CPlayScene::m_pInstance = nullptr;
 
-CWugargar* CWugargar::GetInstance()
+CPlayScene* CPlayScene::GetInstance()
 {
 	if ( m_pInstance == nullptr )
 	{
-		m_pInstance = new CWugargar();
+		m_pInstance = new CPlayScene();
 	}
 
 	return m_pInstance;
 }
 
-void CWugargar::ReleaseInstance()
+void CPlayScene::ReleaseInstance()
 {
 	if ( m_pInstance != nullptr )
 	{
@@ -34,7 +34,7 @@ void CWugargar::ReleaseInstance()
 	}
 }
 
-CWugargar::CWugargar(void)
+CPlayScene::CPlayScene(void)
 {	
 	_initBackground();
 	_initMap();
@@ -51,20 +51,20 @@ CWugargar::CWugargar(void)
 
 }
 
-CWugargar::~CWugargar(void)
+CPlayScene::~CPlayScene(void)
 {
 
 }
 
 // init background
-void CWugargar::_initBackground( void )
+void CPlayScene::_initBackground( void )
 {
 	m_pBackground = CBackground::Create(); 
 	AddChild( m_pBackground , 0);
 }
 
 // init map
-void CWugargar::_initMap( void )
+void CPlayScene::_initMap( void )
 {	
 	m_pMapCreator = CMapCreator::Create();
 	AddChild( m_pMapCreator , 1);
@@ -72,7 +72,7 @@ void CWugargar::_initMap( void )
 
 
 // init UI
-void CWugargar::_initUI( void )
+void CPlayScene::_initUI( void )
 {
 	std::wstring buttonpath_normal_poorZombie = L"wugargar/UIbuttons/button_normal_poorZombie.png";
 	std::wstring buttonpath_pressed_poorZombie = L"wugargar/UIbuttons/button_pressed_poorZombie.png";
@@ -114,12 +114,12 @@ void CWugargar::_initUI( void )
 }
 
 
-void CWugargar::Render()
+void CPlayScene::Render()
 {
 	NNObject::Render();
 }
 
-void CWugargar::Update( float dTime )
+void CPlayScene::Update( float dTime )
 {
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
 	Test_ShowFPS(); //FPS출력 임시 테스트
@@ -134,7 +134,7 @@ void CWugargar::Update( float dTime )
 
 }
 
-void CWugargar::MakePoliceByFile()
+void CPlayScene::MakePoliceByFile()
 {
 	enemyType create_enemy_type;
 	CPolice *tmpPoliceObject = nullptr;
@@ -167,7 +167,7 @@ void CWugargar::MakePoliceByFile()
 	
 }
 
-void CWugargar::MakeZombie(ZombieType type)
+void CPlayScene::MakeZombie(ZombieType type)
 {
 	CZombie *tmpZombieObject = nullptr;
 	std::wstring imagePath[6];
@@ -215,7 +215,7 @@ void CWugargar::MakeZombie(ZombieType type)
 }
 
 //11/11 정상 작동 확인
-void CWugargar::MakeCharacterWalk(float dTime)
+void CPlayScene::MakeCharacterWalk(float dTime)
 {
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
 		(*iter)->SetPosition((*iter)->GetPosition() - NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
@@ -227,7 +227,7 @@ void CWugargar::MakeCharacterWalk(float dTime)
 	}
 }
 
-void CWugargar::MakeZombieButtonOperate(float dTime)
+void CPlayScene::MakeZombieButtonOperate(float dTime)
 {
 	// button1을 좌클릭했을 때 좀비 생성
 	// 모든 종류의 좀비 생성을 처리함 -채원
@@ -265,7 +265,7 @@ void CWugargar::MakeZombieButtonOperate(float dTime)
 	MakeCharacterWalk(dTime);// 생성된 좀비 이동
 }
 // 에러 해결 못한 함수
-void CWugargar::KillCharacter()
+void CPlayScene::KillCharacter()
 {
 
 
@@ -286,7 +286,7 @@ void CWugargar::KillCharacter()
 
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
-void CWugargar::Test_ShowMousePosition()
+void CPlayScene::Test_ShowMousePosition()
 {
 	// 마우스 포지션을 가져오기 위한 임시 구문	
 	// wsprintf가 float형을 사용할 수 없어 임시방편으로 사용중
@@ -304,7 +304,7 @@ void CWugargar::Test_ShowMousePosition()
 	// 마우스 포지션용 끝 
 }
 
-void CWugargar::Test_ShowFPS()
+void CPlayScene::Test_ShowFPS()
 {
 	// fps 출력용 임시
 	ZeroMemory(temp, 256);	

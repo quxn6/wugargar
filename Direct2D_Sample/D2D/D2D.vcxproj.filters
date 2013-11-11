@@ -77,9 +77,6 @@
     <ClCompile Include="Background.cpp">
       <Filter>Wugargar\Map</Filter>
     </ClCompile>
-    <ClCompile Include="Wugargar.cpp">
-      <Filter>Wugargar\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="UIButton.cpp">
       <Filter>Wugargar\Util</Filter>
     </ClCompile>
@@ -115,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="PrintConsole.cpp">
       <Filter>Wugargar\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Wugargar\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -294,9 +294,6 @@
     <ClInclude Include="CustomObject.h">
       <Filter>Example\CustomObject</Filter>
     </ClInclude>
-    <ClInclude Include="Wugargar.h">
-      <Filter>Wugargar\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Wugargar\Character</Filter>
     </ClInclude>
@@ -347,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="PrintConsole.h">
       <Filter>Wugargar\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Wugargar\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

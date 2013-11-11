@@ -114,7 +114,7 @@
     <ClCompile Include="SpriteExample.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="VomitZombie.cpp" />
-    <ClCompile Include="Wugargar.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +159,7 @@
     <ClInclude Include="SpriteExample.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="VomitZombie.h" />
-    <ClInclude Include="Wugargar.h" />
+    <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

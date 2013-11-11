@@ -1,5 +1,5 @@
 #include "Character.h"
-#include "Wugargar.h"
+#include "PlayScene.h"
 #include <time.h>
 #include <stdlib.h>
 
@@ -44,7 +44,7 @@ void  CCharacter::DetermineAttackTarget()
 	switch(this->GetIdentity())
 	{
 	case Zombie:
-		for(const auto& child : CWugargar::GetInstance()->GetPoliceList())
+		for(const auto& child : CPlayScene::GetInstance()->GetPoliceList())
 		{
 			next_distance = this->GetPosition().GetDistance(child->GetPosition());
 			 	if(return_distnace > next_distance)
@@ -56,7 +56,7 @@ void  CCharacter::DetermineAttackTarget()
 		break;
 
 	case Police:
-		for(const auto& child : CWugargar::GetInstance()->GetZombieList())
+		for(const auto& child : CPlayScene::GetInstance()->GetZombieList())
 		{
 			next_distance= this->GetPosition().GetDistance(child->GetPosition());
 			 	if(return_distnace > next_distance)
@@ -95,12 +95,12 @@ void CCharacter::SetRandomPositionAroundBase()
 	switch (m_Identity)
 	{
 	case Zombie:
-		baseLocation = CWugargar::GetInstance()->GetMapCreator()->GetZombieBase()->GetPosition();
+		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase()->GetPosition();
 		baseLocation.SetX(baseLocation.GetX()+TILE_SIZE_X);
 		baseLocation.SetY(baseLocation.GetY()+TILE_SIZE_Y);
 		break;
 	case Police:
-		baseLocation = CWugargar::GetInstance()->GetMapCreator()->GetPoliceBase()->GetPosition();
+		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase()->GetPosition();
 		baseLocation.SetX(baseLocation.GetX()-TILE_SIZE_X);
 		break;
 	default:
