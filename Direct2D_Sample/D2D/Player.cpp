@@ -4,7 +4,7 @@ CPlayer* CPlayer::m_pInstance = nullptr;
 
 CPlayer::CPlayer(void)
 {
-
+	InitPlayer();
 }
 
 
@@ -31,9 +31,14 @@ void CPlayer::ReleaseInstance()
 	}
 }
 
-bool CPlayer::Init()
+bool CPlayer::InitPlayer()
 {
 	//초기화 내용 추가
+	m_GlobalMoney = 0;
+	m_ClearedStage = 0;
+	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
+		m_CharacterLevel[i] = 0;
+	}
+
 	return true;
 }
-

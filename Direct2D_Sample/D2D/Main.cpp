@@ -8,6 +8,7 @@
 #include "InputExample.h"
 #include "CustomObjectExample.h"
 #include "PlayScene.h"
+#include "Player.h"
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
@@ -20,6 +21,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	Application->Init( L"D2D Test", 1024, 768, D2D );
 	 
+	CPlayer::GetInstance();
 	// Sprite Example
 	// NNSceneDirector::GetInstance()->ChangeScene( SpriteExample::Create() );
 

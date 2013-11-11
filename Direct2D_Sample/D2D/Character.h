@@ -61,6 +61,6 @@ protected:
 	int m_AttackSpeed;
 	CharacterIdentity m_Identity;
 	CCharacter *m_AttackTarget;
-	NNSprite*	m_Sprite;
+	NNSprite*	m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
 };
 

@@ -17,9 +17,7 @@ public:
 
 public:
 	float GetInfectingAccuracyRate() {return m_infectingAccuracyRate;};
-
-	void SetInfectingAccuracyRate(float IAR) {m_infectingAccuracyRate = IAR;};
-	
+	void SetInfectingAccuracyRate(float IAR) {m_infectingAccuracyRate = IAR;};	
 
 private:
 	float m_infectingAccuracyRate;

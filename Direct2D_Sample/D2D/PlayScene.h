@@ -18,8 +18,9 @@ enum ZombieType
 	KAMIKAJE_ZOMBIE,
 	SMOG_ZOMBIE,
 	ICE_ZOMBIE,
-	NUMBER_OF_ZOMBIES
+	NUMBER_OF_ZOMBIE_TYPES
 }; // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
+// array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
 
 class CPlayScene : public NNScene
 {
@@ -55,6 +56,7 @@ private :
 	CBackground *m_pBackground;
 	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
+	CUIButton	*m_pUIMakeZombieButton[NUMBER_OF_ZOMBIE_TYPES];
 	CUIButton	*m_pUIButton1;
 	CUIButton	*m_pUIButton2;
 	CUIButton	*m_pUIButton3;

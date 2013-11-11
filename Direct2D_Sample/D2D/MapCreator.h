@@ -9,11 +9,15 @@
 // max size x는 타일의 갯수를 의미한다. 가로 사이즈가 1024이므로 24를 위해 1칸정도 더 여유를 준다.
 // 세로 방향으로는 6 * 50 = 300의 크기를 가진다. 520 pixel~ 730까지는 UI가 사용한다.
 
+#define FIRST_Y_COORDINATE_OF_BACKGROUND	0
+#define FIRST_Y_COORDINATE_OF_MAPTILE		220
 #define MAP_SIZE_X	21
 #define MAP_SIZE_Y	6
-#define FIRST_Y_COORDINATE_OF_MAPTILE	220
 #define TILE_SIZE_X	50
 #define TILE_SIZE_Y	50
+#define FIRST_Y_COORDINATE_OF_UIBUTTON		FIRST_Y_COORDINATE_OF_MAPTILE + TILE_SIZE_Y * MAP_SIZE_Y // 520
+#define GAP_BETWEEN_UIBUTTONS	15
+#define SIZE_OF_UIBUTTONS		150
 
 enum MapType{
 	TILE = 0x1,
