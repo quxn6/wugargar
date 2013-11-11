@@ -38,7 +38,7 @@ public:
 	void MakeCharacterWalk(float dTime);
 	void MakeZombieButtonOperate(float dTime);
 	void CheckDeadCharacter();
-	void MakePoliceFromScrypt();
+	void MakePoliceFromScript();
 
 
 private :
