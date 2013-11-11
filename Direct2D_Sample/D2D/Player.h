@@ -1,10 +1,6 @@
 #pragma once
-#include "PlayScene.h"
+#include "GameConfig.h"
 
-#define GAME_SCREEN_MIN_SIZE_X	0
-#define GAME_SCREEN_MAX_SIZE_X	1024
-#define GAME_SCREEN_MIN_SIZE_Y	0
-#define GAME_SCREEN_MAX_SIZE_Y	768
 
 class CPlayer
 {

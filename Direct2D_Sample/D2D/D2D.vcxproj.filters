@@ -116,6 +116,9 @@
     <ClCompile Include="PlayScene.cpp">
       <Filter>Wugargar\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="NextStageScene.cpp">
+      <Filter>Wugargar\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -346,6 +349,12 @@
       <Filter>Wugargar\Util</Filter>
     </ClInclude>
     <ClInclude Include="PlayScene.h">
+      <Filter>Wugargar\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NextStageScene.h">
+      <Filter>Wugargar\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameConfig.h">
       <Filter>Wugargar\Scene</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,9 +18,6 @@ public :
 	void Update( float dTime );
 	bool CheckButtonArea( void );
 	bool ButtonPressed ();
-	
-
-//	NNCREATE_FUNC (CUIButton);
 
 protected :
 	NNSprite *m_pPressedImage;

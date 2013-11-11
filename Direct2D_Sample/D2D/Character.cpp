@@ -1,7 +1,5 @@
 #include "Character.h"
 #include "PlayScene.h"
-#include <time.h>
-#include <stdlib.h>
 
 
 CCharacter::CCharacter(void)

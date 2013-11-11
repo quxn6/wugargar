@@ -1,7 +1,5 @@
 #pragma once
 #include "police.h"
-#include "NNSprite.h"
-#include <time.h>
 
 class CNormalPolice :
 	public CPolice

@@ -1,6 +1,4 @@
 #pragma once
-#include "nnobject.h"
-#include "NNSprite.h"
 #include "Zombie.h"
 
 class CKamikazeZombie :	public CZombie

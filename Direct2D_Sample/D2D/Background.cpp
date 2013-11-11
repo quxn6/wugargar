@@ -1,5 +1,4 @@
 #include "Background.h"
-#include "PlayScene.h"
 
 
 CBackground::CBackground(void)

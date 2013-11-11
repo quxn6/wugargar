@@ -2,7 +2,6 @@
 #include "Police.h"
 #include "NormalPolice.h"
 #include "PlayScene.h"
-#include <time.h>
 #include "PrintConsole.h"
 
 CCreatePolice::CCreatePolice(void)
