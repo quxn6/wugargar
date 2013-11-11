@@ -1,26 +1,20 @@
 #pragma once
 
-#include "nnscene.h"
-#include "Background.h"
-#include "PoorZombie.h"
+#include "NNScene.h"
 #include "NNLabel.h"
 #include "NNPoint.h"
+
+#include "Background.h"
 #include "UIButton.h"
 #include "MapCreator.h"
 #include "CreatePolice.h"
+#include "Police.h"
+#include "Zombie.h"
+#include "GameConfig.h"
 
-
-enum ZombieType
-{
-	POOR_ZOMBIE,
-	VOMIT_ZOMBIE,
-	MUSCLE_ZOMBIE,
-	KAMIKAJE_ZOMBIE,
-	SMOG_ZOMBIE,
-	ICE_ZOMBIE,
-	NUMBER_OF_ZOMBIE_TYPES
-}; // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
+// 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
 // array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
+
 
 class CPlayScene : public NNScene
 {
@@ -43,8 +37,8 @@ public:
 	void MakeZombie(ZombieType type);
 	void MakeCharacterWalk(float dTime);
 	void MakeZombieButtonOperate(float dTime);
-	void KillCharacter();
-	void MakePoliceByFile();
+	void CheckDeadCharacter();
+	void MakePoliceFromScrypt();
 
 
 private :
