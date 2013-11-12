@@ -120,9 +120,10 @@ void CCharacter::Render()
 void CCharacter::Update( float dTime )
 {
 	DetermineAttackTarget();
-	GoToAttackTarget();
 	if(IsAttack())
 		Attack();
+	else
+		GoToAttackTarget(dTime);
 }
 
 void CCharacter::Attack()
@@ -135,8 +136,18 @@ void CCharacter::Attack()
 	}
 }
 
-void CCharacter::GoToAttackTarget()
+void CCharacter::GoToAttackTarget(float dTime)
 {
+	float gap_x = m_AttackTarget->GetPositionX() - m_Position.GetX();
+	float gap_y = m_AttackTarget->GetPositionY() - m_Position.GetY();
+	float t_x = (gap_x) / (gap_x+gap_y);
+	float t_y = (gap_y) / (gap_x+gap_y);
+
+	this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
+
+
+	
+
 
 }
 

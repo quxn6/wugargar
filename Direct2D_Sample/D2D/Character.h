@@ -24,7 +24,7 @@ public:
 	void InitSprite(std::wstring imagePath);
 	void SetRandomPositionAroundBase();
 	void DetermineAttackTarget();
-	void GoToAttackTarget();
+	void GoToAttackTarget(float dTime);
 	bool IsAttack();
 
 	// gets & sets
