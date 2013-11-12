@@ -113,6 +113,7 @@
     <ClCompile Include="SmogZombie.cpp" />
     <ClCompile Include="SoundExample.cpp" />
     <ClCompile Include="SpriteExample.cpp" />
+    <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="VomitZombie.cpp" />
     <ClCompile Include="PlayScene.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="SmogZombie.h" />
     <ClInclude Include="SoundExample.h" />
     <ClInclude Include="SpriteExample.h" />
+    <ClInclude Include="StartScene.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="VomitZombie.h" />
     <ClInclude Include="PlayScene.h" />
