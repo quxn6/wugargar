@@ -115,6 +115,8 @@ void CPlayScene::Render()
 
 void CPlayScene::Update( float dTime )
 {
+	NNScene::Update(dTime);
+
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
 	Test_ShowFPS(); //FPS출력 임시 테스트
 

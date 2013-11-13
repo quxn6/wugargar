@@ -20,7 +20,7 @@ void CNormalPolice::Render()
 
 void CNormalPolice::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }
 
 void CNormalPolice::initStatus( void )
