@@ -69,10 +69,13 @@ void CPlayScene::_initBackground( void )
 }
 
 // init map
+
 void CPlayScene::_initMap( void )
 {	
 	m_pMapCreator = CMapCreator::Create();
 	AddChild( m_pMapCreator , 1);
+
+
 }
 
 
@@ -115,7 +118,24 @@ void CPlayScene::Render()
 
 void CPlayScene::Update( float dTime )
 {
+	//종료조건처리.
+	//Win, Lose 각각에 대한 Scene이나 혹은 그에 준하는 로직이 필요
+	//주의점! 모든 Update문 보다 선행될 것.
+	//(그렇지 않으면 현재로썬 m_attacktarget에 관계된 버그가 문제가 됨)
+	switch (CheckGameOver())
+	{
+	case WIN:
+		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene/*CResultScene*/::Create());
+		break;
+	case LOSE:
+		break;
+	default:
+		break;
+	}
+
 	NNScene::Update(dTime);
+
+	
 
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
 	Test_ShowFPS(); //FPS출력 임시 테스트
@@ -275,6 +295,20 @@ void CPlayScene::CheckDeadCharacter()
 	}
 }
 
+/*
+정인호. 11/14
+현재 Base의 상황을 체크하여 게임 종료 여부를 체크.
+*/
+GameResult CPlayScene::CheckGameOver()
+{
+	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0)
+		return WIN;
+	else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0)
+		return LOSE;
+	else
+		return NOT_END;
+}
+
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
 void CPlayScene::Test_ShowMousePosition()
@@ -299,5 +333,9 @@ void CPlayScene::Test_ShowFPS()
 	m_pShowMouseStatus->SetString(temp);
 	// fps 출력용 끝
 }
+
+
+
+
 
 

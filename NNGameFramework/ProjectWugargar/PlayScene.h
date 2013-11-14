@@ -16,6 +16,12 @@
 // array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
 
 
+enum GameResult{
+	NOT_END,
+	LOSE,
+	WIN
+};
+
 class CPlayScene : public NNScene
 {
 private :
@@ -29,6 +35,7 @@ public:
 	std::list<CZombie*> GetZombieList() { return m_llistZombie; }
 	std::list<CPolice*> GetPoliceList() { return m_llistPolice; }
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
+	
 
 	static CPlayScene* GetInstance();
 	static void ReleaseInstance();
@@ -37,6 +44,8 @@ public:
 	void MakeZombieButtonOperate(float dTime);
 	void CheckDeadCharacter();
 	void MakePoliceFromScript();
+	GameResult CheckGameOver();
+
 
 
 private :

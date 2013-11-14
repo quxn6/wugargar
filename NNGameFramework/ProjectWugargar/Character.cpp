@@ -18,8 +18,7 @@ void CCharacter::initStatus( void )
 }
 
 /*
-함수명 : GetCloseEnemy
-반환값 : 해당 객체(경찰/좀비)로부터 가장 가까운 객체(경찰/좀비)을 반환
+함수명 : DetermineAttackTarget
 사용법 : 이 객체의 attack_target을 설정하는 함수로 사용하면 된다.
 이후에는 GoAttackTarget같은 함수를 사용하면 될 듯
 주요 로직 : 싱글톤으로 선언한 Scene에 있는 모든 Police배열을 돌면서 NNPoint의 함수를 이용해
@@ -39,6 +38,8 @@ void  CCharacter::DetermineAttackTarget()
 	CPolice *tmp_closer_target_police = NULL;
 	CCharacter *return_target = NULL;
 
+
+
 	switch(this->GetIdentity())
 	{
 	case Zombie:
@@ -51,6 +52,8 @@ void  CCharacter::DetermineAttackTarget()
 			 		m_AttackTarget = child;
 			 	}
 		}
+		if(m_AttackTarget == NULL)
+			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase();
 		break;
 
 	case Police:
@@ -63,10 +66,15 @@ void  CCharacter::DetermineAttackTarget()
 			 		m_AttackTarget = child;
 			 	}
 		}
+		if(m_AttackTarget == NULL)
+			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase();
 		break;
 	default:
 		break;
 	}
+
+	
+
 
 
 }
