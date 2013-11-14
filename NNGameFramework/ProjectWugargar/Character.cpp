@@ -25,10 +25,12 @@ void CCharacter::initStatus( void )
 거리를 측정하고 가장 가까운 거리로 갱신하여 해당하는 idx를 가진 타겟을 반환한다.
 
 최초 수정일 : 2013/11/03
-최종 수정일 : 2013/11/04
+최종 수정일 : 2013/11/14
 
 ISSUE : 1차 통합. switch문의 반복되는 For문을 하나로 줄일 방법을 찾아야 됨.
 수정 요망.
+
+11/14 : Enemy가 존재하지 않을 때(NULL) attackTarget을 상대의 Base로 설정하도록 변경
 */
 void  CCharacter::DetermineAttackTarget()
 {
@@ -72,11 +74,6 @@ void  CCharacter::DetermineAttackTarget()
 	default:
 		break;
 	}
-
-	
-
-
-
 }
 
 void CCharacter::InitSprite( std::wstring imagePath )
@@ -127,6 +124,8 @@ void CCharacter::Render()
 
 void CCharacter::Update( float dTime )
 {
+	//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
+	//공격하고 그렇지 않으면 Attack Target에게 접근
 	DetermineAttackTarget();
 	if(IsAttack())
 		Attack();
@@ -144,6 +143,12 @@ void CCharacter::Attack()
 	}
 }
 
+
+/*
+정인호. 11/14
+Attack_target과의 거리를 계산하여 그쪽 방향으로 접근하도록 함.
+Issue : 기존에 존재하는 MakeCharacterWalk와 어떤식으로 연계될지
+*/
 void CCharacter::GoToAttackTarget(float dTime)
 {
 	float gap_x = m_AttackTarget->GetPositionX() - m_Position.GetX();
@@ -152,13 +157,14 @@ void CCharacter::GoToAttackTarget(float dTime)
 	float t_y = (gap_y) / (gap_x+gap_y);
 
 	this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
-
-
-	
-
-
 }
 
+
+/*
+정인호. 11/14
+현재 상황에서 AttackTarget이 공격 사정거리 안에 들어가있는지 체크.
+공격이 가능하면 True, 가능하지 않으면(멀어서) False
+*/
 bool CCharacter::IsAttack()
 {
 	float distance_attacktarget;
