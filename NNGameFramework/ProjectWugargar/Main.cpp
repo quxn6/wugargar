@@ -5,6 +5,7 @@
 #include "PlayScene.h"
 #include "Player.h"
 #include "NextStageScene.h"
+#include "StartScene.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "NNGameFramework_DEBUG.lib")
@@ -41,6 +42,9 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	// Wugargar game
 	 NNSceneDirector::GetInstance()->ChangeScene( CPlayScene::GetInstance() );
+
+	// StartMenu SCENE
+	// NNSceneDirector::GetInstance()->ChangeScene(CStartScene::Create());
 
 	 // UPGRADE SCENE
 	// NNSceneDirector::GetInstance()->ChangeScene( CNextStageScene::Create() );
