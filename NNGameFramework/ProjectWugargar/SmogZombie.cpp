@@ -20,6 +20,7 @@ void CSmogZombie::initStatus( void )
 	m_AttackRange = 30.0f;
 	m_NumberOfTarget = 5;
 	m_AttackSpeed = 1;
+	m_CreateCost = 100;
 	m_Identity = Zombie;
 }
 

@@ -35,6 +35,7 @@ public:
 	float GetAttackRange() {return m_AttackRange;};
 	int GetNumberOfTarget() {return m_NumberOfTarget;};
 	int GetAttackSpeed() {return m_AttackSpeed;};
+	int GetCreateCost() {return m_CreateCost;};
 	CharacterIdentity GetIdentity() {return m_Identity;}
 	
 	void SetHP(int hp) {m_HealthPoint = hp;};
@@ -44,6 +45,7 @@ public:
 	void SetAttackRange(float AR) {m_AttackRange = AR;};
 	void SetNumberOfTarget(int NT) {m_NumberOfTarget = NT;};
 	void SetAttackSpeed(int AS) {m_AttackSpeed = AS;};
+	void SetCreateCost(int cost) {m_CreateCost = cost;};
 	void SetIdentity(CharacterIdentity set_id) {m_Identity = set_id;}
 
 	void Attack();
@@ -59,6 +61,7 @@ protected:
 	float m_AttackRange;
 	int m_NumberOfTarget;
 	int m_AttackSpeed;
+	int m_CreateCost;
 	CharacterIdentity m_Identity;
 	CCharacter *m_AttackTarget;
 	NNSprite*	m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
