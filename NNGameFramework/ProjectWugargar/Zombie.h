@@ -16,9 +16,14 @@ public:
 
 public:
 	float GetInfectingAccuracyRate() {return m_infectingAccuracyRate;};
+	int GetCreateCost() {return m_CreateCost;};
 	void SetInfectingAccuracyRate(float IAR) {m_infectingAccuracyRate = IAR;};	
+	void SetCreateCost(int cost) {m_CreateCost = cost;};
 
 private:
 	float m_infectingAccuracyRate;
+
+protected:
+		int m_CreateCost;
 };
 
