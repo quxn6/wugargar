@@ -135,10 +135,10 @@ void CPlayScene::Update( float dTime )
 
 	NNScene::Update(dTime);
 
-	
+	IncreaseLocalMoney(dTime);
 
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
-	Test_ShowFPS(); //FPS출력 임시 테스트
+	//Test_ShowFPS(); //FPS출력 임시 테스트
 
 	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
@@ -182,6 +182,8 @@ void CPlayScene::MakeZombie(ZombieType type)
 {
 	CZombie *tmpZombieObject = nullptr;
 	std::wstring imagePath[NUMBER_OF_ZOMBIE_TYPES];
+	CPlayer* player = CPlayer::GetInstance();
+	int localMoney = player->GetLocalMoney();
 
 	imagePath[POOR_ZOMBIE] = L"wugargar/poor_zombie.png";
 	imagePath[ICE_ZOMBIE] = L"wugargar/ice_zombie.png";
@@ -212,16 +214,23 @@ void CPlayScene::MakeZombie(ZombieType type)
 		break;
 	default:
 		break; // 클래스를 매개변수로 입력받아 깔끔하게 만들어 보려고 했으나 계속 실패해서 일단 하드코딩함
-	}	
+	}
+
+	int cost = tmpZombieObject->GetCreateCost();
 
 	tmpZombieObject->SetRandomPositionAroundBase();
 	tmpZombieObject->InitSprite(imagePath[type]);
 	// z_index설정시 y축 값이 클수록 앞에 배치하여 앞에 있는 캐릭터에 발밑에 표시되지 않게 함.
 	// 나중에 추가로 수정할 필요가 있어보임, z_index도 한번 날 잡아서 #define으로 주는 것이 좋을 거같음.
-	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
 
-	// insert into zombie list
-	m_llistZombie.push_back(tmpZombieObject);
+	//코스트 이상의 로컬 머니를 가지고 있을 때만 생성. 돈이 없으면 생성하지 않는다.
+	if(localMoney>=cost){
+		AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
+		player->SetLocalMoney(localMoney-cost);
+		// insert into zombie list
+		m_llistZombie.push_back(tmpZombieObject);
+	}
+	
 }
 
 
@@ -309,6 +318,19 @@ GameResult CPlayScene::CheckGameOver()
 		return NOT_END;
 }
 
+void CPlayScene::IncreaseLocalMoney( float dTime )
+{
+	CPlayer* player = CPlayer::GetInstance();
+	float localMoney = player->GetLocalMoney();
+	player->SetLocalMoney(localMoney += (dTime * 300)); // 금액 증가가 일정하지 않음.. 또 창을 드래그 하는 등 dTime이 길어지면 로컬머니가 매우 크게 증가하는 버그.
+
+	
+	//로컬머니 임시 출력 코드
+	ZeroMemory(temp, 256);	
+	swprintf_s(temp, _countof(temp), L"local money = %d", player->GetLocalMoney() );
+	m_pShowMouseStatus->SetString(temp);
+}
+
 /////////////////////////////////////////////////////////
 ///////////////////test 함수 /////////////////////////////
 void CPlayScene::Test_ShowMousePosition()
@@ -333,9 +355,3 @@ void CPlayScene::Test_ShowFPS()
 	m_pShowMouseStatus->SetString(temp);
 	// fps 출력용 끝
 }
-
-
-
-
-
-

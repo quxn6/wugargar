@@ -28,7 +28,7 @@ public:
 	int GetNumberOfLossInStage() const { return m_NumberOfLossInStage; }
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
-	void SetLocalMoney(int localMoney) {m_GlobalMoney = localMoney; }
+	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
 	void SetClearedStage(int ClearedStage) {m_ClearedStage = ClearedStage; }
 	void SetZombieLevel(ZombieType character, int level) { m_CharacterLevel[character] = level; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }

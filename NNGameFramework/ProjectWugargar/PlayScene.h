@@ -44,6 +44,7 @@ public:
 	void MakeZombieButtonOperate(float dTime);
 	void CheckDeadCharacter();
 	void MakePoliceFromScript();
+	void IncreaseLocalMoney(float dTime);
 	GameResult CheckGameOver();
 
 
