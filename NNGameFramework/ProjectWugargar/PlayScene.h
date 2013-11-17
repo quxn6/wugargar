@@ -10,16 +10,12 @@
 #include "Police.h"
 #include "Zombie.h"
 #include "GameConfig.h"
-
-// 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
-// array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
-
-
-enum GameResult{
-	NOT_END,
-	LOSE,
-	WIN
-};
+// 
+// enum GameResult{
+// 	NOT_END,
+// 	LOSE,
+// 	WIN
+// };
 
 class CPlayScene : public NNScene
 {
@@ -44,7 +40,7 @@ public:
 	void DeadCharacterCollector();
 	void MakePoliceFromScript();
 	void IncreaseLocalMoney(float dTime);
-	GameResult CheckGameOver();
+	bool CheckGameOver();
 
 
 

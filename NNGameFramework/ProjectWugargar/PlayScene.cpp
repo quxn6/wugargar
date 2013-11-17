@@ -123,16 +123,20 @@ void CPlayScene::Update( float dTime )
 	//Win, Lose 각각에 대한 Scene이나 혹은 그에 준하는 로직이 필요
 	//주의점! 모든 Update문 보다 선행될 것.
 	//(그렇지 않으면 현재로썬 m_attacktarget에 관계된 버그가 문제가 됨)
-	switch (CheckGameOver())
-	{
-	case WIN:
-		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene/*CResultScene*/::Create());
-		break;
-	case LOSE:
-		break;
-	default:
-		break;
+	if (CheckGameOver()) {
+		return ;
 	}
+// 
+// 	switch (CheckGameOver())
+// 	{
+// 	case WIN:
+// 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene/*CResultScene*/::Create());
+// 		break;
+// 	case LOSE:
+// 		break;
+// 	default:
+//		break;
+// 	}
 
 	NNScene::Update(dTime);
 
@@ -308,15 +312,21 @@ void CPlayScene::DeadCharacterCollector()
 /*
 정인호. 11/14
 현재 Base의 상황을 체크하여 게임 종료 여부를 체크.
+불타입으로 변경, 스테이지 관련 부분 구현 후 내용추가할 필요가 있어보임
 */
-GameResult CPlayScene::CheckGameOver()
+bool CPlayScene::CheckGameOver()
 {
-	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0)
-		return WIN;
-	else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0)
-		return LOSE;
-	else
-		return NOT_END;
+	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
+		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+		m_pInstance = nullptr;
+		return true;
+	} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
+		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+		m_pInstance = nullptr;
+		return true;
+	} else {
+		return false;
+	}
 }
 
 void CPlayScene::IncreaseLocalMoney( float dTime )

@@ -21,6 +21,8 @@
 #define SIZE_OF_UIBUTTON		150
 
 
+// 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
+// array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
 enum ZombieType
 {
 	POOR_ZOMBIE,
