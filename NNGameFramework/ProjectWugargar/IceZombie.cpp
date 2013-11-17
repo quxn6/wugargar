@@ -32,5 +32,5 @@ void CIceZombie::Render()
 
 void CIceZombie::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }

@@ -32,5 +32,5 @@ void CSmogZombie::Render()
 
 void CSmogZombie::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }

@@ -32,5 +32,5 @@ void CVomitZombie::Render()
 
 void CVomitZombie::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }

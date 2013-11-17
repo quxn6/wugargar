@@ -32,7 +32,7 @@ void CKamikazeZombie::Render()
 
 void CKamikazeZombie::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }
 
 void CKamikazeZombie::Attack()

@@ -32,5 +32,5 @@ void CMuscleZombie::Render()
 
 void CMuscleZombie::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }
