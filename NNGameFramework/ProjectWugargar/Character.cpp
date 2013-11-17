@@ -127,6 +127,7 @@ void CCharacter::Update( float dTime )
 	//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
 	//공격하고 그렇지 않으면 Attack Target에게 접근
 	DetermineAttackTarget();
+
 	if(IsAttack())
 		Attack();
 	else

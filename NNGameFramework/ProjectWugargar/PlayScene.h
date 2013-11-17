@@ -3,7 +3,6 @@
 #include "NNScene.h"
 #include "NNLabel.h"
 #include "NNPoint.h"
-
 #include "Background.h"
 #include "UIButton.h"
 #include "MapCreator.h"
