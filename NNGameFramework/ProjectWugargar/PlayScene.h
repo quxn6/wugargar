@@ -31,8 +31,8 @@ private :
 public:
 	void Render();
 	void Update( float dTime );
-	std::list<CZombie*> GetZombieList() { return m_llistZombie; }
-	std::list<CPolice*> GetPoliceList() { return m_llistPolice; }
+	std::list<CCharacter*> GetZombieList() { return m_llistZombie; }
+	std::list<CCharacter*> GetPoliceList() { return m_llistPolice; }
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
 	
 
@@ -41,7 +41,7 @@ public:
 	void MakeZombie(ZombieType type);
 	void MakeCharacterWalk(float dTime);
 	void MakeZombieButtonOperate(float dTime);
-	void CheckDeadCharacter();
+	void DeadCharacterCollector();
 	void MakePoliceFromScript();
 	void IncreaseLocalMoney(float dTime);
 	GameResult CheckGameOver();
@@ -62,8 +62,8 @@ private :
 	NNPoint		m_CursorPos;
 	CCreatePolice *m_pCreatePolice;
 
-	std::list<CZombie*>		m_llistZombie;
-	std::list<CPolice*>		m_llistPolice;
+	std::list<CCharacter*>		m_llistZombie;
+	std::list<CCharacter*>		m_llistPolice;
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 

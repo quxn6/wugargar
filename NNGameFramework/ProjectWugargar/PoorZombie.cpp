@@ -33,5 +33,5 @@ void CPoorZombie::Render()
 
 void CPoorZombie::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }

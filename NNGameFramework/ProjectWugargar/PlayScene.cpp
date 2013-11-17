@@ -42,7 +42,10 @@ CPlayScene::CPlayScene(void)
 	_initBackground();
 	_initMap();
 	_initUI();
-	
+
+	m_pCreatePolice = new CCreatePolice;
+	CPlayer::GetInstance()->SetPlayerForNewStage();
+
 
 	// temporary
 	// FPS를 표시하고, 콘솔창을 띄움
@@ -50,9 +53,7 @@ CPlayScene::CPlayScene(void)
 	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
 	AddChild( m_pShowMouseStatus , 20);
 	CPrintConsole* print_console = new CPrintConsole;
-
-	m_pCreatePolice = new CCreatePolice;
-	CPlayer::GetInstance()->SetPlayerForNewStage();
+	// END TEMP
 
 }
 
@@ -69,13 +70,13 @@ void CPlayScene::_initBackground( void )
 }
 
 // init map
-
+// 양쪽 base를 가져와 좀비 리스트 포돌이 리스트에 각각 추가함 - 성환
 void CPlayScene::_initMap( void )
 {	
 	m_pMapCreator = CMapCreator::Create();
 	AddChild( m_pMapCreator , 1);
-
-
+	m_llistZombie.push_back( m_pMapCreator->GetZombieBase() );
+	m_llistPolice.push_back( m_pMapCreator->GetPoliceBase() );
 }
 
 
@@ -145,9 +146,9 @@ void CPlayScene::Update( float dTime )
 
 	// 생성된 좀비 이동 
 	// 버튼 입력처리 안에 있을 필요가 없는것 같아 update 함수로 뺌 - 성환
-	MakeCharacterWalk(dTime);
+//	MakeCharacterWalk(dTime);
 
-	CheckDeadCharacter();
+	DeadCharacterCollector();
 
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
 	if(m_pCreatePolice->table_top_index < 4) {
@@ -281,7 +282,7 @@ void CPlayScene::MakePoliceFromScript()
 	
 }
 
-void CPlayScene::CheckDeadCharacter()
+void CPlayScene::DeadCharacterCollector()
 {	
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
 		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < GAME_SCREEN_MIN_SIZE_X)){
