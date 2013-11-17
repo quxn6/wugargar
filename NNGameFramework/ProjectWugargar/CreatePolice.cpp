@@ -53,7 +53,12 @@ void CCreatePolice::ReturnTableByFile()
 	create_enemy_table[4].time = 10;
 	create_enemy_table[4].enemy_type = NORMAL_POLICE;
 
-
+	create_enemy_table[5].time = 15;
+	create_enemy_table[5].enemy_type = NORMAL_POLICE;
+	create_enemy_table[6].time = 20;
+	create_enemy_table[6].enemy_type = NORMAL_POLICE;
+	create_enemy_table[7].time = 25;
+	create_enemy_table[7].enemy_type = NORMAL_POLICE;
 }
 
 

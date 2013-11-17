@@ -28,9 +28,9 @@ void CStartScene::Update( float dTime )
 	{
 		if(m_pNewGameButton->CheckButtonArea())
 			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-		if(m_pLoadGameButton->CheckButtonArea())
+		else if(m_pLoadGameButton->CheckButtonArea())
 			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-		if(m_pExitButton->CheckButtonArea())
+		else if(m_pExitButton->CheckButtonArea())
 			return;
 	}
 }

@@ -41,10 +41,10 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	// NNSceneDirector::GetInstance()->ChangeScene( CustomObjectExample::Create() );
 
 	// Wugargar game
-	 NNSceneDirector::GetInstance()->ChangeScene( CPlayScene::GetInstance() );
+	// NNSceneDirector::GetInstance()->ChangeScene( CPlayScene::GetInstance() );
 
 	// StartMenu SCENE
-	// NNSceneDirector::GetInstance()->ChangeScene(CStartScene::Create());
+	 NNSceneDirector::GetInstance()->ChangeScene(CStartScene::Create());
 
 	 // UPGRADE SCENE
 	// NNSceneDirector::GetInstance()->ChangeScene( CNextStageScene::Create() );
