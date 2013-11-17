@@ -15,7 +15,7 @@ void CKamikazeZombie::initStatus( void )
 {
 	m_HealthPoint = 50;
 	m_MovingSpeed = 50.0f;
-	m_AttackPower = 30;
+	m_AttackPower = 300;
 	m_DefensivePower = 3;
 	m_AttackRange = 10.0f;
 	m_NumberOfTarget = 3;
@@ -33,4 +33,15 @@ void CKamikazeZombie::Render()
 void CKamikazeZombie::Update( float dTime )
 {
 
+}
+
+void CKamikazeZombie::Attack()
+{
+	CCharacter* target = this->m_AttackTarget;
+
+	if(this->m_AttackTarget){
+		int damage = this->GetAttackPower() - target->GetDefensivePower();
+		target->SetHP(target->GetHP()-damage) ;
+		this->SetHP(0);
+	}
 }

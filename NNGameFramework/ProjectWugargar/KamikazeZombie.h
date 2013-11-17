@@ -12,7 +12,7 @@ public :
 
 	void Render();
 	void Update( float dTime );
-
+	void Attack();
 	NNCREATE_FUNC(CKamikazeZombie);
 
 protected:
