@@ -79,6 +79,7 @@ void  CCharacter::DetermineAttackTarget()
 void CCharacter::InitSprite( std::wstring imagePath )
 {
 	m_Sprite = NNSprite::Create(imagePath);
+	
 
 	// 부모 노드의 위치에 영향을 받기 때문에 
 	// 부모인 캐릭터 노드의 위치를 설정하고 
@@ -87,6 +88,12 @@ void CCharacter::InitSprite( std::wstring imagePath )
 
 	m_Sprite->SetPosition(0.0f, 0.0f);	
 	AddChild(m_Sprite, 1);
+
+	m_pShowHP = NNLabel::Create(L"HP", L"맑은 고딕", 10.f);
+	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+	AddChild(m_pShowHP, 20);
+
+
 }
 
 
@@ -126,6 +133,19 @@ void CCharacter::Update( float dTime )
 {
 	//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
 	//공격하고 그렇지 않으면 Attack Target에게 접근
+
+	//주석 처리한 부분 : 캐릭터 위에 HP를 표시함. 현재로썬 라벨을 매번 NEW하기 때문에
+	//프레임이 처절하게 떨어짐. 리팩토링 필요. (Label을 Character의 멤버변수로 설정이 불가능한걸로 보임.)
+	
+	
+	
+	ZeroMemory(temp_HP, 256);	
+	swprintf_s(temp_HP, _countof(temp_HP), L"%d",	m_HealthPoint );
+	m_pShowHP->SetString(temp_HP);
+	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+	
+	
+
 	DetermineAttackTarget();
 
 	if(IsAttack())

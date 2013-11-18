@@ -2,7 +2,7 @@
 #include "NNMacroSet.h"
 #include "NNObject.h"
 #include "NNSprite.h"
-
+#include "NNLabel.h"
 
 
 enum CharacterIdentity{
@@ -62,5 +62,7 @@ protected:
 	CharacterIdentity m_Identity;
 	CCharacter *m_AttackTarget;
 	NNSprite*	m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
+	NNLabel*	m_pShowHP;
+	wchar_t		temp_HP[256]; 
 };
 
