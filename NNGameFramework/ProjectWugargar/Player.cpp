@@ -46,7 +46,7 @@ void CPlayer::ReleaseInstance()
 
 void CPlayer::SetPlayerForNewStage()
 {
-	m_LocalMoney = 0;
+	m_LocalMoney = 300;
 	m_NumberOfKillInStage = 0;
 	m_NumberOfLossInStage = 0;
 }
