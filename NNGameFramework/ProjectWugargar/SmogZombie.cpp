@@ -15,11 +15,11 @@ void CSmogZombie::initStatus( void )
 {
 	m_HealthPoint = 80;
 	m_MovingSpeed = 80.0f;
-	m_AttackPower = 20;
+	m_AttackPower = 10;
 	m_DefensivePower = 1;
 	m_AttackRange = 30.0f;
 	m_NumberOfTarget = 5;
-	m_AttackSpeed = 1;
+	m_AttackSpeed = 3;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 }

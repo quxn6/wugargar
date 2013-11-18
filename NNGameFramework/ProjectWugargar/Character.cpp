@@ -1,12 +1,16 @@
 #include "Character.h"
 #include "PlayScene.h"
+#include <math.h>
 
 
 CCharacter::CCharacter(void)
-{
+{	
+	/* 적을 발견한 순간부터가 아닌 캐릭터가 만들어지고나서 부터의 시간으로 어택을 구현. 
+	타겟이 사정거리 안으로 들어온 순간부터의 시간을 기준으로 하는 것이 맞지만, update 안에서 공격 관련 함수가 계속 갱신되는 특성 때문에
+	생성자 안에서 m_CreateTime을 고정시키는 방법으로 우선 구현. ㅠㅠ
+	*/
+	SetCreateTime(clock()); 
 }
-
-
 
 CCharacter::~CCharacter(void)
 {
@@ -137,19 +141,19 @@ void CCharacter::Update( float dTime )
 	//주석 처리한 부분 : 캐릭터 위에 HP를 표시함. 현재로썬 라벨을 매번 NEW하기 때문에
 	//프레임이 처절하게 떨어짐. 리팩토링 필요. (Label을 Character의 멤버변수로 설정이 불가능한걸로 보임.)
 	
-	
-	
 	ZeroMemory(temp_HP, 256);	
 	swprintf_s(temp_HP, _countof(temp_HP), L"%d",	m_HealthPoint );
 	m_pShowHP->SetString(temp_HP);
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 	
-	
-
+	SetNowTime(clock());
 	DetermineAttackTarget();
 
 	if(IsAttack())
-		Attack();
+	{
+		if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0)
+			Attack(); // 첫 공격까지의 시간은 잘 적용이 되는데, 한번 공격을 시작하고 나면 여전히 어택 스피드가 적용이 안됨. 왜이럴까요?
+	}
 	else
 		GoToAttackTarget(dTime);
 }
@@ -157,11 +161,12 @@ void CCharacter::Update( float dTime )
 void CCharacter::Attack()
 {
 	CCharacter* target = this->m_AttackTarget;
-
+	
 	if(this->m_AttackTarget){
 		int damage = this->GetAttackPower() - target->GetDefensivePower();
 		target->SetHP(target->GetHP()-damage) ;
 	}
+
 }
 
 
@@ -189,9 +194,9 @@ void CCharacter::GoToAttackTarget(float dTime)
 		break;
 	}
 	
+
 	
 }
-
 
 /*
 정인호. 11/14
@@ -201,12 +206,10 @@ void CCharacter::GoToAttackTarget(float dTime)
 bool CCharacter::IsAttack()
 {
 	float distance_attacktarget;
-
 	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
 
 	if(distance_attacktarget <= m_AttackRange)
 		return true;
 	else
 		return false;
-
 }

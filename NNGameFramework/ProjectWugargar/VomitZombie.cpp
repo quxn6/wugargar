@@ -19,7 +19,7 @@ void CVomitZombie::initStatus( void )
 	m_DefensivePower = 2;
 	m_AttackRange = 30.0f;
 	m_NumberOfTarget = 1;
-	m_AttackSpeed = 1;
+	m_AttackSpeed = 3;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 }

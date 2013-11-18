@@ -31,6 +31,6 @@ void CNormalPolice::initStatus( void )
 	m_DefensivePower = 2;
 	m_AttackRange = 50.0f;
 	m_NumberOfTarget = 1;
-	m_AttackSpeed = 1;
+	m_AttackSpeed = 2;
 	m_Identity = Police;
 }

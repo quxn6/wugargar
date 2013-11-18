@@ -19,7 +19,7 @@ void CIceZombie::initStatus( void )
 	m_DefensivePower = 1;
 	m_AttackRange = 30.0f;
 	m_NumberOfTarget = 1;
-	m_AttackSpeed = 1;
+	m_AttackSpeed = 2;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 }
