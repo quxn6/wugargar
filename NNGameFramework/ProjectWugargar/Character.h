@@ -35,8 +35,8 @@ public:
 	float GetAttackRange() {return m_AttackRange;};
 	int GetNumberOfTarget() {return m_NumberOfTarget;};
 	int GetAttackSpeed() {return m_AttackSpeed;};
-	clock_t GetNowTimeSEC() {return m_NowTime/CLOCKS_PER_SEC;};
-	clock_t GetCreateTimeSEC() {return m_CreateTime/CLOCKS_PER_SEC;};
+	int GetNowTimeSEC() {return m_NowTime/CLOCKS_PER_SEC;};
+	int GetCreateTimeSEC() {return m_CreateTime/CLOCKS_PER_SEC;};
 	CharacterIdentity GetIdentity() {return m_Identity;}
 	
 	void SetHP(int hp) {m_HealthPoint = hp;};
