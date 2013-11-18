@@ -156,8 +156,20 @@ void CCharacter::GoToAttackTarget(float dTime)
 	float gap_y = m_AttackTarget->GetPositionY() - m_Position.GetY();
 	float t_x = (gap_x) / (gap_x+gap_y);
 	float t_y = (gap_y) / (gap_x+gap_y);
-
-	this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
+	
+	switch (m_Identity)
+	{
+	case Zombie:
+		this->SetPosition(this->m_Position - NNPoint( -(m_MovingSpeed*t_x),-( m_MovingSpeed*t_y) )*dTime);
+		break;
+	case Police:
+		this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
+		break;
+	default:
+		break;
+	}
+	
+	
 }
 
 
