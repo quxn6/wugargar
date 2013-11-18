@@ -10,6 +10,7 @@ CCharacter::CCharacter(void)
 	생성자 안에서 m_CreateTime을 고정시키는 방법으로 우선 구현. ㅠㅠ
 	*/
 	SetCreateTime(clock()); 
+	SetNowTime(clock());
 }
 
 CCharacter::~CCharacter(void)
@@ -146,13 +147,14 @@ void CCharacter::Update( float dTime )
 	m_pShowHP->SetString(temp_HP);
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 	
+	int CheckTimeChange = GetNowTimeSEC();
 	SetNowTime(clock());
 	DetermineAttackTarget();
 
 	if(IsAttack())
 	{
-		if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0)
-			Attack(); // 첫 공격까지의 시간은 잘 적용이 되는데, 한번 공격을 시작하고 나면 여전히 어택 스피드가 적용이 안됨. 왜이럴까요?
+		if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0 && CheckTimeChange != GetNowTimeSEC()) // 초단위로 시간이 변했는가도 함께 체크한다 (dTime이 너무 작아 int로 반환하는 Get~TimeSEC 함수는 1초 내에 같은값을 dTime마다 반환한다.)
+			Attack();
 	}
 	else
 		GoToAttackTarget(dTime);

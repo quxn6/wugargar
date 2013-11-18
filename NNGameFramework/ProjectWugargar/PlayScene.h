@@ -39,10 +39,13 @@ public:
 	void MakeZombieButtonOperate(float dTime);
 	void DeadCharacterCollector();
 	void MakePoliceFromScript();
-	void IncreaseLocalMoney(float dTime);
+	void IncreaseLocalMoney(int time);
 	bool CheckGameOver();
 
-
+	void SetStartTime(clock_t time) {m_startTime = time;};
+	void SetNowTime(clock_t time) {m_nowTime = time;};
+	int GetStartTimeSEC() {return m_startTime/CLOCKS_PER_SEC;}; 
+	int GetNowTimeSEC() {return m_nowTime/CLOCKS_PER_SEC;};
 
 private :
 	void _initBackground( void );
@@ -62,6 +65,8 @@ private :
 	std::list<CCharacter*>		m_llistPolice;
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
+	clock_t m_startTime;
+	clock_t m_nowTime;
 
 public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다 // Good job~
 	void Test_ShowMousePosition();

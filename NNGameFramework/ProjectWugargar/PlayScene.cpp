@@ -46,6 +46,8 @@ CPlayScene::CPlayScene(void)
 	m_pCreatePolice = new CCreatePolice;
 	CPlayer::GetInstance()->SetPlayerForNewStage();
 
+	SetStartTime(clock());
+	SetNowTime(clock());
 
 	// temporary
 	// FPS를 표시하고, 콘솔창을 띄움
@@ -140,7 +142,10 @@ void CPlayScene::Update( float dTime )
 
 	NNScene::Update(dTime);
 
-	IncreaseLocalMoney(dTime);
+	int checkTimeChange = GetNowTimeSEC(); // 시간이 변했는가를 초단위로 체크
+	SetNowTime(clock());
+	if(checkTimeChange != GetNowTimeSEC())
+		IncreaseLocalMoney(GetNowTimeSEC()-GetStartTimeSEC());
 
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
 	//Test_ShowFPS(); //FPS출력 임시 테스트
@@ -329,11 +334,12 @@ bool CPlayScene::CheckGameOver()
 	}
 }
 
-void CPlayScene::IncreaseLocalMoney( float dTime )
+void CPlayScene::IncreaseLocalMoney( int time )
 {
 	CPlayer* player = CPlayer::GetInstance();
 	float localMoney = player->GetLocalMoney();
-	player->SetLocalMoney(localMoney += (dTime * 300)); // 금액 증가가 일정하지 않음.. 또 창을 드래그 하는 등 dTime이 길어지면 로컬머니가 매우 크게 증가하는 버그.
+	if(time % 1 == 0)// 1초당
+		player->SetLocalMoney(localMoney + 10); // 십원 증가
 
 	
 	//로컬머니 임시 출력 코드
