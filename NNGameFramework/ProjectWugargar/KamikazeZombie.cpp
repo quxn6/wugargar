@@ -37,11 +37,8 @@ void CKamikazeZombie::Update( float dTime )
 
 void CKamikazeZombie::Attack()
 {
-	CCharacter* target = this->m_AttackTarget;
+	CCharacter::Attack();
 
-	if(this->m_AttackTarget){
-		int damage = this->GetAttackPower() - target->GetDefensivePower();
-		target->SetHP(target->GetHP()-damage) ;
-		this->SetHP(0);
-	}
+	this->SetHP(0);
+
 }

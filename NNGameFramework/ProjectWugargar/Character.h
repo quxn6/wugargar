@@ -7,7 +7,8 @@
 
 enum CharacterIdentity{
 	Zombie,
-	Police
+	Police,
+	Base
 };
 
 class CCharacter : public NNObject
@@ -50,7 +51,7 @@ public:
 	void SetNowTime(clock_t time) {m_NowTime = time;};
 	void SetCreateTime(clock_t time) {m_CreateTime = time;};
 
-	void Attack();
+	virtual void Attack();
 	
 protected: 
 	virtual void initStatus( void );	
@@ -70,5 +71,8 @@ protected:
 	NNSprite*	m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
 	NNLabel*	m_pShowHP;
 	wchar_t		temp_HP[256]; 
+	bool		m_is_splash;
+	float		m_splash_range;
+
 };
 

@@ -160,7 +160,7 @@ void CCharacter::Update( float dTime )
 		GoToAttackTarget(dTime);
 }
 
-void CCharacter::Attack()
+ void CCharacter::Attack()
 {
 	CCharacter* target = this->m_AttackTarget;
 	
