@@ -8,7 +8,7 @@ CCreatePolice::CCreatePolice(void)
 {
 	begin_time = clock();
 	table_top_index = 0;
-	create_enemy_table = new CreateEnemyTable[5];
+	create_enemy_table = new CreateEnemyTable[8];
 	ReturnTableByFile();
 	
 	//printf_s("CreatePolice 생성자\n");
@@ -18,21 +18,9 @@ CCreatePolice::CCreatePolice(void)
 
 CCreatePolice::~CCreatePolice(void)
 {
-
+	SafeArrayDelete<CreateEnemyTable>(create_enemy_table);
 }
 
-/*
-void CCreatePolice::Render()
-{
-
-}
-
-void CCreatePolice::Update( float dTime )
-{
-	printf_s("CreatePolice 업데이트\n");
-}
-
-*/
 /*
 함수명 : ReturnTableByFile
 반환값 : 지정된 파일에서 CreateEnemyTable의 형식에 맞춰 데이터를 삽입하고 반환
