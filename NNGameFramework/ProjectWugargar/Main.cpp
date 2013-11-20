@@ -18,38 +18,35 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc( );
+
+	AllocConsole();
+	FILE* console;
+	freopen_s( &console, "CONOUT$", "wt", stdout );
+
+	printf_s("Console Open \n");
+
 #endif 
 	srand((unsigned int)time(NULL));
 	NNApplication* Application = NNApplication::GetInstance();
 
 	Application->Init( L"D2D Test", GAME_SCREEN_MAX_SIZE_X, GAME_SCREEN_MAX_SIZE_Y, D2D );
-		
-	// Sprite Example
-	// NNSceneDirector::GetInstance()->ChangeScene( SpriteExample::Create() );
-
-	// Label Example
-	// NNSceneDirector::GetInstance()->ChangeScene( LabelExample::Create() );
-
-	// Input Example
-	// NNSceneDirector::GetInstance()->ChangeScene( InputExample::Create() );
-
-	// Sound Example
-	// NNSceneDirector::GetInstance()->ChangeScene( SoundExample::Create() );
-
-	// CustomObject Example
-	// NNSceneDirector::GetInstance()->ChangeScene( CustomObjectExample::Create() );
+	CPlayer::GetInstance();
+	// StartMenu SCENE
+	NNSceneDirector::GetInstance()->ChangeScene(CStartScene::Create());
 
 	// Wugargar game
 	// NNSceneDirector::GetInstance()->ChangeScene( CPlayScene::GetInstance() );
 
-	// StartMenu SCENE
-	 NNSceneDirector::GetInstance()->ChangeScene(CStartScene::Create());
-
-	 // UPGRADE SCENE
+	// UPGRADE SCENE
 	// NNSceneDirector::GetInstance()->ChangeScene( CNextStageScene::Create() );
 
 	Application->Run();
 	Application->Release();
+	CPlayer::ReleaseInstance();
+
+#ifdef _DEBUG
+	FreeConsole();
+#endif
 
 	return 0;
 }
