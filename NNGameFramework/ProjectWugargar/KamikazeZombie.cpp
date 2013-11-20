@@ -22,6 +22,8 @@ void CKamikazeZombie::initStatus( void )
 	m_AttackSpeed = 2;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
+	m_is_splash = true;
+	m_splash_range = 20.0f;
 }
 
 

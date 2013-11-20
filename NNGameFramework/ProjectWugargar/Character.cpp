@@ -163,11 +163,17 @@ void CCharacter::Update( float dTime )
  void CCharacter::Attack()
 {
 	CCharacter* target = this->m_AttackTarget;
-	
+	int damage;
+
 	if(this->m_AttackTarget){
-		int damage = this->GetAttackPower() - target->GetDefensivePower();
+		damage = this->GetAttackPower() - target->GetDefensivePower();
 		target->SetHP(target->GetHP()-damage) ;
 	}
+
+	//Splash속성이 true인 몬스터면 Splash어택
+	if(this->m_is_splash)
+		SplashAttack(damage);
+		
 
 }
 
@@ -214,4 +220,42 @@ bool CCharacter::IsAttack()
 		return true;
 	else
 		return false;
+}
+
+/*
+정인호. 11/20
+광역 공격 처리. 현재 로직은 PlayScene의 모든 Enemy를 리스트로 돌면서
+지정된 SplashRange내부에 있는 적들은 모두 데미지를 받도록 처리함
+*/
+void CCharacter::SplashAttack(int damage)
+{
+
+	switch (m_Identity)
+	{
+	case Zombie:
+		for (const auto& child : CPlayScene::GetInstance()->GetPoliceList())
+		{
+			float distance_attacktarget;
+			distance_attacktarget = this->GetPosition().GetDistance(child->GetPosition());
+
+			if(this->m_splash_range >= distance_attacktarget)
+				child->SetHP(child->GetHP()-damage);
+		}
+		break;
+	case Police:
+		for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
+		{
+			float distance_attacktarget;
+			distance_attacktarget = this->GetPosition().GetDistance(child->GetPosition());
+
+			if(this->m_splash_range >= distance_attacktarget)
+				child->SetHP(child->GetHP()-damage);
+		}
+		break;
+	case Base:
+		break;
+	default:
+		break;
+	
+	}
 }

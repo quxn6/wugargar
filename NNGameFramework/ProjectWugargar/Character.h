@@ -27,6 +27,7 @@ public:
 	void DetermineAttackTarget();
 	void GoToAttackTarget(float dTime);
 	bool IsAttack();
+	void SplashAttack(int damage);
 
 	// gets & sets
 	int GetHP() {return m_HealthPoint;};
