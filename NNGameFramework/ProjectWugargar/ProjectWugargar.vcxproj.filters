@@ -85,6 +85,9 @@
       <Filter>Wugargar\AI</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="HeroZombie.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -149,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="CreatePolice.h">
       <Filter>Wugargar\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="HeroZombie.h">
+      <Filter>Wugargar\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

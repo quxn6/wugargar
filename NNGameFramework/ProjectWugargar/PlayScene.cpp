@@ -15,6 +15,7 @@
 #include "IceZombie.h"
 #include "NNSceneDirector.h"
 #include "NextStageScene.h"
+#include "HeroZombie.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -85,8 +86,8 @@ void CPlayScene::_initMap( void )
 // init UI
 void CPlayScene::_initUI( void )
 {
-	std::wstring buttonpath_normal[NUMBER_OF_ZOMBIE_TYPES];
-	std::wstring buttonpath_pressed[NUMBER_OF_ZOMBIE_TYPES];
+	std::wstring buttonpath_normal[NUM_OF_UIBUTTON];
+	std::wstring buttonpath_pressed[NUM_OF_UIBUTTON];
 
 	buttonpath_normal[POOR_ZOMBIE] = L"wugargar/UIbuttons/button_normal_poorZombie.png";
 	buttonpath_pressed[POOR_ZOMBIE]  = L"wugargar/UIbuttons/button_pressed_poorZombie.png";
@@ -100,15 +101,22 @@ void CPlayScene::_initUI( void )
 	buttonpath_pressed[SMOG_ZOMBIE] = L"wugargar/UIbuttons/button_pressed_smogZombie.png";
 	buttonpath_normal[ICE_ZOMBIE] = L"wugargar/UIbuttons/button_normal_iceZombie.png";
 	buttonpath_pressed[ICE_ZOMBIE] = L"wugargar/UIbuttons/button_pressed_iceZombie.png";
+	buttonpath_normal[HERO_ZOMBIE_SM9] = L"wugargar/UIbuttons/button_normal_sm9.png";
+	buttonpath_pressed[HERO_ZOMBIE_SM9] = L"wugargar/UIbuttons/button_pressed_sm9.png";
+	buttonpath_normal[BABY_HUMAN - 1] = L"wugargar/UIbuttons/button_normal_baby.png";
+	buttonpath_pressed[BABY_HUMAN - 1] = L"wugargar/UIbuttons/button_pressed_baby.png";
+
 
 	m_pUIBackground = NNSprite::Create(L"wugargar/UIbuttons/UIBackground.jpg");
-	m_pUIBackground->SetPosition(0.0f, FIRST_Y_COORDINATE_OF_UIBUTTON);
+	m_pUIBackground->SetPosition(FIRST_X_COORDINATE_OF_UIBUTTON, FIRST_Y_COORDINATE_OF_UIBUTTON);
 	AddChild( m_pUIBackground , 19);
 
 	// zombie type을 사용하여 refactoring - 성환
-	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
+	for (int i=0 ; i<NUM_OF_UIBUTTON ; ++i) {
 		m_pUIMakeZombieButton[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
-		m_pUIMakeZombieButton[i]->SetPosition(static_cast<float>(GAP_BETWEEN_UIBUTTONS + i*(GAP_BETWEEN_UIBUTTONS+SIZE_OF_UIBUTTON) ), static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + 30) );
+		m_pUIMakeZombieButton[i]->SetPosition(static_cast<float>( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % NUM_OF_UIBUTTON_IN_ROW)) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON ) ), 
+			static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y )+ (SIZE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y) * int(i/NUM_OF_UIBUTTON_IN_ROW));
+			
 		AddChild( m_pUIMakeZombieButton[i] , 20);
 	}
 }
@@ -201,6 +209,7 @@ void CPlayScene::MakeZombie(ZombieType type)
 	imagePath[SMOG_ZOMBIE] = L"wugargar/smog_zombie.png";
 	imagePath[MUSCLE_ZOMBIE] = L"wugargar/muscle_zombie.png";
 	imagePath[KAMIKAJE_ZOMBIE] = L"wugargar/kamikaze_zombie.png";
+	imagePath[HERO_ZOMBIE_SM9] = L"wugargar/sm9_zombie.png";
 
 	switch(type)
 	{
@@ -221,6 +230,9 @@ void CPlayScene::MakeZombie(ZombieType type)
 		break;
 	case KAMIKAJE_ZOMBIE :
 		tmpZombieObject = CKamikazeZombie::Create();
+		break;
+	case HERO_ZOMBIE_SM9 :
+		tmpZombieObject = CHeroZombie::Create();
 		break;
 	default:
 		break; // 클래스를 매개변수로 입력받아 깔끔하게 만들어 보려고 했으나 계속 실패해서 일단 하드코딩함
