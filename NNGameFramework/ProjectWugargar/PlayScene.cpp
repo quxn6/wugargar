@@ -51,18 +51,23 @@ CPlayScene::CPlayScene(void)
 	SetNowTime(clock());
 
 	// temporary
-	// FPS¸¦ Ç¥½ÃÇÏ°í, ÄÜ¼ÖÃ¢À» ¶ç¿ò
-	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"¸¼Àº °íµñ", 35.f );
+	// FPSë¥¼ í‘œì‹œí•˜ê³ , ì½˜ì†”ì°½ì„ ë„ì›€
+	m_pShowMouseStatus = NNLabel::Create( L"cursor position", L"ë§‘ì€ ê³ ë”•", 35.f );
 	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
 	AddChild( m_pShowMouseStatus , 20);
-	CPrintConsole* print_console = new CPrintConsole;
 	// END TEMP
 
 }
 
 CPlayScene::~CPlayScene(void)
 {
+	delete m_pCreatePolice;
 
+	for (auto& iter=m_ChildList.begin(); iter!=m_ChildList.end(); iter++ )
+	{
+		SafeDelete( *iter );
+	}
+	m_ChildList.clear();
 }
 
 // init background
@@ -73,7 +78,7 @@ void CPlayScene::_initBackground( void )
 }
 
 // init map
-// ¾çÂÊ base¸¦ °¡Á®¿Í Á»ºñ ¸®½ºÆ® Æ÷µ¹ÀÌ ¸®½ºÆ®¿¡ °¢°¢ Ãß°¡ÇÔ - ¼ºÈ¯
+// ï¿½ï¿½ï¿½ï¿½ baseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ - ï¿½ï¿½È¯
 void CPlayScene::_initMap( void )
 {	
 	m_pMapCreator = CMapCreator::Create();
@@ -111,7 +116,7 @@ void CPlayScene::_initUI( void )
 	m_pUIBackground->SetPosition(FIRST_X_COORDINATE_OF_UIBUTTON, FIRST_Y_COORDINATE_OF_UIBUTTON);
 	AddChild( m_pUIBackground , 19);
 
-	// zombie typeÀ» »ç¿ëÇÏ¿© refactoring - ¼ºÈ¯
+	// zombie typeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ refactoring - ï¿½ï¿½È¯
 	for (int i=0 ; i<NUM_OF_UIBUTTON ; ++i) {
 		m_pUIMakeZombieButton[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
 		m_pUIMakeZombieButton[i]->SetPosition(static_cast<float>( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % NUM_OF_UIBUTTON_IN_ROW)) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON ) ), 
@@ -129,10 +134,10 @@ void CPlayScene::Render()
 
 void CPlayScene::Update( float dTime )
 {
-	//Á¾·áÁ¶°ÇÃ³¸®.
-	//Win, Lose °¢°¢¿¡ ´ëÇÑ SceneÀÌ³ª È¤Àº ±×¿¡ ÁØÇÏ´Â ·ÎÁ÷ÀÌ ÇÊ¿ä
-	//ÁÖÀÇÁ¡! ¸ðµç Update¹® º¸´Ù ¼±ÇàµÉ °Í.
-	//(±×·¸Áö ¾ÊÀ¸¸é ÇöÀç·Î½ã m_attacktarget¿¡ °ü°èµÈ ¹ö±×°¡ ¹®Á¦°¡ µÊ)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½.
+	//Win, Lose ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Sceneï¿½Ì³ï¿½ È¤ï¿½ï¿½ ï¿½×¿ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ Updateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
+	//(ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î½ï¿½ m_attacktargetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
 	if (CheckGameOver()) {
 		return ;
 	}
@@ -150,30 +155,30 @@ void CPlayScene::Update( float dTime )
 
 	NNScene::Update(dTime);
 
-	int checkTimeChange = GetNowTimeSEC(); // ½Ã°£ÀÌ º¯Çß´Â°¡¸¦ ÃÊ´ÜÀ§·Î Ã¼Å©
+	int checkTimeChange = GetNowTimeSEC(); // ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß´Â°ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
 	SetNowTime(clock());
 	if(checkTimeChange != GetNowTimeSEC())
 		IncreaseLocalMoney(GetNowTimeSEC()-GetStartTimeSEC());
 
-	//Test_ShowMousePosition(); // ¸¶¿ì½º Ä¿¼­ À§Ä¡ ÀÓ½Ã Å×½ºÆ®
-	//Test_ShowFPS(); //FPSÃâ·Â ÀÓ½Ã Å×½ºÆ®
+	//Test_ShowMousePosition(); // ï¿½ï¿½ï¿½ì½º Ä¿ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ó½ï¿½ ï¿½×½ï¿½Æ®
+	//Test_ShowFPS(); //FPSï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½×½ï¿½Æ®
 
-	// Á»ºñ »ý¼º ¹öÆ° ÀÔ·Â Ã³¸®¸¦ ÇÑ ÇÔ¼ö·Î »©¹ö¸² - Ã¤¿ø
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½Ô·ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - Ã¤ï¿½ï¿½
 	MakeZombieButtonOperate(dTime);
 
-	// »ý¼ºµÈ Á»ºñ ÀÌµ¿ 
-	// ¹öÆ° ÀÔ·ÂÃ³¸® ¾È¿¡ ÀÖÀ» ÇÊ¿ä°¡ ¾ø´Â°Í °°¾Æ update ÇÔ¼ö·Î »­ - ¼ºÈ¯
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ 
+	// ï¿½ï¿½Æ° ï¿½Ô·ï¿½Ã³ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ update ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ - ï¿½ï¿½È¯
 //	MakeCharacterWalk(dTime);
 
 	DeadCharacterCollector();
 
-	//±âÁ¸ ÁöÁ¤ÇØ³õÀº ÆÄÀÏ ¹üÀ§¸¦ ³Ñ¾î°¥¶§¸¦ À§ÇÑ Ã³¸®. ÀÓ½Ã.
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½. ï¿½Ó½ï¿½.
 	if(m_pCreatePolice->table_top_index < 4) {
 		MakePoliceFromScript();
 	}
 
-	// next stage È­¸éÀ¸·Î ÀÌµ¿ÇÏ±â À§ÇÑ ÀÓ½Ã ±¸¹®
-	// ¿£ÅÍ Ä¡¸é ÀÌµ¿ÇÔ
+	// next stage È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN ) {
 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
 		m_pInstance = nullptr;
@@ -182,14 +187,14 @@ void CPlayScene::Update( float dTime )
 
 void CPlayScene::MakeZombieButtonOperate(float dTime)
 {
-	// button1À» ÁÂÅ¬¸¯ÇßÀ» ¶§ Á»ºñ »ý¼º
-	// ¸ðµç Á¾·ùÀÇ Á»ºñ »ý¼ºÀ» Ã³¸®ÇÔ -Ã¤¿ø
+	// button1ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ -Ã¤ï¿½ï¿½
 
-	// ÄÚµå refactoringÇÔ. zombie typeÀ» intÃ³·³ »ç¿ëÇÏ´Âµ¥ ÀÌ°Ô Á» °É¸². - ¼ºÈ¯
+	// ï¿½Úµï¿½ refactoringï¿½ï¿½. zombie typeï¿½ï¿½ intÃ³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Âµï¿½ ï¿½Ì°ï¿½ ï¿½ï¿½ ï¿½É¸ï¿½. - ï¿½ï¿½È¯
 	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 			if ( m_pUIMakeZombieButton[i]->CheckButtonArea() ) {			
-				MakeZombie(static_cast<ZombieType>(i));// Á»ºñ »ý¼º
+				MakeZombie(static_cast<ZombieType>(i));// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}		
 		}
 	}
@@ -235,17 +240,17 @@ void CPlayScene::MakeZombie(ZombieType type)
 		tmpZombieObject = CHeroZombie::Create();
 		break;
 	default:
-		break; // Å¬·¡½º¸¦ ¸Å°³º¯¼ö·Î ÀÔ·Â¹Þ¾Æ ±ò²ûÇÏ°Ô ¸¸µé¾î º¸·Á°í ÇßÀ¸³ª °è¼Ó ½ÇÆÐÇØ¼­ ÀÏ´Ü ÇÏµåÄÚµùÇÔ
+		break; // Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Â¹Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ï´ï¿½ ï¿½Ïµï¿½ï¿½Úµï¿½ï¿½ï¿½
 	}
 
 	int cost = tmpZombieObject->GetCreateCost();
 
 	tmpZombieObject->SetRandomPositionAroundBase();
 	tmpZombieObject->InitSprite(imagePath[type]);
-	// z_index¼³Á¤½Ã yÃà °ªÀÌ Å¬¼ö·Ï ¾Õ¿¡ ¹èÄ¡ÇÏ¿© ¾Õ¿¡ ÀÖ´Â Ä³¸¯ÅÍ¿¡ ¹ß¹Ø¿¡ Ç¥½ÃµÇÁö ¾Ê°Ô ÇÔ.
-	// ³ªÁß¿¡ Ãß°¡·Î ¼öÁ¤ÇÒ ÇÊ¿ä°¡ ÀÖ¾îº¸ÀÓ, z_indexµµ ÇÑ¹ø ³¯ Àâ¾Æ¼­ #defineÀ¸·Î ÁÖ´Â °ÍÀÌ ÁÁÀ» °Å°°À½.
+	// z_indexï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ ï¿½ï¿½Ä¡ï¿½Ï¿ï¿½ ï¿½Õ¿ï¿½ ï¿½Ö´ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ß¹Ø¿ï¿½ Ç¥ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½.
+	// ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½Ö¾îº¸ï¿½ï¿½, z_indexï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¼ï¿½ #defineï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½.
 
-	//ÄÚ½ºÆ® ÀÌ»óÀÇ ·ÎÄÃ ¸Ó´Ï¸¦ °¡Áö°í ÀÖÀ» ¶§¸¸ »ý¼º. µ·ÀÌ ¾øÀ¸¸é »ý¼ºÇÏÁö ¾Ê´Â´Ù.
+	//ï¿½Ú½ï¿½Æ® ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if(localMoney>=cost){
 		AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
 		player->SetLocalMoney(localMoney-cost);
@@ -256,7 +261,7 @@ void CPlayScene::MakeZombie(ZombieType type)
 }
 
 
-//11/11 Á¤»ó ÀÛµ¿ È®ÀÎ
+//11/11 ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ È®ï¿½ï¿½
 void CPlayScene::MakeCharacterWalk(float dTime)
 {
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
@@ -327,9 +332,9 @@ void CPlayScene::DeadCharacterCollector()
 }
 
 /*
-Á¤ÀÎÈ£. 11/14
-ÇöÀç BaseÀÇ »óÈ²À» Ã¼Å©ÇÏ¿© °ÔÀÓ Á¾·á ¿©ºÎ¸¦ Ã¼Å©.
-ºÒÅ¸ÀÔÀ¸·Î º¯°æ, ½ºÅ×ÀÌÁö °ü·Ã ºÎºÐ ±¸Çö ÈÄ ³»¿ëÃß°¡ÇÒ ÇÊ¿ä°¡ ÀÖ¾îº¸ÀÓ
+ï¿½ï¿½ï¿½ï¿½È£. 11/14
+ï¿½ï¿½ï¿½ï¿½ Baseï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ Ã¼Å©ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ Ã¼Å©.
+ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½Ö¾îº¸ï¿½ï¿½
 */
 bool CPlayScene::CheckGameOver()
 {
@@ -350,22 +355,22 @@ void CPlayScene::IncreaseLocalMoney( int time )
 {
 	CPlayer* player = CPlayer::GetInstance();
 	float localMoney = player->GetLocalMoney();
-	if(time % 1 == 0)// 1ÃÊ´ç
-		player->SetLocalMoney(localMoney + 10); // ½Ê¿ø Áõ°¡
+	if(time % 1 == 0)// 1ï¿½Ê´ï¿½
+		player->SetLocalMoney(localMoney + 10); // ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	
-	//·ÎÄÃ¸Ó´Ï ÀÓ½Ã Ãâ·Â ÄÚµå
+	//ï¿½ï¿½ï¿½Ã¸Ó´ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 	ZeroMemory(temp, 256);	
 	swprintf_s(temp, _countof(temp), L"local money = %d", player->GetLocalMoney() );
 	m_pShowMouseStatus->SetString(temp);
 }
 
 /////////////////////////////////////////////////////////
-///////////////////test ÇÔ¼ö /////////////////////////////
+///////////////////test ï¿½Ô¼ï¿½ /////////////////////////////
 void CPlayScene::Test_ShowMousePosition()
 {
-	// ¸¶¿ì½º Æ÷Áö¼ÇÀ» °¡Á®¿À±â À§ÇÑ ÀÓ½Ã ±¸¹®	
-	// wsprintf°¡ floatÇüÀ» »ç¿ëÇÒ ¼ö ¾ø¾î ÀÓ½Ã¹æÆíÀ¸·Î »ç¿ëÁß
+	// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½	
+	// wsprintfï¿½ï¿½ floatï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	 	POINT pt;
 //	 	GetCursorPos(&pt);
 //	 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);	 
@@ -373,14 +378,14 @@ void CPlayScene::Test_ShowMousePosition()
 //	 	ZeroMemory(temp, 256);	
 //	 	wsprintf(temp, L"windowcoord x : %4d y : %4d", pt.x, pt.y  );
 //	 	m_pShowMouseStatus->SetString(temp);
-	// ¸¶¿ì½º Æ÷Áö¼Ç¿ë ³¡ 
+	// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ 
 }
 
 void CPlayScene::Test_ShowFPS()
 {
-	// fps Ãâ·Â¿ë ÀÓ½Ã
+	// fps ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½Ó½ï¿½
 	ZeroMemory(temp, 256);	
 	swprintf_s(temp, _countof(temp), L"FPS = %0.3f", NNApplication::GetInstance()->GetFPS() );
 	m_pShowMouseStatus->SetString(temp);
-	// fps Ãâ·Â¿ë ³¡
+	// fps ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½
 }
