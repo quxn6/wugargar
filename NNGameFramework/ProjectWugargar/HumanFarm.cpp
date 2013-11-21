@@ -1,5 +1,6 @@
 #include "HumanFarm.h"
 #include "GameConfig.h"
+#include "HumanInFarm.h"
 
 
 CHumanFarm::CHumanFarm(void)
@@ -23,5 +24,12 @@ void CHumanFarm::Render()
 
 void CHumanFarm::Update( float dTime )
 {
+	NNObject::Update(dTime);
+}
 
+void CHumanFarm::MakeHuman()
+{
+	CHumanInFarm* tmpBaby = CHumanInFarm::Create();
+	//std::wstring HumanimagePath = L"wugargar/smallbaby.png";
+	AddChild( tmpBaby , 30);
 }

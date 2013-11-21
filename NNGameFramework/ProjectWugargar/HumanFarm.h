@@ -14,6 +14,7 @@ public :
 	void Render();
 	void Update( float dTime );
 	NNCREATE_FUNC(CHumanFarm);
+	void MakeHuman();
 
 protected:
 	NNSprite *m_pFarmBackground;

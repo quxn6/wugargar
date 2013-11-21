@@ -189,7 +189,7 @@ void CPlayScene::Update( float dTime )
 	}
 }
 
-void CPlayScene::MakeZombieButtonOperate(float dTime)
+void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙임
 {
 	// button1�� ��Ŭ������ �� ���� ����
 	// ���� ������ ���� ������ ó���� -ä��
@@ -200,6 +200,8 @@ void CPlayScene::MakeZombieButtonOperate(float dTime)
 			if ( m_pUIMakeZombieButton[i]->CheckButtonArea() ) {			
 				MakeZombie(static_cast<ZombieType>(i));// ���� ����
 			}		
+			else if (m_pUIMakeZombieButton[BABY_HUMAN - 1]->CheckButtonArea() ) //아기 생성
+				m_pHumanFarm->MakeHuman();
 		}
 	}
 }
