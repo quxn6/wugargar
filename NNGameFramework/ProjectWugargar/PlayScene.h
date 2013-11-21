@@ -10,6 +10,7 @@
 #include "Police.h"
 #include "Zombie.h"
 #include "GameConfig.h"
+#include "HumanFarm.h"
 // 
 // enum GameResult{
 // 	NOT_END,
@@ -60,6 +61,7 @@ private :
 	NNLabel		*m_pShowMouseStatus;
 	NNPoint		m_CursorPos;
 	CCreatePolice *m_pCreatePolice;
+	CHumanFarm *m_pHumanFarm;
 
 	std::list<CCharacter*>		m_llistZombie;
 	std::list<CCharacter*>		m_llistPolice;

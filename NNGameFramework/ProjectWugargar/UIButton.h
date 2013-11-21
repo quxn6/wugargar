@@ -1,6 +1,5 @@
 #pragma once
 #include "nnobject.h"
-#include "NNMacroSet.h"
 #include "NNSprite.h"
 #include "NNPoint.h"
 #include "NNLabel.h"

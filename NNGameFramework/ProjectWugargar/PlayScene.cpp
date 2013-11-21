@@ -47,6 +47,8 @@ CPlayScene::CPlayScene(void)
 	m_pCreatePolice = new CCreatePolice;
 	CPlayer::GetInstance()->SetPlayerForNewStage();
 
+
+
 	SetStartTime(clock());
 	SetNowTime(clock());
 
@@ -75,6 +77,8 @@ void CPlayScene::_initBackground( void )
 {
 	m_pBackground = CBackground::Create(); 
 	AddChild( m_pBackground , 0);
+	m_pHumanFarm = CHumanFarm::Create();
+	AddChild( m_pHumanFarm , 1);
 }
 
 // init map
