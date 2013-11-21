@@ -12,6 +12,7 @@ CCharacter::CCharacter(void)
 	SetCreateTime(clock()); 
 	SetNowTime(clock());
 	m_is_iceState = false;
+	m_sight = 100.0f + rand() % 20;
 }
 
 CCharacter::~CCharacter(void)
@@ -194,6 +195,15 @@ void CCharacter::GoToAttackTarget(float dTime)
 	float gap_y = m_AttackTarget->GetPositionY() - m_Position.GetY();
 	float t_x = (gap_x) / (gap_x+gap_y);
 	float t_y = (gap_y) / (gap_x+gap_y);
+
+
+	float distance_attacktarget;
+	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
+	if(distance_attacktarget <= m_sight)
+	{
+		MakeCharacterWalk(dTime);
+		return ;
+	}
 	
 	switch (m_Identity)
 	{
@@ -286,6 +296,25 @@ void CCharacter::CheckIceState()
 	{
 		printf_s("UNICE\n");
 		m_is_iceState = false;
+	}
+
+}
+
+
+void CCharacter::MakeCharacterWalk(float dTime)
+{
+	switch (m_Identity)
+	{
+	case Zombie:
+		this->SetPosition(this->GetPosition() + NNPoint( (this->GetMovingSpeed()), 0.0f) * dTime);
+		break;
+	case Police:
+		this->SetPosition(this->GetPosition() - NNPoint( (this->GetMovingSpeed()), 0.0f) * dTime);
+		break;
+	case Base:
+		break;
+	default:
+		break;
 	}
 
 }

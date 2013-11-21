@@ -29,6 +29,7 @@ public:
 	bool IsAttack();
 	void SplashAttack(int damage);
 	void CheckIceState();
+	void MakeCharacterWalk(float dTime);
 
 	// gets & sets
 	int GetHP() {return m_HealthPoint;};
@@ -82,6 +83,7 @@ protected:
 	bool		m_is_splash;
 	float		m_splash_range;
 	bool		m_is_iceState;
+	float		m_sight;
 
 };
 
