@@ -22,6 +22,9 @@
     <Filter Include="Wugargar\AI">
       <UniqueIdentifier>{2d9fb870-8d5a-4dd9-8c2a-3587644dbd31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wugargar\ExtraContents">
+      <UniqueIdentifier>{520b6d71-47b8-4289-98a4-e4cbf03f3d2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp">
@@ -88,17 +91,17 @@
     <ClCompile Include="HeroZombie.cpp">
       <Filter>Wugargar\Character</Filter>
     </ClCompile>
-    <ClCompile Include="MapObstacle.cpp">
-      <Filter>Wugargar\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Lightning.cpp">
-      <Filter>Wugargar\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Mine.cpp">
-      <Filter>Wugargar\Map</Filter>
+      <Filter>Wugargar\ExtraContents</Filter>
     </ClCompile>
     <ClCompile Include="Trap.cpp">
-      <Filter>Wugargar\Map</Filter>
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObstacle.cpp">
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClCompile>
+    <ClCompile Include="Lightning.cpp">
+      <Filter>Wugargar\ExtraContents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,17 +171,17 @@
     <ClInclude Include="HeroZombie.h">
       <Filter>Wugargar\Character</Filter>
     </ClInclude>
-    <ClInclude Include="MapObstacle.h">
-      <Filter>Wugargar\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Lightning.h">
-      <Filter>Wugargar\Map</Filter>
+    <ClInclude Include="Trap.h">
+      <Filter>Wugargar\ExtraContents</Filter>
     </ClInclude>
     <ClInclude Include="Mine.h">
-      <Filter>Wugargar\Map</Filter>
+      <Filter>Wugargar\ExtraContents</Filter>
     </ClInclude>
-    <ClInclude Include="Trap.h">
-      <Filter>Wugargar\Map</Filter>
+    <ClInclude Include="MapObstacle.h">
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClInclude>
+    <ClInclude Include="Lightning.h">
+      <Filter>Wugargar\ExtraContents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
