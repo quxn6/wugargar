@@ -24,7 +24,17 @@ void CHumanInFarm::Update( float dTime )
 
 void CHumanInFarm::CreateBaby()
 {
-	m_pSmallBaby = NNAnimation::Create(1,L"wugargar/smallbaby.png");
+	m_pSmallBaby = NNAnimation::Create(11,L"wugargar/smallbaby/0.png",
+		L"wugargar/smallbaby/1.png",
+		L"wugargar/smallbaby/2.png",
+		L"wugargar/smallbaby/3.png",
+		L"wugargar/smallbaby/4.png",
+		L"wugargar/smallbaby/5.png",
+		L"wugargar/smallbaby/6.png",
+		L"wugargar/smallbaby/7.png",
+		L"wugargar/smallbaby/8.png",
+		L"wugargar/smallbaby/9.png",
+		L"wugargar/smallbaby/10.png");
 	SetRandomPositionInFarm();
 	AddChild(m_pSmallBaby,100);
 }
