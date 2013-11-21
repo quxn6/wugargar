@@ -106,6 +106,9 @@
     <ClCompile Include="HumanFarm.cpp">
       <Filter>Wugargar\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="HumanInFarm.cpp">
+      <Filter>Wugargar\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -188,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="HumanFarm.h">
       <Filter>Wugargar\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanInFarm.h">
+      <Filter>Wugargar\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
