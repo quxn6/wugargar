@@ -40,8 +40,9 @@ void CIceZombie::Attack()
 {
 	CCharacter::Attack();
 
-	m_AttackTarget->SetIceTime(this->GetNowTimeSEC());
+	m_AttackTarget->SetIceStartTime(clock());
+	m_AttackTarget->SetIceNowTime(clock());
 	m_AttackTarget->SetIceState(true);
-	printf_s("IceAttack!\n");
+	
 
 }

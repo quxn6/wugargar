@@ -272,10 +272,12 @@ void CCharacter::CheckIceState()
 {
 	if(!m_is_iceState)
 		return ;
-	
-	printf_s("ICED ICED\n");
 
-	if(m_NowTime - m_iceTime <= ICE_TIME)
+	SetIceNowTime(clock());
+	printf_s("ICETIME : %d, NOWTIME : %d\n", m_iceStartTime/CLOCKS_PER_SEC, m_iceNowTime/CLOCKS_PER_SEC);
+
+
+	if(m_iceNowTime/CLOCKS_PER_SEC - m_iceStartTime/CLOCKS_PER_SEC > ICE_TIME)
 	{
 		printf_s("UNICE\n");
 		m_is_iceState = false;

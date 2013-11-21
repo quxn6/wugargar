@@ -52,8 +52,10 @@ public:
 	void SetIdentity(CharacterIdentity set_id) {m_Identity = set_id;}
 	void SetNowTime(clock_t time) {m_NowTime = time;};
 	void SetCreateTime(clock_t time) {m_CreateTime = time;};
-	void SetIceTime(clock_t time) {m_iceTime = time;};
+	void SetIceStartTime(clock_t time) {m_iceStartTime = time;};
+	void SetIceNowTime(clock_t time) {m_iceNowTime = time;};
 	void SetIceState(bool ice_state) {m_is_iceState = ice_state;};
+
 
 	virtual void Attack();
 	
@@ -70,7 +72,8 @@ protected:
 	int m_AttackSpeed;
 	clock_t m_NowTime;
 	clock_t m_CreateTime;
-	clock_t m_iceTime;
+	clock_t m_iceStartTime;
+	clock_t m_iceNowTime;
 	CharacterIdentity m_Identity;
 	CCharacter *m_AttackTarget;
 	NNSprite*	m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
