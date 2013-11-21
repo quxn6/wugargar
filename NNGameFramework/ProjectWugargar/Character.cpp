@@ -11,6 +11,7 @@ CCharacter::CCharacter(void)
 	*/
 	SetCreateTime(clock()); 
 	SetNowTime(clock());
+	m_is_iceState = false;
 }
 
 CCharacter::~CCharacter(void)
@@ -139,8 +140,6 @@ void CCharacter::Update( float dTime )
 	//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
 	//공격하고 그렇지 않으면 Attack Target에게 접근
 
-	//주석 처리한 부분 : 캐릭터 위에 HP를 표시함. 현재로썬 라벨을 매번 NEW하기 때문에
-	//프레임이 처절하게 떨어짐. 리팩토링 필요. (Label을 Character의 멤버변수로 설정이 불가능한걸로 보임.)
 	
 	ZeroMemory(temp_HP, 256);	
 	swprintf_s(temp_HP, _countof(temp_HP), L"%d",	m_HealthPoint );
@@ -150,14 +149,20 @@ void CCharacter::Update( float dTime )
 	int CheckTimeChange = GetNowTimeSEC();
 	SetNowTime(clock());
 	DetermineAttackTarget();
+	CheckIceState();
 
-	if(IsAttack())
-	{
-		if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0 && CheckTimeChange != GetNowTimeSEC()) // 초단위로 시간이 변했는가도 함께 체크한다 (dTime이 너무 작아 int로 반환하는 Get~TimeSEC 함수는 1초 내에 같은값을 dTime마다 반환한다.)
-			Attack();
-	}
-	else
-		GoToAttackTarget(dTime);
+
+	//현재 얼어있는 상태라면 이동/공격이 불가
+	if(!m_is_iceState)
+		if(IsAttack())
+		{
+			if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0 && CheckTimeChange != GetNowTimeSEC()) // 초단위로 시간이 변했는가도 함께 체크한다 (dTime이 너무 작아 int로 반환하는 Get~TimeSEC 함수는 1초 내에 같은값을 dTime마다 반환한다.)
+				Attack();
+		}
+		else
+			GoToAttackTarget(dTime);
+
+
 }
 
  void CCharacter::Attack()
@@ -216,6 +221,8 @@ bool CCharacter::IsAttack()
 	float distance_attacktarget;
 	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
 
+	
+
 	if(distance_attacktarget <= m_AttackRange)
 		return true;
 	else
@@ -258,4 +265,20 @@ void CCharacter::SplashAttack(int damage)
 		break;
 	
 	}
+}
+
+
+void CCharacter::CheckIceState()
+{
+	if(!m_is_iceState)
+		return ;
+	
+	printf_s("ICED ICED\n");
+
+	if(m_NowTime - m_iceTime <= ICE_TIME)
+	{
+		printf_s("UNICE\n");
+		m_is_iceState = false;
+	}
+
 }
