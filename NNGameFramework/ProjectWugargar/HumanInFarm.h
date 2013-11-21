@@ -2,7 +2,7 @@
 #include "nnAnimation.h"
 #include "NNMacroSet.h"
 #include "NNObject.h"
-#include "..\NNGameFramework\NNSpriteAtlas.h"
+#include "NNSpriteAtlas.h"
 
 class CHumanInFarm : public NNObject
 {
