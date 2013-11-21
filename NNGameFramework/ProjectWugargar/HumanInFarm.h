@@ -2,6 +2,7 @@
 #include "nnAnimation.h"
 #include "NNMacroSet.h"
 #include "NNObject.h"
+#include "..\NNGameFramework\NNSpriteAtlas.h"
 
 class CHumanInFarm : public NNObject
 {
@@ -10,6 +11,10 @@ public:
 	virtual ~CHumanInFarm(void);
 
 public :
+	NNSpriteAtlas *m_pSmallBabyAtlas;
+	NNSpriteAtlas *m_pMiddleBabyAtlas;
+	NNSpriteAtlas *m_pGrownUpAtlas;
+
 	NNAnimation *m_pSmallBaby;
 	NNAnimation *m_pMiddleBaby;
 	NNAnimation *m_pGrownUp;
@@ -20,6 +25,6 @@ public :
 
 public :
 	void CreateBaby();
-
+	void SetRandomPositionInFarm();
 };
 

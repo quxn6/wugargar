@@ -11,6 +11,7 @@ public:
 	virtual ~CHumanFarm(void);
 
 public :
+	void InitFarmBackground();
 	void Render();
 	void Update( float dTime );
 	NNCREATE_FUNC(CHumanFarm);

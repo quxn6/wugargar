@@ -195,14 +195,19 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	// ���� ������ ���� ������ ó���� -ä��
 
 	// �ڵ� refactoring��. zombie type�� intó�� �����ϴµ� �̰� �� �ɸ�. - ��ȯ
+
+	//int count = 0;
 	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 			if ( m_pUIMakeZombieButton[i]->CheckButtonArea() ) {			
 				MakeZombie(static_cast<ZombieType>(i));// ���� ����
 			}		
-			else if (m_pUIMakeZombieButton[BABY_HUMAN - 1]->CheckButtonArea() ) //아기 생성
-				m_pHumanFarm->MakeHuman();
 		}
+	}
+	if ( m_pUIMakeZombieButton[BABY_HUMAN - 1]->CheckButtonArea() ) //아기 생성
+	{
+		//		count ++;
+		m_pHumanFarm->MakeHuman();
 	}
 }
 
