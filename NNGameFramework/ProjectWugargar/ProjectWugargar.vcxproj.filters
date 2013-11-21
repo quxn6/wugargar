@@ -88,6 +88,18 @@
     <ClCompile Include="HeroZombie.cpp">
       <Filter>Wugargar\Character</Filter>
     </ClCompile>
+    <ClCompile Include="MapObstacle.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Lightning.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Trap.cpp">
+      <Filter>Wugargar\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -155,6 +167,18 @@
     </ClInclude>
     <ClInclude Include="HeroZombie.h">
       <Filter>Wugargar\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObstacle.h">
+      <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Lightning.h">
+      <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine.h">
+      <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Trap.h">
+      <Filter>Wugargar\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

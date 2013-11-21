@@ -18,8 +18,11 @@
     <ClCompile Include="HeroZombie.cpp" />
     <ClCompile Include="IceZombie.cpp" />
     <ClCompile Include="KamikazeZombie.cpp" />
+    <ClCompile Include="Lightning.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapCreator.cpp" />
+    <ClCompile Include="MapObstacle.cpp" />
+    <ClCompile Include="Mine.cpp" />
     <ClCompile Include="MuscleZombie.cpp" />
     <ClCompile Include="NextStageScene.cpp" />
     <ClCompile Include="NormalPolice.cpp" />
@@ -30,6 +33,7 @@
     <ClCompile Include="PrintConsole.cpp" />
     <ClCompile Include="SmogZombie.cpp" />
     <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="Trap.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="VomitZombie.cpp" />
     <ClCompile Include="Zombie.cpp" />
@@ -43,7 +47,10 @@
     <ClInclude Include="HeroZombie.h" />
     <ClInclude Include="IceZombie.h" />
     <ClInclude Include="KamikazeZombie.h" />
+    <ClInclude Include="Lightning.h" />
     <ClInclude Include="MapCreator.h" />
+    <ClInclude Include="MapObstacle.h" />
+    <ClInclude Include="Mine.h" />
     <ClInclude Include="MuscleZombie.h" />
     <ClInclude Include="NextStageScene.h" />
     <ClInclude Include="NormalPolice.h" />
@@ -54,6 +61,7 @@
     <ClInclude Include="PrintConsole.h" />
     <ClInclude Include="SmogZombie.h" />
     <ClInclude Include="StartScene.h" />
+    <ClInclude Include="Trap.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="VomitZombie.h" />
     <ClInclude Include="Zombie.h" />
