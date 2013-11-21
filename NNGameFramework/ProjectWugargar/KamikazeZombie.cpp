@@ -37,6 +37,8 @@ void CKamikazeZombie::Update( float dTime )
 	CCharacter::Update(dTime);
 }
 
+//11.21 정인호
+//Attack함수 오버로딩. KamikazeZombie는 공격 후 HP가 0이됨
 void CKamikazeZombie::Attack()
 {
 	CCharacter::Attack();

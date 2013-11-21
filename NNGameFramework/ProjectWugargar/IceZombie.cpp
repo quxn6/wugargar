@@ -36,6 +36,8 @@ void CIceZombie::Update( float dTime )
 	CCharacter::Update(dTime);
 }
 
+//정인호. 11/21
+//Attack함수 오버로딩. ICe좀비의 공격에 당한 AttackTarget은 '얼어있는'상태가 됨
 void CIceZombie::Attack()
 {
 	CCharacter::Attack();

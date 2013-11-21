@@ -268,6 +268,11 @@ void CCharacter::SplashAttack(int damage)
 }
 
 
+/*
+11.21 정인호
+얼게 된 시간, 현재 시간과 얼어있는 상태를 체크하여 현재 상태가 
+아직도 냉동상태인지 해동상태인지 체크하고 반영.
+*/
 void CCharacter::CheckIceState()
 {
 	if(!m_is_iceState)
