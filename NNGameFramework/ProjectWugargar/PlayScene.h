@@ -11,12 +11,6 @@
 #include "Zombie.h"
 #include "GameConfig.h"
 #include "HumanFarm.h"
-// 
-// enum GameResult{
-// 	NOT_END,
-// 	LOSE,
-// 	WIN
-// };
 
 class CPlayScene : public NNScene
 {
@@ -36,7 +30,7 @@ public:
 	static CPlayScene* GetInstance();
 	static void ReleaseInstance();
 	void MakeZombie(ZombieType type);
-	void MakeCharacterWalk(float dTime);
+//	void MakeCharacterWalk(float dTime);
 	void MakeZombieButtonOperate(float dTime);
 	void DeadCharacterCollector();
 	void MakePoliceFromScript();

@@ -40,6 +40,6 @@ enum ZombieType // 버튼 생성할때도 이 enum값을 사용하기 때문에 버튼 init을 위해 
 	SMOG_ZOMBIE,
 	ICE_ZOMBIE,
 	HERO_ZOMBIE_SM9,
-	NUMBER_OF_ZOMBIE_TYPES,
-	BABY_HUMAN
+	BABY_HUMAN,
+	NUMBER_OF_ZOMBIE_TYPES
 }; 
