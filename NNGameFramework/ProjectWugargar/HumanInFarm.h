@@ -3,6 +3,12 @@
 #include "NNMacroSet.h"
 #include "NNObject.h"
 #include "NNSpriteAtlas.h"
+enum Age
+{
+	SMALL_BABY,
+	MIDDLE_BABY,
+	GROWN_UP
+};
 
 class CHumanInFarm : public NNObject
 {
@@ -26,5 +32,11 @@ public :
 public :
 	void CreateBaby();
 	void SetRandomPositionInFarm();
+	void Grow();
+
+private :
+	clock_t life_time;
+	clock_t birth_time;
+	Age m_AgeState;
 };
 
