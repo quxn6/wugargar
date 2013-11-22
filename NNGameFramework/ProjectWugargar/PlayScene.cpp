@@ -82,7 +82,7 @@ void CPlayScene::_initBackground( void )
 }
 
 // init map
-// ���� base�� ������ ���� ����Ʈ ������ ����Ʈ�� ���� �߰��� - ��ȯ
+// 양쪽 base를 가져와 좀비 리스트 포돌이 리스트에 각각 추가함 - 성환
 void CPlayScene::_initMap( void )
 {	
 	m_pMapCreator = CMapCreator::Create();
@@ -120,7 +120,7 @@ void CPlayScene::_initUI( void )
 	m_pUIBackground->SetPosition(FIRST_X_COORDINATE_OF_UIBUTTON, FIRST_Y_COORDINATE_OF_UIBUTTON);
 	AddChild( m_pUIBackground , 19);
 
-	// zombie type�� �����Ͽ� refactoring - ��ȯ
+	// zombie type을 사용하여 refactoring - 성환
 	for (int i=0 ; i<NUM_OF_UIBUTTON ; ++i) {
 		m_pUIMakeZombieButton[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
 		m_pUIMakeZombieButton[i]->SetPosition(static_cast<float>( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % NUM_OF_UIBUTTON_IN_ROW)) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON ) ), 
@@ -138,51 +138,33 @@ void CPlayScene::Render()
 
 void CPlayScene::Update( float dTime )
 {
-	//��������ó��.
-	//Win, Lose ������ ���� Scene�̳� Ȥ�� �׿� ���ϴ� ������ �ʿ�
-	//������! ���� Update�� ���� ������ ��.
-	//(�׷��� ������ �����ν� m_attacktarget�� ������ ���װ� ������ ��)
+	//종료조건처리.
 	if (CheckGameOver()) {
 		return ;
 	}
-// 
-// 	switch (CheckGameOver())
-// 	{
-// 	case WIN:
-// 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene/*CResultScene*/::Create());
-// 		break;
-// 	case LOSE:
-// 		break;
-// 	default:
-//		break;
-// 	}
 
 	NNScene::Update(dTime);
 
-	int checkTimeChange = GetNowTimeSEC(); // �ð��� ���ߴ°��� �ʴ����� üũ
+	int checkTimeChange = GetNowTimeSEC(); // 시간이 변했는가를 초단위로 체크
 	SetNowTime(clock());
 	if(checkTimeChange != GetNowTimeSEC())
 		IncreaseLocalMoney(GetNowTimeSEC()-GetStartTimeSEC());
 
-	//Test_ShowMousePosition(); // ���콺 Ŀ�� ��ġ �ӽ� �׽�Ʈ
-	//Test_ShowFPS(); //FPS���� �ӽ� �׽�Ʈ
+	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
+	Test_ShowFPS(); //FPS출력 임시 테스트
 
-	// ���� ���� ��ư �Է� ó���� �� �Լ��� ������ - ä��
+	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
-
-	// ������ ���� �̵� 
-	// ��ư �Է�ó�� �ȿ� ���� �ʿ䰡 ���°� ���� update �Լ��� �� - ��ȯ
-//	MakeCharacterWalk(dTime);
 
 	DeadCharacterCollector();
 
-	//���� �����س��� ���� ������ �Ѿ���� ���� ó��. �ӽ�.
+	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
 	if(m_pCreatePolice->table_top_index < 4) {
 		MakePoliceFromScript();
 	}
 
-	// next stage ȭ������ �̵��ϱ� ���� �ӽ� ����
-	// ���� ġ�� �̵���
+	// next stage 화면으로 이동하기 위한 임시 구문
+	// 엔터 치면 이동함
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN ) {
 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
 		m_pInstance = nullptr;
@@ -191,17 +173,17 @@ void CPlayScene::Update( float dTime )
 
 void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙임
 {
-	// button1�� ��Ŭ������ �� ���� ����
-	// ���� ������ ���� ������ ó���� -ä��
+	// button1을 좌클릭했을 때 좀비 생성
+	// 모든 종류의 좀비 생성을 처리함 -채원
 
-	// �ڵ� refactoring��. zombie type�� intó�� �����ϴµ� �̰� �� �ɸ�. - ��ȯ
+	// 코드 refactoring함. zombie type을 int처럼 사용하는데 이게 좀 걸림. - 성환
 
 	//int count = 0;
 	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 			if ( m_pUIMakeZombieButton[i]->CheckButtonArea() ) {			
-				MakeZombie(static_cast<ZombieType>(i));// ���� ����
-			}		
+				MakeZombie(static_cast<ZombieType>(i));
+			}
 		}
 	}
 	if ( m_pUIMakeZombieButton[BABY_HUMAN - 1]->CheckButtonArea() ) //아기 생성
@@ -251,28 +233,28 @@ void CPlayScene::MakeZombie(ZombieType type)
 		tmpZombieObject = CHeroZombie::Create();
 		break;
 	default:
-		break; // Ŭ������ �Ű������� �Է¹޾� �����ϰ� ������ ������ ������ ���� �����ؼ� �ϴ� �ϵ��ڵ���
+		break; 
 	}
 
 	int cost = tmpZombieObject->GetCreateCost();
 
+	// when player has not enough money
+	if (localMoney < cost ) {
+		SafeDelete(tmpZombieObject);
+		return;
+	}
+
 	tmpZombieObject->SetRandomPositionAroundBase();
 	tmpZombieObject->InitSprite(imagePath[type]);
-	// z_index������ y�� ���� Ŭ���� �տ� ��ġ�Ͽ� �տ� �ִ� ĳ���Ϳ� �߹ؿ� ǥ�õ��� �ʰ� ��.
-	// ���߿� �߰��� ������ �ʿ䰡 �־��, z_index�� �ѹ� �� ���Ƽ� #define���� �ִ� ���� ���� �Ű���.
 
-	//�ڽ�Ʈ �̻��� ���� �Ӵϸ� ������ ���� ���� ����. ���� ������ �������� �ʴ´�.
-	if(localMoney>=cost){
-		AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
-		player->SetLocalMoney(localMoney-cost);
-		// insert into zombie list
-		m_llistZombie.push_back(tmpZombieObject);
-	}
+	// set Z-index for suitable viewing
+	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
+	player->SetLocalMoney( localMoney - cost);	
+	m_llistZombie.push_back(tmpZombieObject);
+
 	
 }
 
-
-//11/11 ���� �۵� Ȯ��
 void CPlayScene::MakeCharacterWalk(float dTime)
 {
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
@@ -347,9 +329,9 @@ void CPlayScene::DeadCharacterCollector()
 }
 
 /*
-����ȣ. 11/14
-���� Base�� ��Ȳ�� üũ�Ͽ� ���� ���� ���θ� üũ.
-��Ÿ������ ����, �������� ���� �κ� ���� �� �����߰��� �ʿ䰡 �־��
+정인호. 11/14
+현재 Base의 상황을 체크하여 게임 종료 여부를 체크.
+불타입으로 변경, 스테이지 관련 부분 구현 후 내용추가할 필요가 있어보임
 */
 bool CPlayScene::CheckGameOver()
 {
@@ -371,10 +353,10 @@ void CPlayScene::IncreaseLocalMoney( int time )
 	CPlayer* player = CPlayer::GetInstance();
 	float localMoney = player->GetLocalMoney();
 	if(time % 1 == 0)// 1�ʴ�
-		player->SetLocalMoney(localMoney + 10); // �ʿ� ����
+		player->SetLocalMoney(localMoney + 10); // 십원 증가
 
-	
-	//���øӴ� �ӽ� ���� �ڵ�
+
+	//로컬머니 임시 출력 코드
 	ZeroMemory(temp, 256);	
 	swprintf_s(temp, _countof(temp), L"local money = %d", player->GetLocalMoney() );
 	m_pShowMouseStatus->SetString(temp);
@@ -384,23 +366,22 @@ void CPlayScene::IncreaseLocalMoney( int time )
 ///////////////////test �Լ� /////////////////////////////
 void CPlayScene::Test_ShowMousePosition()
 {
-	// ���콺 �������� �������� ���� �ӽ� ����	
-	// wsprintf�� float���� ������ �� ���� �ӽù������� ������
-//	 	POINT pt;
-//	 	GetCursorPos(&pt);
-//	 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);	 
-	 
-//	 	ZeroMemory(temp, 256);	
-//	 	wsprintf(temp, L"windowcoord x : %4d y : %4d", pt.x, pt.y  );
-//	 	m_pShowMouseStatus->SetString(temp);
-	// ���콺 �����ǿ� �� 
+	// 마우스 포지션을 가져오기 위한 임시 구문	
+	// wsprintf가 float형을 사용할 수 없어 임시방편으로 사용중
+	//	 	POINT pt;
+	//	 	GetCursorPos(&pt);
+	//	 	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt);	 
+
+	//	 	ZeroMemory(temp, 256);	
+	//	 	wsprintf(temp, L"windowcoord x : %4d y : %4d", pt.x, pt.y  );
+	//	 	m_pShowMouseStatus->SetString(temp);
+	// 마우스 포지션용 끝 
 }
 
 void CPlayScene::Test_ShowFPS()
 {
-	// fps ���¿� �ӽ�
+	// fps 출력용 임시
 	ZeroMemory(temp, 256);	
 	swprintf_s(temp, _countof(temp), L"FPS = %0.3f", NNApplication::GetInstance()->GetFPS() );
 	m_pShowMouseStatus->SetString(temp);
-	// fps ���¿� ��
 }
