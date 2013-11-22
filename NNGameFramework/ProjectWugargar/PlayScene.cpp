@@ -122,11 +122,11 @@ void CPlayScene::_initUI( void )
 
 	// zombie type을 사용하여 refactoring - 성환
 	for (int i=0 ; i<NUM_OF_UIBUTTON ; ++i) {
-		m_pUIMakeZombieButton[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
-		m_pUIMakeZombieButton[i]->SetPosition(static_cast<float>( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % NUM_OF_UIBUTTON_IN_ROW)) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON ) ), 
+		m_pUIButtons[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
+		m_pUIButtons[i]->SetPosition(static_cast<float>( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % NUM_OF_UIBUTTON_IN_ROW)) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON ) ), 
 			static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y )+ (SIZE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y) * int(i/NUM_OF_UIBUTTON_IN_ROW));
 			
-		AddChild( m_pUIMakeZombieButton[i] , 20);
+		AddChild( m_pUIButtons[i] , 20);
 	}
 }
 
@@ -181,7 +181,7 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	//int count = 0;
 	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
-			if ( m_pUIMakeZombieButton[i]->CheckButtonArea() ) {							
+			if ( m_pUIButtons[i]->CheckButtonArea() ) {							
 				if ( i != BABY_HUMAN ) {
 					MakeZombie(static_cast<ZombieType>(i));
 				} else {
@@ -253,18 +253,18 @@ void CPlayScene::MakeZombie(ZombieType type)
 
 	
 }
-
-void CPlayScene::MakeCharacterWalk(float dTime)
-{
-	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
-		(*iter)->SetPosition((*iter)->GetPosition() - NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
-	}
-
-
-	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
-	}
-}
+// 
+// void CPlayScene::MakeCharacterWalk(float dTime)
+// {
+// 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
+// 		(*iter)->SetPosition((*iter)->GetPosition() - NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
+// 	}
+// 
+// 
+// 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
+// 		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
+// 	}
+// }
 
 
 void CPlayScene::MakePoliceFromScript()

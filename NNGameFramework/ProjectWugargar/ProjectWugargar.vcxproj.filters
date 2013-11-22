@@ -103,11 +103,11 @@
     <ClCompile Include="Lightning.cpp">
       <Filter>Wugargar\ExtraContents</Filter>
     </ClCompile>
-    <ClCompile Include="HumanFarm.cpp">
-      <Filter>Wugargar\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="HumanInFarm.cpp">
-      <Filter>Wugargar\Character</Filter>
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClCompile>
+    <ClCompile Include="HumanFarm.cpp">
+      <Filter>Wugargar\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,11 +189,11 @@
     <ClInclude Include="Lightning.h">
       <Filter>Wugargar\ExtraContents</Filter>
     </ClInclude>
-    <ClInclude Include="HumanFarm.h">
-      <Filter>Wugargar\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="HumanInFarm.h">
-      <Filter>Wugargar\Character</Filter>
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanFarm.h">
+      <Filter>Wugargar\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -80,6 +80,15 @@ void CNextStageScene::Render()
 
 void CNextStageScene::Update( float dTime )
 {
+	// zombie upgrade 
+	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
+		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+			if ( m_pUpgradeButtons[i]->CheckButtonArea() ) {							
+				CPlayer::GetInstance()->IncreaseZombieLevel(static_cast<ZombieType>(i));
+			}
+		}
+	}
+
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN ) {
 		NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
 	}

@@ -51,7 +51,7 @@ private :
 	CBackground *m_pBackground;
 	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
-	CUIButton	*m_pUIMakeZombieButton[NUM_OF_UIBUTTON];
+	CUIButton	*m_pUIButtons[NUM_OF_UIBUTTON];
 	NNLabel		*m_pShowMouseStatus;
 	NNPoint		m_CursorPos;
 	CCreatePolice *m_pCreatePolice;

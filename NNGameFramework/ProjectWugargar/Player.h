@@ -31,6 +31,7 @@ public:
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
 	void SetClearedStage(int ClearedStage) {m_ClearedStage = ClearedStage; }
 	void SetZombieLevel(ZombieType character, int level) { m_CharacterLevel[character] = level; }
+	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
 	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }
 
