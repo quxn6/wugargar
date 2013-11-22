@@ -180,11 +180,13 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	// baby버튼 별도로 빠져잇던거 한 for문 아능로 삽입함.
 	//int count = 0;
 	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
-		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) &&  m_pUIMakeZombieButton[i]->CheckButtonArea() ) {	
-			if ( i != BABY_HUMAN ) {
-				MakeZombie(static_cast<ZombieType>(i));
-			} else {
-				m_pHumanFarm->MakeHuman();
+		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+			if ( m_pUIMakeZombieButton[i]->CheckButtonArea() ) {							
+				if ( i != BABY_HUMAN ) {
+					MakeZombie(static_cast<ZombieType>(i));
+				} else {
+					m_pHumanFarm->MakeHuman();
+				}
 			}
 		}
 	}
@@ -251,18 +253,18 @@ void CPlayScene::MakeZombie(ZombieType type)
 
 	
 }
-// 
-// void CPlayScene::MakeCharacterWalk(float dTime)
-// {
-// 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
-// 		(*iter)->SetPosition((*iter)->GetPosition() - NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
-// 	}
-// 
-// 
-// 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-// 		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
-// 	}
-// }
+
+void CPlayScene::MakeCharacterWalk(float dTime)
+{
+	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
+		(*iter)->SetPosition((*iter)->GetPosition() - NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
+	}
+
+
+	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
+		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
+	}
+}
 
 
 void CPlayScene::MakePoliceFromScript()
