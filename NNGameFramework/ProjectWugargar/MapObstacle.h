@@ -5,6 +5,6 @@ class CMapObstacle :
 {
 public:
 	CMapObstacle(void);
-	~CMapObstacle(void);
+	virtual ~CMapObstacle(void);
 };
 

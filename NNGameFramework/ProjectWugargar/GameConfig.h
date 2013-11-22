@@ -27,6 +27,7 @@
 #define SIZE_OF_UIBUTTON		100
 #define NUM_OF_UIBUTTON_IN_ROW 4
 #define NUM_OF_UIBUTTON 8
+#define POSITION_OF_LIGHTNING				FIRST_Y_COORDINATE_OF_BACKGROUND + 10
 
 // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
 // array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
