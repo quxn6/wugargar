@@ -13,7 +13,7 @@ CCharacter::CCharacter(void)
 	SetNowTime(clock());
 	m_is_iceState = false;
 	//sight는 철저하게 캐릭터가 안 겹치게 보이기 위한 연출을 위한 변수
-	m_sight = 100.0f + rand() % 20;
+	m_sight = 500.0f + rand() % 20;
 }
 
 CCharacter::~CCharacter(void)
@@ -201,12 +201,12 @@ void CCharacter::GoToAttackTarget(float dTime)
 	float distance_attacktarget;
 	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
 	//Character가 안겹치게 하기 위한 연출을 위한 코드
-	if(distance_attacktarget <= m_sight)
+	/*if(distance_attacktarget <= m_sight)
 	{
 		MakeCharacterWalk(dTime);
 		return ;
 	}
-	
+	*/
 	switch (m_Identity)
 	{
 	case Zombie:
