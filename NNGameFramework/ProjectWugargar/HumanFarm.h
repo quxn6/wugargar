@@ -16,9 +16,15 @@ public :
 	void Update( float dTime );
 	NNCREATE_FUNC(CHumanFarm);
 	void MakeHuman();
+	void ShowMeatPoint();
 
 protected:
 	NNSprite *m_pFarmBackground;
-	NNLabel *m_pMeatPoint;
+	NNLabel *m_pShowMeatPoint;
+
+private:
+	wchar_t		meatPointTemp[256];
+	int m_pMeatPoint;
+
 };
 
