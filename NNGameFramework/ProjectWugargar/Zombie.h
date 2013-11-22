@@ -15,15 +15,13 @@ public:
 	NNCREATE_FUNC(CZombie);
 
 public:
-	float GetInfectingAccuracyRate() {return m_infectingAccuracyRate;};
-	int GetCreateCost() {return m_CreateCost;};
-	void SetInfectingAccuracyRate(float IAR) {m_infectingAccuracyRate = IAR;};	
-	void SetCreateCost(int cost) {m_CreateCost = cost;};
-
-private:
-	float m_infectingAccuracyRate;
+	float	GetInfectingAccuracyRate() {return m_infectingAccuracyRate;};
+	int		GetCreateCost() {return m_CreateCost;};
+	void	SetInfectingAccuracyRate(float IAR) {m_infectingAccuracyRate = IAR;};	
+	void	SetCreateCost(int cost) {m_CreateCost = cost;};
 
 protected:
-		int m_CreateCost;
+	float	m_infectingAccuracyRate;
+	int		m_CreateCost;
 };
 
