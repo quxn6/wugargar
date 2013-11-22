@@ -79,6 +79,10 @@ void CPlayScene::_initBackground( void )
 	AddChild( m_pBackground , 0);
 	m_pHumanFarm = CHumanFarm::Create();
 	AddChild( m_pHumanFarm , 1);
+	m_pLightning = CLightning::Create();
+	AddChild(m_pLightning, 2);
+
+
 }
 
 // init map

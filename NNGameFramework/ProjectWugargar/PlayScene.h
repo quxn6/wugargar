@@ -11,6 +11,7 @@
 #include "Zombie.h"
 #include "GameConfig.h"
 #include "HumanFarm.h"
+#include "Lightning.h"
 
 class CPlayScene : public NNScene
 {
@@ -56,6 +57,7 @@ private :
 	NNPoint		m_CursorPos;
 	CCreatePolice *m_pCreatePolice;
 	CHumanFarm *m_pHumanFarm;
+	CLightning	*m_pLightning;
 
 	std::list<CCharacter*>		m_llistZombie;
 	std::list<CCharacter*>		m_llistPolice;

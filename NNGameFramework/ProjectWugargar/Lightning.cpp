@@ -1,11 +1,13 @@
 #include "Lightning.h"
 #include "GameConfig.h"
+#include "NNInputSystem.h"
 
-#define LIGHTNING_SPEED 30
+#define LIGHTNING_SPEED 130
 
 CLightning::CLightning(void)
 {
 	InitSprite(L"wugargar/pika.png");
+	m_is_fall_lightning = false;
 }
 
 
@@ -21,12 +23,25 @@ void CLightning::Render()
 void CLightning::Update( float dTime )
 {
 	
-	if(this->GetPositionX() < GAME_SCREEN_MAX_SIZE_X - 20)
-		SetPosition(this->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) * dTime);
+	if(m_lightning_sprite->GetPositionX() < GAME_SCREEN_MAX_SIZE_X - 20)
+		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) * dTime);
 	else
-		SetPosition(0.0f, POSITION_OF_LIGHTNING);
+		m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
+	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE))
+	{
+		printf_s("put");
+		m_fall_lightning_sprite = NNSprite::Create(L"wugargar/pika.png");
+		AddChild(m_fall_lightning_sprite);
+		m_fall_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition());
+		m_is_fall_lightning = true;
+	}
 
+	if(m_is_fall_lightning)
+	{
+		m_fall_lightning_sprite->SetPosition(m_fall_lightning_sprite->GetPositionX(), m_fall_lightning_sprite->GetPositionY()-LIGHTNING_SPEED);
+		//if(m_fall_lightning_sprite->GetPositionX())
 
+	}
 }
 
 void CLightning::InitSprite( std::wstring imagePath )

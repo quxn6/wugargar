@@ -21,8 +21,8 @@ public:
 
 protected:
 	NNSprite* m_lightning_sprite;
-
-
+	NNSprite* m_fall_lightning_sprite;
+	bool	m_is_fall_lightning;
 
 
 };
