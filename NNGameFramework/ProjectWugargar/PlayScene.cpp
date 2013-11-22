@@ -326,7 +326,11 @@ void CPlayScene::DeadCharacterCollector()
 			CCharacter *tmpCharacter;
 			tmpCharacter = *iter;
 			m_llistPolice.erase(iter);
+			NNPoint DeadPosition = tmpCharacter->GetPosition();
 			RemoveChild(tmpCharacter,true);
+			NNSprite *tmpDeadPolice = NNSprite::Create(L"wugargar/deadPodori.png");
+			tmpDeadPolice->SetPosition(DeadPosition); //시체 스프라이트 출력
+			AddChild(tmpDeadPolice,10);
 			break;
 		}
 	}
