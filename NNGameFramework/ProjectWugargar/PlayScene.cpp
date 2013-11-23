@@ -133,13 +133,10 @@ void CPlayScene::_initUI( void )
 		AddChild( m_pUIButtons[i] , 20);
 	}
 }
-
-
 void CPlayScene::Render()
 {
 	NNObject::Render();
 }
-
 void CPlayScene::Update( float dTime )
 {
 	//종료조건처리.
@@ -161,7 +158,7 @@ void CPlayScene::Update( float dTime )
 	MakeZombieButtonOperate(dTime);
 
 	DeadCharacterCollector();
-	//CollectDeadPoliceByClick();
+	CollectDeadPoliceByClick();
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
 	if(m_pCreatePolice->table_top_index < 4) {
 		MakePoliceFromScript();
@@ -392,14 +389,21 @@ void CPlayScene::Test_ShowFPS()
 
 void CPlayScene::CollectDeadPoliceByClick()
 {
-	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_PRESSED ) {
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_UP ) {
 		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
 		for ( auto& iter = m_llistDeadPolice.begin() ; iter != m_llistDeadPolice.end() ; iter++ )
 		{
 			bool isInXCoordRange = ((*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( (*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
 			bool isInYCoordRange = ((*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( (*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
-			m_llistDeadPolice.erase(iter);
-			RemoveChild(*iter,true);
+			if(isInXCoordRange && isInYCoordRange)
+			{
+				CDeadPolice *aa = *iter;
+				m_llistDeadPolice.erase(iter);
+				RemoveChild(aa,true);
+
+				m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 10);
+				break;
+			}
 		}
 	}
 }

@@ -17,6 +17,8 @@ public :
 	NNCREATE_FUNC(CHumanFarm);
 	void MakeHuman();
 	void ShowMeatPoint();
+	void SetMeatPoint(int meatPoint) { m_pMeatPoint = meatPoint;}
+	int GetMeatPoint() { return m_pMeatPoint;}
 
 protected:
 	NNSprite *m_pFarmBackground;
