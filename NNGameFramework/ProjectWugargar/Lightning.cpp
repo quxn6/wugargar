@@ -27,12 +27,12 @@ void CLightning::Update( float dTime )
 		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) * dTime);
 	else
 		m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
-	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE))
+	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN && !m_fall_lightning_sprite)
 	{
 		printf_s("put");
 		m_fall_lightning_sprite = NNSprite::Create(L"wugargar/pika.png");
-		AddChild(m_fall_lightning_sprite);
 		m_fall_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition());
+		AddChild(m_fall_lightning_sprite);
 		m_is_fall_lightning = true;
 	}
 
@@ -49,7 +49,6 @@ void CLightning::InitSprite( std::wstring imagePath )
 	m_lightning_sprite = NNSprite::Create(imagePath);
 
 
-	
 	m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);	
 	AddChild(m_lightning_sprite, 1);
 
