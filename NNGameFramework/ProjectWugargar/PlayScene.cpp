@@ -399,13 +399,7 @@ void CPlayScene::CollectDeadPoliceByClick()
 			bool isInXCoordRange = ((*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( (*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
 			bool isInYCoordRange = ((*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( (*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
 			m_llistDeadPolice.erase(iter);
-			RemoveChild(*iter);
-
-			/*			if ( !(isInXCoordRange && isInYCoordRange) ) {
-			return;
-			} else if (NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) ==  ) {
-			RemoveChild(*iter);
-			}*/
+			RemoveChild(*iter,true);
 		}
 	}
 }
