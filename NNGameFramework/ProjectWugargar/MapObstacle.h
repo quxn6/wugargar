@@ -17,7 +17,7 @@ public:
 	virtual void InitStatus();
 
 
-private:
+protected:
 	NNSprite*	m_pObstacle_sprite;
 	int			m_obstacle_damage;
 };

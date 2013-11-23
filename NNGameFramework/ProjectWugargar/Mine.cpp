@@ -3,6 +3,7 @@
 
 CMine::CMine(void)
 {
+	m_pObstacle_sprite = NNSprite::Create("wugargar/mine.png");
 }
 
 
