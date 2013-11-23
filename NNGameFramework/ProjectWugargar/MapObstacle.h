@@ -14,7 +14,7 @@ public:
 	void Update( float dTime );
 	NNCREATE_FUNC(CMapObstacle);
 	virtual void Boom(CZombie* boom_target);
-	virtual void InitStatus();
+	void InitStatus(); // virtual 로 하면 에러남.
 
 
 protected:
