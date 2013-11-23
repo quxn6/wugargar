@@ -12,6 +12,7 @@
 #include "GameConfig.h"
 #include "HumanFarm.h"
 #include "Lightning.h"
+#include "DeadPolice.h"
 
 class CPlayScene : public NNScene
 {
@@ -25,8 +26,8 @@ public:
 	void Update( float dTime );
 	std::list<CCharacter*> GetZombieList() { return m_llistZombie; }
 	std::list<CCharacter*> GetPoliceList() { return m_llistPolice; }
+	std::list<CDeadPolice*> GetDeadPoliceList() { return m_llistDeadPolice;}
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
-	
 
 	static CPlayScene* GetInstance();
 	static void ReleaseInstance();
@@ -36,6 +37,7 @@ public:
 	void DeadCharacterCollector();
 	void MakePoliceFromScript();
 	void IncreaseLocalMoney(int time);
+	void CollectDeadPoliceByClick();
 	bool CheckGameOver();
 
 	void SetStartTime(clock_t time) {m_startTime = time;};
@@ -61,6 +63,7 @@ private :
 
 	std::list<CCharacter*>		m_llistZombie;
 	std::list<CCharacter*>		m_llistPolice;
+	std::list<CDeadPolice*>		m_llistDeadPolice;
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 	clock_t m_startTime;

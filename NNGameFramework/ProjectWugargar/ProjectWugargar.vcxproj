@@ -15,6 +15,7 @@
     <ClCompile Include="Base.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CreatePolice.cpp" />
+    <ClCompile Include="DeadPolice.cpp" />
     <ClCompile Include="HeroZombie.cpp" />
     <ClCompile Include="HumanFarm.cpp" />
     <ClCompile Include="HumanInFarm.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CreatePolice.h" />
+    <ClInclude Include="DeadPolice.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="HeroZombie.h" />
     <ClInclude Include="HumanFarm.h" />

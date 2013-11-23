@@ -161,7 +161,7 @@ void CPlayScene::Update( float dTime )
 	MakeZombieButtonOperate(dTime);
 
 	DeadCharacterCollector();
-
+	//CollectDeadPoliceByClick();
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
 	if(m_pCreatePolice->table_top_index < 4) {
 		MakePoliceFromScript();
@@ -313,9 +313,10 @@ void CPlayScene::DeadCharacterCollector()
 			m_llistPolice.erase(iter);
 			NNPoint DeadPosition = tmpCharacter->GetPosition();
 			RemoveChild(tmpCharacter,true);
-			NNSprite *tmpDeadPolice = NNSprite::Create(L"wugargar/deadPodori.png");
-			tmpDeadPolice->SetPosition(DeadPosition); //시체 스프라이트 출력
+			CDeadPolice *tmpDeadPolice = CDeadPolice::Create(); 
+			tmpDeadPolice->SetDeadPosition(DeadPosition);
 			AddChild(tmpDeadPolice,10);
+			m_llistDeadPolice.push_back(tmpDeadPolice);
 			break;
 		}
 	}
@@ -387,4 +388,24 @@ void CPlayScene::Test_ShowFPS()
 	ZeroMemory(temp, 256);	
 	swprintf_s(temp, _countof(temp), L"FPS = %0.3f", NNApplication::GetInstance()->GetFPS() );
 	m_pShowMouseStatus->SetString(temp);
+}
+
+void CPlayScene::CollectDeadPoliceByClick()
+{
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_PRESSED ) {
+		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
+		for ( auto& iter = m_llistDeadPolice.begin() ; iter != m_llistDeadPolice.end() ; iter++ )
+		{
+			bool isInXCoordRange = ((*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( (*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
+			bool isInYCoordRange = ((*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( (*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
+			m_llistDeadPolice.erase(iter);
+			RemoveChild(*iter);
+
+			/*			if ( !(isInXCoordRange && isInYCoordRange) ) {
+			return;
+			} else if (NNInputSystem::GetInstance()->GetKeyState( VK_LBUTTON ) ==  ) {
+			RemoveChild(*iter);
+			}*/
+		}
+	}
 }

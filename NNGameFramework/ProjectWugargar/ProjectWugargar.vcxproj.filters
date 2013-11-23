@@ -109,6 +109,9 @@
     <ClCompile Include="HumanFarm.cpp">
       <Filter>Wugargar\Map</Filter>
     </ClCompile>
+    <ClCompile Include="DeadPolice.cpp">
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -194,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="HumanFarm.h">
       <Filter>Wugargar\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadPolice.h">
+      <Filter>Wugargar\ExtraContents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
