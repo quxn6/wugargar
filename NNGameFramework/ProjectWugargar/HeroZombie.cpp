@@ -13,6 +13,8 @@ CHeroZombie::~CHeroZombie(void)
 
 void CHeroZombie::initStatus( void )
 {
+	m_Type = HERO_ZOMBIE_SM9;
+
 	m_HealthPoint = 500;
 	m_MovingSpeed = 20.0f;
 	m_AttackPower = 30;

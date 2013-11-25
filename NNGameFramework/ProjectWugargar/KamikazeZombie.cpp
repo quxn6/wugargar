@@ -13,6 +13,7 @@ CKamikazeZombie::~CKamikazeZombie(void)
 
 void CKamikazeZombie::initStatus( void )
 {
+	m_Type = KAMIKAJE_ZOMBIE;
 	m_HealthPoint = 50;
 	m_MovingSpeed = 50.0f;
 	m_AttackPower = 50;
@@ -24,6 +25,8 @@ void CKamikazeZombie::initStatus( void )
 	m_Identity = Zombie;
 	m_is_splash = true;
 	m_splash_range = 200.0f;
+
+	ApplyZombieLevel();
 }
 
 

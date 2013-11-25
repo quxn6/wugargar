@@ -13,6 +13,7 @@ CIceZombie::~CIceZombie(void)
 
 void CIceZombie::initStatus( void )
 {
+	m_Type = ICE_ZOMBIE;
 	m_HealthPoint = 100;
 	m_MovingSpeed = 30.0f;
 	m_AttackPower = 5;
@@ -23,6 +24,8 @@ void CIceZombie::initStatus( void )
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 	m_is_splash = false;
+
+	ApplyZombieLevel();
 }
 
 

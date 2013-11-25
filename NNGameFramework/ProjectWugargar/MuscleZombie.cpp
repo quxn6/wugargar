@@ -13,6 +13,7 @@ CMuscleZombie::~CMuscleZombie(void)
 
 void CMuscleZombie::initStatus( void )
 {
+	m_Type = MUSCLE_ZOMBIE;
 	m_HealthPoint = 300;
 	m_MovingSpeed = 40.0f;
 	m_AttackPower = 5;
@@ -23,6 +24,8 @@ void CMuscleZombie::initStatus( void )
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 	m_is_splash = false;
+
+	ApplyZombieLevel();
 }
 
 

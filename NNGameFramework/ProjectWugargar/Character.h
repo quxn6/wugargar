@@ -3,6 +3,10 @@
 #include "NNObject.h"
 #include "NNSprite.h"
 #include "NNLabel.h"
+
+#include "GameConfig.h"
+#include "Player.h"
+
 #define  ICE_TIME 20
 
 enum CharacterIdentity{
@@ -71,6 +75,7 @@ protected:
 	float m_AttackRange;
 	int m_NumberOfTarget;
 	int m_AttackSpeed;
+
 	clock_t m_NowTime;
 	clock_t m_CreateTime;
 	clock_t m_iceStartTime;

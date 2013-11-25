@@ -1,7 +1,6 @@
 #pragma once
 #include "Character.h"
 
-
 class CZombie : public CCharacter
 {
 public:
@@ -20,8 +19,11 @@ public:
 	void	SetInfectingAccuracyRate(float IAR) {m_infectingAccuracyRate = IAR;};	
 	void	SetCreateCost(int cost) {m_CreateCost = cost;};
 
+	void	ApplyZombieLevel();
+
 protected:
-	float	m_infectingAccuracyRate;
-	int		m_CreateCost;
+	float		m_infectingAccuracyRate;
+	int			m_CreateCost;
+	ZombieType	m_Type;
 };
 
