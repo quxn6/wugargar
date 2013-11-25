@@ -45,7 +45,11 @@ CPlayScene::CPlayScene(void)
 	_initUI();
 
 	m_pCreatePolice = new CCreatePolice;
+	m_pMapObstacleManager = MapObstaclManager::Create();
+	AddChild(m_pMapObstacleManager);
+
 	CPlayer::GetInstance()->SetPlayerForNewStage();
+
 
 
 
@@ -160,7 +164,7 @@ void CPlayScene::Update( float dTime )
 	DeadCharacterCollector();
 	CollectDeadPoliceByClick();
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
-	if(m_pCreatePolice->table_top_index < 4) {
+	if(m_pCreatePolice->table_top_index < 7) {
 		MakePoliceFromScript();
 	}
 
@@ -250,8 +254,7 @@ void CPlayScene::MakeZombie(ZombieType type)
 	// set Z-index for suitable viewing
 	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
 	player->SetLocalMoney( localMoney - cost);	
-	m_l
-		Zombie.push_back(tmpZombieObject);
+	m_llistZombie.push_back(tmpZombieObject);
 
 	
 }

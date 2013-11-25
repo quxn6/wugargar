@@ -64,7 +64,7 @@ enemyType CCreatePolice::GetCreateEnemyInfo()
 	current_time = clock();
 	
 	gap_time = (int)(current_time - begin_time)/(CLOCKS_PER_SEC);
-	printf_s("CreateEnemy. current : %d, gap : %d\n", current_time, gap_time);
+	//printf_s("CreateEnemy. current : %d, gap : %d\n", current_time, gap_time);
 
 	if((gap_time) >= create_enemy_table[table_top_index].time)
 	{

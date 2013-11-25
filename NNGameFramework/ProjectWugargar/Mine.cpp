@@ -1,9 +1,10 @@
 #include "Mine.h"
+#include "PlayScene.h"
 
 
 CMine::CMine(void)
 {
-	m_pObstacle_sprite = NNSprite::Create(L"wugargar/mine.png");
+	InitSprite(L"wugargar/mine.png");
 }
 
 
@@ -23,7 +24,16 @@ void CMine::Update( float dTime )
 
 void CMine::Boom( CZombie* boom_target )
 {
+	CMapObstacle::Boom(boom_target);
 
+	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
+	{
+		float distance_attacktarget;
+		distance_attacktarget = boom_target->GetPosition().GetDistance(child->GetPosition());
+
+		if(this->m_boom_range >= distance_attacktarget)
+			child->SetHP(child->GetHP()-m_obstacle_damage);
+	}
 }
 
 void CMine::InitStatus()

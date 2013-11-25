@@ -3,6 +3,7 @@
 
 CTrap::CTrap(void)
 {
+	InitSprite(L"wugargar/trap.png");
 }
 
 

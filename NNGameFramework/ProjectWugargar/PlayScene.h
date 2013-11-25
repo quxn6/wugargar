@@ -13,6 +13,7 @@
 #include "HumanFarm.h"
 #include "Lightning.h"
 #include "DeadPolice.h"
+#include "MapObstaclManager.h"
 
 class CPlayScene : public NNScene
 {
@@ -60,6 +61,7 @@ private :
 	CCreatePolice *m_pCreatePolice;
 	CHumanFarm *m_pHumanFarm;
 	CLightning	*m_pLightning;
+	MapObstaclManager *m_pMapObstacleManager;
 
 	std::list<CCharacter*>		m_llistZombie;
 	std::list<CCharacter*>		m_llistPolice;
