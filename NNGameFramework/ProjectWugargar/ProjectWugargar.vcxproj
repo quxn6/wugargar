@@ -25,6 +25,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapCreator.cpp" />
     <ClCompile Include="MapObstacle.cpp" />
+    <ClCompile Include="MapObstaclManager.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="MuscleZombie.cpp" />
     <ClCompile Include="NextStageScene.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="Lightning.h" />
     <ClInclude Include="MapCreator.h" />
     <ClInclude Include="MapObstacle.h" />
+    <ClInclude Include="MapObstaclManager.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="MuscleZombie.h" />
     <ClInclude Include="NextStageScene.h" />

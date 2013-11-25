@@ -250,7 +250,8 @@ void CPlayScene::MakeZombie(ZombieType type)
 	// set Z-index for suitable viewing
 	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
 	player->SetLocalMoney( localMoney - cost);	
-	m_llistZombie.push_back(tmpZombieObject);
+	m_l
+		Zombie.push_back(tmpZombieObject);
 
 	
 }

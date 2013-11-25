@@ -15,7 +15,8 @@ public:
 	NNCREATE_FUNC(CMapObstacle);
 	virtual void Boom(CZombie* boom_target);
 	void InitStatus(); // virtual 로 하면 에러남.
-
+	void InitSprite(std::wstring imagePath);
+	NNPoint RandomMapPosition();
 
 protected:
 	NNSprite*	m_pObstacle_sprite;

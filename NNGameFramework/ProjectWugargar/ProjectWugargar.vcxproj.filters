@@ -112,6 +112,9 @@
     <ClCompile Include="DeadPolice.cpp">
       <Filter>Wugargar\ExtraContents</Filter>
     </ClCompile>
+    <ClCompile Include="MapObstaclManager.cpp">
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -199,6 +202,9 @@
       <Filter>Wugargar\Map</Filter>
     </ClInclude>
     <ClInclude Include="DeadPolice.h">
+      <Filter>Wugargar\ExtraContents</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObstaclManager.h">
       <Filter>Wugargar\ExtraContents</Filter>
     </ClInclude>
   </ItemGroup>
