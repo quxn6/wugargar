@@ -18,6 +18,8 @@ public:
 	void InitSprite(std::wstring imagePath);
 	NNPoint RandomMapPosition();
 	bool CheckClickArea();
+	NNSprite* GetSprite(){return m_pObstacle_sprite;};
+
 
 protected:
 	NNSprite*	m_pObstacle_sprite;

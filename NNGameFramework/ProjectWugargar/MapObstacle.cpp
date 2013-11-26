@@ -21,14 +21,18 @@ void CMapObstacle::Render()
 void CMapObstacle::Update( float dTime )
 {
 	NNPoint obstacle_position = m_pObstacle_sprite->GetPosition();
+	float x = (obstacle_position.GetX() + m_pObstacle_sprite->GetImageWidth());
+	float y = (obstacle_position.GetY() + m_pObstacle_sprite->GetImageHeight());
+
 
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
-		if(obstacle_position.GetX()<=(child->GetPositionX()+10) && 
-			obstacle_position.GetX()>=(child->GetPositionX()-10) &&
-			obstacle_position.GetY()<=(child->GetPositionY()+10) && 
-			obstacle_position.GetY()>=(child->GetPositionY()-10))
+		if(obstacle_position.GetX()+ m_pObstacle_sprite->GetImageWidth()<=(child->GetPositionX()) && 
+			obstacle_position.GetX()>=(child->GetPositionX()) &&
+			obstacle_position.GetY()+m_pObstacle_sprite->GetImageHeight()<=(child->GetPositionY()+10) && 
+			obstacle_position.GetY()>=(child->GetPositionY()))
 		{
+			printf_s("Boom!\n");
 			Boom(child);
 			break;
 		}

@@ -24,6 +24,7 @@ void MapObstaclManager::Update( float dTime )
 		else
 			tmpMapObstacle = CTrap::Create();
 
+		printf_s("»ý¼º! %d %d\n", tmpMapObstacle->GetSprite()->GetPositionX(), tmpMapObstacle->GetPositionY());
 		m_pList_mapObstacle.push_back(tmpMapObstacle);
 		AddChild(tmpMapObstacle,10);
 		m_obstacle_start_time = clock();
@@ -33,6 +34,7 @@ void MapObstaclManager::Update( float dTime )
 	{
 		if(child->CheckClickArea())
 		{
+			printf_s("Obstacle Click Check\n");
 			m_pList_mapObstacle.remove(child);
 			RemoveChild(child);
 		}
