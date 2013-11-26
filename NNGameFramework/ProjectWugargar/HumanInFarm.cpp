@@ -22,6 +22,9 @@ void CHumanInFarm::Update( float dTime )
 	NNObject::Update(dTime);
 	life_time = clock()/CLOCKS_PER_SEC - birth_time;
 	Grow();
+	//if( m_AgeState == GROWN_UP ){
+	//	CollectMeatPointFromGrownUp();
+	//}
 }
 
 void CHumanInFarm::CreateBaby()
@@ -80,5 +83,21 @@ void CHumanInFarm::Grow()
 			L"wugargar/grown-up/2.png");
 		m_pGrownUp->SetPosition(NowPosition);
 		AddChild(m_pGrownUp,100);
+	}
+}
+
+void CHumanInFarm::CollectMeatPointFromGrownUp()
+{
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_UP ) {
+		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
+		bool isInXCoordRange = (m_pGrownUp->GetPositionX() < cursorPosition.GetX()) && ( ( m_pGrownUp->GetPositionX() + 50 ) > cursorPosition.GetX() );
+		bool isInYCoordRange = (m_pGrownUp->GetPositionY() < cursorPosition.GetY()) && ( ( m_pGrownUp->GetPositionY() + 90 ) > cursorPosition.GetY() );
+		if(isInXCoordRange && isInYCoordRange)
+		{
+			printf("ddd");
+			CHumanFarm* m_pHumanFarm = CHumanFarm::GetInstance();
+			m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 10);
+			m_pHumanFarm->RemoveChild(this,true);
+		}
 	}
 }

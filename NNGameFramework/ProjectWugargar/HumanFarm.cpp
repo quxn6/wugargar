@@ -2,6 +2,26 @@
 #include "GameConfig.h"
 #include "HumanInFarm.h"
 
+CHumanFarm* CHumanFarm::m_pInstance = nullptr;
+
+CHumanFarm* CHumanFarm::GetInstance()
+{
+	if ( m_pInstance == nullptr )
+	{
+		m_pInstance = new CHumanFarm();
+	}
+
+	return m_pInstance;
+}
+
+void CHumanFarm::ReleaseInstance()
+{
+	if ( m_pInstance != nullptr )
+	{
+		delete m_pInstance;
+		m_pInstance = nullptr;
+	}
+}
 
 CHumanFarm::CHumanFarm(void)
 {

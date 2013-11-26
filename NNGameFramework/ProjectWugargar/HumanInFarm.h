@@ -3,6 +3,8 @@
 #include "NNMacroSet.h"
 #include "NNObject.h"
 #include "NNSpriteAtlas.h"
+#include "NNInputSystem.h"
+#include "PlayScene.h"
 enum Age
 {
 	SMALL_BABY,
@@ -33,6 +35,7 @@ public :
 	void CreateBaby();
 	void SetRandomPositionInFarm();
 	void Grow();
+	void CollectMeatPointFromGrownUp();
 
 private :
 	clock_t life_time;

@@ -84,11 +84,10 @@ void CPlayScene::_initBackground( void )
 {
 	m_pBackground = CBackground::Create(); 
 	AddChild( m_pBackground , 0);
-	m_pHumanFarm = CHumanFarm::Create();
+	m_pHumanFarm = CHumanFarm::GetInstance();
 	AddChild( m_pHumanFarm , 1);
 	m_pLightning = CLightning::Create();
 	AddChild(m_pLightning, 2);
-
 
 }
 
