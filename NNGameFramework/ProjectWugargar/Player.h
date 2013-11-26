@@ -35,16 +35,19 @@ public:
 	int GetNumberOfKillInStage() const { return m_NumberOfKillInStage; }
 	int GetNumberOfLossInStage() const { return m_NumberOfLossInStage; }
 	PlayerStatus GetPlayerStatus() const { return m_playerStatus; }
+	float GetInfectionRate() const { return m_InfectionRate; }
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
 	void SetClearedStage(int ClearedStage) {m_CurrentStage = ClearedStage; }
 	void SetZombieLevel(ZombieType character, int level) { m_CharacterLevel[character] = level; }
 	void SetPlayerStatus(PlayerStatus ps) { m_playerStatus = ps; }
+	void SetInfectionRate(float ir) { m_InfectionRate = ir; }
 
 	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
 	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }	
+	void IncreaseInfectionRate() {m_InfectionRate += 10.0f;}
 	void IncreaseStage() {++m_CurrentStage;}
 	void NextCity() {m_CurrentStage += 100;}
 
@@ -59,6 +62,7 @@ private:
 	int m_CurrentStage;		//201, 301 등으로 진행된 스테이지 표시
 	int m_TotalKill;
 	int m_TotalLoss;
+	float m_InfectionRate;
 	PlayerStatus m_playerStatus;
 };
 

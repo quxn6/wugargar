@@ -7,10 +7,10 @@
 CNextStageScene::CNextStageScene(void)
 {
 	m_pPlayer = CPlayer::GetInstance();
+	SetNextStage();
 	m_pPlayer->ReadyToUpgrade();
 	InitButtons();
 	ShowResults();
-	SetNextStage();
 }
 
 void CNextStageScene::InitButtons(void )

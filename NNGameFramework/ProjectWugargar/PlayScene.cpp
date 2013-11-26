@@ -201,8 +201,7 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	}
 }
 
-
-void CPlayScene::MakeZombie(ZombieType type)
+void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 {
 	CZombie *tmpZombieObject = nullptr;
 	std::wstring imagePath[NUMBER_OF_ZOMBIE_TYPES];
@@ -251,7 +250,13 @@ void CPlayScene::MakeZombie(ZombieType type)
 		return;
 	}
 
-	tmpZombieObject->SetRandomPositionAroundBase();
+	// when position is nullptr, set position around zombie base
+	if (position == nullptr ) {
+		tmpZombieObject->SetRandomPositionAroundBase();
+	} else {
+		tmpZombieObject->SetPosition(*position);
+	}
+	
 	tmpZombieObject->InitSprite(imagePath[type]);
 
 	// set Z-index for suitable viewing
@@ -259,7 +264,13 @@ void CPlayScene::MakeZombie(ZombieType type)
 	m_pPlayer->SetLocalMoney( localMoney - cost);	
 	m_llistZombie.push_back(tmpZombieObject);
 
-	
+}
+
+
+
+void CPlayScene::MakeZombie(ZombieType type)
+{
+	MakeZombie(type, nullptr);	
 }
 // 
 // void CPlayScene::MakeCharacterWalk(float dTime)
@@ -349,6 +360,36 @@ void CPlayScene::DeadCharacterCollector()
 	}
 }
 
+
+void CPlayScene::CollectDeadPoliceByClick()
+{
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_UP ) {
+		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
+		for ( auto& iter = m_llistDeadPolice.begin() ; iter != m_llistDeadPolice.end() ; iter++ )
+		{
+			bool isInXCoordRange = ((*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( (*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
+			bool isInYCoordRange = ((*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( (*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
+			if(isInXCoordRange && isInYCoordRange)
+			{
+				// 감염확률에 따라 감염된 포돌이 생성, 기본은 POOR_ZOMBIE로, 
+				if ( rand()% 100 > m_pPlayer->GetInfectionRate()) {
+					NNPoint deadPosition = (*iter)->GetDeadPosition();
+					MakeZombie(POOR_ZOMBIE, &deadPosition );
+				}
+
+				CDeadPolice *tmp = *iter;
+				m_llistDeadPolice.erase(iter);
+				RemoveChild(tmp,true);
+
+				
+
+				m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 10);
+				break;
+			}
+		}
+	}
+}
+
 /*
 정인호. 11/14
 현재 Base의 상황을 체크하여 게임 종료 여부를 체크.
@@ -383,6 +424,9 @@ void CPlayScene::IncreaseLocalMoney( int time )
 	m_pShowMeatPoint->SetString(meat);
 }
 
+
+
+
 /////////////////////////////////////////////////////////
 ///////////////////test �Լ� /////////////////////////////
 void CPlayScene::Test_ShowMousePosition()
@@ -407,23 +451,3 @@ void CPlayScene::Test_ShowFPS()
 	m_pShowMouseStatus->SetString(temp);
 }
 
-void CPlayScene::CollectDeadPoliceByClick()
-{
-	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_UP ) {
-		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
-		for ( auto& iter = m_llistDeadPolice.begin() ; iter != m_llistDeadPolice.end() ; iter++ )
-		{
-			bool isInXCoordRange = ((*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( (*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
-			bool isInYCoordRange = ((*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( (*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
-			if(isInXCoordRange && isInYCoordRange)
-			{
-				CDeadPolice *aa = *iter;
-				m_llistDeadPolice.erase(iter);
-				RemoveChild(aa,true);
-
-				m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 10);
-				break;
-			}
-		}
-	}
-}
