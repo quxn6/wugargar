@@ -50,7 +50,7 @@ CPlayScene::CPlayScene(void)
 
 	m_pCreatePolice = new CCreatePolice;
 	m_pMapObstacleManager = MapObstaclManager::Create();
-	AddChild(m_pMapObstacleManager);
+	AddChild(m_pMapObstacleManager, 2);
 	
 	
 	SetStartTime(clock());
