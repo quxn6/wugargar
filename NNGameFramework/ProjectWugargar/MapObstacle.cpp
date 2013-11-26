@@ -57,7 +57,7 @@ void CMapObstacle::InitSprite(std::wstring imagePath )
 
 NNPoint CMapObstacle::RandomMapPosition()
 {
-	return (NNPoint(rand() % (MAP_SIZE_X-1) * TILE_SIZE_X, 270 + rand()%(MAP_SIZE_Y-1)*TILE_SIZE_Y));
+	return (NNPoint(static_cast<float>(rand() % (MAP_SIZE_X-1) * TILE_SIZE_X), static_cast<float>(270 + rand()%(MAP_SIZE_Y-1)*TILE_SIZE_Y)));
 }
 
 //Area내부가 클릭되었는지 체크
