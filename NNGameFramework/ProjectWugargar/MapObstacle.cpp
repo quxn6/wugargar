@@ -1,8 +1,8 @@
 #include "MapObstacle.h"
 #include "GameConfig.h"
 #include "PlayScene.h"
-#include "..\NNGameFramework\NNInputSystem.h"
-
+#include "NNInputSystem.h"
+#include "NNPoint.h"
 
 CMapObstacle::CMapObstacle(void)
 {
@@ -24,10 +24,10 @@ void CMapObstacle::Update( float dTime )
 
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
-		if(obstacle_position.GetX()<=(child->GetPositionX+10) && 
-			obstacle_position.GetX()>=(child->GetPositionX-10) &&
-			obstacle_position.GetY()<=(child->GetPositionY+10) && 
-			obstacle_position.GetY()>=(child->GetPositionY-10))
+		if(obstacle_position.GetX()<=(child->GetPositionX()+10) && 
+			obstacle_position.GetX()>=(child->GetPositionX()-10) &&
+			obstacle_position.GetY()<=(child->GetPositionY()+10) && 
+			obstacle_position.GetY()>=(child->GetPositionY()-10))
 		{
 			Boom(child);
 			break;
@@ -63,7 +63,7 @@ NNPoint CMapObstacle::RandomMapPosition()
 //юс╫ц
 bool CMapObstacle::CheckClickArea()
 {
-	if(NNInputSystem.GetKeyState(VK_BACK) == KEY_PRESSED)
+	if(NNInputSystem::GetInstance()->GetKeyState(VK_BACK) == KEY_DOWN)
 	{
 		return true;
 	}

@@ -5,7 +5,7 @@
 
 MapObstaclManager::MapObstaclManager(void)
 {
-	m_obstacle_start_time = clock_t();
+	m_obstacle_start_time = clock();
 }
 
 
@@ -15,8 +15,8 @@ MapObstaclManager::~MapObstaclManager(void)
 
 void MapObstaclManager::Update( float dTime )
 {
-
-	if(m_obstacle_start_time/CLOCKS_PER_SEC - clock_t()/CLOCKS_PER_SEC <= REGEN_TIME)
+	
+	if(clock()/CLOCKS_PER_SEC - m_obstacle_start_time/CLOCKS_PER_SEC  > REGEN_TIME)
 	{
 		CMapObstacle *tmpMapObstacle = nullptr;
 		if(rand()%2)
@@ -26,7 +26,7 @@ void MapObstaclManager::Update( float dTime )
 
 		m_pList_mapObstacle.push_back(tmpMapObstacle);
 		AddChild(tmpMapObstacle,10);
-
+		m_obstacle_start_time = clock();
 	}
 	
 	for(const auto& child : m_pList_mapObstacle)
