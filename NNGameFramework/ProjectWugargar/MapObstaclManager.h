@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "MapObstacle.h"
-#define REGEN_TIME 5
+#define REGEN_TIME 3
 
 class MapObstaclManager : 
 	public NNObject
