@@ -13,7 +13,7 @@ void CPlayer::InitPlayer()
 	//초기화 내용 추가
 	m_playerStatus = ON_MENU;
 	m_GlobalMoney = 1000;
-	m_ClearedStage = 100;
+	m_CurrentStage = 101;
 	m_TotalKill = 0;
 	m_TotalLoss = 0;
 

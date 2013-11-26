@@ -21,20 +21,27 @@ public:
 
 	NNCREATE_FUNC(CNextStageScene);
 
+	CPlayer*	m_pPlayer;
 	CUIButton*	m_pUpgradeButtons[NUMBER_OF_ZOMBIE_TYPES];
 	NNLabel*	m_pUpgradeButtonLabel[NUMBER_OF_ZOMBIE_TYPES];
+	int			m_UpgradeCost[NUMBER_OF_ZOMBIE_TYPES];
+
 	CUIButton*	m_pGambleButton;
 	CUIButton*	m_pNextStageButton;
 	CUIButton*	m_pGameSaveButton;
 	NNSprite*	m_pBackground;
+//	NNLabel*	m_pGlobalMoney;
 	NNLabel*	m_pResults;
 	
 private :
-	void InitButtons( void );
+	void InitButtons( void );	
+	void SetNextStage( void );
+	void ShowResults( void );
+	void SetUpgradeText(ZombieType zombietype);
 
 private :
 	wchar_t		m_LabelBuffer[NUMBER_OF_ZOMBIE_TYPES][256];
 	wchar_t		m_ResultBuffer[256];
-	
+	wchar_t		m_MoneyBuffer[30];
 };
 

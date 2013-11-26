@@ -363,7 +363,7 @@ bool CPlayScene::CheckGameOver()
 	if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
 		m_pInstance = nullptr;
-		m_pPlayer->SetPlayerStatus(LOSS);
+		m_pPlayer->SetPlayerStatus(LOSE);
 		return true;
 
 	}
