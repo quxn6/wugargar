@@ -46,7 +46,7 @@ CPlayScene::CPlayScene(void)
 
 	// player초기화
 	m_pPlayer = CPlayer::GetInstance();
-	m_pPlayer->SetPlayerForNewStage();
+	m_pPlayer->ReadyToPlay();
 
 	m_pCreatePolice = new CCreatePolice;
 	m_pMapObstacleManager = MapObstaclManager::Create();
@@ -155,8 +155,9 @@ void CPlayScene::Update( float dTime )
 
 	int checkTimeChange = GetNowTimeSEC(); // 시간이 변했는가를 초단위로 체크
 	SetNowTime(clock());
-	if(checkTimeChange != GetNowTimeSEC())
+	if( checkTimeChange != GetNowTimeSEC() ) {
 		IncreaseLocalMoney(GetNowTimeSEC()-GetStartTimeSEC());
+	}
 
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
 	Test_ShowFPS(); //FPS출력 임시 테스트
@@ -187,8 +188,8 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	// 코드 refactoring함. zombie type을 int처럼 사용하는데 이게 좀 걸림. - 성환
 	// baby버튼 별도로 빠져잇던거 한 for문 아능로 삽입함.
 	//int count = 0;
-	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
-		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 			if ( m_pUIButtons[i]->CheckButtonArea() ) {							
 				if ( i != BABY_HUMAN ) {
 					MakeZombie(static_cast<ZombieType>(i));
@@ -358,21 +359,16 @@ bool CPlayScene::CheckGameOver()
 {
 	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
 		m_pPlayer->SetPlayerStatus(WIN);
-		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
-		m_pInstance = nullptr;		
-		return true;
-
-	} 
-	
-	if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
+	} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
 		m_pPlayer->SetPlayerStatus(LOSE);
-		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
-		m_pInstance = nullptr;		
-		return true;
-
+	} else {
+		return false;	
 	}
 	
-	return false;	
+	NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+	m_pInstance = nullptr;		
+	return true;
+
 }
 
 void CPlayScene::IncreaseLocalMoney( int time )

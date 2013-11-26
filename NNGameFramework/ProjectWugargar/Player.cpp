@@ -11,7 +11,7 @@ CPlayer::CPlayer(void)
 void CPlayer::InitPlayer()
 {
 	//초기화 내용 추가
-	m_playerStatus = ON_MENU;
+	m_playerStatus = ON_MAINMENU;
 	m_GlobalMoney = 1000;
 	m_CurrentStage = 101;
 	m_TotalKill = 0;
@@ -46,10 +46,19 @@ void CPlayer::ReleaseInstance()
 	}
 }
 
-void CPlayer::SetPlayerForNewStage()
+void CPlayer::ReadyToPlay()
 {
 	m_playerStatus = ON_PLAYING;
 	m_LocalMoney = 300;
 	m_NumberOfKillInStage = 0;
 	m_NumberOfLossInStage = 0;
 }
+
+void CPlayer::ReadyToUpgrade()
+{
+	m_playerStatus = ON_UPGRADEMENU;
+	m_TotalKill += m_NumberOfKillInStage;
+	m_TotalLoss += m_NumberOfLossInStage;
+	m_GlobalMoney += 10 * m_NumberOfKillInStage;
+}
+

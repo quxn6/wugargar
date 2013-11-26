@@ -7,7 +7,7 @@
 CNextStageScene::CNextStageScene(void)
 {
 	m_pPlayer = CPlayer::GetInstance();
-	
+	m_pPlayer->ReadyToUpgrade();
 	InitButtons();
 	ShowResults();
 	SetNextStage();

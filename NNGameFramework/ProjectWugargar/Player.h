@@ -5,7 +5,7 @@ enum PlayerStatus {
 	WIN,
 	LOSE,
 	ON_PLAYING,
-	ON_MENU,
+	ON_MAINMENU,
 	ON_UPGRADEMENU
 };
 
@@ -25,7 +25,8 @@ public:
 public:
 
 	void InitPlayer();
-	void SetPlayerForNewStage();
+	void ReadyToPlay();
+	void ReadyToUpgrade();
 
 	int GetGlobalMoney(){return m_GlobalMoney;}
 	int GetLocalMoney(){return m_LocalMoney;}

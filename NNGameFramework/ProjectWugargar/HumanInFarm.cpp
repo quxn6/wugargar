@@ -49,7 +49,7 @@ void CHumanInFarm::SetRandomPositionInFarm()
 	int random_location_x = rand() % (SIZE_OF_HUMAN_FARM_X - 100);
 	int random_location_y = rand() % (SIZE_OF_HUMAN_FARM_Y - 50);
 
-	m_pSmallBaby->SetPosition( NNPoint(random_location_x + 20.0f, FIRST_Y_COORDINATE_OF_UIBUTTON + random_location_y) );
+	m_pSmallBaby->SetPosition( NNPoint(static_cast<float> (random_location_x + 20.0f), static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + random_location_y)) );
 }
 
 void CHumanInFarm::Grow()
