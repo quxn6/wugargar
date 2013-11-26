@@ -62,6 +62,9 @@ CPlayScene::CPlayScene(void)
 	m_pShowMouseStatus->SetPosition(0.0f, 0.0f);
 	AddChild( m_pShowMouseStatus , 20);
 	// END TEMP
+	m_pShowMeatPoint = NNLabel::Create( L"Local Money", L"맑은 고딕", 30.f );
+	m_pShowMeatPoint->SetPosition(0.0f, 35.0f);
+	AddChild( m_pShowMeatPoint , 20);
 
 }
 
@@ -374,14 +377,14 @@ bool CPlayScene::CheckGameOver()
 void CPlayScene::IncreaseLocalMoney( int time )
 {
 	int localMoney = m_pPlayer->GetLocalMoney();
-	if(time % 1 == 0)// 1�ʴ�
+	if(time % 1 == 0)// 1초당
 		m_pPlayer->SetLocalMoney(localMoney + 10); // 십원 증가
 
 
 	//로컬머니 임시 출력 코드
-	ZeroMemory(temp, 256);	
-	swprintf_s(temp, _countof(temp), L"local money = %d", m_pPlayer->GetLocalMoney() );
-	m_pShowMouseStatus->SetString(temp);
+	ZeroMemory(meat, 256);	
+	swprintf_s(meat, _countof(meat), L"local money = %d", m_pPlayer->GetLocalMoney() );
+	m_pShowMeatPoint->SetString(meat);
 }
 
 /////////////////////////////////////////////////////////

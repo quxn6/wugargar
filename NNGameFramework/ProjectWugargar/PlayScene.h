@@ -58,6 +58,7 @@ private :
 	NNSprite	*m_pUIBackground;
 	CUIButton	*m_pUIButtons[NUM_OF_UIBUTTON];
 	NNLabel		*m_pShowMouseStatus;
+	NNLabel		*m_pShowMeatPoint;
 	NNPoint		m_CursorPos;
 	CCreatePolice *m_pCreatePolice;
 	CHumanFarm *m_pHumanFarm;
@@ -69,6 +70,7 @@ private :
 	std::list<CDeadPolice*>		m_llistDeadPolice;
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
+	wchar_t		meat[256]; //meat Point 표시를 위한 임시변수
 	clock_t m_startTime;
 	clock_t m_nowTime;
 
