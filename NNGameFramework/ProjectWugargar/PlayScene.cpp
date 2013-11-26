@@ -49,8 +49,8 @@ CPlayScene::CPlayScene(void)
 	m_pPlayer->SetPlayerForNewStage();
 
 	m_pCreatePolice = new CCreatePolice;
-//	m_pMapObstacleManager = MapObstaclManager::Create();
-//	AddChild(m_pMapObstacleManager);
+	m_pMapObstacleManager = MapObstaclManager::Create();
+	AddChild(m_pMapObstacleManager);
 	
 	
 	SetStartTime(clock());
@@ -353,17 +353,17 @@ void CPlayScene::DeadCharacterCollector()
 bool CPlayScene::CheckGameOver()
 {
 	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
-		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
-		m_pInstance = nullptr;
 		m_pPlayer->SetPlayerStatus(WIN);
+		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+		m_pInstance = nullptr;		
 		return true;
 
 	} 
 	
 	if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
-		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
-		m_pInstance = nullptr;
 		m_pPlayer->SetPlayerStatus(LOSE);
+		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+		m_pInstance = nullptr;		
 		return true;
 
 	}
