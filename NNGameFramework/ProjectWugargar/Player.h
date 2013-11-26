@@ -1,6 +1,13 @@
 #pragma once
 #include "GameConfig.h"
 
+enum PlayerStatus {
+	WIN,
+	LOSS,
+	ON_PLAYING,
+	ON_MENU,
+	ON_UPGRADEMENU
+};
 
 class CPlayer
 {
@@ -26,6 +33,7 @@ public:
 	int GetZombieLevel(ZombieType character) { return m_CharacterLevel[character]; }
 	int GetNumberOfKillInStage() const { return m_NumberOfKillInStage; }
 	int GetNumberOfLossInStage() const { return m_NumberOfLossInStage; }
+	PlayerStatus GetPlayerStatus() const { return m_playerStatus; }
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
@@ -33,7 +41,8 @@ public:
 	void SetZombieLevel(ZombieType character, int level) { m_CharacterLevel[character] = level; }
 	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
-	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }
+	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }	
+	void SetPlayerStatus(PlayerStatus ps) { m_playerStatus = ps; }
 
 	
 private:
@@ -46,6 +55,6 @@ private:
 	int m_ClearedStage;		//201, 301 등으로 진행된 스테이지 표시
 	int m_TotalKill;
 	int m_TotalLoss;
-
+	PlayerStatus m_playerStatus;
 };
 

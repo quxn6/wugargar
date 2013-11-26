@@ -44,15 +44,15 @@ CPlayScene::CPlayScene(void)
 	_initMap();
 	_initUI();
 
+	// player초기화
+	m_pPlayer = CPlayer::GetInstance();
+	m_pPlayer->SetPlayerForNewStage();
+
 	m_pCreatePolice = new CCreatePolice;
-	m_pMapObstacleManager = MapObstaclManager::Create();
-	AddChild(m_pMapObstacleManager);
-
-	CPlayer::GetInstance()->SetPlayerForNewStage();
-
-
-
-
+//	m_pMapObstacleManager = MapObstaclManager::Create();
+//	AddChild(m_pMapObstacleManager);
+	
+	
 	SetStartTime(clock());
 	SetNowTime(clock());
 
@@ -202,8 +202,7 @@ void CPlayScene::MakeZombie(ZombieType type)
 {
 	CZombie *tmpZombieObject = nullptr;
 	std::wstring imagePath[NUMBER_OF_ZOMBIE_TYPES];
-	CPlayer* player = CPlayer::GetInstance();
-	int localMoney = player->GetLocalMoney();
+	int localMoney = m_pPlayer->GetLocalMoney();
 
 	imagePath[POOR_ZOMBIE] = L"wugargar/poor_zombie.png";
 	imagePath[ICE_ZOMBIE] = L"wugargar/ice_zombie.png";
@@ -253,7 +252,7 @@ void CPlayScene::MakeZombie(ZombieType type)
 
 	// set Z-index for suitable viewing
 	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
-	player->SetLocalMoney( localMoney - cost);	
+	m_pPlayer->SetLocalMoney( localMoney - cost);	
 	m_llistZombie.push_back(tmpZombieObject);
 
 	
@@ -305,6 +304,8 @@ void CPlayScene::MakePoliceFromScript()
 	
 }
 
+// 죽은 캐릭터 수집기,
+// update시마다 실행되면서 hp가 0이거나 화면밖으로 나간 캐릭터를 삭제함
 void CPlayScene::DeadCharacterCollector()
 {	
 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
@@ -314,10 +315,18 @@ void CPlayScene::DeadCharacterCollector()
 			m_llistPolice.erase(iter);
 			NNPoint DeadPosition = tmpCharacter->GetPosition();
 			RemoveChild(tmpCharacter,true);
+
+			// 죽은 경찰이 있을때마다 player의 죽인 경찰 수를 증가.
+			m_pPlayer->IncreaseNumberOfKillInStage();	
+
+
+			// dead police 추가하는 부분?
 			CDeadPolice *tmpDeadPolice = CDeadPolice::Create(); 
 			tmpDeadPolice->SetDeadPosition(DeadPosition);
 			AddChild(tmpDeadPolice,10);
 			m_llistDeadPolice.push_back(tmpDeadPolice);
+
+
 			break;
 		}
 	}
@@ -328,6 +337,9 @@ void CPlayScene::DeadCharacterCollector()
 			tmpCharacter = *iter;
 			m_llistZombie.erase(iter);
 			RemoveChild(tmpCharacter,true);
+			
+			// 죽은 좀비가 있을때마다 player의 잃은 좀비 수를 증가.
+			m_pPlayer->IncreaseNumberOfLossInStage();	
 			break;
 		}
 	}
@@ -343,27 +355,32 @@ bool CPlayScene::CheckGameOver()
 	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
 		m_pInstance = nullptr;
+		m_pPlayer->SetPlayerStatus(WIN);
 		return true;
-	} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
+
+	} 
+	
+	if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
 		m_pInstance = nullptr;
+		m_pPlayer->SetPlayerStatus(LOSS);
 		return true;
-	} else {
-		return false;
+
 	}
+	
+	return false;	
 }
 
 void CPlayScene::IncreaseLocalMoney( int time )
 {
-	CPlayer* player = CPlayer::GetInstance();
-	float localMoney = player->GetLocalMoney();
+	int localMoney = m_pPlayer->GetLocalMoney();
 	if(time % 1 == 0)// 1�ʴ�
-		player->SetLocalMoney(localMoney + 10); // 십원 증가
+		m_pPlayer->SetLocalMoney(localMoney + 10); // 십원 증가
 
 
 	//로컬머니 임시 출력 코드
 	ZeroMemory(temp, 256);	
-	swprintf_s(temp, _countof(temp), L"local money = %d", player->GetLocalMoney() );
+	swprintf_s(temp, _countof(temp), L"local money = %d", m_pPlayer->GetLocalMoney() );
 	m_pShowMouseStatus->SetString(temp);
 }
 

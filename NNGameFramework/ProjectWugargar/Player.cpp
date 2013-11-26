@@ -11,10 +11,12 @@ CPlayer::CPlayer(void)
 void CPlayer::InitPlayer()
 {
 	//초기화 내용 추가
-	m_GlobalMoney = 0;
-	m_ClearedStage = 0;
+	m_playerStatus = ON_MENU;
+	m_GlobalMoney = 1000;
+	m_ClearedStage = 100;
 	m_TotalKill = 0;
 	m_TotalLoss = 0;
+
 	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
 		m_CharacterLevel[i] = 0;
 	}
@@ -46,6 +48,7 @@ void CPlayer::ReleaseInstance()
 
 void CPlayer::SetPlayerForNewStage()
 {
+	m_playerStatus = ON_PLAYING;
 	m_LocalMoney = 300;
 	m_NumberOfKillInStage = 0;
 	m_NumberOfLossInStage = 0;

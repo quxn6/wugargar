@@ -52,6 +52,7 @@ private :
 	void _initMap( void );
 
 private :
+	CPlayer		*m_pPlayer;
 	CBackground *m_pBackground;
 	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
@@ -61,7 +62,7 @@ private :
 	CCreatePolice *m_pCreatePolice;
 	CHumanFarm *m_pHumanFarm;
 	CLightning	*m_pLightning;
-	MapObstaclManager *m_pMapObstacleManager;
+//	MapObstaclManager *m_pMapObstacleManager;
 
 	std::list<CCharacter*>		m_llistZombie;
 	std::list<CCharacter*>		m_llistPolice;
