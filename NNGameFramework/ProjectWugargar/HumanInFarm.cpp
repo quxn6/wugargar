@@ -59,7 +59,10 @@ void CHumanInFarm::Grow()
 		m_AgeState = MIDDLE_BABY;
 		NNPoint NowPosition = m_pSmallBaby->GetPosition();
 		RemoveChild(m_pSmallBaby,1);
-		m_pMiddleBaby = NNAnimation::Create(1,L"wugargar/middlebaby.png");
+		m_pMiddleBaby = NNAnimation::Create(4,L"wugargar/middlebaby/0.png",
+			L"wugargar/middlebaby/1.png",
+			L"wugargar/middlebaby/2.png",
+			L"wugargar/middlebaby/3.png");
 		m_pMiddleBaby->SetPosition(NowPosition);
 		AddChild(m_pMiddleBaby,100);
 	}
@@ -68,7 +71,13 @@ void CHumanInFarm::Grow()
 		m_AgeState = GROWN_UP;
 		NNPoint NowPosition = m_pMiddleBaby->GetPosition();
 		RemoveChild(m_pMiddleBaby,1);
-		m_pGrownUp = NNAnimation::Create(1,L"wugargar/grown-up.png");
+		m_pGrownUp = NNAnimation::Create(6,
+			L"wugargar/grown-up/1.png",
+			L"wugargar/grown-up/2.png",
+			L"wugargar/grown-up/3.png",
+			L"wugargar/grown-up/4.png",
+			L"wugargar/grown-up/3.png",
+			L"wugargar/grown-up/2.png");
 		m_pGrownUp->SetPosition(NowPosition);
 		AddChild(m_pGrownUp,100);
 	}
