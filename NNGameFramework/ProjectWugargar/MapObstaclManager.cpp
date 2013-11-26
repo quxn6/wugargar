@@ -30,13 +30,15 @@ void MapObstaclManager::Update( float dTime )
 		m_obstacle_start_time = clock();
 	}
 	
-	for(const auto& child : m_pList_mapObstacle)
+	for(auto& iter = m_pList_mapObstacle.begin() ; iter != m_pList_mapObstacle.end() ; iter++ )
 	{
-		if(child->CheckClickArea())
+		if((*iter)->CheckClickArea())
 		{
+			CMapObstacle *tmp_obstacle;
+			tmp_obstacle = *iter;
 			printf_s("Obstacle Click Check\n");
-			m_pList_mapObstacle.remove(child);
-			RemoveChild(child);
+			m_pList_mapObstacle.erase(iter);
+			RemoveChild(tmp_obstacle, true);
 		}
 	}
 	

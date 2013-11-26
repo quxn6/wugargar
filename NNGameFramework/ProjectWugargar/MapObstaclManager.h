@@ -16,7 +16,6 @@ public:
 protected:
 	std::list<CMapObstacle*> m_pList_mapObstacle;
 	clock_t m_obstacle_start_time;
-	//clock_t now_time;
 
 };
 
