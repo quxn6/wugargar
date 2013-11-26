@@ -192,7 +192,8 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 			if ( m_pUIButtons[i]->CheckButtonArea() ) {							
 				if ( i != BABY_HUMAN ) {
 					MakeZombie(static_cast<ZombieType>(i));
-				} else {
+				} else if(m_pHumanFarm->GetMeatPoint() >=10){
+					m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() - 10);
 					m_pHumanFarm->MakeHuman();
 				}
 			}

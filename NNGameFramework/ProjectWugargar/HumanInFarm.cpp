@@ -41,7 +41,7 @@ void CHumanInFarm::CreateBaby()
 	AddChild(m_pSmallBaby,100);
 	life_time = 0;
 	birth_time = clock()/CLOCKS_PER_SEC;
-	m_AgeState = SMALL_BABY;;
+	m_AgeState = SMALL_BABY;
 }
 
 void CHumanInFarm::SetRandomPositionInFarm()
