@@ -23,6 +23,26 @@ NNSprite* NNSprite::Create( std::wstring path )
 	return pInstance;
 } 
 
+bool NNSprite::IsCrash( NNSprite *crash_check_sprite )
+{
+
+	/*if(this->GetCenterX() < crash_check_sprite->GetCenterX());
+		if(((this->GetCenterX() + this->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() - crash_check_sprite->GetImageWidth()/2)) &&
+			(((this->GetCenterX()  this->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() + crash_check_sprite->GetImageWidth()/2)) &&
+			(((this->GetCenterY() - this->GetImageHeight()/2) <= ))))
+
+	else
+		
+
+		obstacle_position.GetX()+ m_pObstacle_sprite->GetImageWidth()<=(child->GetPositionX()) && 
+		obstacle_position.GetX()>=(child->GetPositionX()) &&
+		obstacle_position.GetY()+m_pObstacle_sprite->GetImageHeight()<=(child->GetPositionY()+10) && 
+		obstacle_position.GetY()>=(child->GetPositionY())
+
+		*/
+}
+
+
 //////////////////////////////////////////////////////////////////////////
 /*					NND2DSprite											*/
 //////////////////////////////////////////////////////////////////////////

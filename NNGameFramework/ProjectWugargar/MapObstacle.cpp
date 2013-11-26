@@ -53,7 +53,7 @@ void CMapObstacle::InitSprite(std::wstring imagePath )
 	m_pObstacle_sprite = NNSprite::Create(imagePath);
 
 	m_pObstacle_sprite->SetPosition(RandomMapPosition());
-	AddChild(m_pObstacle_sprite);
+	AddChild(m_pObstacle_sprite, 0);
 
 }
 
