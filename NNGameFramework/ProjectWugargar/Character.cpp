@@ -148,7 +148,7 @@ void CCharacter::Update( float dTime )
 	//공격하고 그렇지 않으면 Attack Target에게 접근
 
 	float HP = GetHP();
-	if( HP/m_HPRatioPer100 >= 70 ){
+	if( HP/m_HPRatioPer100 >= 70 ){// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
 		m_pShowHP->SetCutSize(0,0,HP/2,5.f);
 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
 	}

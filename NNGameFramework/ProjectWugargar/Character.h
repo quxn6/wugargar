@@ -72,7 +72,7 @@ protected:
 
 protected:
 	float m_HealthPoint;
-	float m_HPRatioPer100;
+	float m_HPRatioPer100; //HP를 100에 대한 비율로 알기 위한 변수 
 	float m_MovingSpeed;
 	int m_AttackPower;
 	int m_DefensivePower;
