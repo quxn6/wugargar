@@ -23,24 +23,25 @@ NNSprite* NNSprite::Create( std::wstring path )
 	return pInstance;
 } 
 
+/*
+11.27 정인호
+충돌 판정 함수. 현재 구동은 이 스프라이트가 대상 스프라이트 사이에
+들어가면 충돌로 판정하도록 설정. 충돌하면 true, 아니면 false반환
+*/
 bool NNSprite::IsCrash( NNSprite *crash_check_sprite )
 {
+	
+	if(((this->GetCenterX() + this->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() - crash_check_sprite->GetImageWidth()/2)) &&
+		(((this->GetCenterX() + this->GetImageWidth()/2) <= (crash_check_sprite->GetCenterX() + crash_check_sprite->GetImageWidth()/2)) &&
+		((this->GetCenterY() <= (crash_check_sprite->GetCenterY() + crash_check_sprite->GetImageHeight()/2)) &&
+		((this->GetCenterX() > (crash_check_sprite->GetCenterY() - crash_check_sprite->GetImageHeight()/2)) ))))
+			return true;
 
-	/*if(this->GetCenterX() < crash_check_sprite->GetCenterX());
-		if(((this->GetCenterX() + this->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() - crash_check_sprite->GetImageWidth()/2)) &&
-			(((this->GetCenterX()  this->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() + crash_check_sprite->GetImageWidth()/2)) &&
-			(((this->GetCenterY() - this->GetImageHeight()/2) <= ))))
+	return false;
 
-	else
 		
-
-		obstacle_position.GetX()+ m_pObstacle_sprite->GetImageWidth()<=(child->GetPositionX()) && 
-		obstacle_position.GetX()>=(child->GetPositionX()) &&
-		obstacle_position.GetY()+m_pObstacle_sprite->GetImageHeight()<=(child->GetPositionY()+10) && 
-		obstacle_position.GetY()>=(child->GetPositionY())
-
-		*/
 }
+
 
 
 //////////////////////////////////////////////////////////////////////////
