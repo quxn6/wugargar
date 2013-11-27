@@ -46,7 +46,9 @@ public:
 	int GetNowTimeSEC() {return m_NowTime/CLOCKS_PER_SEC;};
 	int GetCreateTimeSEC() {return m_CreateTime/CLOCKS_PER_SEC;};
 	CharacterIdentity GetIdentity() {return m_Identity;}
-	
+	NNSprite *GetSprite(){return m_Sprite;}
+
+
 	void SetHP(int hp) {m_HealthPoint = hp;};
 	void SetSpeed(float speed) {m_MovingSpeed = speed;};
 	void SetAttackPower(int AP) {m_AttackPower = AP;};

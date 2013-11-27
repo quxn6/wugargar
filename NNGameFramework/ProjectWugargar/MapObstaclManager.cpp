@@ -13,6 +13,8 @@ MapObstaclManager::~MapObstaclManager(void)
 {
 }
 
+
+
 void MapObstaclManager::Update( float dTime )
 {
 	
@@ -32,15 +34,18 @@ void MapObstaclManager::Update( float dTime )
 	
 	for(auto& iter = m_pList_mapObstacle.begin() ; iter != m_pList_mapObstacle.end() ; iter++ )
 	{
-		if((*iter)->CheckClickArea())
+		if((*iter)->CheckClickArea() || (*iter)->is_boom)
 		{
 			CMapObstacle *tmp_obstacle;
 			tmp_obstacle = *iter;
-			printf_s("Obstacle Click Check\n");
+			if(!(*iter)->is_boom)
+				printf_s("Obstacle Click Check\n");
+
 			m_pList_mapObstacle.erase(iter);
 			RemoveChild(tmp_obstacle, true);
+			break;
 		}
-	}
-	
 
+
+	}
 }

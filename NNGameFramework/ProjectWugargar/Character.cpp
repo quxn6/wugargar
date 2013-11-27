@@ -201,24 +201,30 @@ void CCharacter::GoToAttackTarget(float dTime)
 	float distance_attacktarget;
 	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
 	//Character가 안겹치게 하기 위한 연출을 위한 코드
-	/*if(distance_attacktarget <= m_sight)
+	/*
+	if(distance_attacktarget <= m_sight)
 	{
 		MakeCharacterWalk(dTime);
 		return ;
 	}
 	*/
-	switch (m_Identity)
-	{
-	case Zombie:
+	if(this->GetPositionX() < m_AttackTarget->GetPositionX())
 		this->SetPosition(this->m_Position - NNPoint( -(m_MovingSpeed*t_x),-( m_MovingSpeed*t_y) )*dTime);
-		break;
-	case Police:
+	else
 		this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
-		break;
-	default:
-		break;
-	}
-	
+
+	//switch (m_Identity)
+	//{
+	//case Zombie:
+	//	this->SetPosition(this->m_Position - NNPoint( -(m_MovingSpeed*t_x),-( m_MovingSpeed*t_y) )*dTime);
+	//	break;
+	//case Police:
+	//	this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
+	//	break;
+	//default:
+	//	break;
+	//}
+	//
 
 	
 }

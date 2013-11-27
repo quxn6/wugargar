@@ -19,8 +19,10 @@ public:
 	NNPoint RandomMapPosition();
 	bool CheckClickArea();
 	NNSprite* GetSprite(){return m_pObstacle_sprite;};
+	bool IsCrash( NNSprite *crash_check_sprite);
 
 
+	bool is_boom;
 protected:
 	NNSprite*	m_pObstacle_sprite;
 	int			m_obstacle_damage;

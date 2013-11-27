@@ -17,7 +17,7 @@ public:
 	NNCREATE_FUNC(CLightning);	
 
 	void InitSprite(std::wstring imagePath);
-
+	bool IsCrash(NNSprite *crash_check_sprite, NNSprite *thi);
 
 protected:
 	NNSprite* m_lightning_sprite;

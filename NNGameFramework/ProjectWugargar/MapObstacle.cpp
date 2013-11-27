@@ -6,6 +6,7 @@
 
 CMapObstacle::CMapObstacle(void)
 {
+	is_boom = false;
 }
 
 
@@ -27,10 +28,7 @@ void CMapObstacle::Update( float dTime )
 
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
-		if(obstacle_position.GetX()+ m_pObstacle_sprite->GetImageWidth()<=(child->GetPositionX()) && 
-			obstacle_position.GetX()>=(child->GetPositionX()) &&
-			obstacle_position.GetY()+m_pObstacle_sprite->GetImageHeight()<=(child->GetPositionY()+10) && 
-			obstacle_position.GetY()>=(child->GetPositionY()))
+		if(IsCrash(child->GetSprite()))
 		{
 			printf_s("Boom!\n");
 			Boom(child);
@@ -45,7 +43,7 @@ void CMapObstacle::Update( float dTime )
 void CMapObstacle::Boom( CCharacter* boom_target )
 {
 	boom_target->SetHP(boom_target->GetHP() - m_obstacle_damage);
-
+	is_boom = true;
 }
 
 void CMapObstacle::InitSprite(std::wstring imagePath )
@@ -84,4 +82,23 @@ bool CMapObstacle::CheckClickArea()
 	
 	return false;
 
+}
+
+bool CMapObstacle::IsCrash( NNSprite *crash_check_sprite)
+{
+	float distance_attacktarget;
+	distance_attacktarget = this->GetPosition().GetDistance(crash_check_sprite->GetPosition());
+
+	if(distance_attacktarget <= this->GetSprite()->GetImageWidth())
+		return true;
+	
+	return false;
+
+	/*if(((thi->GetCenterX() + thi->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() - crash_check_sprite->GetImageWidth()/2)) &&
+		(((thi->GetCenterX() + thi->GetImageWidth()/2) <= (crash_check_sprite->GetCenterX() + crash_check_sprite->GetImageWidth()/2)) &&
+		((thi->GetCenterY() <= (crash_check_sprite->GetCenterY() + crash_check_sprite->GetImageHeight()/2)) &&
+		((thi->GetCenterX() > (crash_check_sprite->GetCenterY() - crash_check_sprite->GetImageHeight()/2)) ))))
+		return true;
+
+	return false;*/
 }

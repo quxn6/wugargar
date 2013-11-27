@@ -32,14 +32,21 @@ void CLightning::Update( float dTime )
 		printf_s("put");
 		m_fall_lightning_sprite = NNSprite::Create(L"wugargar/pika.png");
 		m_fall_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition());
-		AddChild(m_fall_lightning_sprite);
+		AddChild(m_fall_lightning_sprite, 1);
 		m_is_fall_lightning = true;
+		
 	}
 
 	if(m_is_fall_lightning)
 	{
-		m_fall_lightning_sprite->SetPosition(m_fall_lightning_sprite->GetPositionX(), m_fall_lightning_sprite->GetPositionY()-LIGHTNING_SPEED);
-		//if(m_fall_lightning_sprite->GetPositionX())
+		m_fall_lightning_sprite->SetPosition(m_fall_lightning_sprite->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) *dTime);
+		
+		if(m_fall_lightning_sprite->GetPositionY() >= FIRST_Y_COORDINATE_OF_UIBUTTON)
+		{
+			RemoveChild(m_fall_lightning_sprite, true);
+			m_is_fall_lightning = false;
+			printf_s("번개 소멸\n");
+		}
 
 	}
 }
@@ -47,9 +54,26 @@ void CLightning::Update( float dTime )
 void CLightning::InitSprite( std::wstring imagePath )
 {
 	m_lightning_sprite = NNSprite::Create(imagePath);
-
-
 	m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);	
 	AddChild(m_lightning_sprite, 1);
+
+}
+
+/*
+11.27 정인호
+충돌 판정 함수. 현재 구동은 이 스프라이트가 대상 스프라이트 사이에
+들어가면 충돌로 판정하도록 설정. 충돌하면 true, 아니면 false반환
+*/
+bool CLightning::IsCrash( NNSprite *crash_check_sprite, NNSprite *thi )
+{
+
+	if(((thi->GetCenterX() + thi->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() - crash_check_sprite->GetImageWidth()/2)) &&
+		(((thi->GetCenterX() + thi->GetImageWidth()/2) <= (crash_check_sprite->GetCenterX() + crash_check_sprite->GetImageWidth()/2)) &&
+		((thi->GetCenterY() <= (crash_check_sprite->GetCenterY() + crash_check_sprite->GetImageHeight()/2)) &&
+		((thi->GetCenterX() > (crash_check_sprite->GetCenterY() - crash_check_sprite->GetImageHeight()/2)) ))))
+		return true;
+
+	return false;
+
 
 }
