@@ -46,6 +46,7 @@ public:
 	void SetNowTime(clock_t time) {m_nowTime = time;};
 	int GetStartTimeSEC() {return m_startTime/CLOCKS_PER_SEC;}; 
 	int GetNowTimeSEC() {return m_nowTime/CLOCKS_PER_SEC;};
+	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;};
 
 private :
 	void _initBackground( void );

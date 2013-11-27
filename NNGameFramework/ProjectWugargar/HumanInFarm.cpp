@@ -95,7 +95,7 @@ void CHumanInFarm::CollectMeatPointFromGrownUp()
 		if(isInXCoordRange && isInYCoordRange)
 		{
 			printf("ddd");
-			CHumanFarm* m_pHumanFarm = CHumanFarm::GetInstance();
+			CHumanFarm* m_pHumanFarm = CPlayScene::GetInstance()->GetHumanFarm();
 			m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 100);
 			m_pHumanFarm->RemoveChild(this,true);
 		}

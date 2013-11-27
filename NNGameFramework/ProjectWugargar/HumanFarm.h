@@ -6,14 +6,11 @@
 
 class CHumanFarm : public NNObject
 {
-private :
-	static CHumanFarm* m_pInstance;
+public:
 	CHumanFarm(void);
 	virtual ~CHumanFarm(void);
 
 public :
-	static CHumanFarm* GetInstance();
-	static void ReleaseInstance();
 	void InitFarmBackground();
 	void Render();
 	void Update( float dTime );
