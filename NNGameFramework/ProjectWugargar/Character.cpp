@@ -97,10 +97,15 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	m_Sprite->SetPosition(0.0f, 0.0f);	
 	AddChild(m_Sprite, 1);
 
+	/*
 	m_pShowHP = NNLabel::Create(L"HP", L"맑은 고딕", 10.f);
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 	AddChild(m_pShowHP, 20);
-
+	*/
+	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
+	m_pShowHP->SetCutSize(0,0,50.f,5.f);
+	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+	AddChild(m_pShowHP, 20);
 
 }
 
@@ -142,11 +147,19 @@ void CCharacter::Update( float dTime )
 	//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
 	//공격하고 그렇지 않으면 Attack Target에게 접근
 
-	
-	ZeroMemory(temp_HP, 256);	
-	swprintf_s(temp_HP, _countof(temp_HP), L"%d",	m_HealthPoint );
-	m_pShowHP->SetString(temp_HP);
-	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+	float HP = GetHP();
+	if( HP/m_HPRatioPer100 >= 70 ){
+		m_pShowHP->SetCutSize(0,0,HP/2,5.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
+	}
+	else if( HP/m_HPRatioPer100 < 70 && HP/m_HPRatioPer100 >= 30){
+		m_pShowHP->SetCutSize(0,21,HP/2,26.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-21.f);
+	}
+	else{
+		m_pShowHP->SetCutSize(0,35,HP/2,40.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-35.f);
+	}
 	
 	int CheckTimeChange = GetNowTimeSEC();
 	SetNowTime(clock());

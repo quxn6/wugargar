@@ -6,6 +6,7 @@
 
 #include "GameConfig.h"
 #include "Player.h"
+#include "NNSpriteAtlas.h"
 
 #define  ICE_TIME 20
 
@@ -36,7 +37,7 @@ public:
 	void MakeCharacterWalk(float dTime);
 
 	// gets & sets
-	int GetHP() {return m_HealthPoint;};
+	float GetHP() {return m_HealthPoint;};
 	float GetMovingSpeed() {return m_MovingSpeed;};
 	int GetAttackPower() {return m_AttackPower;};
 	int GetDefensivePower() {return m_DefensivePower;};
@@ -49,7 +50,7 @@ public:
 	NNSprite *GetSprite(){return m_Sprite;}
 
 
-	void SetHP(int hp) {m_HealthPoint = hp;};
+	void SetHP(float hp) {m_HealthPoint = hp;};
 	void SetSpeed(float speed) {m_MovingSpeed = speed;};
 	void SetAttackPower(int AP) {m_AttackPower = AP;};
 	void SetDefensivePower(int DP) {m_DefensivePower = DP;};
@@ -70,7 +71,8 @@ protected:
 	virtual void initStatus( void );	
 
 protected:
-	int m_HealthPoint;
+	float m_HealthPoint;
+	float m_HPRatioPer100;
 	float m_MovingSpeed;
 	int m_AttackPower;
 	int m_DefensivePower;
@@ -85,7 +87,8 @@ protected:
 	CharacterIdentity m_Identity;
 	CCharacter *m_AttackTarget;
 	NNSprite*	m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
-	NNLabel*	m_pShowHP;
+	//NNLabel*	m_pShowHP;
+	NNSpriteAtlas* m_pShowHP;
 	wchar_t		temp_HP[256]; 
 	bool		m_is_splash;
 	float		m_splash_range;
