@@ -22,9 +22,9 @@ void CHumanInFarm::Update( float dTime )
 	NNObject::Update(dTime);
 	life_time = clock()/CLOCKS_PER_SEC - birth_time;
 	Grow();
-	//if( m_AgeState == GROWN_UP ){
-	//	CollectMeatPointFromGrownUp();
-	//}
+	if( m_AgeState == GROWN_UP ){
+		CollectMeatPointFromGrownUp();
+	}
 }
 
 void CHumanInFarm::CreateBaby()
@@ -96,7 +96,7 @@ void CHumanInFarm::CollectMeatPointFromGrownUp()
 		{
 			printf("ddd");
 			CHumanFarm* m_pHumanFarm = CHumanFarm::GetInstance();
-			m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 10);
+			m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 100);
 			m_pHumanFarm->RemoveChild(this,true);
 		}
 	}
