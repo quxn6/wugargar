@@ -4,6 +4,8 @@
 #include "NNInputSystem.h"
 #include "NNPoint.h"
 
+#define BATTALE_LINE 100
+
 CMapObstacle::CMapObstacle(void)
 {
 	is_boom = false;
@@ -21,11 +23,6 @@ void CMapObstacle::Render()
 
 void CMapObstacle::Update( float dTime )
 {
-	NNPoint obstacle_position = m_pObstacle_sprite->GetPosition();
-	float x = (obstacle_position.GetX() + m_pObstacle_sprite->GetImageWidth());
-	float y = (obstacle_position.GetY() + m_pObstacle_sprite->GetImageHeight());
-
-
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
 		if(IsCrash(child->GetSprite()))
@@ -59,7 +56,7 @@ void CMapObstacle::InitSprite(std::wstring imagePath )
 
 NNPoint CMapObstacle::RandomMapPosition()
 {
-	return (NNPoint(static_cast<float>(rand() % (MAP_SIZE_X-1) * TILE_SIZE_X), static_cast<float>(270 + rand()%(MAP_SIZE_Y-1)*TILE_SIZE_Y)));
+	return (NNPoint(static_cast<float>(rand() % (MAP_SIZE_X-1) * TILE_SIZE_X), static_cast<float>(FIRST_Y_COORDINATE_OF_MAPTILE + rand()%(MAP_SIZE_Y-1)*TILE_SIZE_Y)));
 }
 
 //Area내부가 클릭되었는지 체크

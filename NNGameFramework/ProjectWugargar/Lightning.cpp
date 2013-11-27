@@ -23,29 +23,33 @@ void CLightning::Render()
 void CLightning::Update( float dTime )
 {
 	
-	if(m_lightning_sprite->GetPositionX() < GAME_SCREEN_MAX_SIZE_X - 20)
+	if(m_lightning_sprite->GetPositionX() < GAME_SCREEN_MAX_SIZE_X - 20 && !m_is_fall_lightning)
 		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) * dTime);
-	else
+	else if(!m_is_fall_lightning)
 		m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN && !m_fall_lightning_sprite)
 	{
 		printf_s("put");
-		m_fall_lightning_sprite = NNSprite::Create(L"wugargar/pika.png");
+		/*m_fall_lightning_sprite = NNSprite::Create(L"wugargar/pika.png");
 		m_fall_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition());
 		AddChild(m_fall_lightning_sprite, 1);
+		*/
 		m_is_fall_lightning = true;
 		
 	}
 
 	if(m_is_fall_lightning)
 	{
-		m_fall_lightning_sprite->SetPosition(m_fall_lightning_sprite->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) *dTime);
+		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(0.0f, LIGHTNING_SPEED) *dTime);
 		
-		if(m_fall_lightning_sprite->GetPositionY() >= FIRST_Y_COORDINATE_OF_UIBUTTON)
+		if(m_lightning_sprite->GetPositionY() >= FIRST_Y_COORDINATE_OF_UIBUTTON)
 		{
-			RemoveChild(m_fall_lightning_sprite, true);
 			m_is_fall_lightning = false;
-			printf_s("¹ø°³ ¼Ò¸ê\n");
+
+			m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
+		/*	RemoveChild(m_lightning_sprite, true);
+			m_lightning_sprite = false;
+			printf_s("¹ø°³ ¼Ò¸ê\n");*/
 		}
 
 	}
