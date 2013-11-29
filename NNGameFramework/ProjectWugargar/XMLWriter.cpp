@@ -25,8 +25,8 @@ CXMLWriter::~CXMLWriter(void)
 void CXMLWriter::AddNode( std::string elementName, std::string parentName )
 {
 	TiXmlElement* element = new TiXmlElement(elementName.c_str());
-	m_XMLhierarchy.emplace(elementName, parentName);
-	m_XMLhierarchy.at(parentName).LinkEndChild(element);
+	m_XMLhierarchy.emplace(elementName, element);
+	(m_XMLhierarchy.at(parentName))->LinkEndChild(element);
 
 }
 

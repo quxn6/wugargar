@@ -1,9 +1,9 @@
 #pragma once
 
 #define GAME_SCREEN_MIN_SIZE_X	0
-#define GAME_SCREEN_MAX_SIZE_X	1280
+#define GAME_SCREEN_MAX_SIZE_X	1024
 #define GAME_SCREEN_MIN_SIZE_Y	0
-#define GAME_SCREEN_MAX_SIZE_Y	800
+#define GAME_SCREEN_MAX_SIZE_Y	768
 
 // 아래 정의 된 #define값들은 playScene의 화면출력 관련 값들이다.
 // x, y타일 한칸의 크기를 50으로 설정했다.
@@ -34,7 +34,7 @@
 // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
 // array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
 enum ZombieType // 버튼 생성할때도 이 enum값을 사용하기 때문에 버튼 init을 위해 마지막에 어쩔수없이 좀비가 아닌 BABY를 추가함. 
-				//대신 image_path 배열 생성을 위해 NUM_OF_UIBUTTON 을 define 해줌 - 채원
+	//대신 image_path 배열 생성을 위해 NUM_OF_UIBUTTON 을 define 해줌 - 채원
 {
 	POOR_ZOMBIE,
 	VOMIT_ZOMBIE,

@@ -2,6 +2,7 @@
 
 #include <map>
 #include <string>
+#include "NNMacroSet.h"
 #include "Library/TinyXML/tinyxml.h"
 #include "Library/TinyXML/xpath_static.h"
 
@@ -24,7 +25,7 @@ private:
 
 	std::string		m_Filename;	// 출력될 파일 이름
 	TiXmlDocument	m_Document; 
-	std::map<std::string, TiXmlElement> m_XMLhierarchy;
+	std::map<std::string, TiXmlElement*> m_XMLhierarchy;
 
 };
 

@@ -33,7 +33,7 @@ public:
 	NNSprite*	m_pBackground;
 //	NNLabel*	m_pGlobalMoney;
 	NNLabel*	m_pResults;
-	CXMLWriter	m_SaveManager;
+	CXMLWriter*	m_SaveManager;
 	
 private :
 	void InitButtons( void );	
