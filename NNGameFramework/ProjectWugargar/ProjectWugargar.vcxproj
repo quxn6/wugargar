@@ -50,6 +50,7 @@
     <ClInclude Include="CreatePolice.h" />
     <ClInclude Include="DeadPolice.h" />
     <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="headers.h" />
     <ClInclude Include="HeroZombie.h" />
     <ClInclude Include="HumanFarm.h" />
     <ClInclude Include="HumanInFarm.h" />

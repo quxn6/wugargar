@@ -6,6 +6,7 @@
 #include "UIButton.h"
 #include "XMLWriter.h"
 
+
 #define FIRST_Y_COORD_OF_UPGRADE_BUTTONS	100
 #define GAP_BETWEEN_UPGRADE_BUTTONS			15
 #define SIZE_OF_UPGRADE_BUTTONS				100
@@ -36,14 +37,16 @@ public:
 	CXMLWriter*	m_SaveManager;
 	
 private :
-	void InitButtons( void );	
-	void SetNextStage( void );
+	void InitPlayer( void );
+	void InitUpgradeButtons( void );	
+	void InitMenuButtons( void );
 	void ShowResults( void );
 	void SetUpgradeText(ZombieType zombietype);
+	void SaveGame( void );
 
-private :
 	wchar_t		m_LabelBuffer[NUMBER_OF_ZOMBIE_TYPES][256];
 	wchar_t		m_ResultBuffer[256];
 	wchar_t		m_MoneyBuffer[30];
+	bool		m_TryAgain;
 };
 

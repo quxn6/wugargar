@@ -1,7 +1,6 @@
 #pragma once
 
-#include <map>
-#include <string>
+#include "headers.h"
 #include "NNMacroSet.h"
 #include "Library/TinyXML/tinyxml.h"
 #include "Library/TinyXML/xpath_static.h"
@@ -12,11 +11,12 @@ public:
 	CXMLWriter(std::string filename);
 	CXMLWriter(void);
 	~CXMLWriter(void);
+		
+	static CXMLWriter* Create( std::string filename);
 
-	NNCREATE_FUNC(CXMLWriter);	
-
-	void AddNode(std::string elementName, std::string parent);
 	void AddRoot(std::string rootname);
+	void AddNode(std::string elementName, std::string parent);
+	void AddText(std::string content, std::string element);
 	void ExportXMLFile(void);
 
 private:
@@ -25,7 +25,7 @@ private:
 
 	std::string		m_Filename;	// 출력될 파일 이름
 	TiXmlDocument	m_Document; 
-	std::map<std::string, TiXmlElement*> m_XMLhierarchy;
+	std::map<std::string, TiXmlNode*> m_XMLhierarchy;
 
 };
 

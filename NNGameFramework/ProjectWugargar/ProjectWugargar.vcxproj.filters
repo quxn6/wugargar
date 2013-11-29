@@ -159,9 +159,6 @@
     <ClInclude Include="MapCreator.h">
       <Filter>Wugargar\Map</Filter>
     </ClInclude>
-    <ClInclude Include="GameConfig.h">
-      <Filter>Wugargar\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="NextStageScene.h">
       <Filter>Wugargar\Scene</Filter>
     </ClInclude>
@@ -211,6 +208,12 @@
       <Filter>Wugargar\ExtraContents</Filter>
     </ClInclude>
     <ClInclude Include="XMLWriter.h">
+      <Filter>Wugargar\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="GameConfig.h">
+      <Filter>Wugargar\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="headers.h">
       <Filter>Wugargar\Util</Filter>
     </ClInclude>
   </ItemGroup>

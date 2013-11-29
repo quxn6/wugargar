@@ -2,19 +2,30 @@
 #include "NNInputSystem.h"
 #include "NNSceneDirector.h"
 #include "PlayScene.h"
-
+#include "headers.h"
 
 CNextStageScene::CNextStageScene(void)
 {
-	m_pPlayer = CPlayer::GetInstance();
-	SetNextStage();
-	m_pPlayer->ReadyToUpgrade();
-	InitButtons();
+	InitPlayer();
+	InitMenuButtons();
+	InitUpgradeButtons();
 	ShowResults();
-	m_SaveManager = CXMLWriter::Create();
+	
 }
 
-void CNextStageScene::InitButtons(void )
+void CNextStageScene::InitPlayer( void )
+{
+	m_pPlayer = CPlayer::GetInstance();
+	if ( m_pPlayer->GetPlayerStatus() == WIN  ) {
+		m_TryAgain = false;
+		m_pPlayer->IncreaseStage();
+	} else {
+		m_TryAgain = true;
+	}
+	m_pPlayer->ReadyToUpgrade();
+}
+
+void CNextStageScene::InitUpgradeButtons(void )
 {
 	std::wstring buttonpath_normal[NUMBER_OF_ZOMBIE_TYPES];
 	std::wstring buttonpath_pressed[NUMBER_OF_ZOMBIE_TYPES];
@@ -59,6 +70,29 @@ void CNextStageScene::InitButtons(void )
 
 }
 
+// set save button and play game button
+void CNextStageScene::InitMenuButtons( void )
+{
+	// create Play other game button
+	// when player won load next level
+	std::wstring saveButtonPath = L"wugargar/UIbuttons/savegame.png";
+	std::wstring nextLevelButtonPath = L"wugargar/UIbuttons/nextlevel.png";
+	std::wstring tryagainButtonPath = L"wugargar/UIbuttons/tryagain.png";
+	// set other button image depends on prev game result
+	if ( m_TryAgain ) {
+		m_pNextStageButton = CUIButton::Create(tryagainButtonPath, tryagainButtonPath);
+	} else {		
+		m_pNextStageButton = CUIButton::Create(nextLevelButtonPath, nextLevelButtonPath);
+	}
+	m_pNextStageButton->SetPosition(static_cast<float> (GAME_SCREEN_MAX_SIZE_X/2), static_cast<float> (GAME_SCREEN_MAX_SIZE_Y/2) );
+	AddChild(m_pNextStageButton);
+
+	// create save button
+	m_pGameSaveButton = CUIButton::Create(saveButtonPath, saveButtonPath);
+	m_pGameSaveButton->SetPosition(static_cast<float> (GAME_SCREEN_MAX_SIZE_X/2), static_cast<float> (GAME_SCREEN_MAX_SIZE_Y/2 + 100) );
+	AddChild(m_pGameSaveButton);	
+}
+
 void CNextStageScene::ShowResults( void )
 {
 	swprintf_s(
@@ -90,26 +124,6 @@ void CNextStageScene::SetUpgradeText(ZombieType zombietype)
 }
 
 
-void CNextStageScene::SetNextStage( void )
-{
-	std::wstring saveButtonPath = L"wugargar/UIbuttons/savegame.png";
-	std::wstring nextLevelButtonPath = L"wugargar/UIbuttons/nextlevel.png";
-	std::wstring tryagainButtonPath = L"wugargar/UIbuttons/tryagain.png";
-
-	if ( m_pPlayer->GetPlayerStatus() == WIN ) {
-		m_pNextStageButton = CUIButton::Create(nextLevelButtonPath, nextLevelButtonPath);
-		m_pPlayer->IncreaseStage();
-	} else {		
-		m_pNextStageButton = CUIButton::Create(tryagainButtonPath, tryagainButtonPath);
-	}
-	m_pNextStageButton->SetPosition(static_cast<float> (GAME_SCREEN_MAX_SIZE_X/2), static_cast<float> (GAME_SCREEN_MAX_SIZE_Y/2) );
-	AddChild(m_pNextStageButton);
-
-	m_pGameSaveButton = CUIButton::Create(saveButtonPath, saveButtonPath);
-	m_pGameSaveButton->SetPosition(static_cast<float> (GAME_SCREEN_MAX_SIZE_X/2), static_cast<float> (GAME_SCREEN_MAX_SIZE_Y/2 + 100) );
-	AddChild(m_pGameSaveButton);
-
-}
 
 
 CNextStageScene::~CNextStageScene(void)
@@ -151,8 +165,10 @@ void CNextStageScene::Update( float dTime )
 
 		// 세이브 버튼 클릭시
 		if ( m_pGameSaveButton->CheckButtonArea() ) {
+			wprintf(L"aa");
+			SaveGame();
 		}
-
+			
 		// 다음 스테이지 버튼 클릭시
 		if ( m_pNextStageButton->CheckButtonArea() ) {
 			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
@@ -164,3 +180,20 @@ void CNextStageScene::Update( float dTime )
 		NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
 	}
 }
+
+void CNextStageScene::SaveGame( void )
+{
+	m_SaveManager = CXMLWriter::Create("savefiles/savegame.dat");
+	m_SaveManager->AddRoot(m_pPlayer->GetPlayerName());
+	m_SaveManager->AddNode("TotalKill", m_pPlayer->GetPlayerName());
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetGlobalMoney() ), "TotalKill" );
+	m_SaveManager->ExportXMLFile();
+}
+
+
+int m_CharacterLevel[NUMBER_OF_ZOMBIE_TYPES];
+int m_GlobalMoney;	
+int m_CurrentStage;		//201, 301 등으로 진행된 스테이지 표시
+int m_TotalKill;
+int m_TotalLoss;
+float m_InfectionRate;

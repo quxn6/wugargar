@@ -1,6 +1,14 @@
 #include "XMLWriter.h"
 
 
+
+CXMLWriter* CXMLWriter::Create( std::string filename )
+{
+	CXMLWriter* pInstance = nullptr;
+	pInstance = new CXMLWriter(filename);
+	return pInstance;
+}
+
 CXMLWriter::CXMLWriter(void)
 {
 	CXMLWriter("default_name.xml");
@@ -12,14 +20,26 @@ CXMLWriter::CXMLWriter( std::string filename )
 	m_Filename = filename;
 }
 
+
 void CXMLWriter::initXML()
 {
+// 	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "euc-kr", "" ); 
+// 	m_Document.LinkEndChild( decl );
+
+	TiXmlDocument doc;
 	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "euc-kr", "" ); 
-	m_Document.LinkEndChild( decl );
+	doc.LinkEndChild( decl );
 }
 
 CXMLWriter::~CXMLWriter(void)
 {
+}
+
+void CXMLWriter::AddRoot( std::string rootname )
+{
+	TiXmlElement* root = new TiXmlElement(rootname.c_str());
+	m_XMLhierarchy.emplace(rootname, root);
+	m_Document.LinkEndChild(root);
 }
 
 void CXMLWriter::AddNode( std::string elementName, std::string parentName )
@@ -30,11 +50,11 @@ void CXMLWriter::AddNode( std::string elementName, std::string parentName )
 
 }
 
-void CXMLWriter::AddRoot( std::string rootname )
+void CXMLWriter::AddText( std::string content, std::string element )
 {
-	TiXmlElement* root = new TiXmlElement(rootname.c_str());
-	m_XMLhierarchy.emplace(rootname, root);
-	m_Document.LinkEndChild(root);
+	TiXmlText* text = new TiXmlText(content.c_str());
+	m_XMLhierarchy.emplace(content, text);
+	(m_XMLhierarchy.at(element))->LinkEndChild(text);
 }
 
 void CXMLWriter::ExportXMLFile( void )

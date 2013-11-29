@@ -1,5 +1,6 @@
 #pragma once
 #include "GameConfig.h"
+#include "headers.h"
 
 enum PlayerStatus {
 	WIN,
@@ -36,6 +37,7 @@ public:
 	int GetNumberOfLossInStage() const { return m_NumberOfLossInStage; }
 	PlayerStatus GetPlayerStatus() const { return m_playerStatus; }
 	float GetInfectionRate() const { return m_InfectionRate; }
+	std::string GetPlayerName() const { return m_PlayerName; }
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
@@ -43,6 +45,7 @@ public:
 	void SetZombieLevel(ZombieType character, int level) { m_CharacterLevel[character] = level; }
 	void SetPlayerStatus(PlayerStatus ps) { m_playerStatus = ps; }
 	void SetInfectionRate(float ir) { m_InfectionRate = ir; }
+	void SetPlayerName(std::string val) { m_PlayerName = val; }
 
 	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
@@ -53,10 +56,12 @@ public:
 
 	
 private:
-	wchar_t* m_PlayerName;
+	PlayerStatus m_playerStatus;
+	std::string m_PlayerName;
 	int m_LocalMoney;
 	int m_NumberOfKillInStage;
 	int m_NumberOfLossInStage;	
+
 	// 이하는 save할 때 저장할 데이터들
 	int m_CharacterLevel[NUMBER_OF_ZOMBIE_TYPES];
 	int m_GlobalMoney;	
@@ -64,6 +69,6 @@ private:
 	int m_TotalKill;
 	int m_TotalLoss;
 	float m_InfectionRate;
-	PlayerStatus m_playerStatus;
+	
 };
 
