@@ -6,6 +6,10 @@
 
 #define BATTALE_LINE 100
 
+/*
+MapObstacle은 화면에 랜덤하게 뿌려지는 지뢰, 덫 의미
+*/
+
 CMapObstacle::CMapObstacle(void)
 {
 	is_boom = false;
@@ -23,6 +27,8 @@ void CMapObstacle::Render()
 
 void CMapObstacle::Update( float dTime )
 {
+
+	//Zombie리스트를 돌면서 좀비가 Obstacle에 닿았는지를 체크
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
 		if(child != CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase())
@@ -38,6 +44,7 @@ void CMapObstacle::Update( float dTime )
 	
 }
 
+//좀비가 obstacle에 닿았으면 HP를 깎고 폭파상태를 true로 (이 함수는 오버로딩됨)
 void CMapObstacle::Boom( CCharacter* boom_target )
 {
 	boom_target->SetHP(boom_target->GetHP() - m_obstacle_damage);
@@ -54,13 +61,13 @@ void CMapObstacle::InitSprite(std::wstring imagePath )
 }
 
 
-
+//맵 상 랜덤하게 뿌려지는 부분. 가능하면 전투가 자주 이뤄지는 구역(BattleLine)에 뿌려지도록 수정할 예정
 NNPoint CMapObstacle::RandomMapPosition()
 {
 	return (NNPoint(static_cast<float>(rand() % (MAP_SIZE_X-1) * TILE_SIZE_X), static_cast<float>(FIRST_Y_COORDINATE_OF_MAPTILE + rand()%(MAP_SIZE_Y-1)*TILE_SIZE_Y)));
 }
 
-//Area내부가 클릭되었는지 체크
+//Area내부가 클릭되었는지 체크. UIBUTTION클래스 함수 참조함
 bool CMapObstacle::CheckClickArea()
 {
 	NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
@@ -82,6 +89,8 @@ bool CMapObstacle::CheckClickArea()
 
 }
 
+//충돌 체크 함수. 현재는 임의로 둘 사이의 거리가 10정도로 가까워질때 반응하도록 되어있음.
+//좀 더 정밀해지도록 로직 수정이 필요할 듯.
 bool CMapObstacle::IsCrash( CCharacter *crash_check_character)
 {
 	float distance_attacktarget;

@@ -27,6 +27,7 @@ void CMine::Boom( CZombie* boom_target )
 {
 	CMapObstacle::Boom(boom_target);
 
+	//지뢰는 덫과 달리 폭파시 주위의 적에게 스플래쉬 데미지를 준다.
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
 		float distance_attacktarget;
@@ -37,6 +38,7 @@ void CMine::Boom( CZombie* boom_target )
 	}
 }
 
+//폭파 반경과 데미지 설정
 void CMine::InitStatus()
 {
 	m_boom_range = 20.0f;

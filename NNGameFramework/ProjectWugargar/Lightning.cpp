@@ -4,6 +4,7 @@
 #include "PlayScene.h"
 
 #define LIGHTNING_SPEED 130
+#define FALLING_FIGHTNING_SPEED 230
 
 CLightning::CLightning(void)
 {
@@ -25,27 +26,31 @@ void CLightning::Render()
 void CLightning::Update( float dTime )
 {
 	
+	//가만히 있으면 번개는 왼쪽으로 이동. 왼쪽 끝까지 이동하면 오른쪽 끝으로 다시 셋팅.
 	if(m_lightning_sprite->GetPositionX() < GAME_SCREEN_MAX_SIZE_X - 20 && !m_is_fall_lightning)
 		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) * dTime);
 	else if(!m_is_fall_lightning)
 		m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
+	
+	
+	//Space바가 눌렸는지를 체크. 눌렸으면 Flag를 True로 바꿔준다.
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN && !m_fall_lightning_sprite)
 	{
 		printf_s("put");
-		/*m_fall_lightning_sprite = NNSprite::Create(L"wugargar/pika.png");
-		m_fall_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition());
-		AddChild(m_fall_lightning_sprite, 1);
-		*/
+		
 		m_is_fall_lightning = true;
 		
 	}
 
+	//현재 '떨어지고 있는 상태'라면 번개의 위치를 지속적으로 아래로 떨어지도록 변경
+	//Player의 LocalMoney를 소멸시키는 로직 필요
 	if(m_is_fall_lightning)
 	{
 		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(0.0f, LIGHTNING_SPEED) *dTime);
-		
+		//Zombie와 Police를 돌면서 충돌 체크. 충돌하면 flag를 false로 바꾸고, 데미지 주고 번개 위치는 다시 0,0으로 셋팅
 		for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 		{
+			//List에 Base가 존재. Base는 번개에 의해 데미지를 받으면 안되므로 제외하도록 설정
 			if(child != CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase())
 			if(IsCrash(child))
 			{
@@ -71,6 +76,7 @@ void CLightning::Update( float dTime )
 		}
 
 
+		//번개가 아무에게도 맞지 않고 아래로 끝까지 떨어지면 소멸 처리.
 		if(m_lightning_sprite->GetPositionY() >= FIRST_Y_COORDINATE_OF_UIBUTTON)
 		{
 			m_is_fall_lightning = false;
@@ -93,9 +99,8 @@ void CLightning::InitSprite( std::wstring imagePath )
 }
 
 /*
-11.27 정인호
-충돌 판정 함수. 현재 구동은 이 스프라이트가 대상 스프라이트 사이에
-들어가면 충돌로 판정하도록 설정. 충돌하면 true, 아니면 false반환
+충돌 체크 함수. 현재는 임의로 둘 사이의 거리가 10정도로 가까워질때 반응하도록 되어있음.
+좀 더 정밀해지도록 로직 수정이 필요할 듯.
 */
 bool CLightning::IsCrash( CCharacter *crash_check_character)
 {

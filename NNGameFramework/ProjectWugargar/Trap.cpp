@@ -25,6 +25,9 @@ void CTrap::Update( float dTime )
 void CTrap::Boom( CZombie* boom_target )
 {
 	CMapObstacle::Boom(boom_target);
+	boom_target->SetAttackSpeed(boom_target->GetAttackSpeed()-1);
+	boom_target->SetSpeed(boom_target->GetMovingSpeed()/2);
+	//Trap에 걸린 좀비는 공격 속도와 이동 속도가 느려진다.
 }
 
 void CTrap::InitStatus()
