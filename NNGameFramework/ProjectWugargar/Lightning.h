@@ -1,6 +1,7 @@
 #pragma once
 #include "nnobject.h"
 #include "NNSprite.h"
+#include "Character.h"
 
 
 class CLightning :
@@ -17,7 +18,7 @@ public:
 	NNCREATE_FUNC(CLightning);	
 
 	void InitSprite(std::wstring imagePath);
-	bool IsCrash(NNSprite *crash_check_sprite);
+	bool IsCrash(CCharacter *crash_check_sprite);
 
 protected:
 	NNSprite* m_lightning_sprite;
