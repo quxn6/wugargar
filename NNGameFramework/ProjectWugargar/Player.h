@@ -53,6 +53,7 @@ public:
 
 	
 private:
+	wchar_t* m_PlayerName;
 	int m_LocalMoney;
 	int m_NumberOfKillInStage;
 	int m_NumberOfLossInStage;	

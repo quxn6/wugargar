@@ -115,6 +115,9 @@
     <ClCompile Include="MapObstaclManager.cpp">
       <Filter>Wugargar\ExtraContents</Filter>
     </ClCompile>
+    <ClCompile Include="XMLWriter.cpp">
+      <Filter>Wugargar\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -206,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="MapObstaclManager.h">
       <Filter>Wugargar\ExtraContents</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLWriter.h">
+      <Filter>Wugargar\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

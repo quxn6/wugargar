@@ -11,6 +11,7 @@ CPlayer::CPlayer(void)
 void CPlayer::InitPlayer()
 {
 	//초기화 내용 추가
+	m_PlayerName = L"player1";
 	m_playerStatus = ON_MAINMENU;
 	m_GlobalMoney = 1000;
 	m_CurrentStage = 101;

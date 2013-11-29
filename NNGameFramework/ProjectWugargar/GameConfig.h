@@ -1,9 +1,9 @@
 #pragma once
 
 #define GAME_SCREEN_MIN_SIZE_X	0
-#define GAME_SCREEN_MAX_SIZE_X	1024
+#define GAME_SCREEN_MAX_SIZE_X	1280
 #define GAME_SCREEN_MIN_SIZE_Y	0
-#define GAME_SCREEN_MAX_SIZE_Y	768
+#define GAME_SCREEN_MAX_SIZE_Y	800
 
 // 아래 정의 된 #define값들은 playScene의 화면출력 관련 값들이다.
 // x, y타일 한칸의 크기를 50으로 설정했다.
