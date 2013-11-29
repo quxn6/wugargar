@@ -22,10 +22,11 @@ CXMLWriter::~CXMLWriter(void)
 {
 }
 
-void CXMLWriter::AddNode( std::string elementName, std::string parent )
+void CXMLWriter::AddNode( std::string elementName, std::string parentName )
 {
 	TiXmlElement* element = new TiXmlElement(elementName.c_str());
-	// 계속 구현할 것 ㅎㅎ
+	m_XMLhierarchy.emplace(elementName, parentName);
+	m_XMLhierarchy.at(parentName).LinkEndChild(element);
 
 }
 
@@ -38,6 +39,6 @@ void CXMLWriter::AddRoot( std::string rootname )
 
 void CXMLWriter::ExportXMLFile( void )
 {
-
+	m_Document.SaveFile(m_Filename.c_str());
 }
 

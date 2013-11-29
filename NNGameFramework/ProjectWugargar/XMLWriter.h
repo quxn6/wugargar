@@ -12,12 +12,15 @@ public:
 	CXMLWriter(void);
 	~CXMLWriter(void);
 
+	NNCREATE_FUNC(CXMLWriter);	
 
-private:
-	void initXML();
 	void AddNode(std::string elementName, std::string parent);
 	void AddRoot(std::string rootname);
 	void ExportXMLFile(void);
+
+private:
+	void initXML();
+
 
 	std::string		m_Filename;	// 출력될 파일 이름
 	TiXmlDocument	m_Document; 

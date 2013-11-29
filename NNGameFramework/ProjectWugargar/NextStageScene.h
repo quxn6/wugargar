@@ -4,6 +4,7 @@
 #include "GameConfig.h"
 #include "Player.h"
 #include "UIButton.h"
+#include "XMLWriter.h"
 
 #define FIRST_Y_COORD_OF_UPGRADE_BUTTONS	100
 #define GAP_BETWEEN_UPGRADE_BUTTONS			15
@@ -32,6 +33,7 @@ public:
 	NNSprite*	m_pBackground;
 //	NNLabel*	m_pGlobalMoney;
 	NNLabel*	m_pResults;
+	CXMLWriter	m_SaveManager;
 	
 private :
 	void InitButtons( void );	

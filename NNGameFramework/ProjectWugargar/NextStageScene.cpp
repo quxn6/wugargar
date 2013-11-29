@@ -150,7 +150,7 @@ void CNextStageScene::Update( float dTime )
 		
 		// 세이브 버튼 클릭시
 		if ( m_pGameSaveButton->CheckButtonArea() ) {
-			//save logic 처리
+			m_SaveManager::Create()
 		}
 		
 		// 다음 스테이지 버튼 클릭시
