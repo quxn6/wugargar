@@ -2,6 +2,7 @@
 #include "nnobject.h"
 #include "NNSprite.h"
 #include "Zombie.h"
+#include "Character.h"
 class CMapObstacle :
 	public NNObject
 {
@@ -19,7 +20,7 @@ public:
 	NNPoint RandomMapPosition();
 	bool CheckClickArea();
 	NNSprite* GetSprite(){return m_pObstacle_sprite;};
-	bool IsCrash( NNSprite *crash_check_sprite);
+	bool IsCrash( CCharacter *crash_check_character);
 
 
 	bool is_boom;

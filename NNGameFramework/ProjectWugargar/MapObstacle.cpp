@@ -25,7 +25,8 @@ void CMapObstacle::Update( float dTime )
 {
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
-		if(IsCrash(child->GetSprite()))
+		if(child != CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase())
+		if(IsCrash(child))
 		{
 			printf_s("Boom!\n");
 			Boom(child);
@@ -81,10 +82,10 @@ bool CMapObstacle::CheckClickArea()
 
 }
 
-bool CMapObstacle::IsCrash( NNSprite *crash_check_sprite)
+bool CMapObstacle::IsCrash( CCharacter *crash_check_character)
 {
 	float distance_attacktarget;
-	distance_attacktarget = m_pObstacle_sprite->GetPosition().GetDistance(crash_check_sprite->GetPosition());
+	distance_attacktarget = m_pObstacle_sprite->GetPosition().GetDistance(crash_check_character->GetPosition());
 
 	if(distance_attacktarget <= 10/*this->GetSprite()->GetImageWidth()*/)
 		return true;
