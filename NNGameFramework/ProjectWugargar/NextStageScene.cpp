@@ -11,6 +11,7 @@ CNextStageScene::CNextStageScene(void)
 	m_pPlayer->ReadyToUpgrade();
 	InitButtons();
 	ShowResults();
+	m_SaveManager = CXMLWriter::Create();
 }
 
 void CNextStageScene::InitButtons(void )
@@ -40,18 +41,18 @@ void CNextStageScene::InitButtons(void )
 		float xCoordOfButton = static_cast<float>(GAP_BETWEEN_UPGRADE_BUTTONS + i*(GAP_BETWEEN_UPGRADE_BUTTONS+SIZE_OF_UPGRADE_BUTTONS) );
 		float yCoordOfButton = static_cast<float>(FIRST_Y_COORD_OF_UPGRADE_BUTTONS);
 
-		// Upgrade button ï¿½ï¿½ï¿½ï¿½
+		// Upgrade button »ý¼º
 		m_pUpgradeButtons[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
 		m_pUpgradeButtons[i]->SetPosition(xCoordOfButton, yCoordOfButton);
 		AddChild( m_pUpgradeButtons[i] , 20);
 
-		// Upgrade ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		// Upgrade ºñ¿ë »êÃâ
 		SetUpgradeText(static_cast<ZombieType>(i));
-		
-		// Upgrade Label ï¿½ï¿½ï¿½ï¿½
+
+		// Upgrade Label »ý¼º
 
 
-		m_pUpgradeButtonLabel[i] = NNLabel::Create(m_LabelBuffer[i], L"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", 15.0f);
+		m_pUpgradeButtonLabel[i] = NNLabel::Create(m_LabelBuffer[i], L"¸¼Àº °íµñ", 15.0f);
 		m_pUpgradeButtonLabel[i]->SetPosition(xCoordOfButton, yCoordOfButton + SIZE_OF_UPGRADE_BUTTONS);
 		AddChild( m_pUpgradeButtonLabel[i] );
 	}
@@ -68,14 +69,14 @@ void CNextStageScene::ShowResults( void )
 		m_pPlayer->GetNumberOfKillInStage(), 
 		m_pPlayer->GetNumberOfLossInStage()
 		);
-	m_pResults = NNLabel::Create(m_ResultBuffer, L"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", 15.0f);
+	m_pResults = NNLabel::Create(m_ResultBuffer, L"¸¼Àº °íµñ", 15.0f);
 	m_pResults->SetPosition(15, FIRST_Y_COORD_OF_RESULTS);
 
 	AddChild(m_pResults);
 }
 
 
-// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// À¯´Ö º° ¾÷±×·¹ÀÌµå ºñ¿ë »êÁ¤
 void CNextStageScene::SetUpgradeText(ZombieType zombietype)
 {
 	m_UpgradeCost[zombietype] = 200 + 100*m_pPlayer->GetZombieLevel(zombietype);
@@ -129,14 +130,14 @@ void CNextStageScene::Update( float dTime )
 
 
 	if ( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {
-		// ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Æ° Ã³ï¿½ï¿½		
+		// ¾÷±×·¹ÀÌµå ¹öÆ° Ã³¸®		
 		for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {		
 			if ( m_pUpgradeButtons[i]->CheckButtonArea() && (m_pPlayer->GetGlobalMoney() >= m_UpgradeCost[i]) ) {							
 				m_pPlayer->SetGlobalMoney( m_pPlayer->GetGlobalMoney() - m_UpgradeCost[i] );
 				m_pPlayer->IncreaseZombieLevel(static_cast<ZombieType>(i));
 				SetUpgradeText(static_cast<ZombieType>(i));				
 
-				// global money Ç¥ï¿½Ã¿ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½óº§·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+				// global money Ç¥½Ã¿ë ÀÓ½Ã ³ªÁß¿¡ Àû´çÇÑ À§Ä¡¿¡ ¶óº§·Î »©´Â °ÍÀÌ ÁÁ°ÚÀ½.
 				swprintf_s(
 					m_ResultBuffer, 
 					_countof(m_ResultBuffer), 
@@ -147,13 +148,12 @@ void CNextStageScene::Update( float dTime )
 					);
 			}		
 		}
-		
-		// ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½
+
+		// ¼¼ÀÌºê ¹öÆ° Å¬¸¯½Ã
 		if ( m_pGameSaveButton->CheckButtonArea() ) {
-			m_SaveManager::Create();
 		}
-		
-		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½
+
+		// ´ÙÀ½ ½ºÅ×ÀÌÁö ¹öÆ° Å¬¸¯½Ã
 		if ( m_pNextStageButton->CheckButtonArea() ) {
 			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
 		}
