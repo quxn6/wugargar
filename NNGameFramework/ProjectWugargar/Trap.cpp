@@ -4,6 +4,7 @@
 CTrap::CTrap(void)
 {
 	InitSprite(L"wugargar/trap.png");
+	InitStatus();
 }
 
 
@@ -23,10 +24,12 @@ void CTrap::Update( float dTime )
 
 void CTrap::Boom( CZombie* boom_target )
 {
-
+	CMapObstacle::Boom(boom_target);
 }
 
 void CTrap::InitStatus()
 {
+	m_boom_range = 0;
+	m_obstacle_damage = 50;
 
 }

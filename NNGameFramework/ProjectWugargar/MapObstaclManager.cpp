@@ -34,6 +34,7 @@ void MapObstaclManager::Update( float dTime )
 	
 	for(auto& iter = m_pList_mapObstacle.begin() ; iter != m_pList_mapObstacle.end() ; iter++ )
 	{
+		(*iter)->Update(dTime);
 		if((*iter)->CheckClickArea() || (*iter)->is_boom)
 		{
 			CMapObstacle *tmp_obstacle;

@@ -84,9 +84,9 @@ bool CMapObstacle::CheckClickArea()
 bool CMapObstacle::IsCrash( NNSprite *crash_check_sprite)
 {
 	float distance_attacktarget;
-	distance_attacktarget = this->GetPosition().GetDistance(crash_check_sprite->GetPosition());
+	distance_attacktarget = m_pObstacle_sprite->GetPosition().GetDistance(crash_check_sprite->GetPosition());
 
-	if(distance_attacktarget <= this->GetSprite()->GetImageWidth())
+	if(distance_attacktarget <= 10/*this->GetSprite()->GetImageWidth()*/)
 		return true;
 	
 	return false;

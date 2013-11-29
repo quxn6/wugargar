@@ -23,6 +23,7 @@ public:
 
 
 	bool is_boom;
+
 protected:
 	NNSprite*	m_pObstacle_sprite;
 	int			m_obstacle_damage;

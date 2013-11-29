@@ -399,8 +399,10 @@ bool CPlayScene::CheckGameOver()
 {
 	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
 		m_pPlayer->SetPlayerStatus(WIN);
+		printf_s("WIN!\n");
 	} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
 		m_pPlayer->SetPlayerStatus(LOSE);
+		printf_s("LOSE!\n");
 	} else {
 		return false;	
 	}

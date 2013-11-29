@@ -5,6 +5,7 @@
 CMine::CMine(void)
 {
 	InitSprite(L"wugargar/mine.png");
+	InitStatus();
 }
 
 
@@ -38,5 +39,6 @@ void CMine::Boom( CZombie* boom_target )
 
 void CMine::InitStatus()
 {
-
+	m_boom_range = 20.0f;
+	m_obstacle_damage = 100;
 }
