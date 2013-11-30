@@ -41,7 +41,7 @@ void NNObject::Render()
 void NNObject::Update( float dTime )
 {
 	if ( m_Visible == false ) return;
-
+	 
 	for (const auto& child : m_ChildList)
 	{
 		child->Update( dTime );

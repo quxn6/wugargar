@@ -15,7 +15,7 @@ public:
 	static NNXML* Create( std::string path );
 	static NNXML* Create();
 
-	TiXmlString XPathToString( std::string xpath );
+	std::string XPathToString( std::string xpath );
 
 private:
 	TiXmlDocument m_Document;

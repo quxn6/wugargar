@@ -183,17 +183,21 @@ void CNextStageScene::Update( float dTime )
 
 void CNextStageScene::SaveGame( void )
 {
-	m_SaveManager = CXMLWriter::Create("savefiles/savegame.dat");
+	std::string playerName = m_pPlayer->GetPlayerName();
+
+	m_SaveManager = CXMLWriter::Create("savegame.sav");
 	m_SaveManager->AddRoot(m_pPlayer->GetPlayerName());
-	m_SaveManager->AddNode("TotalKill", m_pPlayer->GetPlayerName());
-	m_SaveManager->AddText(std::to_string(m_pPlayer->GetGlobalMoney() ), "TotalKill" );
+
+	m_SaveManager->AddNode("Money", playerName);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetGlobalMoney() ), "Money" );
+	m_SaveManager->AddNode("TotalKill", playerName);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetTotalKill() ), "TotalKill");
+	m_SaveManager->AddNode("TotalLoss", playerName);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetTotalLoss() ), "TotalLoss");
+	m_SaveManager->AddNode("Stage", playerName);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetClearedStage() ), "TotalKill");
+	// upgrade랑 기타 추가더해야함
+
 	m_SaveManager->ExportXMLFile();
+	SafeDelete(m_SaveManager);
 }
-
-
-int m_CharacterLevel[NUMBER_OF_ZOMBIE_TYPES];
-int m_GlobalMoney;	
-int m_CurrentStage;		//201, 301 등으로 진행된 스테이지 표시
-int m_TotalKill;
-int m_TotalLoss;
-float m_InfectionRate;

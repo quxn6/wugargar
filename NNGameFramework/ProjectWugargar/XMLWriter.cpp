@@ -23,12 +23,8 @@ CXMLWriter::CXMLWriter( std::string filename )
 
 void CXMLWriter::initXML()
 {
-// 	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "euc-kr", "" ); 
-// 	m_Document.LinkEndChild( decl );
-
-	TiXmlDocument doc;
 	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "euc-kr", "" ); 
-	doc.LinkEndChild( decl );
+	m_Document.LinkEndChild( decl );
 }
 
 CXMLWriter::~CXMLWriter(void)

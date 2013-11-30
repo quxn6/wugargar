@@ -5,6 +5,8 @@
 #include "Library/TinyXML/tinyxml.h"
 #include "Library/TinyXML/xpath_static.h"
 
+#define TIXML_USE_STL
+
 class CXMLWriter
 {
 public:

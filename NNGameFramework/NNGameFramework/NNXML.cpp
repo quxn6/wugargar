@@ -29,7 +29,7 @@ NNXML* NNXML::Create()
 	return pInstacne;
 }
 
-TiXmlString NNXML::XPathToString( std::string xpath )
+std::string NNXML::XPathToString( std::string xpath )
 {
 	return TinyXPath::S_xpath_string(m_Document.RootElement(), xpath.c_str());
 }

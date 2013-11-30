@@ -38,6 +38,8 @@ public:
 	PlayerStatus GetPlayerStatus() const { return m_playerStatus; }
 	float GetInfectionRate() const { return m_InfectionRate; }
 	std::string GetPlayerName() const { return m_PlayerName; }
+	int GetTotalLoss() const { return m_TotalLoss; }
+	int GetTotalKill() const { return m_TotalKill; }
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
@@ -46,6 +48,8 @@ public:
 	void SetPlayerStatus(PlayerStatus ps) { m_playerStatus = ps; }
 	void SetInfectionRate(float ir) { m_InfectionRate = ir; }
 	void SetPlayerName(std::string val) { m_PlayerName = val; }
+	void SetTotalLoss(int val) { m_TotalLoss = val; }
+	void SetTotalKill(int val) { m_TotalKill = val; }
 
 	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
