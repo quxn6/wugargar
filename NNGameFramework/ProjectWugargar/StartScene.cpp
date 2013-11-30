@@ -75,11 +75,21 @@ void CStartScene::Update( float dTime )
 void CStartScene::load()
 {
 	// initialize
+	
  	CPlayer* pPlayer = CPlayer::GetInstance();
 	m_TestXML = NNResourceManager::GetInstance()->LoadXMLFromFIle("savegame.sav");
 
+	// 예외처리
+	if (!(m_TestXML->GetLoadSuccess())) {
+		return ;
+	}
+
 	// get files from save file
-	pPlayer->SetGlobalMoney( std::stoi(m_TestXML->XPathToString("/player1/GlobalMoney/text()").c_str()) ); 	pPlayer->SetTotalKill( std::stoi(m_TestXML->XPathToString("/player1/TotalKill/text()").c_str()) ); 	pPlayer->SetTotalLoss( std::stoi(m_TestXML->XPathToString("/player1/TotalLoss/text()").c_str()) ); 	pPlayer->SetCurrentStage( std::stoi(m_TestXML->XPathToString("/player1/CurrentStage/text()").c_str()) ); 	pPlayer->SetInfectionRate( std::stof(m_TestXML->XPathToString("/player1/InfectionRate/text()").c_str()) ); 
+	pPlayer->SetGlobalMoney( std::stoi(m_TestXML->XPathToString("/player1/GlobalMoney/text()").c_str()) ); 
+	pPlayer->SetTotalKill( std::stoi(m_TestXML->XPathToString("/player1/TotalKill/text()").c_str()) ); 
+	pPlayer->SetTotalLoss( std::stoi(m_TestXML->XPathToString("/player1/TotalLoss/text()").c_str()) ); 
+	pPlayer->SetCurrentStage( std::stoi(m_TestXML->XPathToString("/player1/CurrentStage/text()").c_str()) ); 
+	pPlayer->SetInfectionRate( std::stof(m_TestXML->XPathToString("/player1/InfectionRate/text()").c_str()) ); 
 	for ( int i=0; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 		std::string xPath = "/player1/UnitLevel/";
 		xPath.append("UnitNo");

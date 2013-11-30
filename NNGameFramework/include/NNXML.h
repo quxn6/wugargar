@@ -16,6 +16,7 @@ public:
 	static NNXML* Create();
 
 	std::string XPathToString( std::string xpath );
+	bool GetLoadSuccess(void) { return m_LoadSuccess; }
 
 private:
 	TiXmlDocument m_Document;
