@@ -36,6 +36,7 @@
     <ClCompile Include="PoorZombie.cpp" />
     <ClCompile Include="PrintConsole.cpp" />
     <ClCompile Include="SmogZombie.cpp" />
+    <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Trap.cpp" />
     <ClCompile Include="UIButton.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="PoorZombie.h" />
     <ClInclude Include="PrintConsole.h" />
     <ClInclude Include="SmogZombie.h" />
+    <ClInclude Include="StageSelectScene.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="Trap.h" />
     <ClInclude Include="UIButton.h" />
