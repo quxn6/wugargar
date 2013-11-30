@@ -25,5 +25,6 @@ protected:
 	NNSprite* m_fall_lightning_sprite;
 	bool	m_is_fall_lightning;
 	int		m_lightning_damage;
+	int		m_pay_lightning;
 
 };

@@ -11,6 +11,7 @@ CLightning::CLightning(void)
 	InitSprite(L"wugargar/pika.png");
 	m_is_fall_lightning = false;
 	m_lightning_damage = 100;
+	m_pay_lightning = 100;
 }
 
 
@@ -37,13 +38,12 @@ void CLightning::Update( float dTime )
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN && !m_fall_lightning_sprite)
 	{
 		printf_s("put");
-		
+		CPlayer::GetInstance()->SetLocalMoney(CPlayer::GetInstance()->GetLocalMoney() - m_pay_lightning);
 		m_is_fall_lightning = true;
 		
 	}
 
 	//현재 '떨어지고 있는 상태'라면 번개의 위치를 지속적으로 아래로 떨어지도록 변경
-	//Player의 LocalMoney를 소멸시키는 로직 필요
 	if(m_is_fall_lightning)
 	{
 		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(0.0f, LIGHTNING_SPEED) *dTime);
