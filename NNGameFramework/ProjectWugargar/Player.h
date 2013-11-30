@@ -31,7 +31,7 @@ public:
 
 	int GetGlobalMoney(){return m_GlobalMoney;}
 	int GetLocalMoney(){return m_LocalMoney;}
-	int GetClearedStage() {return m_CurrentStage;}
+	int GetCurrentStage() {return m_CurrentStage;}
 	int GetZombieLevel(ZombieType character) { return m_CharacterLevel[character]; }
 	int GetNumberOfKillInStage() const { return m_NumberOfKillInStage; }
 	int GetNumberOfLossInStage() const { return m_NumberOfLossInStage; }
@@ -43,7 +43,7 @@ public:
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
-	void SetClearedStage(int ClearedStage) {m_CurrentStage = ClearedStage; }
+	void SetCurrentStage(int ClearedStage) {m_CurrentStage = ClearedStage; }
 	void SetZombieLevel(ZombieType character, int level) { m_CharacterLevel[character] = level; }
 	void SetPlayerStatus(PlayerStatus ps) { m_playerStatus = ps; }
 	void SetInfectionRate(float ir) { m_InfectionRate = ir; }

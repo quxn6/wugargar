@@ -9,32 +9,6 @@ CStartScene::CStartScene(void)
 	InitButtons();
 }
 
-
-CStartScene::~CStartScene(void)
-{
-
-}
-
-void CStartScene::Render()
-{
-	NNObject::Render();
-}
-
-void CStartScene::Update( float dTime )
-{
-	NNScene::Update(dTime);
-
-	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON)) 
-	{
-		if(m_pNewGameButton->CheckButtonArea())
-			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-		else if(m_pLoadGameButton->CheckButtonArea())
-			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-		else if(m_pExitButton->CheckButtonArea())
-			return;
-	}
-}
-
 void CStartScene::InitButtons( void )
 {
 	std::wstring new_button_path = L"wugargar/UIbuttons/startbutton_normal.png";
@@ -58,6 +32,38 @@ void CStartScene::InitButtons( void )
 	m_pMainTitle = NNSprite::Create(main_title);
 	m_pMainTitle->SetPosition(GAME_SCREEN_MAX_SIZE_X / 3.0f, GAME_SCREEN_MAX_SIZE_Y / 5.0f * 1);
 	AddChild(m_pMainTitle, 19);
+}
 
+CStartScene::~CStartScene(void)
+{
 
 }
+
+void CStartScene::Render()
+{
+	NNObject::Render();
+}
+
+void CStartScene::Update( float dTime )
+{
+	NNScene::Update(dTime);
+
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON)) 
+	{
+		// new game
+		if(m_pNewGameButton->CheckButtonArea()) {
+			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+		}
+		
+		// load game
+		if(m_pLoadGameButton->CheckButtonArea()) {
+			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+		}
+		
+		// exit
+		if(m_pExitButton->CheckButtonArea()) {
+			
+		}		
+	}
+}
+

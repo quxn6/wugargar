@@ -159,13 +159,12 @@ void CNextStageScene::Update( float dTime )
 					m_pPlayer->GetGlobalMoney(),
 					m_pPlayer->GetNumberOfKillInStage(), 
 					m_pPlayer->GetNumberOfLossInStage()
-					);
+				);
 			}		
 		}
 
 		// 세이브 버튼 클릭시
 		if ( m_pGameSaveButton->CheckButtonArea() ) {
-			wprintf(L"aa");
 			SaveGame();
 		}
 			
@@ -183,20 +182,32 @@ void CNextStageScene::Update( float dTime )
 
 void CNextStageScene::SaveGame( void )
 {
-	std::string playerName = m_pPlayer->GetPlayerName();
+	// set root using player name
+	std::string root = m_pPlayer->GetPlayerName();
 
+	// set root
 	m_SaveManager = CXMLWriter::Create("savegame.sav");
 	m_SaveManager->AddRoot(m_pPlayer->GetPlayerName());
 
-	m_SaveManager->AddNode("Money", playerName);
-	m_SaveManager->AddText(std::to_string(m_pPlayer->GetGlobalMoney() ), "Money" );
-	m_SaveManager->AddNode("TotalKill", playerName);
+	// write contents
+	m_SaveManager->AddNode("GlobalMoney", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetGlobalMoney() ), "GlobalMoney" );
+	m_SaveManager->AddNode("TotalKill", root);
 	m_SaveManager->AddText(std::to_string(m_pPlayer->GetTotalKill() ), "TotalKill");
-	m_SaveManager->AddNode("TotalLoss", playerName);
+	m_SaveManager->AddNode("TotalLoss", root);
 	m_SaveManager->AddText(std::to_string(m_pPlayer->GetTotalLoss() ), "TotalLoss");
-	m_SaveManager->AddNode("Stage", playerName);
-	m_SaveManager->AddText(std::to_string(m_pPlayer->GetClearedStage() ), "TotalKill");
-	// upgrade랑 기타 추가더해야함
+	m_SaveManager->AddNode("CurrentStage", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetCurrentStage() ), "CurrentStage");
+	m_SaveManager->AddNode("InfectionRate", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetInfectionRate() ), "InfectionRate");
+
+	m_SaveManager->AddNode("UnitLevel", root);
+	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
+		std::string nodeName = "Unit#";
+		nodeName.append(std::to_string(i));
+		m_SaveManager->AddNode(nodeName, "UnitLevel");
+		m_SaveManager->AddText(std::to_string(m_pPlayer->GetZombieLevel(static_cast<ZombieType>(i))), nodeName );
+	}
 
 	m_SaveManager->ExportXMLFile();
 	SafeDelete(m_SaveManager);
