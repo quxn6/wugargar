@@ -203,7 +203,7 @@ void CNextStageScene::SaveGame( void )
 
 	m_SaveManager->AddNode("UnitLevel", root);
 	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
-		std::string nodeName = "Unit#";
+		std::string nodeName = "UnitNo";
 		nodeName.append(std::to_string(i));
 		m_SaveManager->AddNode(nodeName, "UnitLevel");
 		m_SaveManager->AddText(std::to_string(m_pPlayer->GetZombieLevel(static_cast<ZombieType>(i))), nodeName );

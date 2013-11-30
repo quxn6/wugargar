@@ -1,9 +1,9 @@
 #pragma once
 #include "NNScene.h"
 #include "NNSprite.h"
-#include "GameConfig.h"
 #include "Player.h"
 #include "UIButton.h"
+#include "NNXML.h"
 class CStartScene :
 	public NNScene
 {
@@ -13,14 +13,9 @@ public:
 
 	void Render();
 	virtual void Update( float dTime );
+	void load();
 
 	NNCREATE_FUNC(CStartScene);
-
-	CUIButton*	m_pNewGameButton;
-	CUIButton*	m_pLoadGameButton;
-	CUIButton*	m_pExitButton;
-	NNSprite*	m_pBackground;
-	NNSprite*	m_pMainTitle;
 
 
 private :
@@ -29,6 +24,12 @@ private :
 private :
 	wchar_t		m_LabelBuffer[NUMBER_OF_ZOMBIE_TYPES][256];
 	wchar_t		m_ResultBuffer[256];
+	NNXML*		m_TestXML;
 
+	CUIButton*	m_pNewGameButton;
+	CUIButton*	m_pLoadGameButton;
+	CUIButton*	m_pExitButton;
+	NNSprite*	m_pBackground;
+	NNSprite*	m_pMainTitle;
 };
 
