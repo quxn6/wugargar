@@ -7,13 +7,12 @@ CCharacter::CCharacter(void)
 {	
 	/* 적을 발견한 순간부터가 아닌 캐릭터가 만들어지고나서 부터의 시간으로 어택을 구현. 
 	타겟이 사정거리 안으로 들어온 순간부터의 시간을 기준으로 하는 것이 맞지만, update 안에서 공격 관련 함수가 계속 갱신되는 특성 때문에
-	생성자 안에서 m_CreateTime을 고정시키는 방법으로 우선 구현. ㅠㅠ
-	*/
+	생성자 안에서 m_CreateTime을 고정시키는 방법으로 우선 구현. ㅠㅠ*/
 	SetCreateTime(clock()); 
 	SetNowTime(clock());
 	m_is_iceState = false;
 	//sight는 철저하게 캐릭터가 안 겹치게 보이기 위한 연출을 위한 변수
-	m_sight = 100.0f + rand() % 50;
+	//m_sight = 100.0f + rand() % 50;
 }
 
 CCharacter::~CCharacter(void)
