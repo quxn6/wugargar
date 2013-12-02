@@ -190,7 +190,7 @@ void CCharacter::Update( float dTime )
 	}
 
 	//Splash속성이 true인 몬스터면 Splash어택
-	if(this->m_is_splash)
+	if(this->m_is_splashAttack)
 		SplashAttack(damage);
 		
 

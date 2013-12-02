@@ -34,5 +34,5 @@ void CNormalPolice::initStatus( void )
 	m_NumberOfTarget = 1;
 	m_AttackSpeed = 2;
 	m_Identity = Police;
-	m_is_splash = false;
+	m_is_splashAttack = false;
 }

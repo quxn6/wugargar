@@ -1,5 +1,6 @@
 #pragma once
 #include "NNObject.h"
+#include "GameConfig.h"
 /*
 클래스 이름 : CCreatePolice
 클래스 목적 : 적(경찰)이 생성되는 기준을 세우고 해당 기준에 맞게
@@ -11,13 +12,13 @@
 
 
 //적(경찰)의 타입. 이 타입에 맞춰서 해당하는 유닛을 생성함
-enum enemyType{
-	NOT_TIME,
-	NORMAL_POLICE,
-	GUN_POLICE,
-	SHILD_POLICE,
-	HELLICOPTER
-};
+//enum enemyType{
+//	NOT_TIME,
+//	NORMAL_POLICE,
+//	GUN_POLICE,
+//	SHILD_POLICE,
+//	HELLICOPTER
+//};
 
 /*
 구조체 : 스테이지의 경찰 출력 패턴을 나타냄.
@@ -27,7 +28,7 @@ enum enemyType{
 typedef struct CreateEnemyTable
 {
 	int time;
-	enemyType enemy_type;
+	PoliceType enemy_type;
 	//int num_enemy;
 }CreateEnemyTable;
 
@@ -50,7 +51,7 @@ public:
 	int gap_time;
 	int table_top_index;
 	void				ReturnTableByFile();
-	enemyType				GetCreateEnemyInfo();
+	PoliceType				GetCreateEnemyInfo();
 
 
 

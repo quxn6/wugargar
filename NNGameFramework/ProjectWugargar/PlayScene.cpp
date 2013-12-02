@@ -288,28 +288,24 @@ void CPlayScene::MakeZombie(ZombieType type)
 
 void CPlayScene::MakePoliceFromScript()
 {
-	enemyType create_enemy_type;
+	PoliceType create_enemy_type;
 	CPolice *tmpPoliceObject = nullptr;
 	create_enemy_type =	m_pCreatePolice->GetCreateEnemyInfo();
 	std::wstring imagePath[5];
 	imagePath[NORMAL_POLICE] = L"wugargar/normal_police.png";
+	bool is_not_time = false;
 
 	switch (create_enemy_type)
 	{
 	case NORMAL_POLICE:
 		tmpPoliceObject = CNormalPolice::Create();
 		break;
-	case GUN_POLICE:
-		break;
-	case SHILD_POLICE:
-		break;
-	case HELLICOPTER:
-		break;
 	default:
+		is_not_time = true;
 		break;
 	}
 
-	if(create_enemy_type != NOT_TIME){
+	if(is_not_time){
 		tmpPoliceObject->SetRandomPositionAroundBase();
 		tmpPoliceObject->InitSprite( imagePath[create_enemy_type]);
 		AddChild(tmpPoliceObject, 10);

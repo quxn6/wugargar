@@ -90,10 +90,13 @@ protected:
 	//NNLabel*	m_pShowHP;
 	NNSpriteAtlas* m_pShowHP;
 	wchar_t		temp_HP[256]; 
-	bool		m_is_splash;
+	bool		m_is_splashAttack;
+	bool		m_is_iceAttack;
 	float		m_splash_range;
 	bool		m_is_iceState;
 	float		m_sight;
+	std::string m_spritePath;
+	std::string m_typeName;
 
 };
 
