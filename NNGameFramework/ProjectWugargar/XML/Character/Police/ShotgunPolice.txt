@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<Police>
+    <PoliceType>4</PoliceType>
+    <TypeName>ShotgunPolice</TypeName>
+    <HealthPoint>200</HealthPoint>
+    <MovingSped>50</MovingSpeed>
+    <AttackPower>50</AttackPower>
+    <AttackSpeed>2</AttackSpeed>
+    <DefensivePower>3</DefensivePower>
+    <IsSplash>1</IsSplsh>
+    <IsIceAttack>0</IsIceAttack>
+    <AttackRange>50</AttackRange>
+    <SplashRange>20</SplashRange>
+    <SpritePath>wugargar/shotgun_police</SpritePath>
+</Police>

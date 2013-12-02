@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<player1>
+    <GlobalMoney>1080</GlobalMoney>
+    <TotalKill>8</TotalKill>
+    <TotalLoss>7</TotalLoss>
+    <CurrentStage>102</CurrentStage>
+    <InfectionRate>20.000000</InfectionRate>
+    <UnitLevel>
+        <UnitNo0>0</UnitNo0>
+        <UnitNo1>0</UnitNo1>
+        <UnitNo2>0</UnitNo2>
+        <UnitNo3>0</UnitNo3>
+        <UnitNo4>0</UnitNo4>
+        <UnitNo5>0</UnitNo5>
+        <UnitNo6>0</UnitNo6>
+        <UnitNo7>0</UnitNo7>
+    </UnitLevel>
+</player1>

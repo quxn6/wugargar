@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<Police>
+    <PoliceType>1</PoliceType>
+    <TypeName>MachinegunPolice</TypeName>
+    <HealthPoint>200</HealthPoint>
+    <MovingSped>40</MovingSpeed>
+    <AttackPower>12</AttackPower>
+    <AttackSpeed>2</AttackSpeed>
+    <DefensivePower>4</DefensivePower>
+    <IsSplash>0</IsSplsh>
+    <IsIceAttack>0</IsIceAttack>
+    <AttackRange>200</AttackRange>
+    <SplashRange>0</SplashRange>
+    <SpritePath>wugargar/machinegun_police</SpritePath>
+</Police>

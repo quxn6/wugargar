@@ -2,7 +2,7 @@
 #include "GameConfig.h"
 #include <string>
 #include "Character.h"
-#include "..\NNGameFramework\NNXML.h"
+#include "NNXML.h"
 
 
 

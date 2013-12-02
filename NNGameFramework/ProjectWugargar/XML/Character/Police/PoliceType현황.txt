@@ -1,0 +1,6 @@
+0 = NormalPolice
+1 = MachinegunPolice
+2 = ShieldPolice
+3 = GrenadePolice
+4 = ShotgunPolice
+5 = FirebatPolice
