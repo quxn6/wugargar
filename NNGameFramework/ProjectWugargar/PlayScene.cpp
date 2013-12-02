@@ -305,7 +305,7 @@ void CPlayScene::MakePoliceFromScript()
 		break;
 	}
 
-	if(is_not_time){
+	if(create_enemy_type != NONE){
 		tmpPoliceObject->SetRandomPositionAroundBase();
 		tmpPoliceObject->InitSprite( imagePath[create_enemy_type]);
 		AddChild(tmpPoliceObject, 10);

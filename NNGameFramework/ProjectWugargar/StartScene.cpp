@@ -5,6 +5,9 @@
 #include "NNResourceManager.h"
 #include "GameConfig.h"
 
+#define POLICE_TYPE_NUM 6
+#define ZOMBIE_TYPE_NUM 8
+
 CStartScene::CStartScene(void)
 {
 	InitButtons();
@@ -108,5 +111,10 @@ void CStartScene::load()
 		printf("%d ", pPlayer->GetZombieLevel(static_cast<ZombieType>(i)) );
 	}	
 #endif
+
+}
+
+void CStartScene::loadPoliceInfo()
+{
 
 }

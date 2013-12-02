@@ -14,7 +14,7 @@ public:
 	void Render();
 	virtual void Update( float dTime );
 	void load();
-
+	void loadPoliceInfo();
 	NNCREATE_FUNC(CStartScene);
 
 
