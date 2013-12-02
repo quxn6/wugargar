@@ -2,10 +2,11 @@
 #include "GameConfig.h"
 #include <string>
 #include "Character.h"
+#include "..\NNGameFramework\NNXML.h"
 
 
 
-struct CharacterInfo{
+struct PoliceInfo{
 	float HealthPoint;
 	float HPRatioPer100;
 	float MovingSpeed;
@@ -20,7 +21,24 @@ struct CharacterInfo{
 	std::string TypeName;
 	CharacterIdentity identity;
 	PoliceType policeType;
-	ZombieType zombieType;
+};
+
+struct ZombieInfo
+{
+	float HealthPoint;
+	float HPRatioPer100;
+	float MovingSpeed;
+	float AttackRange;
+	float SplashRange;
+	int AttackPower;
+	int DefensivePower;
+	int AttackSpeed;
+	bool IsSplash;
+	bool IsIceAttack;
+	std::string SpritePath;
+	std::string TypeName;
+	CharacterIdentity identity;
+	PoliceType policeType;
 };
 
 class CCharacterConfig
@@ -29,9 +47,14 @@ public:
 	CCharacterConfig(void);
 	~CCharacterConfig(void);
 
-	CharacterInfo policeInfo[NUMBER_OF_POLICE_TYPES];
-	CharacterInfo zombieInfo[NUMBER_OF_ZOMBIE_TYPES];
+	static CCharacterConfig* m_pInstance;
 
+	PoliceInfo policeInfo[NUMBER_OF_POLICE_TYPES];
+	ZombieInfo zombieInfo[NUMBER_OF_ZOMBIE_TYPES];
+
+	void SetPoliceInfo(NNXML *PoliceInfoXml, int policeInfoIdx);
+	void ReleaseInstance();
+	void GetInstance();
 
 
 };
