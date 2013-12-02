@@ -135,7 +135,6 @@ void CPlayScene::_initUI( void )
 		m_pUIButtons[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
 		m_pUIButtons[i]->SetPosition(static_cast<float>( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % NUM_OF_UIBUTTON_IN_ROW)) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON ) ), 
 			static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y )+ (SIZE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y) * int(i/NUM_OF_UIBUTTON_IN_ROW));
-			
 		AddChild( m_pUIButtons[i] , 20);
 	}
 }
@@ -196,6 +195,8 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 					m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint() - 10);
 					m_pHumanFarm->MakeHuman();
 				}
+				m_pUIButtons[i]->m_tClickedTime = clock();
+				printf_s("%d\n", m_pUIButtons[i]->m_tClickedTime/CLOCKS_PER_SEC);
 			}
 		}
 	}
@@ -206,6 +207,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 	CZombie *tmpZombieObject = nullptr;
 	std::wstring imagePath[NUMBER_OF_ZOMBIE_TYPES];
 	int localMoney = m_pPlayer->GetLocalMoney();
+	bool CheckHero = 0;
 
 	imagePath[POOR_ZOMBIE] = L"wugargar/poor_zombie.png";
 	imagePath[ICE_ZOMBIE] = L"wugargar/ice_zombie.png";
@@ -237,7 +239,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 		break;
 	case HERO_ZOMBIE_SM9 :
 		tmpZombieObject = CHeroZombie::Create();
-		m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint()-100); // 영웅좀비 생성시 로컬머니도 감소+ 미트포인트도 감소
+		CheckHero = 1;
 		break;
 	default:
 		break; 
@@ -252,6 +254,9 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 	}
 
 	// when position is nullptr, set position around zombie base
+	if(CheckHero)
+		m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint()-100);// 영웅좀비 meat point 감소
+
 	if (position == nullptr ) {
 		tmpZombieObject->SetRandomPositionAroundBase();
 	} else {
