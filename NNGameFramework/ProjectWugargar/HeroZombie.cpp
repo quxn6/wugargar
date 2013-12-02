@@ -25,7 +25,7 @@ void CHeroZombie::initStatus( void )
 	m_AttackSpeed = 3;
 	m_CreateCost = 1;
 	m_Identity = Zombie;
-	m_is_splashAttack = false;
+	m_SplashAttack = false;
 }
 
 

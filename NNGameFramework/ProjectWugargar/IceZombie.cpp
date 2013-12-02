@@ -24,7 +24,8 @@ void CIceZombie::initStatus( void )
 	m_AttackSpeed = 2;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
-	m_is_splashAttack = false;
+	m_SplashAttack = false;
+	m_RemainingFrozenTime = 20;
 
 	ApplyZombieLevel();
 }

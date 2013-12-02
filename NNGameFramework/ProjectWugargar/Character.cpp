@@ -10,7 +10,7 @@ CCharacter::CCharacter(void)
 	생성자 안에서 m_CreateTime을 고정시키는 방법으로 우선 구현. ㅠㅠ*/
 	SetCreateTime(clock()); 
 	SetNowTime(clock());
-	m_is_iceState = false;
+	m_FrozenState = false;
 	//sight는 철저하게 캐릭터가 안 겹치게 보이기 위한 연출을 위한 변수
 	//m_sight = 100.0f + rand() % 50;
 }
@@ -19,10 +19,6 @@ CCharacter::~CCharacter(void)
 {
 }
 
-void CCharacter::initStatus( void )
-{
-
-}
 
 /*
 함수명 : DetermineAttackTarget
@@ -55,11 +51,11 @@ void  CCharacter::DetermineAttackTarget()
 		for(const auto& child : CPlayScene::GetInstance()->GetPoliceList())
 		{
 			next_distance = this->GetPosition().GetDistance(child->GetPosition());
-			 	if(return_distnace > next_distance)
-			 	{
-			 		return_distnace = next_distance;
-			 		m_AttackTarget = child;
-			 	}
+			if(return_distnace > next_distance)
+			{
+				return_distnace = next_distance;
+				m_AttackTarget = child;
+			}
 		}
 		if(m_AttackTarget == NULL)
 			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase();
@@ -69,11 +65,11 @@ void  CCharacter::DetermineAttackTarget()
 		for(const auto& child : CPlayScene::GetInstance()->GetZombieList())
 		{
 			next_distance= this->GetPosition().GetDistance(child->GetPosition());
-			 	if(return_distnace > next_distance)
-			 	{
-			 		return_distnace = next_distance;
-			 		m_AttackTarget = child;
-			 	}
+			if(return_distnace > next_distance)
+			{
+			 	return_distnace = next_distance;
+			 	m_AttackTarget = child;
+			}
 		}
 		if(m_AttackTarget == NULL)
 			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase();
@@ -147,15 +143,13 @@ void CCharacter::Update( float dTime )
 	//공격하고 그렇지 않으면 Attack Target에게 접근
 
 	float HP = GetHP();
-	if( HP/m_HPRatioPer100 >= 70 ){// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
+	if( HP/m_HPRatioPer100 >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
 		m_pShowHP->SetCutSize(0,0,HP/2,5.f);
 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
-	}
-	else if( HP/m_HPRatioPer100 < 70 && HP/m_HPRatioPer100 >= 30){
+	} else if( HP/m_HPRatioPer100 < 70 && HP/m_HPRatioPer100 >= 30){
 		m_pShowHP->SetCutSize(0,21,HP/2,26.f);
 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-21.f);
-	}
-	else{
+	} else {
 		m_pShowHP->SetCutSize(0,35,HP/2,40.f);
 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-35.f);
 	}
@@ -167,16 +161,18 @@ void CCharacter::Update( float dTime )
 
 
 	//현재 얼어있는 상태라면 이동/공격이 불가
-	if(!m_is_iceState)
-		if(IsAttack())
-		{
-			if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0 && CheckTimeChange != GetNowTimeSEC()) // 초단위로 시간이 변했는가도 함께 체크한다 (dTime이 너무 작아 int로 반환하는 Get~TimeSEC 함수는 1초 내에 같은값을 dTime마다 반환한다.)
+	if(!m_FrozenState) {
+		if(IsAttack()) {
+			// 초단위로 시간이 변했는가도 함께 체크한다 
+			// (dTime이 너무 작아 int로 반환하는 Get~TimeSEC 
+			// 함수는 1초 내에 같은값을 dTime마다 반환한다.) 
+			if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0 && CheckTimeChange != GetNowTimeSEC()) { 
 				Attack();
-		}
-		else
+			}
+		} else {
 			GoToAttackTarget(dTime);
-
-
+		}
+	}
 }
 
  void CCharacter::Attack()
@@ -190,10 +186,8 @@ void CCharacter::Update( float dTime )
 	}
 
 	//Splash속성이 true인 몬스터면 Splash어택
-	if(this->m_is_splashAttack)
+	if(this->m_SplashAttack)
 		SplashAttack(damage);
-		
-
 }
 
 
@@ -275,7 +269,7 @@ void CCharacter::SplashAttack(int damage)
 			float distance_attacktarget;
 			distance_attacktarget = this->GetPosition().GetDistance(child->GetPosition());
 
-			if(this->m_splash_range >= distance_attacktarget)
+			if(this->m_SplashAttackRange >= distance_attacktarget)
 				child->SetHP(child->GetHP()-damage);
 		}
 		break;
@@ -285,7 +279,7 @@ void CCharacter::SplashAttack(int damage)
 			float distance_attacktarget;
 			distance_attacktarget = this->GetPosition().GetDistance(child->GetPosition());
 
-			if(this->m_splash_range >= distance_attacktarget)
+			if(this->m_SplashAttackRange >= distance_attacktarget)
 				child->SetHP(child->GetHP()-damage);
 		}
 		break;
@@ -305,17 +299,17 @@ void CCharacter::SplashAttack(int damage)
 */
 void CCharacter::CheckIceState()
 {
-	if(!m_is_iceState)
+	if(!m_FrozenState)
 		return ;
 
 	SetIceNowTime(clock());
 	printf_s("ICETIME : %d, NOWTIME : %d\n", m_iceStartTime/CLOCKS_PER_SEC, m_iceNowTime/CLOCKS_PER_SEC);
 
 
-	if(m_iceNowTime/CLOCKS_PER_SEC - m_iceStartTime/CLOCKS_PER_SEC > ICE_TIME)
+	if( (m_iceNowTime/CLOCKS_PER_SEC - m_iceStartTime/CLOCKS_PER_SEC) > m_RemainingFrozenTime)
 	{
 		printf_s("UNICE\n");
-		m_is_iceState = false;
+		m_FrozenState = false;
 	}
 
 }

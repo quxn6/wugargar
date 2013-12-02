@@ -24,8 +24,8 @@ void CSmogZombie::initStatus( void )
 	m_AttackSpeed = 3;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
-	m_is_splashAttack = true;
-	m_splash_range = 30.0f;
+	m_SplashAttack = true;
+	m_SplashAttackRange = 30.0f;
 
 	ApplyZombieLevel();
 }

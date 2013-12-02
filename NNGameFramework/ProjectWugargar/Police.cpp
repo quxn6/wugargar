@@ -119,11 +119,11 @@ void CPolice::initStatus( CharacterInfo policeInfo )
 	m_HPRatioPer100 = m_HealthPoint/100;
 	m_MovingSpeed = policeInfo.MovingSpeed;
 	m_AttackRange = policeInfo.AttackRange;
-	m_splash_range = policeInfo.SplashRange;
+	m_SplashAttackRange = policeInfo.SplashRange;
 	m_AttackPower = policeInfo.AttackPower;
 	m_DefensivePower = policeInfo.DefensivePower;
 	m_AttackSpeed = policeInfo.AttackSpeed;
-	m_is_splashAttack = policeInfo.IsSplash;
+	m_SplashAttack = policeInfo.IsSplash;
 	m_Identity = policeInfo.identity;
 	m_policeType = policeInfo.policeType;
 	m_spritePath = policeInfo.SpritePath;
