@@ -13,7 +13,7 @@ CKamikazeZombie::~CKamikazeZombie(void)
 
 void CKamikazeZombie::initStatus( void )
 {
-	m_Type = KAMIKAJE_ZOMBIE;
+	m_zombieType = KAMIKAJE_ZOMBIE;
 	m_HealthPoint = 50;
 	m_HPRatioPer100 = m_HealthPoint/100;
 	m_MovingSpeed = 50.0f;

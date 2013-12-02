@@ -44,16 +44,23 @@ enum ZombieType // 버튼 생성할때도 이 enum값을 사용하기 때문에 버튼 init을 위해 
 	ICE_ZOMBIE,
 	HERO_ZOMBIE_SM9,
 	BABY_HUMAN,
-	NUMBER_OF_ZOMBIE_TYPES
+	NUMBER_OF_ZOMBIE_TYPES,
+	NONE_ZOMBIE
 }; 
 
 enum PoliceType
 {
-	NONE, //CreatePolice를 위한 상수, 없애는 것 고심중
+	
 	NORMAL_POLICE,
 	MACHINEGUN_POLICE,
 	SHIELD_POLICE,
 	GRENADE_POLICE,
 	SHOTGUN_POLICE,
-	FIREBAT_POLICE
+	FIREBAT_POLICE,
+	NUMBER_OF_POLICE_TYPES,
+	NONE_POLICE //CreatePolice를 위한 상수, 없애는 것 고심중
 };
+
+//
+//#define POLICE_TYPE_NUM 6
+//#define ZOMBIE_TYPE_NUM 8

@@ -5,7 +5,7 @@
 
 
 //Create할 때, 해당 타입에 맞는 PoliceInfo가 설정되도록
-struct PoliceInfo{
+struct CharacterInfo{
 	float HealthPoint;
 	float HPRatioPer100;
 	float MovingSpeed;
@@ -38,12 +38,12 @@ public:
 	void SetInfectedStatus(bool infected) {m_infected = infected;};
 	void InitStatusByXML(NNXML *PoliceInfoXml, int policeInfoIdx);
 
-	PoliceInfo policeInfo[6];
+	CharacterInfo policeInfo[6];
 
 protected:
 	bool m_infected;
 	PoliceType m_policeType;
 
-	virtual void initStatus( PoliceInfo policeInfo );
+	virtual void initStatus( CharacterInfo policeInfo );
 
 };

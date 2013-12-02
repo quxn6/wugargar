@@ -21,6 +21,6 @@ public:
 
 protected:
 	int			m_CreateCost;
-	ZombieType	m_Type;
+	ZombieType	m_zombieType;
 };
 

@@ -113,7 +113,7 @@ void CPolice::InitStatusByXML( NNXML *PoliceInfoXml, int policeInfoIdx )
 
 }
 
-void CPolice::initStatus( PoliceInfo policeInfo )
+void CPolice::initStatus( CharacterInfo policeInfo )
 {
 	m_HealthPoint = policeInfo.HealthPoint;
 	m_HPRatioPer100 = m_HealthPoint/100;

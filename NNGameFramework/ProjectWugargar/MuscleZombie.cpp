@@ -13,7 +13,7 @@ CMuscleZombie::~CMuscleZombie(void)
 
 void CMuscleZombie::initStatus( void )
 {
-	m_Type = MUSCLE_ZOMBIE;
+	m_zombieType = MUSCLE_ZOMBIE;
 	m_HealthPoint = 300;
 	m_HPRatioPer100 = m_HealthPoint/100;
 	m_MovingSpeed = 40.0f;

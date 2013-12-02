@@ -13,7 +13,7 @@ CIceZombie::~CIceZombie(void)
 
 void CIceZombie::initStatus( void )
 {
-	m_Type = ICE_ZOMBIE;
+	m_zombieType = ICE_ZOMBIE;
 	m_HealthPoint = 100;
 	m_HPRatioPer100 = m_HealthPoint/100.f;
 	m_MovingSpeed = 30.0f;

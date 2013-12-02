@@ -73,6 +73,6 @@ PoliceType CCreatePolice::GetCreateEnemyInfo()
 
 	}
 
-	return NONE;
+	return NONE_POLICE;
 }
 

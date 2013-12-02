@@ -13,7 +13,7 @@ CHeroZombie::~CHeroZombie(void)
 
 void CHeroZombie::initStatus( void )
 {
-	m_Type = HERO_ZOMBIE_SM9;
+	m_zombieType = HERO_ZOMBIE_SM9;
 
 	m_HealthPoint = 300;
 	m_HPRatioPer100 = m_HealthPoint/100;

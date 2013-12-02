@@ -121,6 +121,9 @@
     <ClCompile Include="StageSelectScene.cpp">
       <Filter>Wugargar\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterConfig.cpp">
+      <Filter>Wugargar\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -221,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="StageSelectScene.h">
       <Filter>Wugargar\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterConfig.h">
+      <Filter>Wugargar\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
