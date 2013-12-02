@@ -21,7 +21,7 @@ void CKamikazeZombie::initStatus( void )
 	m_DefensivePower = 3;
 	m_AttackRange = 10.0f;
 	m_NumberOfTarget = 3;
-	m_AttackSpeed = 2;
+	m_AttackSpeed = 2000;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 	m_SplashAttack = true;

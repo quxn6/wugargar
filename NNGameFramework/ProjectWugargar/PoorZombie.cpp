@@ -22,7 +22,7 @@ void CPoorZombie::initStatus( void )
 	m_DefensivePower = 2;
 	m_AttackRange = 10.0f;
 	m_NumberOfTarget = 1;
-	m_AttackSpeed = 2;
+	m_AttackSpeed = 2000;
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 	m_SplashAttack = false;
