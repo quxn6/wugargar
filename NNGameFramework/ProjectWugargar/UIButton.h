@@ -21,6 +21,8 @@ public :
 	bool m_InCoolTime;
 	clock_t m_tCoolTime;
 	clock_t m_tClickedTime;
+	clock_t m_tPassTime; // 클릭된 순간부터 passtime을 측정하고 passtime이 cooltime보다 작으면 클릭이 안되게끔 한다.
+	clock_t m_tNowTime; // 1초 단위로 시간을 재기위한 tmp
 
 protected :
 	NNSprite *m_pPressedImage;

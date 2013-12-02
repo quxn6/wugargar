@@ -188,15 +188,16 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	//int count = 0;
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
-			if ( m_pUIButtons[i]->CheckButtonArea() ) {							
+			if ( m_pUIButtons[i]->CheckButtonArea() && (m_pUIButtons[i]->m_InCoolTime == false) ) {
 				if ( i != BABY_HUMAN ) {
 					MakeZombie(static_cast<ZombieType>(i));
 				} else if(m_pPlayer->GetMeatPoint() >=10){
 					m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint() - 10);
 					m_pHumanFarm->MakeHuman();
 				}
-				m_pUIButtons[i]->m_tClickedTime = clock();
-				printf_s("%d\n", m_pUIButtons[i]->m_tClickedTime/CLOCKS_PER_SEC);
+				m_pUIButtons[i]->m_tPassTime = 0; // 눌릴때마다 passtime 초기화
+				//m_pUIButtons[i]->m_tClickedTime = clock();
+				//printf_s("%d\n", m_pUIButtons[i]->m_tClickedTime/CLOCKS_PER_SEC);
 			}
 		}
 	}

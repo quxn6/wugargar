@@ -21,6 +21,11 @@ CUIButton::CUIButton( std::wstring normalImagePath, std::wstring pressedImagePat
 
 	AddChild( m_pPressedImage, 10);
 	AddChild( m_pNormalImage, 10);
+
+	m_InCoolTime = false;
+	m_tNowTime = clock();
+	m_tCoolTime = 5 * CLOCKS_PER_SEC; // 일단 쿨타임 전부다 5초로 세팅
+	m_tPassTime = 0; // passtime 초기화
 }
 
 // 이미지 두 장을 이용하여 button을 생성하는 함수
@@ -46,12 +51,20 @@ void CUIButton::Render()
 
 void CUIButton::Update( float dTime )
 {
-
+	if(m_InCoolTime == true)
+	{
+		int CheckTimeChange = m_tNowTime/CLOCKS_PER_SEC;
+		m_tNowTime = clock()/CLOCKS_PER_SEC;
+		if(CheckTimeChange != m_tNowTime)//시간이 초단위로 지났는지 검사한다.
+			m_tPassTime += 1;
+	}
+	else{
+		m_tNowTime = clock()/CLOCKS_PER_SEC;
+	}
 }
-
 // 현재 마우스 커서의 위치가 UIbutton 위에 있는지를 체크함
 // parameter : void
-// return  : button 위에 있을 시 1, button밖dp 있을 시 0을 반환
+// return  : button 위에 있을 시 1, button밖에 있을 시 0을 반환
 bool CUIButton::CheckButtonArea( void )
 {
 	NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
