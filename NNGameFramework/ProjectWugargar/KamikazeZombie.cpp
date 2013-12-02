@@ -25,7 +25,8 @@ void CKamikazeZombie::initStatus( void )
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 	m_SplashAttack = true;
-	m_SplashAttackRange = 200.0f;
+	m_SplashAttackRange = 50.0f;
+	m_SuicideBomber = true;
 
 	ApplyZombieLevel();
 }
@@ -39,14 +40,4 @@ void CKamikazeZombie::Render()
 void CKamikazeZombie::Update( float dTime )
 {
 	CCharacter::Update(dTime);
-}
-
-//11.21 정인호
-//Attack함수 오버로딩. KamikazeZombie는 공격 후 HP가 0이됨
-void CKamikazeZombie::Attack()
-{
-	CCharacter::Attack();
-
-	this->SetHP(0);
-
 }

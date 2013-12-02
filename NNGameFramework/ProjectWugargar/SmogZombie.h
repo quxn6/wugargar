@@ -8,8 +8,6 @@ public:
 	virtual	~CSmogZombie(void);
 
 public :
-	NNSprite	*m_SmogZombie;
-
 	void Render();
 	void Update( float dTime );
 

@@ -8,8 +8,6 @@ public:
 	virtual	~CVomitZombie(void);
 
 public :
-	NNSprite	*m_VomitZombie;
-
 	void Render();
 	void Update( float dTime );
 

@@ -8,11 +8,9 @@ public:
 	virtual	~CKamikazeZombie(void);
 
 public :
-	NNSprite	*m_KamikazeZombie;
-
 	void Render();
 	void Update( float dTime );
-	void Attack();
+
 	NNCREATE_FUNC(CKamikazeZombie);
 
 protected:

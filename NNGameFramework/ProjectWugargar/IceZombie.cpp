@@ -25,7 +25,8 @@ void CIceZombie::initStatus( void )
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 	m_SplashAttack = false;
-	m_RemainingFrozenTime = 20;
+	m_FreezingAttackDuration = 5000;
+	m_FreezingAttack = true;
 
 	ApplyZombieLevel();
 }
@@ -39,17 +40,4 @@ void CIceZombie::Render()
 void CIceZombie::Update( float dTime )
 {
 	CCharacter::Update(dTime);
-}
-
-//정인호. 11/21
-//Attack함수 오버로딩. ICe좀비의 공격에 당한 AttackTarget은 '얼어있는'상태가 됨
-void CIceZombie::Attack()
-{
-	CCharacter::Attack();
-
-	m_AttackTarget->SetIceStartTime(clock());
-	m_AttackTarget->SetIceNowTime(clock());
-	m_AttackTarget->SetIceState(true);
-	
-
 }

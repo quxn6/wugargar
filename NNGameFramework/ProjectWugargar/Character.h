@@ -12,7 +12,6 @@
 enum CharacterIdentity{
 	Zombie,
 	Police,
-	Base
 };
 
 class CCharacter : public NNObject
@@ -30,11 +29,16 @@ public:
 	void SetRandomPositionAroundBase();
 	void DetermineAttackTarget();
 	void GoToAttackTarget(float dTime);
-	bool IsAttack();
-	void SplashAttack(int damage);
-	void CheckIceState();
+	void UpdateHPBar(void);
+	void SplashAttack(NNPoint splashPoint);
+	void CheckMeltingTime(clock_t currentTime);
 	void MakeCharacterWalk(float dTime);
-	virtual void Attack();
+	void Attack(clock_t currentTime);
+
+	bool TargetInRange() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_AttackRange; };
+	bool CheckAttackSpeed(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
+	void NormalAttack(CCharacter* target);
+	
 
 	// gets & sets
 	float GetHP() {return m_HealthPoint;}
@@ -44,8 +48,6 @@ public:
 	float GetAttackRange() {return m_AttackRange;}
 	int GetNumberOfTarget() {return m_NumberOfTarget;}
 	int GetAttackSpeed() {return m_AttackSpeed;}
-	int GetNowTimeSEC() {return m_NowTime/CLOCKS_PER_SEC;}
-	int GetCreateTimeSEC() {return m_CreateTime/CLOCKS_PER_SEC;}
 	CharacterIdentity GetIdentity() {return m_Identity;}
 	NNSprite *GetSprite(){return m_Sprite;}
 
@@ -58,12 +60,10 @@ public:
 	void SetNumberOfTarget(int NT) {m_NumberOfTarget = NT;}
 	void SetAttackSpeed(int AS) {m_AttackSpeed = AS;}
 	void SetIdentity(CharacterIdentity set_id) {m_Identity = set_id;}
-	void SetNowTime(clock_t time) {m_NowTime = time;}
-	void SetCreateTime(clock_t time) {m_CreateTime = time;}
-	void SetIceStartTime(clock_t time) {m_iceStartTime = time;}
-	void SetIceNowTime(clock_t time) {m_iceNowTime = time;};
-	void SetIceState(bool ice_state) {m_FrozenState = ice_state;}
-	void SetFrozenTime(int ft) { m_RemainingFrozenTime = ft;}
+	void SetCreateTime(clock_t time) {m_LastAttackTime = time;}
+	void SetBeginFreezingTime(clock_t time) {m_BeginFreezingTIme = time;}
+	void SetFreeze(bool ice_state) {m_Freeze = ice_state;}
+	void SetTotalFreezingTime(clock_t tft) { m_TotalFreezingTime = tft;}
 
 	
 protected: 
@@ -81,20 +81,21 @@ protected:
 	float	m_AttackRange;
 	int		m_NumberOfTarget;
 	int		m_AttackSpeed;
+	bool	m_SuicideBomber;
 	bool	m_SplashAttack;
-	float	m_SplashAttackRange;
 	bool	m_FreezingAttack;
-	int		m_FreezingAttackTime;		
+	float	m_SplashAttackRange;
+	clock_t	m_FreezingAttackDuration;		
 
-	// 공격 및 이동 관련 내부 변수
-	clock_t		m_NowTime;
-	clock_t		m_CreateTime;
-	clock_t		m_iceStartTime;
-	clock_t		m_iceNowTime;
-	CCharacter*	m_AttackTarget;
-	bool		m_FrozenState;
-	int			m_RemainingFrozenTime;
-	float		m_Sight;
+	// 공격 및 이동 관련 내부 변수	
+//	(std::list<CCharacter*>)*	enemyList;
+	CCharacter*		m_AttackTarget;	
+	clock_t			m_LastAttackTime;
+	bool			m_Freeze;
+	clock_t			m_BeginFreezingTIme;
+	clock_t			m_TotalFreezingTime;
+	float			m_Sight;
+	
 
 	// 기본 내부 변수
 	NNSprite*		m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?

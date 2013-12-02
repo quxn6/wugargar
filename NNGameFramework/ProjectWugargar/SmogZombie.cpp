@@ -14,7 +14,7 @@ CSmogZombie::~CSmogZombie(void)
 void CSmogZombie::initStatus( void )
 {
 	m_zombieType = SMOG_ZOMBIE;
-	m_HealthPoint = 80;
+	m_HealthPoint = 800;
 	m_HPRatioPer100 = m_HealthPoint/100;
 	m_MovingSpeed = 80.0f;
 	m_AttackPower = 10;
@@ -25,7 +25,7 @@ void CSmogZombie::initStatus( void )
 	m_CreateCost = 100;
 	m_Identity = Zombie;
 	m_SplashAttack = true;
-	m_SplashAttackRange = 30.0f;
+	m_SplashAttackRange = 100.0f;
 
 	ApplyZombieLevel();
 }

@@ -16,7 +16,6 @@ void CBase::initStatus( void )
 	m_NumberOfTarget = 0;
 	m_AttackSpeed = 0;	
 	m_AttackTarget = nullptr;
-	m_Identity = Base;
 }
 
 

@@ -8,8 +8,6 @@ public:
 	virtual	~CMuscleZombie(void);
 
 public :
-	NNSprite	*m_MuscleZombie;
-
 	void Render();
 	void Update( float dTime );
 

@@ -8,11 +8,10 @@ public:
 	virtual	~CIceZombie(void);
 
 public :
-	NNSprite	*m_IceZombie;
 
 	void Render();
 	void Update( float dTime );
-	void Attack();
+
 	NNCREATE_FUNC(CIceZombie);
 
 protected:

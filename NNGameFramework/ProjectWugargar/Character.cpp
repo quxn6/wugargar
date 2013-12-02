@@ -5,18 +5,118 @@
 
 CCharacter::CCharacter(void)
 {	
-	/* 적을 발견한 순간부터가 아닌 캐릭터가 만들어지고나서 부터의 시간으로 어택을 구현. 
-	타겟이 사정거리 안으로 들어온 순간부터의 시간을 기준으로 하는 것이 맞지만, update 안에서 공격 관련 함수가 계속 갱신되는 특성 때문에
-	생성자 안에서 m_CreateTime을 고정시키는 방법으로 우선 구현. ㅠㅠ*/
-	SetCreateTime(clock()); 
-	SetNowTime(clock());
-	m_FrozenState = false;
+	m_SplashAttack = false;
+	m_SuicideBomber = false;
+	m_FreezingAttack = false;
+
+	m_AttackTarget = nullptr;
+	m_LastAttackTime = 0;
+	m_Freeze = false;
+	m_BeginFreezingTIme = 0;
+	m_TotalFreezingTime = 0;
+	m_Sight = 0;
 	//sight는 철저하게 캐릭터가 안 겹치게 보이기 위한 연출을 위한 변수
 	//m_sight = 100.0f + rand() % 50;
 }
 
 CCharacter::~CCharacter(void)
 {
+}
+
+
+void CCharacter::InitSprite( std::wstring imagePath )
+{
+	m_Sprite = NNSprite::Create(imagePath);
+	
+
+	// 부모 노드의 위치에 영향을 받기 때문에 
+	// 부모인 캐릭터 노드의 위치를 설정하고 
+	// 자식인 sprite는 (0, 0)으로 초기화한다.
+	// 이것때문에 한시간 반을 헤맴 ㅠㅠ
+
+	m_Sprite->SetPosition(0.0f, 0.0f);	
+	AddChild(m_Sprite, 1);
+
+	/*
+	m_pShowHP = NNLabel::Create(L"HP", L"맑은 고딕", 10.f);
+	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+	AddChild(m_pShowHP, 20);
+	*/
+	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
+	m_pShowHP->SetCutSize(0,0,50.f,5.f);
+	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+	AddChild(m_pShowHP, 20);
+
+}
+
+// 기지주변에서 캐릭터 랜덤 생성
+void CCharacter::SetRandomPositionAroundBase()
+{
+	NNPoint baseLocation;
+
+	switch (m_Identity)
+	{
+	case Zombie:
+		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase()->GetPosition();
+		baseLocation.SetX(baseLocation.GetX()+TILE_SIZE_X);
+		baseLocation.SetY(baseLocation.GetY()+TILE_SIZE_Y);
+		break;
+	case Police:
+		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase()->GetPosition();
+		baseLocation.SetX(baseLocation.GetX()-TILE_SIZE_X);
+		break;
+	default:
+		break;
+	}
+
+	int random_location_x = rand() % TILE_SIZE_X;
+	int random_location_y = rand() % TILE_SIZE_Y;
+
+	SetPosition((baseLocation.GetX()+random_location_x),(baseLocation.GetY()+random_location_y));
+}
+
+
+void CCharacter::Render()
+{
+	NNObject::Render();
+}
+
+void CCharacter::Update( float dTime )
+{
+	clock_t currentTime = clock();
+
+	UpdateHPBar();	
+	DetermineAttackTarget();
+
+	//현재 얼어있는 상태라면 이동/공격이 불가
+	if(m_Freeze) {
+		CheckMeltingTime(currentTime);
+	} else {
+		//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
+		//공격하고 그렇지 않으면 Attack Target에게 접근
+		if(TargetInRange()) {
+			if( CheckAttackSpeed(currentTime) ) { 
+				Attack(currentTime);				
+			}
+		} else {
+			GoToAttackTarget(dTime);
+		}
+	}
+}
+
+void CCharacter::UpdateHPBar( void )
+{
+	float HP = m_HealthPoint;
+	if( HP/m_HPRatioPer100 >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
+		m_pShowHP->SetCutSize(0,0,HP/2,5.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
+	} else if( HP/m_HPRatioPer100 < 70 && HP/m_HPRatioPer100 >= 30){
+		m_pShowHP->SetCutSize(0,21,HP/2,26.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-21.f);
+	} else {
+		m_pShowHP->SetCutSize(0,35,HP/2,40.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-35.f);
+	}
 }
 
 
@@ -48,146 +148,106 @@ void  CCharacter::DetermineAttackTarget()
 	switch(this->GetIdentity())
 	{
 	case Zombie:
-		for(const auto& child : CPlayScene::GetInstance()->GetPoliceList())
+		for(const auto& enemy : CPlayScene::GetInstance()->GetPoliceList())
 		{
-			next_distance = this->GetPosition().GetDistance(child->GetPosition());
+			next_distance = this->GetPosition().GetDistance(enemy->GetPosition());
 			if(return_distnace > next_distance)
 			{
 				return_distnace = next_distance;
-				m_AttackTarget = child;
+				m_AttackTarget = enemy;
 			}
 		}
-		if(m_AttackTarget == NULL)
-			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase();
+// 		if(m_AttackTarget == NULL)
+// 			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase();
 		break;
 
 	case Police:
-		for(const auto& child : CPlayScene::GetInstance()->GetZombieList())
+		for(const auto& enemy : CPlayScene::GetInstance()->GetZombieList())
 		{
-			next_distance= this->GetPosition().GetDistance(child->GetPosition());
+			next_distance= this->GetPosition().GetDistance(enemy->GetPosition());
 			if(return_distnace > next_distance)
 			{
 			 	return_distnace = next_distance;
-			 	m_AttackTarget = child;
+			 	m_AttackTarget = enemy;
 			}
 		}
-		if(m_AttackTarget == NULL)
-			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase();
-		break;
+// 		if(m_AttackTarget == NULL)
+// 			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase();
+ 		break;
 	default:
 		break;
 	}
 }
 
-void CCharacter::InitSprite( std::wstring imagePath )
+
+void CCharacter::Attack( clock_t currentTime )
 {
-	m_Sprite = NNSprite::Create(imagePath);
+	// When character has freezing attack
+	if (m_FreezingAttack) {
+		m_AttackTarget->SetFreeze(true);
+		m_AttackTarget->SetBeginFreezingTime(currentTime);
+		m_AttackTarget->SetTotalFreezingTime(m_FreezingAttackDuration);
+	}
+
 	
+	//splash속성이 true인 몬스터면 splash어택
+	if(m_SplashAttack) {
+		SplashAttack(m_AttackTarget->GetPosition());
+	} else { // 아니면 normal attack
+		NormalAttack(m_AttackTarget);
+	}	
 
-	// 부모 노드의 위치에 영향을 받기 때문에 
-	// 부모인 캐릭터 노드의 위치를 설정하고 
-	// 자식인 sprite는 (0, 0)으로 초기화한다.
-	// 이것때문에 한시간 반을 헤맴 ㅠㅠ
+	// 자폭 공격 캐릭터일 경우 hp를 0으로..
+	if (m_SuicideBomber) {
+		m_HealthPoint = 0.0f;
+	}
 
-	m_Sprite->SetPosition(0.0f, 0.0f);	
-	AddChild(m_Sprite, 1);
+	// set the last attack time
+	m_LastAttackTime = currentTime;
+}
 
-	/*
-	m_pShowHP = NNLabel::Create(L"HP", L"맑은 고딕", 10.f);
-	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
-	AddChild(m_pShowHP, 20);
-	*/
-	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
-	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
-	AddChild(m_pShowHP, 20);
-
+// 일반 공격, 나의 공격력과 적의 방어력 차이 만큼을 적 HP에서 빼준다.
+void CCharacter::NormalAttack( CCharacter* target )
+{
+	int damage = m_AttackPower - target->GetDefensivePower();
+	float targetHP = target->GetHP(); 
+	target->SetHP(targetHP-damage) ;
 }
 
 
-
-void CCharacter::SetRandomPositionAroundBase()
+ /*
+ 정인호. 11/20
+ 광역 공격 처리. 현재 로직은 PlayScene의 모든 Enemy를 리스트로 돌면서
+ 지정된 SplashRange내부에 있는 적들은 모두 데미지를 받도록 처리함
+ */
+void CCharacter::SplashAttack( NNPoint splashPoint )
 {
-	NNPoint baseLocation;
+// 	for (const auto& enemy : (*enemyList) {		 
+// 		 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
+// 			 NormalAttack(enemy);
+// 		 }
+// 	}
 	
-	switch (m_Identity)
-	{
-	case Zombie:
-		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase()->GetPosition();
-		baseLocation.SetX(baseLocation.GetX()+TILE_SIZE_X);
-		baseLocation.SetY(baseLocation.GetY()+TILE_SIZE_Y);
-		break;
-	case Police:
-		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase()->GetPosition();
-		baseLocation.SetX(baseLocation.GetX()-TILE_SIZE_X);
-		break;
-	default:
-		break;
-	}
-	
-	int random_location_x = rand() % TILE_SIZE_X;
-	int random_location_y = rand() % TILE_SIZE_Y;
+	 switch (m_Identity)
+	 {
+	 case Zombie:
+		 for (const auto& enemy : CPlayScene::GetInstance()->GetPoliceList()) {		 
+			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
+				 NormalAttack(enemy);
+			 }
+		 }
+		 break;
+	 case Police:
+		 for (const auto& enemy : CPlayScene::GetInstance()->GetZombieList()) {
+			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
+				 NormalAttack(enemy);
+			 }
+		 }
+		 break;
+	 default:
+		 break;
 
-	SetPosition((baseLocation.GetX()+random_location_x),(baseLocation.GetY()+random_location_y));
-}
-
-
-void CCharacter::Render()
-{
-	NNObject::Render();
-}
-
-void CCharacter::Update( float dTime )
-{
-	//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
-	//공격하고 그렇지 않으면 Attack Target에게 접근
-
-	float HP = GetHP();
-	if( HP/m_HPRatioPer100 >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
-		m_pShowHP->SetCutSize(0,0,HP/2,5.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
-	} else if( HP/m_HPRatioPer100 < 70 && HP/m_HPRatioPer100 >= 30){
-		m_pShowHP->SetCutSize(0,21,HP/2,26.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-21.f);
-	} else {
-		m_pShowHP->SetCutSize(0,35,HP/2,40.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-35.f);
-	}
-	
-	int CheckTimeChange = GetNowTimeSEC();
-	SetNowTime(clock());
-	DetermineAttackTarget();
-	CheckIceState();
-
-
-	//현재 얼어있는 상태라면 이동/공격이 불가
-	if(!m_FrozenState) {
-		if(IsAttack()) {
-			// 초단위로 시간이 변했는가도 함께 체크한다 
-			// (dTime이 너무 작아 int로 반환하는 Get~TimeSEC 
-			// 함수는 1초 내에 같은값을 dTime마다 반환한다.) 
-			if((GetNowTimeSEC() - GetCreateTimeSEC()) % GetAttackSpeed() == 0 && CheckTimeChange != GetNowTimeSEC()) { 
-				Attack();
-			}
-		} else {
-			GoToAttackTarget(dTime);
-		}
-	}
-}
-
- void CCharacter::Attack()
-{
-	CCharacter* target = this->m_AttackTarget;
-	int damage;
-
-	if(this->m_AttackTarget){
-		damage = this->GetAttackPower() - target->GetDefensivePower();
-		target->SetHP(target->GetHP()-damage) ;
-	}
-
-	//Splash속성이 true인 몬스터면 Splash어택
-	if(this->m_SplashAttack)
-		SplashAttack(damage);
+	 }
 }
 
 
@@ -235,61 +295,8 @@ void CCharacter::GoToAttackTarget(float dTime)
 	
 }
 
-/*
-정인호. 11/14
-현재 상황에서 AttackTarget이 공격 사정거리 안에 들어가있는지 체크.
-공격이 가능하면 True, 가능하지 않으면(멀어서) False
-*/
-bool CCharacter::IsAttack()
-{
-	float distance_attacktarget;
-	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
 
-	
 
-	if(distance_attacktarget <= m_AttackRange)
-		return true;
-	else
-		return false;
-}
-
-/*
-정인호. 11/20
-광역 공격 처리. 현재 로직은 PlayScene의 모든 Enemy를 리스트로 돌면서
-지정된 SplashRange내부에 있는 적들은 모두 데미지를 받도록 처리함
-*/
-void CCharacter::SplashAttack(int damage)
-{
-
-	switch (m_Identity)
-	{
-	case Zombie:
-		for (const auto& child : CPlayScene::GetInstance()->GetPoliceList())
-		{
-			float distance_attacktarget;
-			distance_attacktarget = this->GetPosition().GetDistance(child->GetPosition());
-
-			if(this->m_SplashAttackRange >= distance_attacktarget)
-				child->SetHP(child->GetHP()-damage);
-		}
-		break;
-	case Police:
-		for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
-		{
-			float distance_attacktarget;
-			distance_attacktarget = this->GetPosition().GetDistance(child->GetPosition());
-
-			if(this->m_SplashAttackRange >= distance_attacktarget)
-				child->SetHP(child->GetHP()-damage);
-		}
-		break;
-	case Base:
-		break;
-	default:
-		break;
-	
-	}
-}
 
 
 /*
@@ -297,20 +304,21 @@ void CCharacter::SplashAttack(int damage)
 얼게 된 시간, 현재 시간과 얼어있는 상태를 체크하여 현재 상태가 
 아직도 냉동상태인지 해동상태인지 체크하고 반영.
 */
-void CCharacter::CheckIceState()
+void CCharacter::CheckMeltingTime( clock_t currentTime )
 {
-	if(!m_FrozenState)
-		return ;
-
-	SetIceNowTime(clock());
-	printf_s("ICETIME : %d, NOWTIME : %d\n", m_iceStartTime/CLOCKS_PER_SEC, m_iceNowTime/CLOCKS_PER_SEC);
-
-
-	if( (m_iceNowTime/CLOCKS_PER_SEC - m_iceStartTime/CLOCKS_PER_SEC) > m_RemainingFrozenTime)
-	{
-		printf_s("UNICE\n");
-		m_FrozenState = false;
+	if( (currentTime - m_BeginFreezingTIme) >= m_TotalFreezingTime)	{
+		m_Freeze = false;		
 	}
+
+
+#ifdef _DEBUG
+	if( (currentTime - m_BeginFreezingTIme) >= m_TotalFreezingTime) {
+		printf_s("UNICE\n");
+	}
+	if ( currentTime % 1000 == 0) {
+		printf_s("ICETIME : %d, NOWTIME : %d\n", m_BeginFreezingTIme, currentTime);
+	}	
+#endif
 
 }
 
@@ -324,8 +332,6 @@ void CCharacter::MakeCharacterWalk(float dTime)
 		break;
 	case Police:
 		this->SetPosition(this->GetPosition() - NNPoint( (this->GetMovingSpeed()), 0.0f) * dTime);
-		break;
-	case Base:
 		break;
 	default:
 		break;

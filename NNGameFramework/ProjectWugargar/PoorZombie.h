@@ -8,8 +8,6 @@ public:
 	virtual	~CPoorZombie(void);
 
 public :
-	NNSprite	*m_PoorZombie;
-
 	void Render();
 	void Update( float dTime );
 

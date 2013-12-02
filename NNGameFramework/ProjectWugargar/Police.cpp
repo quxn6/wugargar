@@ -5,6 +5,7 @@
 
 CPolice::CPolice(void)
 {
+//	enemyList = &(CPlayScene::GetInstance()->GetZombieList());
 }
 
 

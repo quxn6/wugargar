@@ -4,6 +4,7 @@
 
 CZombie::CZombie(void)
 {
+//	enemyList = &(CPlayScene::GetInstance()->GetPoliceList());
 }
 
 
