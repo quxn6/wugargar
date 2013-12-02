@@ -237,6 +237,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 		break;
 	case HERO_ZOMBIE_SM9 :
 		tmpZombieObject = CHeroZombie::Create();
+		m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint()-100); // 영웅좀비 생성시 로컬머니도 감소+ 미트포인트도 감소
 		break;
 	default:
 		break; 

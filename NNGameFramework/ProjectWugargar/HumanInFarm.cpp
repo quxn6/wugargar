@@ -109,10 +109,10 @@ void CHumanInFarm::CollectMeatPointFromGrownUp()
 			}
 			if(m_AgeState == GROWN_UP){
 				printf_s("ÅÍ¶ß¸°´Ù\n");
+				int rannum = rand()%6;
 				m_AgeState = DEAD;
 				NNPoint NowPosition = m_pGrownUp->GetPosition();
 				RemoveChild(m_pGrownUp,true);
-				int rannum = rand()%6;
 				m_pDead = NNSprite::Create(DeadImagePath[rannum]);
 				m_pDead->SetPosition(NowPosition);
 				AddChild(m_pDead,100);

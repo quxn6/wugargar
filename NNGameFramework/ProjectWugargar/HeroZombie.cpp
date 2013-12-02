@@ -23,7 +23,7 @@ void CHeroZombie::initStatus( void )
 	m_AttackRange = 120.0f;
 	m_NumberOfTarget = 5;
 	m_AttackSpeed = 3000;
-	m_CreateCost = 1;
+	m_CreateCost = 500;
 	m_Identity = Zombie;
 	m_SplashAttack = false;
 }
