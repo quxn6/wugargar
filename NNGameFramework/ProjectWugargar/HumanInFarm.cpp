@@ -5,6 +5,12 @@
 CHumanInFarm::CHumanInFarm(void)
 {
 	CreateBaby();
+	DeadImagePath[0] = L"wugargar/deadhuman/0.png";
+	DeadImagePath[1] = L"wugargar/deadhuman/1.png";
+	DeadImagePath[2] = L"wugargar/deadhuman/2.png";
+	DeadImagePath[3] = L"wugargar/deadhuman/3.png";
+	DeadImagePath[4] = L"wugargar/deadhuman/4.png";
+	DeadImagePath[5] = L"wugargar/deadhuman/5.png";
 }
 
 
@@ -22,7 +28,7 @@ void CHumanInFarm::Update( float dTime )
 	NNObject::Update(dTime);
 	life_time = clock()/CLOCKS_PER_SEC - birth_time;
 	Grow();
-	if( m_AgeState == GROWN_UP ){
+	if( m_AgeState == GROWN_UP || m_AgeState == DEAD ){
 		CollectMeatPointFromGrownUp();
 	}
 }
@@ -73,7 +79,7 @@ void CHumanInFarm::Grow()
 	{
 		m_AgeState = GROWN_UP;
 		NNPoint NowPosition = m_pMiddleBaby->GetPosition();
-		RemoveChild(m_pMiddleBaby,1);
+		RemoveChild(m_pMiddleBaby,true);
 		m_pGrownUp = NNAnimation::Create(6,
 			L"wugargar/grown-up/1.png",
 			L"wugargar/grown-up/2.png",
@@ -92,14 +98,24 @@ void CHumanInFarm::CollectMeatPointFromGrownUp()
 		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
 		bool isInXCoordRange = (m_pGrownUp->GetPositionX() < cursorPosition.GetX()) && ( ( m_pGrownUp->GetPositionX() + 50 ) > cursorPosition.GetX() );
 		bool isInYCoordRange = (m_pGrownUp->GetPositionY() < cursorPosition.GetY()) && ( ( m_pGrownUp->GetPositionY() + 90 ) > cursorPosition.GetY() );
-		if(isInXCoordRange && isInYCoordRange && m_pGrownUp->IsVisible() == true)
-		{
-			CHumanFarm* m_pHumanFarm = CPlayScene::GetInstance()->GetHumanFarm();
-			m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 100);
-			//m_pHumanFarm->RemoveChild(this,true);
-			//임시방편으로.. 안에서 removechild 시키면 죽어버림 ㅠㅠ
-			m_pGrownUp->SetVisible( false );
-			return;
+		
+		if(isInXCoordRange && isInYCoordRange){
+			if(m_AgeState == DEAD)
+			{
+				CHumanFarm* m_pHumanFarm = CPlayScene::GetInstance()->GetHumanFarm();
+				m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 100);
+				RemoveChild(m_pDead,true);
+			}
+			if(m_pGrownUp){
+				m_AgeState = DEAD;
+				NNPoint NowPosition = m_pGrownUp->GetPosition();
+				RemoveChild(m_pGrownUp,true);
+				int rannum = rand()%6;
+				m_pDead = NNSprite::Create(DeadImagePath[rannum]);
+				m_pDead->SetPosition(NowPosition);
+				m_pDead->SetVisible(true);
+				AddChild(m_pDead,100);
+			}
 		}
 	}
 }

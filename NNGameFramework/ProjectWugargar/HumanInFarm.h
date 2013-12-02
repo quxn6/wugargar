@@ -9,7 +9,8 @@ enum Age
 {
 	SMALL_BABY,
 	MIDDLE_BABY,
-	GROWN_UP
+	GROWN_UP,
+	DEAD
 };
 
 class CHumanInFarm : public NNObject
@@ -26,6 +27,10 @@ public :
 	NNAnimation *m_pSmallBaby;
 	NNAnimation *m_pMiddleBaby;
 	NNAnimation *m_pGrownUp;
+
+	NNSprite *m_pDead;
+
+	std::wstring DeadImagePath[6];
 
 	void Render();
 	void Update( float dTime );
