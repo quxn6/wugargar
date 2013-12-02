@@ -16,11 +16,16 @@ public :
 	void Render();
 	void Update( float dTime );
 	bool CheckButtonArea( void );
-	bool ButtonPressed ();
+	bool ButtonPressed();
+
+	bool m_InCoolTime;
+	clock_t m_tCoolTime;
+	clock_t m_tClickedTime;
 
 protected :
 	NNSprite *m_pPressedImage;
 	NNSprite *m_pNormalImage;
 	NNLabel	 *m_pButtonLabel; 
+
 };
 
