@@ -54,7 +54,7 @@ public:
 
 	void SetPoliceInfo(NNXML *PoliceInfoXml, int policeInfoIdx);
 	void ReleaseInstance();
-	void GetInstance();
+	CCharacterConfig* GetInstance();
 
 
 };
