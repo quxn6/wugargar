@@ -45,7 +45,7 @@ class CCharacterConfig
 {
 public:
 	CCharacterConfig(void);
-	~CCharacterConfig(void);
+	virtual ~CCharacterConfig(void);
 
 	static CCharacterConfig* m_pInstance;
 
@@ -53,8 +53,8 @@ public:
 	ZombieInfo zombieInfo[NUMBER_OF_ZOMBIE_TYPES];
 
 	void SetPoliceInfo(NNXML *PoliceInfoXml, int policeInfoIdx);
-	void ReleaseInstance();
-	CCharacterConfig* GetInstance();
+	static void ReleaseInstance();
+	static CCharacterConfig* GetInstance();
 
 
 };

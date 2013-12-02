@@ -14,12 +14,12 @@ CPolice::~CPolice(void)
 
 void CPolice::Render()
 {
-
+	NNObject::Render();
 }
 
 void CPolice::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }
 
 //(int)PoliceType¿ª idx∑Œ

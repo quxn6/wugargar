@@ -4,6 +4,7 @@
 #include "PlayScene.h"
 #include "NNResourceManager.h"
 #include "GameConfig.h"
+#include "CharacterConfig.h"
 
 
 
@@ -115,5 +116,24 @@ void CStartScene::load()
 
 void CStartScene::loadPoliceInfo()
 {
+	CCharacterConfig *pCharacterConfig = CCharacterConfig::GetInstance();
+	m_PoliceXML[0] = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/Police/NormalPolice.txt");
+	m_PoliceXML[1] = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/Police/MachinegunPolice.txt");
+	m_PoliceXML[2] = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/Police/ShiledPolice.txt");
+	m_PoliceXML[3] = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/Police/GrenadePolice.txt");
+	m_PoliceXML[4] = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/Police/ShotgunPolice.txt");
+	m_PoliceXML[5] = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/Police/FirebatPolice.txt");
+	//MemoryLeak?
+
+
+	for(int idx=0; idx<NUMBER_OF_POLICE_TYPES; ++idx)
+	{
+		if(!(m_PoliceXML[idx]->GetLoadSuccess())){
+			printf_s("Police Information XML Load Fail!\n");
+			return;
+		}
+		pCharacterConfig->GetInstance()->SetPoliceInfo(m_PoliceXML[idx], idx);
+	}
+
 
 }

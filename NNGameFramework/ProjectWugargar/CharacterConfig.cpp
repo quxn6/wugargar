@@ -33,10 +33,7 @@ void CCharacterConfig::ReleaseInstance()
 
 void CCharacterConfig::SetPoliceInfo( NNXML *PoliceInfoXml, int policeInfoIdx )
 {
-	if(!(PoliceInfoXml->GetLoadSuccess())){
-		printf_s("Police Information XML Load Fail!\n");
-		return;
-	}
+	
 
 	policeInfo[policeInfoIdx].HealthPoint = (std::stof(PoliceInfoXml->XPathToString("/Police/HealthPoint/text()").c_str()) );
 	policeInfo[policeInfoIdx].MovingSpeed = (std::stof(PoliceInfoXml->XPathToString("/Police/MovingSpeed/text()").c_str()) );
