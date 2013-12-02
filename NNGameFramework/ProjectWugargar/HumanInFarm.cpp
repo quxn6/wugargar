@@ -100,21 +100,23 @@ void CHumanInFarm::CollectMeatPointFromGrownUp()
 		bool isInYCoordRange = (m_pGrownUp->GetPositionY() < cursorPosition.GetY()) && ( ( m_pGrownUp->GetPositionY() + 90 ) > cursorPosition.GetY() );
 		
 		if(isInXCoordRange && isInYCoordRange){
-			if(m_AgeState == DEAD)
-			{
-				CHumanFarm* m_pHumanFarm = CPlayScene::GetInstance()->GetHumanFarm();
-				m_pHumanFarm->SetMeatPoint(m_pHumanFarm->GetMeatPoint() + 100);
+			if(m_AgeState == DEAD){
+				printf_s("°ÅµÐ´Ù\n");
 				RemoveChild(m_pDead,true);
+				CPlayer* m_pPlayer = CPlayer::GetInstance();
+				m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint() + 30);
+				return;
 			}
-			if(m_pGrownUp){
+			if(m_AgeState == GROWN_UP){
+				printf_s("ÅÍ¶ß¸°´Ù\n");
 				m_AgeState = DEAD;
 				NNPoint NowPosition = m_pGrownUp->GetPosition();
 				RemoveChild(m_pGrownUp,true);
 				int rannum = rand()%6;
 				m_pDead = NNSprite::Create(DeadImagePath[rannum]);
 				m_pDead->SetPosition(NowPosition);
-				m_pDead->SetVisible(true);
 				AddChild(m_pDead,100);
+				return;
 			}
 		}
 	}

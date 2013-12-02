@@ -58,6 +58,8 @@ public:
 	void IncreaseStage() {++m_CurrentStage;}
 	void NextCity() {m_CurrentStage += 100;}
 
+	void SetMeatPoint(int meatPoint) { m_pMeatPoint = meatPoint;}
+	int GetMeatPoint() { return m_pMeatPoint;}
 	
 private:
 	PlayerStatus m_playerStatus;
@@ -73,6 +75,7 @@ private:
 	int m_TotalKill;
 	int m_TotalLoss;
 	float m_InfectionRate;
-	
+	int m_pMeatPoint;
+
 };
 

@@ -5,7 +5,6 @@
 CHumanFarm::CHumanFarm(void)
 {
 	InitFarmBackground();
-	m_pMeatPoint = 100; //°í±â Æ÷ÀÎÆ® ÃÊ±âÈ­ (¾Æ±âµé ¸ÔÀÌ Áà¾ßÇÏ¹Ç·Î Ã·¿¡ 100¿øÁÜ)
 	m_pShowMeatPoint = NNLabel::Create( L"Meat Point", L"¸¼Àº °íµñ", 20.f );
 	m_pShowMeatPoint->SetPosition(10.f, FIRST_Y_COORDINATE_OF_UIBUTTON +5.f);
 	AddChild( m_pShowMeatPoint , 200);
@@ -45,6 +44,6 @@ void CHumanFarm::InitFarmBackground()
 void CHumanFarm::ShowMeatPoint()
 {
 	ZeroMemory(meatPointTemp, 256);	
-	swprintf_s(meatPointTemp, _countof(meatPointTemp), L"meat point = %d", m_pMeatPoint );
+	swprintf_s(meatPointTemp, _countof(meatPointTemp), L"meat point = %d", CPlayer::GetInstance()->GetMeatPoint() );
 	m_pShowMeatPoint->SetString(meatPointTemp);
 }

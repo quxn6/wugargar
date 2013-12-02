@@ -18,6 +18,7 @@ void CPlayer::InitPlayer()
 	m_TotalKill = 0;
 	m_TotalLoss = 0;
 	m_InfectionRate = 20.0f;
+	m_pMeatPoint = 50;
 
 	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
 		m_CharacterLevel[i] = 0;
