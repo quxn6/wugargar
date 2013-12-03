@@ -61,7 +61,7 @@ bool NNApplication::Init( wchar_t* title, int width, int height, RendererStatus 
 	m_Renderer->Init();
 	m_pSceneDirector->Init();
 
-	srand( time(NULL) ) ;
+	srand( static_cast<unsigned int>(time(NULL)) ) ;
 
 	return true;
 }
@@ -160,7 +160,7 @@ bool NNApplication::_CreateWindow( wchar_t* title, int width, int height )
 
 	RegisterClassEx( &wcex );
 
-	DWORD style = WS_OVERLAPPEDWINDOW;
+	DWORD style = WS_CAPTION | WS_SYSMENU;
 
 	RECT wr = {0, 0, width, height};
 	AdjustWindowRect( &wr, WS_OVERLAPPEDWINDOW, FALSE );

@@ -65,6 +65,8 @@ void CStartScene::Update( float dTime )
 		// load game
 		if(m_pLoadGameButton->CheckButtonArea()) {
 			load();
+			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+			return ;
 		}
 		
 		// exit

@@ -98,8 +98,10 @@ void CNextStageScene::ShowResults( void )
 	swprintf_s(
 		m_ResultBuffer, 
 		_countof(m_ResultBuffer), 
-		L"Results\nGlobalMoney : %d \nTotal Kill : %d\nTotal Loss : %d\n", 
+		L"Results\nGlobalMoney : %d \nTotal Kill : %d \nTotal Loss : %d \nStage Kill : %d \nStage Loss : %d \n", 
 		m_pPlayer->GetGlobalMoney(),
+		m_pPlayer->GetTotalKill(),
+		m_pPlayer->GetTotalLoss(),
 		m_pPlayer->GetNumberOfKillInStage(), 
 		m_pPlayer->GetNumberOfLossInStage()
 		);
@@ -155,8 +157,10 @@ void CNextStageScene::Update( float dTime )
 				swprintf_s(
 					m_ResultBuffer, 
 					_countof(m_ResultBuffer), 
-					L"Results\nGlobalMoney : %d \nTotal Kill : %d \nTotal Loss : %d \n", 
+					L"Results\nGlobalMoney : %d \nTotal Kill : %d \nTotal Loss : %d \nStage Kill : %d \nStage Loss : %d \n", 
 					m_pPlayer->GetGlobalMoney(),
+					m_pPlayer->GetTotalKill(),
+					m_pPlayer->GetTotalLoss(),
 					m_pPlayer->GetNumberOfKillInStage(), 
 					m_pPlayer->GetNumberOfLossInStage()
 				);
