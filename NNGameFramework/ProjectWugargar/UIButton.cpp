@@ -51,16 +51,16 @@ void CUIButton::Render()
 
 void CUIButton::Update( float dTime )
 {
+	m_tNowTime = clock();
 	if(m_InCoolTime == true)
 	{
-		int CheckTimeChange = m_tNowTime/CLOCKS_PER_SEC;
-		m_tNowTime = clock()/CLOCKS_PER_SEC;
-		if(CheckTimeChange != m_tNowTime)//시간이 초단위로 지났는지 검사한다.
-			m_tPassTime += 1;
+		//printf_s("쿨타임 %d",(m_tNowTime - m_tClickedTime)/CLOCKS_PER_SEC);
+		if(m_tNowTime - m_tClickedTime >= m_tCoolTime){
+			m_InCoolTime = false;
+			m_tPassTime = 0; //passtime 초기화
+		}
 	}
-	else{
-		m_tNowTime = clock()/CLOCKS_PER_SEC;
-	}
+	
 }
 // 현재 마우스 커서의 위치가 UIbutton 위에 있는지를 체크함
 // parameter : void
