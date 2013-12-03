@@ -78,7 +78,7 @@ protected:
 	CharacterIdentity	m_Identity;
 	std::string			m_typeName; // xml parser를 위한 변수인가?
 	float	m_HealthPoint;
-	float	m_HPRatioPer100; //HP를 100에 대한 비율로 알기 위한 변수 
+	float	m_FullHP; //HP를 100에 대한 비율로 알기 위한 변수 
 	float	m_MovingSpeed;
 	int		m_AttackPower;
 	int		m_DefensivePower;

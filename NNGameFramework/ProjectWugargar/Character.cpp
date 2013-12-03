@@ -120,17 +120,16 @@ void CCharacter::Update( float dTime )
 }
 
 void CCharacter::UpdateHPBar( void )
-{
-	float HP = m_HealthPoint;
-	if( HP/m_HPRatioPer100 >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
-		m_pShowHP->SetCutSize(0,0,HP/2,5.f);
+{	
+	if( m_HealthPoint/m_FullHP*100 >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
+		m_pShowHP->SetCutSize(0,0,m_HealthPoint/2,5.f);
 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
-	} else if( HP/m_HPRatioPer100 < 70 && HP/m_HPRatioPer100 >= 30){
-		m_pShowHP->SetCutSize(0,21,HP/2,26.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-21.f);
+	} else if( m_HealthPoint/m_FullHP < 70 && m_HealthPoint/m_FullHP >= 30){
+		m_pShowHP->SetCutSize(0,21,m_HealthPoint/2,26.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
 	} else {
-		m_pShowHP->SetCutSize(0,35,HP/2,40.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()-35.f);
+		m_pShowHP->SetCutSize(0,35,m_HealthPoint/2,40.f);
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
 	}
 }
 

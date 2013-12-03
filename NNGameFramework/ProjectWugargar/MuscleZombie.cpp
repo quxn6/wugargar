@@ -15,7 +15,7 @@ void CMuscleZombie::initStatus( void )
 {
 	m_zombieType = MUSCLE_ZOMBIE;
 	m_HealthPoint = 300;
-	m_HPRatioPer100 = m_HealthPoint/100;
+	m_FullHP = m_HealthPoint;
 	m_MovingSpeed = 40.0f;
 	m_AttackPower = 5;
 	m_DefensivePower = 5;

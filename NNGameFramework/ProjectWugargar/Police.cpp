@@ -117,7 +117,7 @@ void CPolice::InitStatusByXML( NNXML *PoliceInfoXml, int policeInfoIdx )
 void CPolice::initStatus( CharacterInfo policeInfo )
 {
 	m_HealthPoint = policeInfo.HealthPoint;
-	m_HPRatioPer100 = m_HealthPoint/100;
+	m_FullHP = m_HealthPoint/100;
 	m_MovingSpeed = policeInfo.MovingSpeed;
 	m_AttackRange = policeInfo.AttackRange;
 	m_SplashAttackRange = policeInfo.SplashRange;
