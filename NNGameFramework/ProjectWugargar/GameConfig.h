@@ -11,7 +11,7 @@
 // max size x는 타일의 갯수를 의미한다. 가로 사이즈가 1024이므로 24를 위해 1칸정도 더 여유를 준다.
 // 세로 방향으로는 6 * 50 = 300의 크기를 가진다. 520 pixel~ 730까지는 UI가 사용한다.
 #define FIRST_Y_COORDINATE_OF_BACKGROUND	0
-#define FIRST_Y_COORDINATE_OF_MAPTILE		270
+#define FIRST_Y_COORDINATE_OF_MAPTILE		220
 #define MAP_SIZE_X	21
 #define MAP_SIZE_Y	6
 #define TILE_SIZE_X	50

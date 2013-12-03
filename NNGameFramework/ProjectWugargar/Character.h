@@ -27,17 +27,21 @@ public:
 
 	void InitSprite(std::wstring imagePath);
 	void SetRandomPositionAroundBase();
-	void DetermineAttackTarget();
-	void GoToAttackTarget(float dTime);
-	void UpdateHPBar(void);
-	void SplashAttack(NNPoint splashPoint, clock_t currentTime);
-	void CheckMeltingTime(clock_t currentTime);
-	void MakeCharacterWalk(float dTime);
-	void AttackEnemy(clock_t currentTime);
 
-	bool TargetInRange() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_AttackRange; };
+	void UpdateHPBar(void);	
+	void DetermineAttackTarget();
 	bool CheckAttackTiming(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
+	void CheckMeltingTime(clock_t currentTime);
+	
+	void AttackEnemy(clock_t currentTime);
 	void NormalAttack(CCharacter* target, clock_t currentTime);
+	void SplashAttack(NNPoint splashPoint, clock_t currentTime);
+
+	void GoToAttackTarget(float dTime);
+	void GoForward(float dTime);
+
+	bool TargetInRange() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_AttackRange; }
+	bool TargetInSight() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_Sight; }
 	
 
 	// gets & sets

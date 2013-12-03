@@ -14,9 +14,7 @@ CCharacter::CCharacter(void)
 	m_Freeze = false;
 	m_BeginFreezingTIme = 0;
 	m_TotalFreezingTime = 0;
-	m_Sight = MAP_SIZE_Y * TILE_SIZE_Y / 2;
-	//sight는 철저하게 캐릭터가 안 겹치게 보이기 위한 연출을 위한 변수
-	//m_sight = 100.0f + rand() % 50;
+	m_Sight = MAP_SIZE_Y * TILE_SIZE_Y / 2;	
 }
 
 CCharacter::~CCharacter(void)
@@ -66,6 +64,8 @@ void CCharacter::SetRandomPositionAroundBase()
 	default:
 		break;
 	}
+
+	// 이하는 기지 주변에서 생성하기 위한 내용
 //	NNPoint baseLocation;
 // 	switch (m_Identity)
 // 	{
@@ -106,13 +106,15 @@ void CCharacter::Update( float dTime )
 		CheckMeltingTime(currentTime);
 	} else {
 		//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
-		//공격하고 그렇지 않으면 Attack Target에게 접근
+		//공격하고 그렇지 않으면 이동, 시야에 없으면 앞으로 전진
 		if(TargetInRange()) {
 			if( CheckAttackTiming(currentTime) ) { 
 				AttackEnemy(currentTime);				
 			}
-		} else {
+		} else if (TargetInSight() ) {			
 			GoToAttackTarget(dTime);
+		} else {
+			GoForward(dTime);
 		}
 	}
 }
@@ -152,7 +154,6 @@ void  CCharacter::DetermineAttackTarget()
 {
 	float closestTargetDistance = 1000000.0f;
 	float nextTargetDistance;
-
 
 	switch(this->GetIdentity())
 	{
@@ -268,17 +269,7 @@ void CCharacter::GoToAttackTarget(float dTime)
 	float cosd = (gap_x) / gap;
 	float sind = (gap_y) / gap;
 
-
-	float distance_attacktarget;
-	distance_attacktarget = this->GetPosition().GetDistance(m_AttackTarget->GetPosition());
-	//Character가 안겹치게 하기 위한 연출을 위한 코드
-	
-	/*if(distance_attacktarget > m_sight)
-	{
-		MakeCharacterWalk(dTime);
-		return ;
-	}*/	
-	this->SetPosition(this->m_Position + NNPoint( (m_MovingSpeed*cosd),( m_MovingSpeed*sind) )*dTime);	
+	m_Position = m_Position + NNPoint( (m_MovingSpeed * cosd),( m_MovingSpeed * sind) )*dTime;	
 }
 
 
@@ -309,18 +300,18 @@ void CCharacter::CheckMeltingTime( clock_t currentTime )
 }
 
 
-void CCharacter::MakeCharacterWalk(float dTime)
+void CCharacter::GoForward(float dTime)
 {
 	switch (m_Identity)
 	{
 	case Zombie:
-		this->SetPosition(this->GetPosition() + NNPoint( (this->GetMovingSpeed()), 0.0f) * dTime);
+		m_Position = m_Position + NNPoint( (m_MovingSpeed), 0.0f) * dTime;
 		break;
 	case Police:
-		this->SetPosition(this->GetPosition() - NNPoint( (this->GetMovingSpeed()), 0.0f) * dTime);
+		m_Position = m_Position - NNPoint( (m_MovingSpeed), 0.0f) * dTime;
 		break;
 	default:
 		break;
 	}
-
+	
 }
