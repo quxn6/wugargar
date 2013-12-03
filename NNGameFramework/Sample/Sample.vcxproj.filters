@@ -34,6 +34,24 @@
     <Filter Include="Scene\NetworkSample\Player">
       <UniqueIdentifier>{2f39f06d-4a72-46ef-9ebe-9e82dd378fb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\ParticleSample">
+      <UniqueIdentifier>{02ffd270-ce42-477c-aa27-bdc49d44863c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ZipSample">
+      <UniqueIdentifier>{0f034720-040d-43c4-9aaa-290554d8dc59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\UISetSample">
+      <UniqueIdentifier>{42aa5b00-a41c-47d2-bde5-a19e71dabd0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\UISetSample\UISet">
+      <UniqueIdentifier>{6e8cdf27-7c69-4e8a-b2d7-8d7b2234992e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\TestSample">
+      <UniqueIdentifier>{b28f6088-4a45-4697-8f8a-91e780de8cf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\LabelSample">
+      <UniqueIdentifier>{f06158c1-795d-4582-a776-f2b658548b7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -52,9 +70,6 @@
     <ClCompile Include="SpriteSample.cpp">
       <Filter>Scene\SpriteSample</Filter>
     </ClCompile>
-    <ClCompile Include="XMLSample.cpp">
-      <Filter>Scene\XMLSample</Filter>
-    </ClCompile>
     <ClCompile Include="NetworkSample.cpp">
       <Filter>Scene\NetworkSample</Filter>
     </ClCompile>
@@ -66,6 +81,27 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Scene\NetworkSample\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSample.cpp">
+      <Filter>Scene\ParticleSample</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLSample.cpp">
+      <Filter>Scene\XMLSample</Filter>
+    </ClCompile>
+    <ClCompile Include="ZipSample.cpp">
+      <Filter>Scene\ZipSample</Filter>
+    </ClCompile>
+    <ClCompile Include="UISetSample.cpp">
+      <Filter>Scene\UISetSample</Filter>
+    </ClCompile>
+    <ClCompile Include="UISet.cpp">
+      <Filter>Scene\UISetSample\UISet</Filter>
+    </ClCompile>
+    <ClCompile Include="TestSample.cpp">
+      <Filter>Scene\TestSample</Filter>
+    </ClCompile>
+    <ClCompile Include="LabelSample.cpp">
+      <Filter>Scene\LabelSample</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,9 +120,6 @@
     <ClInclude Include="SpriteSample.h">
       <Filter>Scene\SpriteSample</Filter>
     </ClInclude>
-    <ClInclude Include="XMLSample.h">
-      <Filter>Scene\XMLSample</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkSample.h">
       <Filter>Scene\NetworkSample</Filter>
     </ClInclude>
@@ -98,6 +131,27 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Scene\NetworkSample\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSample.h">
+      <Filter>Scene\ParticleSample</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLSample.h">
+      <Filter>Scene\XMLSample</Filter>
+    </ClInclude>
+    <ClInclude Include="ZipSample.h">
+      <Filter>Scene\ZipSample</Filter>
+    </ClInclude>
+    <ClInclude Include="UISetSample.h">
+      <Filter>Scene\UISetSample</Filter>
+    </ClInclude>
+    <ClInclude Include="UISet.h">
+      <Filter>Scene\UISetSample\UISet</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSample.h">
+      <Filter>Scene\TestSample</Filter>
+    </ClInclude>
+    <ClInclude Include="LabelSample.h">
+      <Filter>Scene\LabelSample</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

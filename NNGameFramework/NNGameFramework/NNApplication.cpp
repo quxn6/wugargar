@@ -5,6 +5,11 @@
 #include "NNResourceManager.h"
 #include "NNNetworkSystem.h"
 
+#include "NNRandom.h"
+
+#include "NND2DRenderer.h"
+#include "NND3DRenderer.h"
+
 NNApplication* NNApplication::m_pInstance = nullptr;
 
 NNApplication::NNApplication()
@@ -15,11 +20,10 @@ NNApplication::NNApplication()
 	m_Renderer(nullptr), m_pSceneDirector(nullptr),
 	m_RendererStatus(UNKNOWN),m_DestroyWindow(false)
 {
-
 }
 NNApplication::~NNApplication()
 {
-
+	// Release();
 }
 
 NNApplication* NNApplication::GetInstance()
@@ -75,6 +79,9 @@ bool NNApplication::Release()
 	NNInputSystem::ReleaseInstance();
 	NNAudioSystem::ReleaseInstance();
 	NNNetworkSystem::ReleaseInstance();
+
+	NNRandom::ReleaseInstance();
+
 	SafeDelete( m_Renderer );
 	ReleaseInstance();
 
@@ -170,8 +177,15 @@ bool NNApplication::_CreateRenderer( RendererStatus renderStatus )
 	switch( renderStatus )
 	{
 	case D2D:
-		m_Renderer = new NND2DRenderer();
-		break;
+		{
+			m_Renderer = new NND2DRenderer();
+			break;
+		}
+	case D3D:
+		{
+			m_Renderer = new NND3DRenderer();
+			break;
+		}
 	default:
 		return false;
 	}

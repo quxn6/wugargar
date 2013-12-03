@@ -97,6 +97,42 @@
     <Filter Include="Framework\NetworkSystem\BaseHandler">
       <UniqueIdentifier>{21699230-0574-4df6-8e74-43ce58d13c41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\ParticleSystem">
+      <UniqueIdentifier>{a7e299f5-f9ce-48c2-8ae6-e481c8c104c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\ParticleSystem\Particle">
+      <UniqueIdentifier>{4fbc5eea-1a5b-46ba-8d98-2ea302980254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\DataType\Color">
+      <UniqueIdentifier>{0d1f5451-bdb9-47cf-8e9d-c638935c2aa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Scene\UI">
+      <UniqueIdentifier>{de416ea1-5539-40e9-bae2-db1d196e18d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util">
+      <UniqueIdentifier>{6d0c3d29-2e8a-4890-9bfc-1caa8f405a33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util\Random">
+      <UniqueIdentifier>{e55e4a72-2dc4-4ad6-a065-79229f6fccc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\zip">
+      <UniqueIdentifier>{9b1971eb-cc30-4b8c-96b8-88b5bcbd5181}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\MD5">
+      <UniqueIdentifier>{ca372de8-db92-4242-bb65-eadc25ae597b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Renderer\D3D">
+      <UniqueIdentifier>{ac64a204-98ff-4570-ba4f-f9f1d2bcc579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\DirectX">
+      <UniqueIdentifier>{0ac3588b-7aee-4858-abc9-edb961303118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\DataType\Matrix">
+      <UniqueIdentifier>{a15d22ff-df9c-420c-ae93-eba460381a22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Resource\Zip">
+      <UniqueIdentifier>{a8973b74-d8f4-4583-84c1-d4c250c0ad03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -209,6 +245,39 @@
     </ClCompile>
     <ClCompile Include="NNNetworkSystem.cpp">
       <Filter>Framework\NetworkSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="NNParticleSystem.cpp">
+      <Filter>Framework\Node\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="NNParticle.cpp">
+      <Filter>Framework\Node\ParticleSystem\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="NNColor.cpp">
+      <Filter>Framework\DataType\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="NNUISet.cpp">
+      <Filter>Framework\Node\Scene\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="NNRandom.cpp">
+      <Filter>Framework\Util\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\zip\unzip.cpp">
+      <Filter>Library\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\zip\zip.cpp">
+      <Filter>Library\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\MD5\md5.cpp">
+      <Filter>Library\MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="NND3DRenderer.cpp">
+      <Filter>Framework\Renderer\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="NNMatrix.cpp">
+      <Filter>Framework\DataType\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="NNZip.cpp">
+      <Filter>Framework\Resource\Zip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,5 +437,283 @@
     <ClInclude Include="NNBaseHandler.h">
       <Filter>Framework\NetworkSystem\BaseHandler</Filter>
     </ClInclude>
+    <ClInclude Include="NNParticleSystem.h">
+      <Filter>Framework\Node\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="NNParticle.h">
+      <Filter>Framework\Node\ParticleSystem\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="NNColor.h">
+      <Filter>Framework\DataType\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="NNUISet.h">
+      <Filter>Framework\Node\Scene\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="NNRandom.h">
+      <Filter>Framework\Util\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\zip\unzip.h">
+      <Filter>Library\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\zip\zip.h">
+      <Filter>Library\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\MD5\md5.h">
+      <Filter>Library\MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="NND3DRenderer.h">
+      <Filter>Framework\Renderer\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\audiodefs.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\comdecl.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D2D1.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D2D1Helper.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D2DBaseTypes.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D2Derr.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3d9.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3d9caps.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3d9types.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D10.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D10_1.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D10_1shader.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D10effect.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3d10misc.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3d10sdklayers.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D10shader.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D11.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D11SDKLayers.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3D11Shader.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3Dcommon.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3Dcompiler.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DCSX.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9anim.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9core.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9effect.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9math.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9mesh.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9shader.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9shape.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9tex.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx9xof.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX10.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\d3dx10async.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX10core.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX10math.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX10mesh.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX10tex.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX11.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX11async.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX11core.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\D3DX11tex.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\Dcommon.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dinput.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dinputd.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dsconf.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dsetup.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dsound.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\DWrite.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dxdiag.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\DxErr.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dxfile.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\DXGI.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\DXGIFormat.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\DXGIType.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\dxsdkver.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\gameux.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\PIXPlugin.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\rmxfguid.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\rmxftmpl.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\rpcsal.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\X3DAudio.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\xact3.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\xact3d3.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\xact3wb.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\XAPO.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\XAPOBase.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\XAPOFX.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\XAudio2.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\XAudio2fx.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\XDSP.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\XInput.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\xma2defs.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectX\Include\xnamath.h">
+      <Filter>Library\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="NNMatrix.h">
+      <Filter>Framework\DataType\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="NNZip.h">
+      <Filter>Framework\Resource\Zip</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Library\DirectX\Include\D3DX_DXGIFormatConvert.inl">
+      <Filter>Library\DirectX</Filter>
+    </None>
+    <None Include="Library\DirectX\Include\d3dx9math.inl">
+      <Filter>Library\DirectX</Filter>
+    </None>
+    <None Include="Library\DirectX\Include\D3DX10math.inl">
+      <Filter>Library\DirectX</Filter>
+    </None>
+    <None Include="Library\DirectX\Include\xnamathconvert.inl">
+      <Filter>Library\DirectX</Filter>
+    </None>
+    <None Include="Library\DirectX\Include\xnamathmatrix.inl">
+      <Filter>Library\DirectX</Filter>
+    </None>
+    <None Include="Library\DirectX\Include\xnamathmisc.inl">
+      <Filter>Library\DirectX</Filter>
+    </None>
+    <None Include="Library\DirectX\Include\xnamathvector.inl">
+      <Filter>Library\DirectX</Filter>
+    </None>
   </ItemGroup>
 </Project>

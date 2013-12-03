@@ -24,12 +24,11 @@ NNAnimation* NNAnimation::Create( int count, ... )
 
 	for (int i=0; i<count; i++ )
 	{
-		NNSpriteNode* spriteInstance = NNSpriteNode::Create( va_arg(ap, wchar_t *) );
-		
+		NNSpriteNode* spriteInstance = NNSpriteNode::Create( va_arg( ap, wchar_t* ) );
 		pInstance->m_SpriteList.push_back( spriteInstance );
 		pInstance->m_SpriteList[i]->SetFrameTime( 0.2f );
 		spriteInstance->SetParent( pInstance );
-//		pInstance->AddChild( spriteInstance );
+		//pInstance->AddChild( spriteInstance );
 	}
 
 	va_end( ap );

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <player1>
-    <GlobalMoney>1080</GlobalMoney>
-    <TotalKill>8</TotalKill>
-    <TotalLoss>7</TotalLoss>
-    <CurrentStage>102</CurrentStage>
+    <GlobalMoney>1070</GlobalMoney>
+    <TotalKill>7</TotalKill>
+    <TotalLoss>11</TotalLoss>
+    <CurrentStage>101</CurrentStage>
     <InfectionRate>20.000000</InfectionRate>
     <UnitLevel>
         <UnitNo0>0</UnitNo0>

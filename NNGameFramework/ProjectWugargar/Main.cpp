@@ -28,7 +28,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 #endif 
 	NNApplication* Application = NNApplication::GetInstance();
 
-	Application->Init( L"D2D Test", GAME_SCREEN_MAX_SIZE_X, GAME_SCREEN_MAX_SIZE_Y, D2D );
+	Application->Init( L"D2D Test", GAME_SCREEN_MAX_SIZE_X, GAME_SCREEN_MAX_SIZE_Y, D2D);
 	CPlayer::GetInstance();
 	// StartMenu SCENE
 	NNSceneDirector::GetInstance()->ChangeScene(CStartScene::Create());
