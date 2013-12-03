@@ -25,7 +25,6 @@ CUIButton::CUIButton( std::wstring normalImagePath, std::wstring pressedImagePat
 	m_InCoolTime = false;
 	m_tNowTime = clock();
 	m_tCoolTime = 5 * CLOCKS_PER_SEC; // 일단 쿨타임 전부다 5초로 세팅
-	m_tPassTime = 0; // passtime 초기화
 }
 
 // 이미지 두 장을 이용하여 button을 생성하는 함수
@@ -57,7 +56,6 @@ void CUIButton::Update( float dTime )
 		//printf_s("쿨타임 %d",(m_tNowTime - m_tClickedTime)/CLOCKS_PER_SEC);
 		if(m_tNowTime - m_tClickedTime >= m_tCoolTime){
 			m_InCoolTime = false;
-			m_tPassTime = 0; //passtime 초기화
 		}
 	}
 	
