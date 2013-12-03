@@ -31,7 +31,7 @@ public:
 	/* 싱글톤 인스턴스를 메모리 해제하는 함수 */
 
 public:
-	bool Init( wchar_t* title, int width, int height, RendererStatus renderStatus);
+	bool Init( wchar_t* title, int width, int height, RendererStatus renderStatus );
 	/* 창크기와 렌더러를 선택한 후 윈도우 프레임 생성. 
 	   타이틀 이름은 title 파라메터에 따라 정해진다. */
 	bool Release();
