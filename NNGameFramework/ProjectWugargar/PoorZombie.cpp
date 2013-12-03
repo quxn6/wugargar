@@ -20,7 +20,7 @@ void CPoorZombie::initStatus( void )
 	m_MovingSpeed = 40.0f;
 	m_AttackPower = 8;
 	m_DefensivePower = 2;
-	m_AttackRange = 10.0f;
+	m_AttackRange = 30.0f;
 	m_NumberOfTarget = 1;
 	m_AttackSpeed = 2000;
 	m_CreateCost = 100;

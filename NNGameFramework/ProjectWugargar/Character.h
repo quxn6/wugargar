@@ -30,14 +30,14 @@ public:
 	void DetermineAttackTarget();
 	void GoToAttackTarget(float dTime);
 	void UpdateHPBar(void);
-	void SplashAttack(NNPoint splashPoint);
+	void SplashAttack(NNPoint splashPoint, clock_t currentTime);
 	void CheckMeltingTime(clock_t currentTime);
 	void MakeCharacterWalk(float dTime);
-	void Attack(clock_t currentTime);
+	void AttackEnemy(clock_t currentTime);
 
 	bool TargetInRange() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_AttackRange; };
-	bool CheckAttackSpeed(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
-	void NormalAttack(CCharacter* target);
+	bool CheckAttackTiming(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
+	void NormalAttack(CCharacter* target, clock_t currentTime);
 	
 
 	// gets & sets

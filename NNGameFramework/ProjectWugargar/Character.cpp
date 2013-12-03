@@ -14,7 +14,7 @@ CCharacter::CCharacter(void)
 	m_Freeze = false;
 	m_BeginFreezingTIme = 0;
 	m_TotalFreezingTime = 0;
-	m_Sight = 0;
+	m_Sight = MAP_SIZE_Y * TILE_SIZE_Y / 2;
 	//sight는 철저하게 캐릭터가 안 겹치게 보이기 위한 연출을 위한 변수
 	//m_sight = 100.0f + rand() % 50;
 }
@@ -33,8 +33,10 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	// 부모인 캐릭터 노드의 위치를 설정하고 
 	// 자식인 sprite는 (0, 0)으로 초기화한다.
 	// 이것때문에 한시간 반을 헤맴 ㅠㅠ
+	// 12/3 추가 : 캐릭터의 원점을 이미지의 중앙으로 잡기 위해 원점에서
+	// 이미지 사이즈를 2로 나눠준값을 뺌
 
-	m_Sprite->SetPosition(0.0f, 0.0f);	
+	m_Sprite->SetPosition(-m_Sprite->GetImageWidth()/2, -m_Sprite->GetImageHeight()/2);		
 	AddChild(m_Sprite, 1);
 
 	/*
@@ -52,27 +54,38 @@ void CCharacter::InitSprite( std::wstring imagePath )
 // 기지주변에서 캐릭터 랜덤 생성
 void CCharacter::SetRandomPositionAroundBase()
 {
-	NNPoint baseLocation;
-
+	float randomPositonY = static_cast<float>(rand() % ((MAP_SIZE_Y-2) * TILE_SIZE_Y) + FIRST_Y_COORDINATE_OF_MAPTILE + TILE_SIZE_Y);
 	switch (m_Identity)
 	{
 	case Zombie:
-		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase()->GetPosition();
-		baseLocation.SetX(baseLocation.GetX()+TILE_SIZE_X);
-		baseLocation.SetY(baseLocation.GetY()+TILE_SIZE_Y);
+		SetPosition(GAME_SCREEN_MIN_SIZE_X + 30, randomPositonY);
 		break;
 	case Police:
-		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase()->GetPosition();
-		baseLocation.SetX(baseLocation.GetX()-TILE_SIZE_X);
+		SetPosition(GAME_SCREEN_MAX_SIZE_X - 30, randomPositonY);
 		break;
 	default:
 		break;
 	}
-
-	int random_location_x = rand() % TILE_SIZE_X;
-	int random_location_y = rand() % TILE_SIZE_Y;
-
-	SetPosition((baseLocation.GetX()+random_location_x),(baseLocation.GetY()+random_location_y));
+//	NNPoint baseLocation;
+// 	switch (m_Identity)
+// 	{
+// 	case Zombie:
+// 		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase()->GetPosition();
+// 		baseLocation.SetX(baseLocation.GetX()+TILE_SIZE_X);
+// 		baseLocation.SetY(baseLocation.GetY()+TILE_SIZE_Y);
+// 		break;
+// 	case Police:
+// 		baseLocation = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase()->GetPosition();
+// 		baseLocation.SetX(baseLocation.GetX()-TILE_SIZE_X);
+// 		break;
+// 	default:
+// 		break;
+// 	}
+// 
+// 	int random_location_x = rand() % TILE_SIZE_X;
+// 	int random_location_y = rand() % TILE_SIZE_Y;
+// 
+// 	SetPosition((baseLocation.GetX()+random_location_x),(baseLocation.GetY()+random_location_y));
 }
 
 
@@ -95,8 +108,8 @@ void CCharacter::Update( float dTime )
 		//AttackTarget을 설정하고 Attack이 가능하면(사정거리 체크)
 		//공격하고 그렇지 않으면 Attack Target에게 접근
 		if(TargetInRange()) {
-			if( CheckAttackSpeed(currentTime) ) { 
-				Attack(currentTime);				
+			if( CheckAttackTiming(currentTime) ) { 
+				AttackEnemy(currentTime);				
 			}
 		} else {
 			GoToAttackTarget(dTime);
@@ -137,12 +150,8 @@ ISSUE : 1차 통합. switch문의 반복되는 For문을 하나로 줄일 방법을 찾아야 됨.
 */
 void  CCharacter::DetermineAttackTarget()
 {
-	float return_distnace = 1000000.0f;
-	float next_distance;
-	CZombie *tmp_closer_target_zombie = NULL;
-	CPolice *tmp_closer_target_police = NULL;
-	CCharacter *return_target = NULL;
-
+	float closestTargetDistance = 1000000.0f;
+	float nextTargetDistance;
 
 
 	switch(this->GetIdentity())
@@ -150,29 +159,25 @@ void  CCharacter::DetermineAttackTarget()
 	case Zombie:
 		for(const auto& enemy : CPlayScene::GetInstance()->GetPoliceList())
 		{
-			next_distance = this->GetPosition().GetDistance(enemy->GetPosition());
-			if(return_distnace > next_distance)
+			nextTargetDistance = this->GetPosition().GetDistance(enemy->GetPosition());
+			if(closestTargetDistance > nextTargetDistance)
 			{
-				return_distnace = next_distance;
+				closestTargetDistance = nextTargetDistance;
 				m_AttackTarget = enemy;
 			}
 		}
-// 		if(m_AttackTarget == NULL)
-// 			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase();
 		break;
 
 	case Police:
 		for(const auto& enemy : CPlayScene::GetInstance()->GetZombieList())
 		{
-			next_distance= this->GetPosition().GetDistance(enemy->GetPosition());
-			if(return_distnace > next_distance)
+			nextTargetDistance= this->GetPosition().GetDistance(enemy->GetPosition());
+			if(closestTargetDistance > nextTargetDistance)
 			{
-			 	return_distnace = next_distance;
+			 	closestTargetDistance = nextTargetDistance;
 			 	m_AttackTarget = enemy;
 			}
 		}
-// 		if(m_AttackTarget == NULL)
-// 			m_AttackTarget = CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase();
  		break;
 	default:
 		break;
@@ -180,21 +185,13 @@ void  CCharacter::DetermineAttackTarget()
 }
 
 
-void CCharacter::Attack( clock_t currentTime )
+void CCharacter::AttackEnemy( clock_t currentTime )
 {
-	// When character has freezing attack
-	if (m_FreezingAttack) {
-		m_AttackTarget->SetFreeze(true);
-		m_AttackTarget->SetBeginFreezingTime(currentTime);
-		m_AttackTarget->SetTotalFreezingTime(m_FreezingAttackDuration);
-	}
-
-	
 	//splash속성이 true인 몬스터면 splash어택
 	if(m_SplashAttack) {
-		SplashAttack(m_AttackTarget->GetPosition());
+		SplashAttack(m_AttackTarget->GetPosition(), currentTime);
 	} else { // 아니면 normal attack
-		NormalAttack(m_AttackTarget);
+		NormalAttack(m_AttackTarget, currentTime);
 	}	
 
 	// 자폭 공격 캐릭터일 경우 hp를 0으로..
@@ -207,8 +204,15 @@ void CCharacter::Attack( clock_t currentTime )
 }
 
 // 일반 공격, 나의 공격력과 적의 방어력 차이 만큼을 적 HP에서 빼준다.
-void CCharacter::NormalAttack( CCharacter* target )
+void CCharacter::NormalAttack( CCharacter* target, clock_t currentTime )
 {
+	// When character has freezing attack
+	if (m_FreezingAttack) {
+		m_AttackTarget->SetFreeze(true);
+		m_AttackTarget->SetBeginFreezingTime(currentTime);
+		m_AttackTarget->SetTotalFreezingTime(m_FreezingAttackDuration);
+	}
+
 	int damage = m_AttackPower - target->GetDefensivePower();
 	float targetHP = target->GetHP(); 
 	target->SetHP(targetHP-damage) ;
@@ -220,7 +224,7 @@ void CCharacter::NormalAttack( CCharacter* target )
  광역 공격 처리. 현재 로직은 PlayScene의 모든 Enemy를 리스트로 돌면서
  지정된 SplashRange내부에 있는 적들은 모두 데미지를 받도록 처리함
  */
-void CCharacter::SplashAttack( NNPoint splashPoint )
+void CCharacter::SplashAttack( NNPoint splashPoint, clock_t currentTime )
 {
 // 	for (const auto& enemy : (*enemyList) {		 
 // 		 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
@@ -233,14 +237,14 @@ void CCharacter::SplashAttack( NNPoint splashPoint )
 	 case Zombie:
 		 for (const auto& enemy : CPlayScene::GetInstance()->GetPoliceList()) {		 
 			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
-				 NormalAttack(enemy);
+				 NormalAttack(enemy, currentTime);
 			 }
 		 }
 		 break;
 	 case Police:
 		 for (const auto& enemy : CPlayScene::GetInstance()->GetZombieList()) {
 			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
-				 NormalAttack(enemy);
+				 NormalAttack(enemy, currentTime);
 			 }
 		 }
 		 break;
@@ -258,10 +262,11 @@ Issue : 기존에 존재하는 MakeCharacterWalk와 어떤식으로 연계될지
 */
 void CCharacter::GoToAttackTarget(float dTime)
 {
+	float gap = m_Position.GetDistance(m_AttackTarget->GetPosition());
 	float gap_x = m_AttackTarget->GetPositionX() - m_Position.GetX();
 	float gap_y = m_AttackTarget->GetPositionY() - m_Position.GetY();
-	float t_x = (gap_x) / (gap_x+gap_y);
-	float t_y = (gap_y) / (gap_x+gap_y);
+	float cosd = (gap_x) / gap;
+	float sind = (gap_y) / gap;
 
 
 	float distance_attacktarget;
@@ -272,27 +277,8 @@ void CCharacter::GoToAttackTarget(float dTime)
 	{
 		MakeCharacterWalk(dTime);
 		return ;
-	}*/
-	
-	if(this->GetPositionX() < m_AttackTarget->GetPositionX())
-		this->SetPosition(this->m_Position - NNPoint( -(m_MovingSpeed*t_x),-( m_MovingSpeed*t_y) )*dTime);
-	else
-		this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
-
-	//switch (m_Identity)
-	//{
-	//case Zombie:
-	//	this->SetPosition(this->m_Position - NNPoint( -(m_MovingSpeed*t_x),-( m_MovingSpeed*t_y) )*dTime);
-	//	break;
-	//case Police:
-	//	this->SetPosition(this->m_Position - NNPoint( (m_MovingSpeed*t_x),( m_MovingSpeed*t_y) )*dTime);
-	//	break;
-	//default:
-	//	break;
-	//}
-	//
-
-	
+	}*/	
+	this->SetPosition(this->m_Position + NNPoint( (m_MovingSpeed*cosd),( m_MovingSpeed*sind) )*dTime);	
 }
 
 
