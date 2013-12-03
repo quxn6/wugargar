@@ -26,7 +26,6 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	printf_s("Console Open \n");
 
 #endif 
-	srand((unsigned int)time(NULL));
 	NNApplication* Application = NNApplication::GetInstance();
 
 	Application->Init( L"D2D Test", GAME_SCREEN_MAX_SIZE_X, GAME_SCREEN_MAX_SIZE_Y, D2D );
