@@ -52,10 +52,18 @@ public:
 	PoliceInfo policeInfo[NUMBER_OF_POLICE_TYPES];
 	ZombieInfo zombieInfo[NUMBER_OF_ZOMBIE_TYPES];
 
-	void SetPoliceInfo(NNXML *PoliceInfoXml, int policeInfoIdx);
+	void DeterminePoliceInfo(NNXML *PoliceInfoXml);
 	static void ReleaseInstance();
 	static CCharacterConfig* GetInstance();
+	void initialize_Xpath(std::string *xPath, int idx);
+	PoliceInfo *GetPoliceInfo(){return policeInfo;};
+	ZombieInfo *GetZombieInfo(){return zombieInfo;};
 
+
+
+private:
+	int num_of_police_type;
+	int num_of_zombie_type;
 
 };
 

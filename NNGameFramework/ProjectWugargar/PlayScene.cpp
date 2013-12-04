@@ -6,7 +6,6 @@
 #include "PrintConsole.h"
 
 #include "Player.h"
-#include "NormalPolice.h"
 #include "PoorZombie.h"
 #include "VomitZombie.h"
 #include "MuscleZombie.h"
@@ -16,6 +15,7 @@
 #include "NNSceneDirector.h"
 #include "NextStageScene.h"
 #include "HeroZombie.h"
+#include "CharacterConfig.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -294,28 +294,26 @@ void CPlayScene::MakeZombie(ZombieType type)
 // }
 
 
+
 void CPlayScene::MakePoliceFromScript()
 {
 	PoliceType create_enemy_type;
-	CPolice *tmpPoliceObject = nullptr;
-	create_enemy_type =	m_pCreatePolice->GetCreateEnemyInfo();
-	std::wstring imagePath[5];
-	imagePath[NORMAL_POLICE] = L"wugargar/normal_police.png";
-	bool is_not_time = false;
+	
 
-	switch (create_enemy_type)
-	{
-	case NORMAL_POLICE:
-		tmpPoliceObject = CNormalPolice::Create();
-		break;
-	default:
-		is_not_time = true;
-		break;
-	}
+	
+
+	create_enemy_type =	m_pCreatePolice->ReturnCreateEnemyInfo();
+
+
+	
 
 	if(create_enemy_type != NONE_POLICE){
+
+		CPolice *tmpPoliceObject = CPolice::Create();
+		tmpPoliceObject->initStatus(CCharacterConfig::GetInstance()->GetPoliceInfo(), create_enemy_type);
+		bool is_not_time = false;
 		tmpPoliceObject->SetRandomPositionAroundBase();
-		tmpPoliceObject->InitSprite( imagePath[create_enemy_type]);
+		tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
 		AddChild(tmpPoliceObject, 10);
 		m_llistPolice.push_back(tmpPoliceObject);
 

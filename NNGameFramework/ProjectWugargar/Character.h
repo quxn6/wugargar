@@ -44,6 +44,8 @@ public:
 	bool TargetInSight() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_Sight; }
 	
 
+	std::wstring string2wstring(std::string str);
+
 	// gets & sets
 	float GetHP() {return m_HealthPoint;}
 	float GetMovingSpeed() {return m_MovingSpeed;}
@@ -54,6 +56,8 @@ public:
 	int GetAttackSpeed() {return m_AttackSpeed;}
 	CharacterIdentity GetIdentity() {return m_Identity;}
 	NNSprite *GetSprite(){return m_Sprite;}
+	std::wstring GetSpritepath(){return m_spritePath;}
+
 
 
 	void SetHP(float hp) {m_HealthPoint = hp;}
@@ -68,7 +72,7 @@ public:
 	void SetBeginFreezingTime(clock_t time) {m_BeginFreezingTIme = time;}
 	void SetFreeze(bool ice_state) {m_Freeze = ice_state;}
 	void SetTotalFreezingTime(clock_t tft) { m_TotalFreezingTime = tft;}
-
+	
 	
 protected: 
 	virtual void initStatus( void ) {};	
@@ -103,7 +107,7 @@ protected:
 
 	// 기본 내부 변수
 	NNSprite*		m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
-	std::string		m_spritePath;
+	std::wstring		m_spritePath;
 	NNSpriteAtlas*	m_pShowHP;
 	
 	//wchar_t		temp_HP[256]; 

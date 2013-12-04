@@ -30,7 +30,6 @@
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="MuscleZombie.cpp" />
     <ClCompile Include="NextStageScene.cpp" />
-    <ClCompile Include="NormalPolice.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Police.cpp" />
@@ -66,7 +65,6 @@
     <ClInclude Include="Mine.h" />
     <ClInclude Include="MuscleZombie.h" />
     <ClInclude Include="NextStageScene.h" />
-    <ClInclude Include="NormalPolice.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Police.h" />

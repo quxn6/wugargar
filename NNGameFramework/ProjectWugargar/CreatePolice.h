@@ -1,6 +1,7 @@
 #pragma once
 #include "NNObject.h"
 #include "GameConfig.h"
+#include "NNXML.h"
 /*
 클래스 이름 : CCreatePolice
 클래스 목적 : 적(경찰)이 생성되는 기준을 세우고 해당 기준에 맞게
@@ -51,7 +52,7 @@ public:
 	int gap_time;
 	int table_top_index;
 	void				ReturnTableByFile();
-	PoliceType				GetCreateEnemyInfo();
+	PoliceType				ReturnCreateEnemyInfo();
 	void				SetCreateInfoByXML(NNXML *StageXML);
 
 

@@ -31,20 +31,56 @@ void CCharacterConfig::ReleaseInstance()
 	}
 }
 
-void CCharacterConfig::SetPoliceInfo( NNXML *PoliceInfoXml, int policeInfoIdx )
+
+void CCharacterConfig::initialize_Xpath(std::string *xPath, int idx)
+{
+	xPath->clear();
+	*xPath = "/PoliceInfo/Police" + std::to_string(idx+1);
+
+}
+
+void CCharacterConfig::DeterminePoliceInfo( NNXML *PoliceInfoXml)
 {
 	
+	num_of_police_type = std::stoi(PoliceInfoXml->XPathToString("/PoliceInfo/PoliceTypeNum/text()").c_str());
 
-	policeInfo[policeInfoIdx].HealthPoint = (std::stof(PoliceInfoXml->XPathToString("/Police/HealthPoint/text()").c_str()) );
-	policeInfo[policeInfoIdx].MovingSpeed = (std::stof(PoliceInfoXml->XPathToString("/Police/MovingSpeed/text()").c_str()) );
-	policeInfo[policeInfoIdx].AttackRange = (std::stof(PoliceInfoXml->XPathToString("/Police/AttackRange/text()").c_str()) );
-	policeInfo[policeInfoIdx].SplashRange = (std::stof(PoliceInfoXml->XPathToString("/Police/SplashRange/text()").c_str()) );
-	policeInfo[policeInfoIdx].AttackPower = (std::stoi(PoliceInfoXml->XPathToString("/Police/AttackPower/text()").c_str()) );
-	policeInfo[policeInfoIdx].DefensivePower = (std::stoi(PoliceInfoXml->XPathToString("/Police/DefensivePower/text()").c_str()) );
-	policeInfo[policeInfoIdx].AttackSpeed = (std::stoi(PoliceInfoXml->XPathToString("/Police/AttackSpeed/text()").c_str()) );
-	policeInfo[policeInfoIdx].SpritePath = (PoliceInfoXml->XPathToString("/Police/SpritePath/text()").c_str());
-	policeInfo[policeInfoIdx].TypeName = (PoliceInfoXml->XPathToString("/Police/TypeName/text()").c_str());
-	policeInfo[policeInfoIdx].identity = Police;
+	for(int idx=0; idx<num_of_police_type; ++idx)
+	{
+		std::string xPath;
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].HealthPoint = (std::stof(PoliceInfoXml->XPathToString(xPath.append("/HealthPoint/text()").c_str())));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].MovingSpeed = (std::stof(PoliceInfoXml->XPathToString(xPath.append("/MovingSpeed/text()").c_str())));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].AttackRange = (std::stof(PoliceInfoXml->XPathToString(xPath.append("/AttackRange/text()").c_str())));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].SplashRange = (std::stof(PoliceInfoXml->XPathToString(xPath.append("/SplashRange/text()").c_str())));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].AttackPower = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/AttackPower/text()").c_str())));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].DefensivePower = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/DefensivePower/text()").c_str())));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].AttackSpeed = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/AttackSpeed/text()").c_str())));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].SpritePath = (PoliceInfoXml->XPathToString(xPath.append("/SpritePath/text()").c_str()));
+		initialize_Xpath(&xPath, idx);
+		policeInfo[idx].TypeName = (PoliceInfoXml->XPathToString(xPath.append("/TypeName/text()").c_str()));
+		policeInfo[idx].identity = Police;
+
+
+		initialize_Xpath(&xPath, idx);
+		if(int tmp_isSplash = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/IsSplash/text()").c_str()) )))
+			policeInfo[idx].IsSplash = true;
+		else
+			policeInfo[idx].IsSplash = false;
+
+		initialize_Xpath(&xPath, idx);
+		if(int tmp_isIce = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/IsIceAttack/text()").c_str()) )))
+			policeInfo[idx].IsIceAttack = true;
+		else
+			policeInfo[idx].IsIceAttack = false;
+
+	}
 
 	//enum PoliceType
 	//{
@@ -57,61 +93,6 @@ void CCharacterConfig::SetPoliceInfo( NNXML *PoliceInfoXml, int policeInfoIdx )
 	//	FIRTBAT_POLICE
 	//};
 
-	policeInfo[policeInfoIdx].policeType = (PoliceType)policeInfoIdx;
-	/*switch (int tmp_policeType = (std::stoi(PoliceInfoXml->XPathToString("/Police/policeType/text()").c_str()) ))
-	{
-	case 0:
-	policeInfo[policeInfoIdx].policeType = NORMAL_POLICE;
-	break;
-	case 1:
-	policeInfo[policeInfoIdx].policeType = MACHINEGUN_POLICE;
-	break;
-	case 2:
-	policeInfo[policeInfoIdx].policeType = SHIELD_POLICE;
-	break;
-	case 3:
-	policeInfo[policeInfoIdx].policeType = GRENADE_POLICE;
-	break;
-	case 4:
-	policeInfo[policeInfoIdx].policeType = SHOTGUN_POLICE;
-	break;
-	case 5:
-	policeInfo[policeInfoIdx].policeType = FIREBAT_POLICE;
-	break;
-	default:
-	break;
-	}
-	*/
-
-
-	if(int tmp_isSplash = (std::stoi(PoliceInfoXml->XPathToString("/Police/IsSplash/text()").c_str()) ))
-		policeInfo[policeInfoIdx].IsSplash = true;
-	else
-		policeInfo[policeInfoIdx].IsSplash = false;
-
-	if(int tmp_isIce = (std::stoi(PoliceInfoXml->XPathToString("/Police/IsIceAttack/text()").c_str()) ))
-		policeInfo[policeInfoIdx].IsIceAttack = true;
-	else
-		policeInfo[policeInfoIdx].IsIceAttack = false;
 	//bool은 1이면 true, 0이면 false로 설정
-
-
-	switch (policeInfo[policeInfoIdx].policeType)
-	{
-	case NORMAL_POLICE:
-		break;
-	case SHIELD_POLICE:
-		break;
-	case GRENADE_POLICE:
-		break;
-	case MACHINEGUN_POLICE:
-		break;
-	case SHOTGUN_POLICE:
-		break;
-	case FIREBAT_POLICE:
-		break;
-	default:
-		break;
-	}
 
 }

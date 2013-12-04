@@ -315,3 +315,14 @@ void CCharacter::GoForward(float dTime)
 	}
 	
 }
+
+//string¿ª wstring¿∏∑Œ
+std::wstring CCharacter::string2wstring(std::string str) {
+
+	std::wstring wstr(str.length(),L' ');
+
+	copy(str.begin(),str.end(),wstr.begin());
+
+	return wstr;
+
+}

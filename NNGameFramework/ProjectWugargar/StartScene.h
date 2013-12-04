@@ -26,7 +26,7 @@ private :
 	wchar_t		m_ResultBuffer[256];
 	NNXML*		m_TestXML;
 
-	NNXML*		m_PoliceXML[NUMBER_OF_POLICE_TYPES];
+	NNXML*		m_PoliceXML;
 
 	CUIButton*	m_pNewGameButton;
 	CUIButton*	m_pLoadGameButton;

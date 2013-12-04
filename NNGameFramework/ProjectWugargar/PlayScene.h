@@ -47,6 +47,8 @@ public:
 	int GetStartTimeSEC() {return m_startTime/CLOCKS_PER_SEC;}; 
 	int GetNowTimeSEC() {return m_nowTime/CLOCKS_PER_SEC;};
 	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;};
+	std::wstring string2wstring(std::string str);
+
 
 private :
 	void _initBackground( void );

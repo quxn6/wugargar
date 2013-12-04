@@ -1,6 +1,5 @@
 #include "CreatePolice.h"
 #include "Police.h"
-#include "NormalPolice.h"
 #include "PlayScene.h"
 #include "PrintConsole.h"
 
@@ -58,7 +57,7 @@ void CCreatePolice::ReturnTableByFile()
 			gap_time이 지정된 테이블의 생성 시간보다 큰 경우 지정된 갯수만큼 지정된 타입의 경찰 생성
 			생성후엔 index를 늘려주어 다음에 지정된 부분으로 이동하게 함.
 */
-PoliceType CCreatePolice::GetCreateEnemyInfo()
+PoliceType CCreatePolice::ReturnCreateEnemyInfo()
 {
 	
 	current_time = clock();
