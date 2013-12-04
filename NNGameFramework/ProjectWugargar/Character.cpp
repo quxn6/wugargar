@@ -124,7 +124,7 @@ void CCharacter::UpdateHPBar( void )
 	if( m_HealthPoint/m_FullHP*100 >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
 		m_pShowHP->SetCutSize(0,0,m_HealthPoint/2,5.f);
 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
-	} else if( m_HealthPoint/m_FullHP < 70 && m_HealthPoint/m_FullHP >= 30){
+	} else if( m_HealthPoint/m_FullHP*100 < 70 && m_HealthPoint/m_FullHP*100 >= 30){
 		m_pShowHP->SetCutSize(0,21,m_HealthPoint/2,26.f);
 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
 	} else {
