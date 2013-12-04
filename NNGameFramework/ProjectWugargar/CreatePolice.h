@@ -52,7 +52,7 @@ public:
 	int table_top_index;
 	void				ReturnTableByFile();
 	PoliceType				GetCreateEnemyInfo();
-
+	void				SetCreateInfoByXML(NNXML *StageXML);
 
 
 };

@@ -76,3 +76,25 @@ PoliceType CCreatePolice::GetCreateEnemyInfo()
 	return NONE_POLICE;
 }
 
+void CCreatePolice::SetCreateInfoByXML( NNXML *StageXML )
+{
+	int num_info = std::stoi(StageXML->XPathToString("/stage/StageInfoNum/text()").c_str());
+	create_enemy_table = new CreateEnemyTable[num_info];
+	std::string tmp_path = "/stage/StageInfo";
+
+
+	for(int idx=0; idx<num_info; ++idx)
+	{
+		tmp_path.append(std::to_string(idx));
+		std::string tmp_time_path = tmp_path;
+		std::string tmp_type_path = tmp_path;
+		tmp_time_path.append("/Time/text()");
+		tmp_type_path.append("/PoliceType/text()");
+
+		create_enemy_table[idx].time = std::stoi(StageXML->XPathToString(tmp_time_path.c_str()));
+		create_enemy_table[idx].enemy_type = (PoliceType)std::stoi(StageXML->XPathToString(tmp_type_path.c_str()));
+	}
+
+
+
+}
