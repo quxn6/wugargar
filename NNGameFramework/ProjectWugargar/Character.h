@@ -7,6 +7,7 @@
 #include "GameConfig.h"
 #include "Player.h"
 #include "NNSpriteAtlas.h"
+#include "NNAnimation.h"
 
 
 enum CharacterIdentity{
@@ -107,6 +108,7 @@ protected:
 
 	// 기본 내부 변수
 	NNSprite*		m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
+	NNAnimation*	m_Animation;
 	std::wstring		m_spritePath;
 	NNSpriteAtlas*	m_pShowHP;
 	

@@ -36,7 +36,6 @@ void CCharacter::InitSprite( std::wstring imagePath )
 
 	m_Sprite->SetPosition(-m_Sprite->GetImageWidth()/2, -m_Sprite->GetImageHeight()/2);		
 	AddChild(m_Sprite, 1);
-
 	/*
 	m_pShowHP = NNLabel::Create(L"HP", L"¸¼Àº °íµñ", 10.f);
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);

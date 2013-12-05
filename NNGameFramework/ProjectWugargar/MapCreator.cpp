@@ -133,5 +133,5 @@ void CMapCreator::Render()
 
 void CMapCreator::Update( float dTime )
 {
-
+	NNObject::Update( dTime );
 }
