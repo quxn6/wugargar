@@ -26,7 +26,6 @@ void CCharacter::InitSprite( std::wstring imagePath )
 {
 	m_Sprite = NNSprite::Create(imagePath);
 	
-
 	// 부모 노드의 위치에 영향을 받기 때문에 
 	// 부모인 캐릭터 노드의 위치를 설정하고 
 	// 자식인 sprite는 (0, 0)으로 초기화한다.
@@ -36,6 +35,13 @@ void CCharacter::InitSprite( std::wstring imagePath )
 
 	m_Sprite->SetPosition(-m_Sprite->GetImageWidth()/2, -m_Sprite->GetImageHeight()/2);		
 	AddChild(m_Sprite, 1);
+
+	if(GetIdentity() == Zombie)
+	{
+		m_Animation = NNAnimation::Create(1,imagePath.c_str());
+		m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSize().GetWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSize().GetHeight()/2));
+		//AddChild(m_Animation,1);
+	}
 	/*
 	m_pShowHP = NNLabel::Create(L"HP", L"맑은 고딕", 10.f);
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
@@ -43,7 +49,10 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	*/
 	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
 	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+	if( GetIdentity() == Zombie)
+		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()+10.f);
+	else
+		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 	AddChild(m_pShowHP, 20);
 }
 
