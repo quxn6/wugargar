@@ -21,6 +21,7 @@ public:
 	float GetFrameTime() const { return m_FrameTime; }
 
 	void SetFrameTime( float frameTime ) { m_FrameTime = frameTime; }
+	NNSize GetSize() { return m_Size; }
 
 private:
 	NNSprite* m_Sprite;
