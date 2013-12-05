@@ -28,6 +28,22 @@ void CIceZombie::initStatus( void )
 	m_FreezingAttackDuration = 5000;
 	m_FreezingAttack = true;
 
+	WalkAnimationImagePath.push_back(L"wugargar/ice/walk/0.png");
+	WalkAnimationImagePath.push_back(L"wugargar/ice/walk/1.png");
+	WalkAnimationImagePath.push_back(L"wugargar/ice/walk/2.png");
+	WalkAnimationImagePath.push_back(L"wugargar/ice/walk/3.png");
+	WalkAnimationImagePath.push_back(L"wugargar/ice/walk/4.png");
+	WalkAnimationImagePath.push_back(L"wugargar/ice/walk/5.png");
+
+	m_Animation = NNAnimation::Create();
+	int i = 0;
+	for(auto &iter = WalkAnimationImagePath.begin(); iter != WalkAnimationImagePath.end(); ++iter)
+	{
+		m_Animation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
+		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
+	}
+	AddChild(m_Animation);
+
 	ApplyZombieLevel();
 }
 

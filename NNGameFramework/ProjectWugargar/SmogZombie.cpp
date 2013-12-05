@@ -28,6 +28,24 @@ void CSmogZombie::initStatus( void )
 	m_SplashAttackRange = 100.0f;
 
 	ApplyZombieLevel();
+	
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/0.png");
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/1.png");
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/2.png");
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/3.png");
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/4.png");
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/5.png");
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/6.png");
+	WalkAnimationImagePath.push_back(L"wugargar/smog/walk/7.png");
+
+	m_Animation = NNAnimation::Create();
+	int i = 0;
+	for(auto &iter = WalkAnimationImagePath.begin(); iter != WalkAnimationImagePath.end(); ++iter)
+	{
+		m_Animation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
+		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
+	}
+	AddChild(m_Animation);
 }
 
 

@@ -113,5 +113,6 @@ protected:
 	NNSpriteAtlas*	m_pShowHP;
 	
 	//wchar_t		temp_HP[256]; 
+	std::list<std::wstring>	WalkAnimationImagePath;
 };
 

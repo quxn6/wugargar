@@ -45,7 +45,6 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	m_pShowHP->SetCutSize(0,0,50.f,5.f);
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 	AddChild(m_pShowHP, 20);
-
 }
 
 // 기지주변에서 캐릭터 랜덤 생성
@@ -95,6 +94,8 @@ void CCharacter::Render()
 
 void CCharacter::Update( float dTime )
 {
+	NNObject::Update(dTime);
+
 	clock_t currentTime = clock();
 
 	UpdateHPBar();	

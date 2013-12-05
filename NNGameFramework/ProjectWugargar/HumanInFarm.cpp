@@ -100,14 +100,14 @@ void CHumanInFarm::CollectMeatPointFromGrownUp()
 		bool isInYCoordRange = (m_pGrownUp->GetPositionY() < cursorPosition.GetY()) && ( ( m_pGrownUp->GetPositionY() + 90 ) > cursorPosition.GetY() );
 		
 		if(isInXCoordRange && isInYCoordRange){
-			if(m_AgeState == DEAD){
+			if(m_AgeState == DEAD && m_pDead){
 				printf_s("∞≈µ–¥Ÿ\n");
 				RemoveChild(m_pDead,true);
 				CPlayer* m_pPlayer = CPlayer::GetInstance();
 				m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint() + 30);
 				return;
 			}
-			if(m_AgeState == GROWN_UP){
+			if(m_AgeState == GROWN_UP && m_pGrownUp){
 				printf_s("≈Õ∂ﬂ∏∞¥Ÿ\n");
 				int rannum = rand()%6;
 				m_AgeState = DEAD;

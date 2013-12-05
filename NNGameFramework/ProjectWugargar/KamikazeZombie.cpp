@@ -29,6 +29,19 @@ void CKamikazeZombie::initStatus( void )
 	m_SuicideBomber = true;
 
 	ApplyZombieLevel();
+	
+	WalkAnimationImagePath.push_back(L"wugargar/bomb/walk/0.png");
+	WalkAnimationImagePath.push_back(L"wugargar/bomb/walk/1.png");
+	WalkAnimationImagePath.push_back(L"wugargar/bomb/walk/2.png");
+
+	m_Animation = NNAnimation::Create();
+	int i = 0;
+	for(auto &iter = WalkAnimationImagePath.begin(); iter != WalkAnimationImagePath.end(); ++iter)
+	{
+		m_Animation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
+		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
+	}
+	AddChild(m_Animation);
 }
 
 

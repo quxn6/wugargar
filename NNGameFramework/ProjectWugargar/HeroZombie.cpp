@@ -1,5 +1,5 @@
 #include "HeroZombie.h"
-
+#include "NNAnimation.h"
 
 CHeroZombie::CHeroZombie(void)
 {
