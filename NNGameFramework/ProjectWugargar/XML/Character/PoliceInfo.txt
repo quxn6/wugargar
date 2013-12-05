@@ -5,10 +5,10 @@
 	<Police1>
 		<PoliceType>0</PoliceType>
 		<TypeName>NormalPolice</TypeName>
-		<HealthPoint>100</HealthPoint>
+		<HealthPoint>10</HealthPoint>
 		<MovingSpeed>35</MovingSpeed>
 		<AttackPower>10</AttackPower>
-		<AttackSpeed>2</AttackSpeed>
+		<AttackSpeed>2000</AttackSpeed>
 		<DefensivePower>2</DefensivePower>
 		<IsSplash>0</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
@@ -20,10 +20,10 @@
 	<Police2>
 		<PoliceType>1</PoliceType>
 		<TypeName>MachinegunPolice</TypeName>
-		<HealthPoint>200</HealthPoint>
+		<HealthPoint>20</HealthPoint>
 		<MovingSpeed>40</MovingSpeed>
 		<AttackPower>12</AttackPower>
-		<AttackSpeed>2</AttackSpeed>
+		<AttackSpeed>2000</AttackSpeed>
 		<DefensivePower>4</DefensivePower>
 		<IsSplash>0</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
@@ -35,10 +35,10 @@
 	<Police3>
 		<PoliceType>2</PoliceType>
 		<TypeName>ShieldPolice</TypeName>
-		<HealthPoint>500</HealthPoint>
+		<HealthPoint>50</HealthPoint>
 		<MovingSpeed>10</MovingSpeed>
 		<AttackPower>1</AttackPower>
-		<AttackSpeed>1</AttackSpeed>
+		<AttackSpeed>1000</AttackSpeed>
 		<DefensivePower>25</DefensivePower>
 		<IsSplash>0</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
@@ -53,7 +53,7 @@
 		<HealthPoint>50</HealthPoint>
 		<MovingSpeed>60</MovingSpeed>
 		<AttackPower>80</AttackPower>
-		<AttackSpeed>5</AttackSpeed>
+		<AttackSpeed>5000</AttackSpeed>
 		<DefensivePower>1</DefensivePower>
 		<IsSplash>1</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
@@ -65,10 +65,10 @@
 	<Police5>
 	    <PoliceType>4</PoliceType>
 		<TypeName>ShotgunPolice</TypeName>
-		<HealthPoint>200</HealthPoint>
+		<HealthPoint>20</HealthPoint>
 		<MovingSpeed>50</MovingSpeed>
 		<AttackPower>50</AttackPower>
-		<AttackSpeed>2</AttackSpeed>
+		<AttackSpeed>2000</AttackSpeed>
 		<DefensivePower>3</DefensivePower>
 		<IsSplash>1</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
@@ -83,7 +83,7 @@
 		<HealthPoint>30</HealthPoint>
 		<MovingSpeed>50</MovingSpeed>
 		<AttackPower>300</AttackPower>
-		<AttackSpeed>10</AttackSpeed>
+		<AttackSpeed>1000</AttackSpeed>
 		<DefensivePower>1</DefensivePower>
 		<IsSplash>1</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
