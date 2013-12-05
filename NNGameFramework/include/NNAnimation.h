@@ -23,6 +23,8 @@ public:
 	void AddSpriteNode( wchar_t* path );
 	void SetLoop( bool loop ) { m_Loop = loop; }
 
+	std::vector<NNSpriteNode*> GetSpriteList() { return m_SpriteList; }
+
 private:
 	std::vector<NNSpriteNode*> m_SpriteList;
 
