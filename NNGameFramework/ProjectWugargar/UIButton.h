@@ -18,11 +18,6 @@ public :
 	bool CheckButtonArea( void );
 	bool ButtonPressed();
 
-	bool m_InCoolTime;
-	clock_t m_tCoolTime;
-	clock_t m_tClickedTime;
-	clock_t m_tNowTime; // 1초 단위로 시간을 재기위한 tmp
-
 protected :
 	NNSprite *m_pPressedImage;
 	NNSprite *m_pNormalImage;

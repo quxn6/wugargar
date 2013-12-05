@@ -9,6 +9,7 @@ CBase::CBase(void)
 void CBase::initStatus( void )
 {
 	m_HealthPoint = 1000;
+	m_FullHP = 1000;
 	m_MovingSpeed = 0.0f;
 	m_AttackPower = 0;
 	m_DefensivePower = 0;

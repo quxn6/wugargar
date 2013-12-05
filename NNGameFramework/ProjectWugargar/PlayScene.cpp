@@ -188,9 +188,7 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	//int count = 0;
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
-			if ( m_pUIButtons[i]->CheckButtonArea() && (m_pUIButtons[i]->m_InCoolTime == false) ) {
-				m_pUIButtons[i]->m_InCoolTime = true; //눌리고 나면 쿨타임 시작
-				m_pUIButtons[i]->m_tClickedTime = clock();
+			if ( m_pUIButtons[i]->CheckButtonArea()) {
 				if ( i != BABY_HUMAN ) {
 					MakeZombie(static_cast<ZombieType>(i));
 				} else if(m_pPlayer->GetMeatPoint() >=10){
