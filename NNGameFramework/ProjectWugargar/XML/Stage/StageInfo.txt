@@ -43,7 +43,7 @@
 	<StageInfo10>
 		<Time>2700</Time>
 		<PoliceType>0</PoliceType>
-	</StageInfo01>
+	</StageInfo10>
 	<StageInfo11>
 		<Time>3000</Time>
 		<PoliceType>4</PoliceType>
@@ -101,7 +101,7 @@
 	<StageInfo10>
 		<Time>2700</Time>
 		<PoliceType>0</PoliceType>
-	</StageInfo01>
+	</StageInfo0\10>
 	<StageInfo11>
 		<Time>3000</Time>
 		<PoliceType>4</PoliceType>
@@ -158,7 +158,7 @@
 	<StageInfo10>
 		<Time>2700</Time>
 		<PoliceType>0</PoliceType>
-	</StageInfo01>
+	</StageInfo10>
 	<StageInfo11>
 		<Time>3000</Time>
 		<PoliceType>4</PoliceType>
@@ -216,7 +216,7 @@
 	<StageInfo10>
 		<Time>2700</Time>
 		<PoliceType>0</PoliceType>
-	</StageInfo01>
+	</StageInfo10>
 	<StageInfo11>
 		<Time>3000</Time>
 		<PoliceType>4</PoliceType>
@@ -274,7 +274,7 @@
 	<StageInfo10>
 		<Time>2700</Time>
 		<PoliceType>0</PoliceType>
-	</StageInfo01>
+	</StageInfo10>
 	<StageInfo11>
 		<Time>3000</Time>
 		<PoliceType>4</PoliceType>
@@ -333,7 +333,7 @@
 	<StageInfo10>
 		<Time>2700</Time>
 		<PoliceType>0</PoliceType>
-	</StageInfo01>
+	</StageInfo10>
 	<StageInfo11>
 		<Time>3000</Time>
 		<PoliceType>4</PoliceType>
@@ -390,7 +390,7 @@
 	<StageInfo10>
 		<Time>2700</Time>
 		<PoliceType>0</PoliceType>
-	</StageInfo01>
+	</StageInfo10>
 	<StageInfo11>
 		<Time>3000</Time>
 		<PoliceType>4</PoliceType>

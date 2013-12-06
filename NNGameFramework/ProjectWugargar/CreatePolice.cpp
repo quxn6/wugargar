@@ -2,12 +2,13 @@
 #include "Police.h"
 #include "PlayScene.h"
 #include "PrintConsole.h"
+#include "NNResourceManager.h"
+#include "NNXML.h"
 
 CCreatePolice::CCreatePolice(void)
 {
 	begin_time = clock();
 	table_top_index = 0;
-	create_enemy_table = new CreateEnemyTable[8];
 	ReturnTableByFile();
 	
 	//printf_s("CreatePolice 생성자\n");
@@ -29,23 +30,23 @@ CCreatePolice::~CCreatePolice(void)
 // 수정 완료
 void CCreatePolice::ReturnTableByFile()
 {
-	create_enemy_table[0].time = 2;
-	create_enemy_table[0].enemy_type = NORMAL_POLICE;
-	create_enemy_table[1].time = 3;
-	create_enemy_table[1].enemy_type = NORMAL_POLICE;
-	create_enemy_table[2].time = 5;
-	create_enemy_table[2].enemy_type = NORMAL_POLICE;
-	create_enemy_table[3].time = 7;
-	create_enemy_table[3].enemy_type = NORMAL_POLICE;
-	create_enemy_table[4].time = 10;
-	create_enemy_table[4].enemy_type = NORMAL_POLICE;
+	NNXML *create_police_xml = new NNXML();
 
-	create_enemy_table[5].time = 15;
-	create_enemy_table[5].enemy_type = NORMAL_POLICE;
-	create_enemy_table[6].time = 20;
-	create_enemy_table[6].enemy_type = NORMAL_POLICE;
-	create_enemy_table[7].time = 25;
-	create_enemy_table[7].enemy_type = NORMAL_POLICE;
+	create_police_xml = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Stage/StageInfo.txt");
+	int current_stage = CPlayer::GetInstance()->GetCurrentStage() / 100;
+	std::string Xpath = "/StageInfo/Stage" + std::to_string(current_stage);
+	int num_stage_info = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
+	create_enemy_table = new CreateEnemyTable[num_stage_info];
+	Xpath.append("/StageInfo");
+	
+
+	for (int idx=0; idx<num_stage_info; ++idx)
+	{
+		create_enemy_table[idx].time = std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/Time/text()").c_str());
+		create_enemy_table[idx].enemy_type = (PoliceType)std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/PoliceType/text()").c_str());
+	}
+
+	//delete create_police_xml;
 }
 
 
@@ -62,7 +63,7 @@ PoliceType CCreatePolice::ReturnCreateEnemyInfo()
 	
 	current_time = clock();
 	
-	gap_time = (int)(current_time - begin_time)/(CLOCKS_PER_SEC);
+	gap_time = (int)(current_time - begin_time);
 	//printf_s("CreateEnemy. current : %d, gap : %d\n", current_time, gap_time);
 
 	if((gap_time) >= create_enemy_table[table_top_index].time)
@@ -96,4 +97,5 @@ void CCreatePolice::SetCreateInfoByXML( NNXML *StageXML )
 
 
 
-}
+}	
+
