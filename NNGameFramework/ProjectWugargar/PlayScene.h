@@ -14,6 +14,7 @@
 #include "Lightning.h"
 #include "DeadPolice.h"
 #include "MapObstaclManager.h"
+#include "NNSound.h"
 
 class CPlayScene : public NNScene
 {
@@ -68,6 +69,7 @@ private :
 	CHumanFarm *m_pHumanFarm;
 	CLightning	*m_pLightning;
 	MapObstaclManager *m_pMapObstacleManager;
+	NNSound		*m_backgraound_sound;
 
 	std::list<CCharacter*>		m_llistZombie;
 	std::list<CCharacter*>		m_llistPolice;

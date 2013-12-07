@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "NNSpriteAtlas.h"
 #include "NNAnimation.h"
+#include "NNSound.h"
 
 
 enum CharacterIdentity{
@@ -94,7 +95,11 @@ protected:
 	bool	m_SplashAttack;
 	bool	m_FreezingAttack;
 	float	m_SplashAttackRange;
-	clock_t	m_FreezingAttackDuration;		
+	clock_t	m_FreezingAttackDuration;
+	NNSound *m_creation_sound;
+	NNSound *m_attack_sound;
+	NNSound *m_dead_sound;
+
 
 	// 공격 및 이동 관련 내부 변수	
 //	(std::list<CCharacter*>)*	enemyList;

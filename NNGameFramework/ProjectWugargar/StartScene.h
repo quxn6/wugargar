@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "UIButton.h"
 #include "NNXML.h"
+#include "NNSound.h"
 class CStartScene :
 	public NNScene
 {
@@ -33,5 +34,6 @@ private :
 	CUIButton*	m_pExitButton;
 	NNSprite*	m_pBackground;
 	NNSprite*	m_pMainTitle;
+	NNSound*	m_startscene_background_sound;
 };
 
