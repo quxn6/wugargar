@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<Police>
+    <PoliceType>2</PoliceType>
+    <TypeName>ShieldPolice</TypeName>
+    <HealthPoint>500</HealthPoint>
+    <MovingSped>10</MovingSpeed>
+    <AttackPower>1</AttackPower>
+    <AttackSpeed>1</AttackSpeed>
+    <DefensivePower>25</DefensivePower>
+    <IsSplash>0</IsSplsh>
+    <IsIceAttack>0</IsIceAttack>
+    <AttackRange>7</AttackRange>
+    <SplashRange>0</SplashRange>
+    <SpritePath>wugargar/shield_police</SpritePath>
+</Police>

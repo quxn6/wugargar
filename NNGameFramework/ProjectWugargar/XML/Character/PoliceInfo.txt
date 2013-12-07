@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<PoliceInfo>
+
+	<PoliceTypeNum>6</PoliceTypeNum>
+	<Police1>
+		<PoliceType>0</PoliceType>
+		<TypeName>NormalPolice</TypeName>
+		<HealthPoint>10</HealthPoint>
+		<MovingSpeed>35</MovingSpeed>
+		<AttackPower>10</AttackPower>
+		<AttackSpeed>2000</AttackSpeed>
+		<DefensivePower>2</DefensivePower>
+		<IsSplash>0</IsSplash>
+		<IsIceAttack>0</IsIceAttack>
+		<AttackRange>200</AttackRange>
+		<SplashRange>0</SplashRange>
+		<SpritePath>wugargar/normal_police.png</SpritePath>
+	</Police1>
+	
+	<Police2>
+		<PoliceType>1</PoliceType>
+		<TypeName>MachinegunPolice</TypeName>
+		<HealthPoint>20</HealthPoint>
+		<MovingSpeed>40</MovingSpeed>
+		<AttackPower>12</AttackPower>
+		<AttackSpeed>2000</AttackSpeed>
+		<DefensivePower>4</DefensivePower>
+		<IsSplash>0</IsSplash>
+		<IsIceAttack>0</IsIceAttack>
+		<AttackRange>200</AttackRange>
+		<SplashRange>0</SplashRange>
+		<SpritePath>wugargar/machinegun_police.png</SpritePath>
+	</Police2>	
+	
+	<Police3>
+		<PoliceType>2</PoliceType>
+		<TypeName>ShieldPolice</TypeName>
+		<HealthPoint>50</HealthPoint>
+		<MovingSpeed>10</MovingSpeed>
+		<AttackPower>1</AttackPower>
+		<AttackSpeed>1000</AttackSpeed>
+		<DefensivePower>25</DefensivePower>
+		<IsSplash>0</IsSplash>
+		<IsIceAttack>0</IsIceAttack>
+		<AttackRange>7</AttackRange>
+		<SplashRange>0</SplashRange>
+		<SpritePath>wugargar/shield_police.png</SpritePath>
+	</Police3>
+	
+	<Police4>
+	    <PoliceType>3</PoliceType>
+		<TypeName>GrenadePolice</TypeName>
+		<HealthPoint>50</HealthPoint>
+		<MovingSpeed>60</MovingSpeed>
+		<AttackPower>80</AttackPower>
+		<AttackSpeed>5000</AttackSpeed>
+		<DefensivePower>1</DefensivePower>
+		<IsSplash>1</IsSplash>
+		<IsIceAttack>0</IsIceAttack>
+		<AttackRange>400</AttackRange>
+		<SplashRange>50</SplashRange>
+		<SpritePath>wugargar/machinegun_police.png</SpritePath>
+	</Police4>
+	
+	<Police5>
+	    <PoliceType>4</PoliceType>
+		<TypeName>ShotgunPolice</TypeName>
+		<HealthPoint>20</HealthPoint>
+		<MovingSpeed>50</MovingSpeed>
+		<AttackPower>50</AttackPower>
+		<AttackSpeed>2000</AttackSpeed>
+		<DefensivePower>3</DefensivePower>
+		<IsSplash>1</IsSplash>
+		<IsIceAttack>0</IsIceAttack>
+		<AttackRange>50</AttackRange>
+		<SplashRange>20</SplashRange>
+		<SpritePath>wugargar/shotgun_police.png</SpritePath>
+	</Police5>
+	
+	<Police6>
+	    <PoliceType>4</PoliceType>
+		<TypeName>FirebatPolice</TypeName>
+		<HealthPoint>30</HealthPoint>
+		<MovingSpeed>50</MovingSpeed>
+		<AttackPower>300</AttackPower>
+		<AttackSpeed>1000</AttackSpeed>
+		<DefensivePower>1</DefensivePower>
+		<IsSplash>1</IsSplash>
+		<IsIceAttack>0</IsIceAttack>
+		<AttackRange>30</AttackRange>
+		<SplashRange>70</SplashRange>
+		<SpritePath>wugargar/firebat_police.png</SpritePath>
+	</Police6>
+	
+</PoliceInfo>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<Police>
+    <PoliceType>4</PoliceType>
+    <TypeName>FirebatPolice</TypeName>
+    <HealthPoint>30</HealthPoint>
+    <MovingSped>50</MovingSpeed>
+    <AttackPower>300</AttackPower>
+    <AttackSpeed>10</AttackSpeed>
+    <DefensivePower>1</DefensivePower>
+    <IsSplash>1</IsSplsh>
+    <IsIceAttack>0</IsIceAttack>
+    <AttackRange>30</AttackRange>
+    <SplashRange>70</SplashRange>
+    <SpritePath>wugargar/firebat_police</SpritePath>
+</Police>
