@@ -82,7 +82,7 @@
 		<TypeName>FirebatPolice</TypeName>
 		<HealthPoint>30</HealthPoint>
 		<MovingSpeed>50</MovingSpeed>
-		<AttackPower>300</AttackPower>
+		<AttackPower>30</AttackPower>
 		<AttackSpeed>1000</AttackSpeed>
 		<DefensivePower>1</DefensivePower>
 		<IsSplash>1</IsSplash>
