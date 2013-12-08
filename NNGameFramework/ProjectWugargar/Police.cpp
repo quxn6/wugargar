@@ -27,7 +27,7 @@ void CPolice::Update( float dTime )
 void CPolice::initStatus( PoliceInfo *policeInfo, int police_type_idx )
 {
 	m_HealthPoint = policeInfo[police_type_idx].HealthPoint;
-	m_FullHP = m_HealthPoint/100;
+	m_FullHP = m_HealthPoint;
 	m_MovingSpeed = policeInfo[police_type_idx].MovingSpeed;
 	m_AttackRange = policeInfo[police_type_idx].AttackRange;
 	m_SplashAttackRange = policeInfo[police_type_idx].SplashRange;
