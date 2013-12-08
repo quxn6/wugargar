@@ -8,7 +8,7 @@
 CCreatePolice::CCreatePolice(void)
 {
 	begin_time = clock();
-	table_top_index = 0;
+	tableTopIndex = 0;
 	ReturnTableByFile();
 	
 	//printf_s("CreatePolice »ý¼ºÀÚ\n");
@@ -66,10 +66,10 @@ PoliceType CCreatePolice::ReturnCreateEnemyInfo()
 	gap_time = (int)(current_time - begin_time);
 	//printf_s("CreateEnemy. current : %d, gap : %d\n", current_time, gap_time);
 
-	if((gap_time) >= create_enemy_table[table_top_index].time)
+	if((gap_time) >= create_enemy_table[tableTopIndex].time)
 	{
-		++table_top_index;
-		return create_enemy_table[table_top_index].enemy_type;
+		++tableTopIndex;
+		return create_enemy_table[tableTopIndex].enemy_type;
 
 	}
 

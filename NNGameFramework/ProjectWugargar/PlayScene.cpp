@@ -50,7 +50,7 @@ CPlayScene::CPlayScene(void)
 	m_pPlayer = CPlayer::GetInstance();
 	m_pPlayer->ReadyToPlay();
 
-	m_pCreatePolice = new CCreatePolice;
+	m_pCreatePolice = CCreatePolice::Create();
 	m_pMapObstacleManager = MapObstaclManager::Create();
 	AddChild(m_pMapObstacleManager, 2);
 	
@@ -72,13 +72,7 @@ CPlayScene::CPlayScene(void)
 
 CPlayScene::~CPlayScene(void)
 {
-	delete m_pCreatePolice;
-
-	for (auto& iter=m_ChildList.begin(); iter!=m_ChildList.end(); iter++ )
-	{
-		SafeDelete( *iter );
-	}
-	m_ChildList.clear();
+	SafeDelete(m_pCreatePolice);
 	CCharacterConfig::ReleaseInstance();
 }
 
@@ -169,7 +163,7 @@ void CPlayScene::Update( float dTime )
 	DeadCharacterCollector();
 	CollectDeadPoliceByClick();
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
-	if(m_pCreatePolice->table_top_index < 7) {
+	if(m_pCreatePolice->GetTableTopIndex() < 7) {
 		MakePoliceFromScript();
 	}
 
@@ -411,6 +405,7 @@ bool CPlayScene::CheckGameOver()
 	}
 	
 	NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+
 	m_pInstance = nullptr;		
 	return true;
 
