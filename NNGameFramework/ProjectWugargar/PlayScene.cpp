@@ -16,6 +16,7 @@
 #include "NextStageScene.h"
 #include "HeroZombie.h"
 #include "CharacterConfig.h"
+#include "NNResourceManager.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -43,6 +44,7 @@ CPlayScene::CPlayScene(void)
 	_initBackground();
 	_initMap();
 	_initUI();
+	loadPoliceInfo();
 
 	// player초기화
 	m_pPlayer = CPlayer::GetInstance();
@@ -77,6 +79,7 @@ CPlayScene::~CPlayScene(void)
 		SafeDelete( *iter );
 	}
 	m_ChildList.clear();
+	CCharacterConfig::ReleaseInstance();
 }
 
 // init background
@@ -453,3 +456,24 @@ void CPlayScene::Test_ShowFPS()
 	m_pShowMouseStatus->SetString(temp);
 }
 
+
+
+void CPlayScene::loadPoliceInfo()
+{
+	CCharacterConfig *pCharacterConfig = CCharacterConfig::GetInstance();
+	m_PoliceXML = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/PoliceInfo.txt");
+	int num_police = std::stoi(m_PoliceXML->XPathToString("/PoliceInfo/PoliceTypeNum/text()").c_str());
+
+
+	std::string xPath = "/PoliceInfo/Police";
+
+	//MemoryLeak?
+	if(!(m_PoliceXML->GetLoadSuccess())){
+		printf_s("Police Information XML Load Fail!\n");
+		return;
+	}
+	pCharacterConfig->GetInstance()->DeterminePoliceInfo(m_PoliceXML);
+
+
+
+}

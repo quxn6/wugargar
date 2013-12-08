@@ -50,6 +50,8 @@ public:
 	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;}
 	std::wstring string2wstring(std::string str);
 
+	void loadPoliceInfo();
+
 
 private :
 	void _initBackground( void );
@@ -70,6 +72,8 @@ private :
 	CLightning	*m_pLightning;
 	MapObstaclManager *m_pMapObstacleManager;
 	NNSound		*m_backgraound_sound;
+
+	NNXML*		m_PoliceXML;
 
 	std::list<CCharacter*>		m_llistZombie;
 	std::list<CCharacter*>		m_llistPolice;

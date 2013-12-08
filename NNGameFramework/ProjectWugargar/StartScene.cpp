@@ -11,7 +11,7 @@
 CStartScene::CStartScene(void)
 {
 	InitButtons();
-	loadPoliceInfo();
+	
 }
 
 void CStartScene::InitButtons( void )
@@ -117,22 +117,4 @@ void CStartScene::load()
 
 }
 
-void CStartScene::loadPoliceInfo()
-{
-	CCharacterConfig *pCharacterConfig = CCharacterConfig::GetInstance();
-	m_PoliceXML = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/PoliceInfo.txt");
-	int num_police = std::stoi(m_PoliceXML->XPathToString("/PoliceInfo/PoliceTypeNum/text()").c_str());
 
-
-	std::string xPath = "/PoliceInfo/Police";
-
-	//MemoryLeak?
-	if(!(m_PoliceXML->GetLoadSuccess())){
-		printf_s("Police Information XML Load Fail!\n");
-		return;
-	}
-	pCharacterConfig->GetInstance()->DeterminePoliceInfo(m_PoliceXML);
-
-
-
-}
