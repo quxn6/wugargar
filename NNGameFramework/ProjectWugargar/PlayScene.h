@@ -43,11 +43,11 @@ public:
 	void CollectDeadPoliceByClick();
 	bool CheckGameOver();
 
-	void SetStartTime(clock_t time) {m_startTime = time;};
-	void SetNowTime(clock_t time) {m_nowTime = time;};
-	int GetStartTimeSEC() {return m_startTime/CLOCKS_PER_SEC;}; 
-	int GetNowTimeSEC() {return m_nowTime/CLOCKS_PER_SEC;};
-	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;};
+	void SetStartTime(clock_t time) {m_startTime = time;}
+	void SetNowTime(clock_t time) {m_nowTime = time;}
+	int GetStartTimeSEC() {return m_startTime/CLOCKS_PER_SEC;} 
+	int GetNowTimeSEC() {return m_nowTime/CLOCKS_PER_SEC;}
+	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;}
 	std::wstring string2wstring(std::string str);
 
 
