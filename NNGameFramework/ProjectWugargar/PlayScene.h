@@ -35,7 +35,6 @@ public:
 	static void ReleaseInstance();
 	void MakeZombie(ZombieType type);
 	void MakeZombie(ZombieType type, NNPoint* position);
-//	void MakeCharacterWalk(float dTime);
 	void MakeZombieButtonOperate(float dTime);
 	void DeadCharacterCollector();
 	void MakePoliceFromScript();

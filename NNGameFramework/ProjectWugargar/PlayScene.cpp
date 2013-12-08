@@ -258,6 +258,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 		tmpZombieObject->SetRandomPositionAroundBase();
 	} else {
 		tmpZombieObject->SetPosition(*position);
+
 	}
 	
 	tmpZombieObject->InitSprite(imagePath[type]);
@@ -275,35 +276,14 @@ void CPlayScene::MakeZombie(ZombieType type)
 {
 	MakeZombie(type, nullptr);	
 }
-// 
-// void CPlayScene::MakeCharacterWalk(float dTime)
-// {
-// 	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
-// 		(*iter)->SetPosition((*iter)->GetPosition() - NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
-// 	}
-// 
-// 
-// 	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
-// 		(*iter)->SetPosition((*iter)->GetPosition() + NNPoint( ((*iter)->GetMovingSpeed()), 0.0f) * dTime);
-// 	}
-// }
 
 
 
 void CPlayScene::MakePoliceFromScript()
 {
 	PoliceType create_enemy_type;
-	
-
-	
-
 	create_enemy_type =	m_pCreatePolice->ReturnCreateEnemyInfo();
-
-
-	
-
 	if(create_enemy_type != NONE_POLICE){
-
 		CPolice *tmpPoliceObject = CPolice::Create();
 		tmpPoliceObject->initStatus(CCharacterConfig::GetInstance()->GetPoliceInfo(), create_enemy_type);
 		bool is_not_time = false;
@@ -311,9 +291,7 @@ void CPlayScene::MakePoliceFromScript()
 		tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
 		AddChild(tmpPoliceObject, 10);
 		m_llistPolice.push_back(tmpPoliceObject);
-
-	}
-	
+	}	
 }
 
 // 죽은 캐릭터 수집기,

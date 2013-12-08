@@ -24,7 +24,6 @@ CCharacter::~CCharacter(void)
 
 void CCharacter::InitSprite( std::wstring imagePath )
 {
-	m_Sprite = NNSprite::Create(imagePath);
 	
 	// 부모 노드의 위치에 영향을 받기 때문에 
 	// 부모인 캐릭터 노드의 위치를 설정하고 
@@ -33,27 +32,39 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	// 12/3 추가 : 캐릭터의 원점을 이미지의 중앙으로 잡기 위해 원점에서
 	// 이미지 사이즈를 2로 나눠준값을 뺌
 
-	m_Sprite->SetPosition(-m_Sprite->GetImageWidth()/2, -m_Sprite->GetImageHeight()/2);		
-	AddChild(m_Sprite, 1);
+ 	m_Animation = NNAnimation::Create(1,imagePath.c_str());
+ 	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
+	AddChild(m_Animation,1);
 
-	if(GetIdentity() == Zombie)
-	{
-		m_Animation = NNAnimation::Create(1,imagePath.c_str());
-		m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSize().GetWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSize().GetHeight()/2));
-		//AddChild(m_Animation,1);
-	}
+	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
+	m_pShowHP->SetCutSize(0,0,50.f,5.f);
+	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()+10.f);
+	AddChild(m_pShowHP, 20);
+
+
+//	m_Sprite = NNSprite::Create(imagePath);
+// 	m_Sprite->SetPosition(-m_Sprite->GetImageWidth()/2, -m_Sprite->GetImageHeight()/2);		
+//	AddChild(m_Sprite, 1);
+
+
+// 	if(GetIdentity() == Zombie)
+// 	{
+// 		m_Animation = NNAnimation::Create(1,imagePath.c_str());
+// 		m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSize().GetWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSize().GetHeight()/2));
+// 		AddChild(m_Animation,1);
+// 	}
 	/*
 	m_pShowHP = NNLabel::Create(L"HP", L"맑은 고딕", 10.f);
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 	AddChild(m_pShowHP, 20);
 	*/
-	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
-	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	if( GetIdentity() == Zombie)
-		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()+10.f);
-	else
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
-	AddChild(m_pShowHP, 20);
+	
+// 
+// 	if( GetIdentity() == Zombie)
+// 		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()+10.f);
+// 	else
+// 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
+
 }
 
 // 기지주변에서 캐릭터 랜덤 생성
@@ -133,13 +144,13 @@ void CCharacter::UpdateHPBar( void )
 	float healthPointPercentage = m_HealthPoint/m_FullHP*100;
 	if( healthPointPercentage >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
 		m_pShowHP->SetCutSize(0,0,healthPointPercentage/2,5.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
+		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY());
 	} else if( healthPointPercentage< 70 && healthPointPercentage >= 30){
 		m_pShowHP->SetCutSize(0,21,healthPointPercentage/2,26.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
+		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY());
 	} else {
 		m_pShowHP->SetCutSize(0,35,healthPointPercentage/2,40.f);
-		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY());
+		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY());
 	}
 }
 

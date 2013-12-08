@@ -30,23 +30,20 @@ CCreatePolice::~CCreatePolice(void)
 // 수정 완료
 void CCreatePolice::ReturnTableByFile()
 {
-	NNXML *create_police_xml = new NNXML();
+	NNXML *create_police_xml;
 
 	create_police_xml = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Stage/StageInfo.txt");
 	int current_stage = CPlayer::GetInstance()->GetCurrentStage() / 100;
 	std::string Xpath = "/StageInfo/Stage" + std::to_string(current_stage);
 	int num_stage_info = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
+	
 	create_enemy_table = new CreateEnemyTable[num_stage_info];
 	Xpath.append("/StageInfo");
 	
-
-	for (int idx=0; idx<num_stage_info; ++idx)
-	{
+	for (int idx=0; idx<num_stage_info; ++idx) {
 		create_enemy_table[idx].time = std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/Time/text()").c_str());
 		create_enemy_table[idx].enemy_type = (PoliceType)std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/PoliceType/text()").c_str());
 	}
-
-	//delete create_police_xml;
 }
 
 
@@ -59,18 +56,14 @@ void CCreatePolice::ReturnTableByFile()
 			생성후엔 index를 늘려주어 다음에 지정된 부분으로 이동하게 함.
 */
 PoliceType CCreatePolice::ReturnCreateEnemyInfo()
-{
-	
+{	
 	current_time = clock();
 	
 	gap_time = (int)(current_time - begin_time);
-	//printf_s("CreateEnemy. current : %d, gap : %d\n", current_time, gap_time);
 
-	if((gap_time) >= create_enemy_table[tableTopIndex].time)
-	{
+	if((gap_time) >= create_enemy_table[tableTopIndex].time){
 		++tableTopIndex;
 		return create_enemy_table[tableTopIndex].enemy_type;
-
 	}
 
 	return NONE_POLICE;
