@@ -15,6 +15,8 @@ CStartScene::CStartScene(void)
 {
 	InitBackGround();
 	InitButtons();
+
+	//Sound추가. 배경음이며 무한 loop되며 재생되도록
 	m_startscene_background_sound = NNResourceManager::GetInstance()->LoadSoundFromFile("sound/StartscenBackgroundSound.mp3", true, true);
 
 	NNAudioSystem::GetInstance()->Play(m_startscene_background_sound);
@@ -30,7 +32,7 @@ void CStartScene::InitBackGround( void )
 
 void CStartScene::InitButtons( void )
 {
-
+	//기존 버튼에서 Label을 이용한 방식으로 변경. 라벨 설정
 	m_MenuBar[MENU_PLAY] = NNLabel::Create( L"NEW GAME", L"궁서체", 20.f );
 	m_MenuBar[MENU_PLAY]->SetPosition( GAME_SCREEN_MAX_SIZE_X - 200, 640 );
 	AddChild( m_MenuBar[MENU_PLAY] );
@@ -43,15 +45,18 @@ void CStartScene::InitButtons( void )
 	m_MenuBar[MENU_QUIT]->SetPosition( GAME_SCREEN_MAX_SIZE_X - 200, 700 );
 	AddChild( m_MenuBar[MENU_QUIT] );
 
+	//라벨의 색을 하얀색으로 설정(안보이니까)
 	for(int idx=0; idx<MENU_BAR_NUM; ++idx)
 		m_MenuBar[idx]->SetColor( 255.f, 255.f, 255.f );
 
-	m_KeyOn = 0;			// 현재 가리키고 있는 메뉴 위치
+	m_KeyOn = 0;			
+	// 현재 가리키고 있는 메뉴 위치
 
 }
 
 CStartScene::~CStartScene(void)
 {
+	//소멸자에서 배경음 재생 중지
 	NNAudioSystem::GetInstance()->Stop( m_startscene_background_sound );
 
 }
@@ -66,7 +71,7 @@ void CStartScene::Update( float dTime )
 	NNScene::Update(dTime);
 
 	
-
+	//m_KeyOn을 이용하여 라벨의 상태, 입력 설정
 	if ( NNInputSystem::GetInstance()->GetKeyState(VK_UP) == KEY_DOWN
 		&& m_KeyOn!=MENU_PLAY)
 	{
@@ -78,8 +83,11 @@ void CStartScene::Update( float dTime )
 		++m_KeyOn;
 	}
 	m_KeyOn = (m_KeyOn + MENU_BAR_NUM) % MENU_BAR_NUM;
+	//현재 가리키고 있는 부분의 색상을 빨간색으로
 	m_MenuBar[m_KeyOn]->SetColor( 255.f, 0.f, 0.f );
 
+
+	//엔터 버튼 누르면 선택된 부분 선택하게됨
 	if ( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN )
 	{
 		switch (m_KeyOn)
@@ -94,6 +102,7 @@ void CStartScene::Update( float dTime )
 			return ;
 			break;
 		case MENU_QUIT:
+			//종료 처리 로직
 			PostMessage( NNApplication::GetInstance()->GetHWND(), WM_DESTROY, 0, 0 );
 			break;
 		default:
@@ -103,6 +112,7 @@ void CStartScene::Update( float dTime )
 
 	}
 
+	//현재 선택되어 있는 부분 외 라벨을 흰색으로 재설정
 	for(int idx=0; idx<MENU_BAR_NUM; ++idx)
 		if(idx!= m_KeyOn)
 			m_MenuBar[idx]->SetColor( 255.f, 255.f, 255.f );
