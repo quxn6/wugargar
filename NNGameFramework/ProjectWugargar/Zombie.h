@@ -19,6 +19,8 @@ public:
 
 	void	ApplyZombieLevel();
 
+	void	PlayCreationSound();
+
 protected:
 	int			m_CreateCost;
 	ZombieType	m_zombieType;
