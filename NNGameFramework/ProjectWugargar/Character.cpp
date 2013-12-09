@@ -1,6 +1,8 @@
 #include "Character.h"
 #include "PlayScene.h"
 #include <math.h>
+#include "NNResourceManager.h"
+#include "NNAudioSystem.h"
 
 
 CCharacter::CCharacter(void)
@@ -19,6 +21,7 @@ CCharacter::CCharacter(void)
 
 CCharacter::~CCharacter(void)
 {
+	PlayDeadSound();
 }
 
 
@@ -247,11 +250,6 @@ void CCharacter::NormalAttack( CCharacter* target, clock_t currentTime )
  */
 void CCharacter::SplashAttack( NNPoint splashPoint, clock_t currentTime )
 {
-// 	for (const auto& enemy : (*enemyList) {		 
-// 		 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
-// 			 NormalAttack(enemy);
-// 		 }
-// 	}
 	
 	 switch (m_Identity)
 	 {
@@ -345,4 +343,23 @@ std::wstring CCharacter::string2wstring(std::string str) {
 
 	return wstr;
 
+}
+
+void CCharacter::PlayDeadSound()
+{
+	std::string soundPath;
+	switch (m_Identity)
+	{
+	case Zombie:
+		soundPath = "sound/ZombieDeadSound.wav";
+		break;
+	case Police:
+		return;
+	default:
+		return;
+	}
+
+	m_dead_sound = NNResourceManager::GetInstance()->LoadSoundFromFile(soundPath, false, false);
+
+	NNAudioSystem::GetInstance()->Play(m_dead_sound);
 }

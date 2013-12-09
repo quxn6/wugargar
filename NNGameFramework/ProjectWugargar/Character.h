@@ -75,6 +75,8 @@ public:
 	void SetFreeze(bool ice_state) {m_Freeze = ice_state;}
 	void SetTotalFreezingTime(clock_t tft) { m_TotalFreezingTime = tft;}
 	
+
+	void PlayDeadSound();
 	
 protected: 
 	virtual void initStatus( void ) {};	
@@ -96,6 +98,8 @@ protected:
 	bool	m_FreezingAttack;
 	float	m_SplashAttackRange;
 	clock_t	m_FreezingAttackDuration;
+
+	//사운드 관련 변수
 	NNSound *m_creation_sound;
 	NNSound *m_attack_sound;
 	NNSound *m_dead_sound;
