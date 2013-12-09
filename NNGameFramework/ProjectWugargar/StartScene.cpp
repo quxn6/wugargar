@@ -6,6 +6,7 @@
 #include "GameConfig.h"
 #include "CharacterConfig.h"
 #include "NNApplication.h"
+#include "NNAudioSystem.h"
 
 
 
@@ -14,7 +15,9 @@ CStartScene::CStartScene(void)
 {
 	InitBackGround();
 	InitButtons();
-	
+	m_startscene_background_sound = NNResourceManager::GetInstance()->LoadSoundFromFile("sound/StartscenBackgroundSound.mp3", true, true);
+
+	NNAudioSystem::GetInstance()->Play(m_startscene_background_sound);
 }
 
 void CStartScene::InitBackGround( void )
@@ -44,35 +47,13 @@ void CStartScene::InitButtons( void )
 		m_MenuBar[idx]->SetColor( 255.f, 255.f, 255.f );
 
 	m_KeyOn = 0;			// 현재 가리키고 있는 메뉴 위치
-	//std::wstring new_button_path = L"wugargar/UIbuttons/startbutton_normal.png";
-	//std::wstring new_button_path_pressed = L"wugargar/UIbuttons/startbutton_pressed.png";
-	//std::wstring load_button_path = L"wugargar/UIbuttons/loadbutton_normal.png";
-	//std::wstring load_button_path_pressed = L"wugargar/UIbuttons/loadbutton_pressed.png";
-	//std::wstring exit_button_path = L"wugargar/UIbuttons/exitbutton_normal.png";
-	//std::wstring exit_button_path_pressed = L"wugargar/UIbuttons/exitbutton_pressed.png";
-	//std::wstring main_title = L"wugargar/UIbuttons/MainTitle.png";
 
-
-	//m_pNewGameButton = CUIButton::Create(new_button_path, new_button_path_pressed);
-	//m_pNewGameButton->SetPosition(GAME_SCREEN_MAX_SIZE_X / 3.0f, GAME_SCREEN_MAX_SIZE_Y / 5.0f * 2);
-	//AddChild(m_pNewGameButton, 20);
-
-	//m_pLoadGameButton = CUIButton::Create(load_button_path, load_button_path_pressed);
-	//m_pLoadGameButton->SetPosition(GAME_SCREEN_MAX_SIZE_X / 3.0f, GAME_SCREEN_MAX_SIZE_Y / 5.0f * 3);
-	//AddChild(m_pLoadGameButton, 20);
-
-	//m_pExitButton = CUIButton::Create(exit_button_path, exit_button_path_pressed);
-	//m_pExitButton->SetPosition(GAME_SCREEN_MAX_SIZE_X / 3.0f, GAME_SCREEN_MAX_SIZE_Y / 5.0f * 4);
-	//AddChild(m_pExitButton, 20);
-
-	//m_pMainTitle = NNSprite::Create(main_title);
-	//m_pMainTitle->SetPosition(GAME_SCREEN_MAX_SIZE_X / 3.0f, GAME_SCREEN_MAX_SIZE_Y / 5.0f * 1);
-	//AddChild(m_pMainTitle, 19);
 }
 
 CStartScene::~CStartScene(void)
 {
-	//NNAudioSystem::GetInstance()->Stop( m_BackgroundSound );
+	NNAudioSystem::GetInstance()->Stop( m_startscene_background_sound );
+
 }
 
 void CStartScene::Render()
@@ -126,24 +107,7 @@ void CStartScene::Update( float dTime )
 		if(idx!= m_KeyOn)
 			m_MenuBar[idx]->SetColor( 255.f, 255.f, 255.f );
 
-	//if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON)) {
-	//	// new game
-	//	if(m_pNewGameButton->CheckButtonArea()) {
-	//		NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-	//		return ;
-	//	}
-	//	
-	//	// load game
-	//	if(m_pLoadGameButton->CheckButtonArea()) {
-	//		load();
-	//		NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-	//		return ;
-	//	}
-	//	
-	//	// exit
-	//	if(m_pExitButton->CheckButtonArea()) {
-	//	}		
-	//}
+
 }
 
 // load game

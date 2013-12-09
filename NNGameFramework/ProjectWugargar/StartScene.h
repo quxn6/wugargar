@@ -44,11 +44,6 @@ private :
 
 	
 
-	CUIButton*	m_pNewGameButton;
-	CUIButton*	m_pLoadGameButton;
-	CUIButton*	m_pExitButton;
-	NNSprite*	m_pBackground;
-	NNSprite*	m_pMainTitle;
 	NNSound*	m_startscene_background_sound;
 	NNSprite*	m_pStartSceneBackground;
 };
