@@ -21,7 +21,7 @@ public:
 	bool IsInfected() {return m_infected;};
 	void SetInfectedStatus(bool infected) {m_infected = infected;};
 
-	virtual void initStatus( PoliceInfo *policeInfo, int police_type_idx );
+	virtual void initStatus( CharacterInfo *policeInfo, int police_type_idx );
 protected:
 	bool m_infected;
 	PoliceType m_policeType;

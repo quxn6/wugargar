@@ -26,9 +26,9 @@ private :
 public:
 	void Render();
 	void Update( float dTime );
-	std::list<CCharacter*> GetZombieList() { return m_llistZombie; }
-	std::list<CCharacter*> GetPoliceList() { return m_llistPolice; }
-	std::list<CDeadPolice*> GetDeadPoliceList() { return m_llistDeadPolice;}
+	std::list<CCharacter*> GetZombieList() { return *m_llistZombie; }
+	std::list<CCharacter*> GetPoliceList() { return *m_llistPolice; }
+	std::list<CDeadPolice*> GetDeadPoliceList() { return *m_llistDeadPolice;}
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
 
 	static CPlayScene* GetInstance();
@@ -74,9 +74,9 @@ private :
 
 	NNXML*		m_PoliceXML;
 
-	std::list<CCharacter*>		m_llistZombie;
-	std::list<CCharacter*>		m_llistPolice;
-	std::list<CDeadPolice*>		m_llistDeadPolice;
+	std::list<CCharacter*>		*m_llistZombie;
+	std::list<CCharacter*>		*m_llistPolice;
+	std::list<CDeadPolice*>		*m_llistDeadPolice;
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 	wchar_t		meat[256]; //meat Point 표시를 위한 임시변수

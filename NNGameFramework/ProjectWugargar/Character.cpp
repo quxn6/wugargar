@@ -10,6 +10,8 @@ CCharacter::CCharacter(void)
 	m_SplashAttack = false;
 	m_SuicideBomber = false;
 	m_FreezingAttack = false;
+	m_IsBleeding = false;
+	m_bleedingTime = 0.0f;
 
 	m_AttackTarget = nullptr;
 	m_LastAttackTime = 0;
@@ -18,15 +20,22 @@ CCharacter::CCharacter(void)
 	m_TotalFreezingTime = 0;
 	m_Sight = MAP_SIZE_Y * TILE_SIZE_Y / 2;	
 
-	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
-	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	m_pShowHP->SetPosition(-20, -50); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
-	AddChild(m_pShowHP, 20);
+	InitHPBar();
+	InitHitEffect(L"wugargar/effect/blood.png");
 }
 
 CCharacter::~CCharacter(void)
 {
 	PlayDeadSound();
+}
+
+
+void CCharacter::InitHPBar( void )
+{
+	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
+	m_pShowHP->SetCutSize(0,0,50.f,5.f);
+	m_pShowHP->SetPosition(-20, -50); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
+	AddChild(m_pShowHP, 20);
 }
 
 
@@ -43,26 +52,17 @@ void CCharacter::InitSprite( std::wstring imagePath )
  	m_Sprite = NNSprite::Create(imagePath);
  	m_Sprite->SetPosition(-(m_Sprite->GetImageWidth()/2), -(m_Sprite->GetImageHeight()/2));
 	AddChild(m_Sprite,1);
-	
-
-//	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
-//	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-//	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
-//	AddChild(m_pShowHP, 20);
-
-// 	if(GetIdentity() == Zombie)
-// 	{
-// 		m_Animation = NNAnimation::Create(1,imagePath.c_str());
-// 		m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSize().GetWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSize().GetHeight()/2));
-// 		AddChild(m_Animation,1);
-// 	}
-	/*
-	m_pShowHP = NNLabel::Create(L"HP", L"맑은 고딕", 10.f);
-	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
-	AddChild(m_pShowHP, 20);
-	*/
-
 }
+
+
+void CCharacter::InitHitEffect( std::wstring imagePath )
+{
+	m_HitEffect = NNSprite::Create(imagePath);
+	m_HitEffect->SetPosition(-(m_HitEffect->GetImageWidth()/2), -(m_HitEffect->GetImageHeight()/2));
+	m_HitEffect->SetVisible(false);
+	AddChild(m_HitEffect,10);
+}
+
 
 // 기지주변에서 캐릭터 랜덤 생성
 void CCharacter::SetRandomPositionAroundBase()
@@ -115,8 +115,10 @@ void CCharacter::Update( float dTime )
 
 	clock_t currentTime = clock();
 
+
+	ShowHitEffect(dTime);
 	UpdateHPBar();	
-	DetermineAttackTarget();
+	UpdateAttackTarget();
 
 	//현재 얼어있는 상태라면 이동/공격이 불가
 	if(m_Freeze) {
@@ -148,6 +150,20 @@ void CCharacter::UpdateHPBar( void )
 	}
 }
 
+// 피흘리는 거 보여주기
+void CCharacter::ShowHitEffect( float dTime )
+{
+	if ( m_IsBleeding ) {
+		m_bleedingTime += dTime;
+		if ( m_bleedingTime > 0.3 ) {
+			m_bleedingTime = 0;
+			m_IsBleeding = false;
+			m_HitEffect->SetVisible(false);
+		}
+	}
+}
+
+
 
 /*
 함수명 : DetermineAttackTarget
@@ -164,7 +180,7 @@ ISSUE : 1차 통합. switch문의 반복되는 For문을 하나로 줄일 방법을 찾아야 됨.
 
 11/14 : Enemy가 존재하지 않을 때(NULL) attackTarget을 상대의 Base로 설정하도록 변경
 */
-void  CCharacter::DetermineAttackTarget()
+void  CCharacter::UpdateAttackTarget()
 {
 	float closestTargetDistance = 1000000.0f;
 	float nextTargetDistance;
@@ -231,6 +247,8 @@ void CCharacter::NormalAttack( CCharacter* target, clock_t currentTime )
 	int damage = m_AttackPower - target->GetDefensivePower();
 	float targetHP = target->GetHP(); 
 	target->SetHP(targetHP-damage) ;
+	target->GetHitEffect()->SetVisible(true);
+	target->SetIsBleeding(true);
 }
 
 

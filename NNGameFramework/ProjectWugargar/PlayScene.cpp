@@ -41,16 +41,24 @@ void CPlayScene::ReleaseInstance()
 
 CPlayScene::CPlayScene(void)
 {	
+	m_llistPolice = new std::list<CCharacter*>;
+	m_llistZombie = new std::list<CCharacter*>;
+	m_llistDeadPolice = new std::list<CDeadPolice*>;
+
 	_initBackground();
 	_initMap();
 	_initUI();
 	loadPoliceInfo();
+	
 
 	// player초기화
 	m_pPlayer = CPlayer::GetInstance();
 	m_pPlayer->ReadyToPlay();
 
+	// police creator 초기화
 	m_pCreatePolice = CCreatePolice::Create();
+
+	// 장애물 생성기 초기화
 	m_pMapObstacleManager = MapObstaclManager::Create();
 	AddChild(m_pMapObstacleManager, 2);
 	
@@ -94,8 +102,8 @@ void CPlayScene::_initMap( void )
 {	
 	m_pMapCreator = CMapCreator::Create();
 	AddChild( m_pMapCreator , 1);
-	m_llistZombie.push_back( m_pMapCreator->GetZombieBase() );
-	m_llistPolice.push_back( m_pMapCreator->GetPoliceBase() );
+	m_llistZombie->push_back( m_pMapCreator->GetZombieBase() );
+	m_llistPolice->push_back( m_pMapCreator->GetPoliceBase() );
 }
 
 
@@ -261,7 +269,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 	// set Z-index for suitable viewing
 	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
 	m_pPlayer->SetLocalMoney( localMoney - cost);	
-	m_llistZombie.push_back(tmpZombieObject);
+	m_llistZombie->push_back(tmpZombieObject);
 
 }
 
@@ -285,7 +293,7 @@ void CPlayScene::MakePoliceFromScript()
 		tmpPoliceObject->SetRandomPositionAroundBase();
 		tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
 		AddChild(tmpPoliceObject, 10);
-		m_llistPolice.push_back(tmpPoliceObject);
+		m_llistPolice->push_back(tmpPoliceObject);
 	}	
 }
 
@@ -293,11 +301,11 @@ void CPlayScene::MakePoliceFromScript()
 // update시마다 실행되면서 hp가 0이거나 화면밖으로 나간 캐릭터를 삭제함
 void CPlayScene::DeadCharacterCollector()
 {	
-	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
+	for ( auto& iter = m_llistPolice->begin() ; iter != m_llistPolice->end() ; iter++ ) {
 		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < GAME_SCREEN_MIN_SIZE_X)){
 			CCharacter *tmpCharacter;
 			tmpCharacter = *iter;
-			m_llistPolice.erase(iter);
+			m_llistPolice->erase(iter);
 			NNPoint DeadPosition = tmpCharacter->GetPosition();
 			RemoveChild(tmpCharacter,true);
 
@@ -309,19 +317,19 @@ void CPlayScene::DeadCharacterCollector()
 			CDeadPolice *tmpDeadPolice = CDeadPolice::Create(); 
 			tmpDeadPolice->SetDeadPosition(DeadPosition);
 			AddChild(tmpDeadPolice,10);
-			m_llistDeadPolice.push_back(tmpDeadPolice);
+			m_llistDeadPolice->push_back(tmpDeadPolice);
 
 
 			break;
 		}
 	}
 
-	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
+	for ( auto& iter = m_llistZombie->begin() ; iter != m_llistZombie->end() ; iter++ ) {
 		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > GAME_SCREEN_MAX_SIZE_X)){
 			CCharacter *tmpCharacter;
 			tmpCharacter = *iter;
 		//	tmpCharacter->GetDeadAnimation()->SetVisible(true);
-			m_llistZombie.erase(iter);
+			m_llistZombie->erase(iter);
 			RemoveChild(tmpCharacter,true);
 			
 			// 죽은 좀비가 있을때마다 player의 잃은 좀비 수를 증가.
@@ -336,7 +344,7 @@ void CPlayScene::CollectDeadPoliceByClick()
 {
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_UP ) {
 		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
-		for ( auto& iter = m_llistDeadPolice.begin() ; iter != m_llistDeadPolice.end() ; iter++ )
+		for ( auto& iter = m_llistDeadPolice->begin() ; iter != m_llistDeadPolice->end() ; iter++ )
 		{
 			bool isInXCoordRange = ((*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( (*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
 			bool isInYCoordRange = ((*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( (*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
@@ -349,7 +357,7 @@ void CPlayScene::CollectDeadPoliceByClick()
 				}
 
 				CDeadPolice *tmp = *iter;
-				m_llistDeadPolice.erase(iter);
+				m_llistDeadPolice->erase(iter);
 				RemoveChild(tmp,true);
 
 				
@@ -441,7 +449,7 @@ void CPlayScene::loadPoliceInfo()
 		printf_s("Police Information XML Load Fail!\n");
 		return;
 	}
-	pCharacterConfig->GetInstance()->DeterminePoliceInfo(m_PoliceXML);
+	pCharacterConfig->GetInstance()->InitPoliceInfo(m_PoliceXML);
 
 
 

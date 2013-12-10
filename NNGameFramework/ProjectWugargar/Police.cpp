@@ -28,15 +28,15 @@ void CPolice::Update( float dTime )
 }
 
 
-void CPolice::initStatus( PoliceInfo *policeInfo, int police_type_idx )
+void CPolice::initStatus( CharacterInfo *policeInfo, int police_type_idx )
 {
-	m_HealthPoint = policeInfo[police_type_idx].HealthPoint;
-	m_FullHP = m_HealthPoint;
+	m_FullHP = policeInfo[police_type_idx].FullHP;
+	m_HealthPoint = m_FullHP;
 	m_MovingSpeed = policeInfo[police_type_idx].MovingSpeed;
-	m_AttackRange = policeInfo[police_type_idx].AttackRange;
-	m_SplashAttackRange = policeInfo[police_type_idx].SplashRange;
 	m_AttackPower = policeInfo[police_type_idx].AttackPower;
 	m_DefensivePower = policeInfo[police_type_idx].DefensivePower;
+	m_AttackRange = policeInfo[police_type_idx].AttackRange;
+	m_SplashAttackRange = policeInfo[police_type_idx].SplashRange;
 	m_AttackSpeed = policeInfo[police_type_idx].AttackSpeed;
 	m_SplashAttack = policeInfo[police_type_idx].IsSplash;
 	m_Identity = policeInfo[police_type_idx].identity;

@@ -6,27 +6,8 @@
 
 
 
-struct PoliceInfo{
-	float HealthPoint;
-	float HPRatioPer100;
-	float MovingSpeed;
-	float AttackRange;
-	float SplashRange;
-	int AttackPower;
-	int DefensivePower;
-	int AttackSpeed;
-	bool IsSplash;
-	bool IsIceAttack;
-	std::string SpritePath;
-	std::string TypeName;
-	CharacterIdentity identity;
-	PoliceType policeType;
-};
-
-struct ZombieInfo
-{
-	float HealthPoint;
-	float HPRatioPer100;
+struct CharacterInfo{
+	float FullHP;	
 	float MovingSpeed;
 	float AttackRange;
 	float SplashRange;
@@ -49,15 +30,15 @@ public:
 
 	static CCharacterConfig* m_pInstance;
 
-	PoliceInfo policeInfo[NUMBER_OF_POLICE_TYPES];
-	ZombieInfo zombieInfo[NUMBER_OF_ZOMBIE_TYPES];
+	CharacterInfo policeInfo[NUMBER_OF_POLICE_TYPES];
+	CharacterInfo zombieInfo[NUMBER_OF_ZOMBIE_TYPES];
 
-	void DeterminePoliceInfo(NNXML *PoliceInfoXml);
+	void InitPoliceInfo(NNXML *PoliceInfoXml);
 	static void ReleaseInstance();
 	static CCharacterConfig* GetInstance();
 	void initialize_Xpath(std::string *xPath, int idx);
-	PoliceInfo *GetPoliceInfo(){return policeInfo;};
-	ZombieInfo *GetZombieInfo(){return zombieInfo;};
+	CharacterInfo *GetPoliceInfo(){return policeInfo;};
+	CharacterInfo *GetZombieInfo(){return zombieInfo;};
 
 
 

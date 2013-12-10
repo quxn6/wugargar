@@ -39,7 +39,7 @@ void CCharacterConfig::initialize_Xpath(std::string *xPath, int idx)
 
 }
 
-void CCharacterConfig::DeterminePoliceInfo( NNXML *PoliceInfoXml)
+void CCharacterConfig::InitPoliceInfo( NNXML *PoliceInfoXml)
 {
 	
 	num_of_police_type = std::stoi(PoliceInfoXml->XPathToString("/PoliceInfo/PoliceTypeNum/text()").c_str());
@@ -48,7 +48,7 @@ void CCharacterConfig::DeterminePoliceInfo( NNXML *PoliceInfoXml)
 	{
 		std::string xPath;
 		initialize_Xpath(&xPath, idx);
-		policeInfo[idx].HealthPoint = (std::stof(PoliceInfoXml->XPathToString(xPath.append("/HealthPoint/text()").c_str())));
+		policeInfo[idx].FullHP = (std::stof(PoliceInfoXml->XPathToString(xPath.append("/HealthPoint/text()").c_str())));
 		initialize_Xpath(&xPath, idx);
 		policeInfo[idx].MovingSpeed = (std::stof(PoliceInfoXml->XPathToString(xPath.append("/MovingSpeed/text()").c_str())));
 		initialize_Xpath(&xPath, idx);
@@ -81,18 +81,4 @@ void CCharacterConfig::DeterminePoliceInfo( NNXML *PoliceInfoXml)
 			policeInfo[idx].IsIceAttack = false;
 
 	}
-
-	//enum PoliceType
-	//{
-	//	NONE, //CreatePolice를 위한 상수, 없애는 것 고심중
-	//	NORMAL_POLICE,
-	//	MACHINEGUN_POLICE,
-	//	SHIELD_POLICE,
-	//	GRENADE_POLICE,
-	//	SHOTGUN_POLICE,
-	//	FIRTBAT_POLICE
-	//};
-
-	//bool은 1이면 true, 0이면 false로 설정
-
 }

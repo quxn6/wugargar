@@ -27,17 +27,20 @@ public:
 	void Update( float dTime );
 	NNCREATE_FUNC(CCharacter);	
 
+	void InitHPBar(void );
 	void InitSprite(std::wstring imagePath);
+	void InitHitEffect(std::wstring imagePath);
 	void SetRandomPositionAroundBase();
 
 	void UpdateHPBar(void);	
-	void DetermineAttackTarget();
+	void UpdateAttackTarget();
 	bool CheckAttackTiming(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
 	void CheckMeltingTime(clock_t currentTime);
 	
 	void AttackEnemy(clock_t currentTime);
 	void NormalAttack(CCharacter* target, clock_t currentTime);
 	void SplashAttack(NNPoint splashPoint, clock_t currentTime);
+	void ShowHitEffect(float dTime);
 
 	void GoToAttackTarget(float dTime);
 	void GoForward(float dTime);
@@ -60,9 +63,9 @@ public:
 	NNSprite *GetSprite(){return m_Sprite;}
 	std::wstring GetSpritepath(){return m_spritePath;}
 	NNAnimation* GetDeadAnimation() {return m_DeadAnimation;}
-
-
-
+	NNSprite* GetHitEffect() const { return m_HitEffect; }
+	bool GetIsBleeding() const { return m_IsBleeding; }
+		
 	void SetHP(float hp) {m_HealthPoint = hp;}
 	void SetSpeed(float speed) {m_MovingSpeed = speed;}
 	void SetAttackPower(int AP) {m_AttackPower = AP;}
@@ -75,7 +78,8 @@ public:
 	void SetBeginFreezingTime(clock_t time) {m_BeginFreezingTIme = time;}
 	void SetFreeze(bool ice_state) {m_Freeze = ice_state;}
 	void SetTotalFreezingTime(clock_t tft) { m_TotalFreezingTime = tft;}
-	
+	void SetHitEffect(NNSprite* val) { m_HitEffect = val; }
+	void SetIsBleeding(bool val) { m_IsBleeding = val; }
 
 	void PlayDeadSound();
 	
@@ -100,6 +104,7 @@ protected:
 	float	m_SplashAttackRange;
 	clock_t	m_FreezingAttackDuration;
 
+
 	//사운드 관련 변수
 	NNSound *m_creation_sound;
 	NNSound *m_attack_sound;
@@ -120,6 +125,9 @@ protected:
 	NNSprite*		m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
 	NNAnimation*	m_Animation;
 	NNAnimation*	m_DeadAnimation;
+	NNSprite*		m_HitEffect;
+	bool			m_IsBleeding;
+	float			m_bleedingTime;
 	std::wstring	m_spritePath;
 	NNSpriteAtlas*	m_pShowHP;
 	
