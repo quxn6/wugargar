@@ -189,7 +189,7 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 				if ( i != BABY_HUMAN ) {
 					MakeZombie(static_cast<ZombieType>(i));
 				} else if(m_pPlayer->GetLocalMoney() >=100){//아기 생성시 local money 소모
-					m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint() - 10);
+					m_pPlayer->SetLocalMoney(m_pPlayer->GetLocalMoney() - 100);
 					m_pHumanFarm->MakeHuman();
 				}
 			}
