@@ -21,6 +21,10 @@ void CPolice::Render()
 void CPolice::Update( float dTime )
 {
 	CCharacter::Update(dTime);
+	if(m_Freeze)
+		FrozenStatus->SetVisible(true);
+	else
+		FrozenStatus->SetVisible(false);
 }
 
 
@@ -39,6 +43,13 @@ void CPolice::initStatus( PoliceInfo *policeInfo, int police_type_idx )
 	m_policeType = policeInfo[police_type_idx].policeType;
 	m_spritePath = CCharacter::string2wstring(policeInfo[police_type_idx].SpritePath.c_str());
 	m_typeName = policeInfo[police_type_idx].TypeName;
+
+	FrozenStatus = NNSprite::Create(L"wugargar/ice.png");
+	FrozenStatus->SetOpacity(0.5f);
+	FrozenStatus->SetPosition(-25,-25);//¾óÃß
+	FrozenStatus->SetVisible(false);
+	AddChild(FrozenStatus,20);
+
 }
 
 

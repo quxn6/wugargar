@@ -26,6 +26,6 @@ protected:
 	bool m_infected;
 	PoliceType m_policeType;
 
-	
+	NNSprite* FrozenStatus;
 
 };
