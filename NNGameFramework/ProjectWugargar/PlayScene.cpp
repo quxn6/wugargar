@@ -178,7 +178,7 @@ void CPlayScene::Update( float dTime )
 void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙임
 {
 	// button1을 좌클릭했을 때 좀비 생성
-	// 모든 종류의 좀비 생성을 처리함 -채원
+	// 모든 종류의 좀비 생성을 처리함 - 채원
 
 	// 코드 refactoring함. zombie type을 int처럼 사용하는데 이게 좀 걸림. - 성환
 	// baby버튼 별도로 빠져잇던거 한 for문 아능로 삽입함.
@@ -188,12 +188,10 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 			if ( m_pUIButtons[i]->CheckButtonArea()) {
 				if ( i != BABY_HUMAN ) {
 					MakeZombie(static_cast<ZombieType>(i));
-				} else if(m_pPlayer->GetMeatPoint() >=10){
+				} else if(m_pPlayer->GetLocalMoney() >=100){//아기 생성시 local money 소모
 					m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint() - 10);
 					m_pHumanFarm->MakeHuman();
 				}
-				//m_pUIButtons[i]->m_tClickedTime = clock();
-				//printf_s("%d\n", m_pUIButtons[i]->m_tClickedTime/CLOCKS_PER_SEC);
 			}
 		}
 	}
@@ -206,13 +204,13 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 	int localMoney = m_pPlayer->GetLocalMoney();
 	bool CheckHero = 0;
 
-	imagePath[POOR_ZOMBIE] = L"wugargar/poor_zombie.png";
-	imagePath[ICE_ZOMBIE] = L"wugargar/ice_zombie.png";
-	imagePath[VOMIT_ZOMBIE] = L"wugargar/vomit_zombie.png";
-	imagePath[SMOG_ZOMBIE] = L"wugargar/smog_zombie.png";
-	imagePath[MUSCLE_ZOMBIE] = L"wugargar/muscle_zombie.png";
-	imagePath[KAMIKAJE_ZOMBIE] = L"wugargar/kamikaze_zombie.png";
-	imagePath[HERO_ZOMBIE_SM9] = L"wugargar/sm9_zombie.png";
+//	imagePath[POOR_ZOMBIE] = L"wugargar/poor_zombie.png";
+//	imagePath[ICE_ZOMBIE] = L"wugargar/ice_zombie.png";
+//	imagePath[VOMIT_ZOMBIE] = L"wugargar/vomit_zombie.png";
+//	imagePath[SMOG_ZOMBIE] = L"wugargar/smog_zombie.png";
+//	imagePath[MUSCLE_ZOMBIE] = L"wugargar/muscle_zombie.png";
+//	imagePath[KAMIKAJE_ZOMBIE] = L"wugargar/kamikaze_zombie.png";
+//	imagePath[HERO_ZOMBIE_SM9] = L"wugargar/sm9_zombie.png";
 
 	switch(type)
 	{
@@ -245,23 +243,20 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 	int cost = tmpZombieObject->GetCreateCost();
 
 	// when player has not enough money
-	if (localMoney < cost ) {
+	if (localMoney < cost || (CheckHero && m_pPlayer->GetMeatPoint() < 100) ) {
 		SafeDelete(tmpZombieObject);
 		return;
 	}
-
-	// when position is nullptr, set position around zombie base
-	if(CheckHero)
+	else if(CheckHero && m_pPlayer->GetMeatPoint() >= 100)
 		m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint()-100);// 영웅좀비 meat point 감소
 
+	// when position is nullptr, set position around zombie base
 	if (position == nullptr ) {
 		tmpZombieObject->SetRandomPositionAroundBase();
 	} else {
 		tmpZombieObject->SetPosition(*position);
 
 	}
-	
-	tmpZombieObject->InitSprite(imagePath[type]);
 
 	// set Z-index for suitable viewing
 	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );

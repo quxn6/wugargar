@@ -41,6 +41,7 @@ public :
 	void SetRandomPositionInFarm();
 	void Grow();
 	void CollectMeatPointFromGrownUp();
+	void Hungry(); //추후 구현
 
 private :
 	clock_t life_time;

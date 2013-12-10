@@ -17,6 +17,11 @@ CCharacter::CCharacter(void)
 	m_BeginFreezingTIme = 0;
 	m_TotalFreezingTime = 0;
 	m_Sight = MAP_SIZE_Y * TILE_SIZE_Y / 2;	
+
+	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
+	m_pShowHP->SetCutSize(0,0,50.f,5.f);
+	m_pShowHP->SetPosition(-20, -50); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
+	AddChild(m_pShowHP, 20);
 }
 
 CCharacter::~CCharacter(void)
@@ -35,14 +40,15 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	// 12/3 추가 : 캐릭터의 원점을 이미지의 중앙으로 잡기 위해 원점에서
 	// 이미지 사이즈를 2로 나눠준값을 뺌
 
- 	m_Animation = NNAnimation::Create(1,imagePath.c_str());
- 	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
-	AddChild(m_Animation,1);
+ 	m_Sprite = NNSprite::Create(imagePath);
+ 	m_Sprite->SetPosition(-(m_Sprite->GetImageWidth()/2), -(m_Sprite->GetImageHeight()/2));
+	AddChild(m_Sprite,1);
+	
 
-	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
-	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
-	AddChild(m_pShowHP, 20);
+//	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
+//	m_pShowHP->SetCutSize(0,0,50.f,5.f);
+//	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
+//	AddChild(m_pShowHP, 20);
 
 // 	if(GetIdentity() == Zombie)
 // 	{

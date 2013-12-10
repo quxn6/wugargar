@@ -63,7 +63,7 @@ void CHumanInFarm::SetRandomPositionInFarm()
 
 void CHumanInFarm::Grow()
 {
-	if(life_time >= 1 && life_time < 2 && m_AgeState == SMALL_BABY)//10초에 한번 자람.
+	if(life_time >= 10 && life_time < 20 && m_AgeState == SMALL_BABY)//10초에 한번 자람.
 	{
 		m_AgeState = MIDDLE_BABY;
 		NNPoint NowPosition = m_pSmallBaby->GetPosition();
@@ -75,7 +75,7 @@ void CHumanInFarm::Grow()
 		m_pMiddleBaby->SetPosition(NowPosition);
 		AddChild(m_pMiddleBaby,100);
 	}
-	else if (life_time >= 2 && m_AgeState == MIDDLE_BABY)//20초에 어른이 됨
+	else if (life_time >= 20 && m_AgeState == MIDDLE_BABY)//20초에 어른이 됨
 	{
 		m_AgeState = GROWN_UP;
 		NNPoint NowPosition = m_pMiddleBaby->GetPosition();
