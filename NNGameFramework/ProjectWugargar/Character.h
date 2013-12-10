@@ -59,6 +59,7 @@ public:
 	CharacterIdentity GetIdentity() {return m_Identity;}
 	NNSprite *GetSprite(){return m_Sprite;}
 	std::wstring GetSpritepath(){return m_spritePath;}
+	NNAnimation* GetDeadAnimation() {return m_DeadAnimation;}
 
 
 

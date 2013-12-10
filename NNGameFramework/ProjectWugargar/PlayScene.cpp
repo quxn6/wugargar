@@ -320,6 +320,7 @@ void CPlayScene::DeadCharacterCollector()
 		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > GAME_SCREEN_MAX_SIZE_X)){
 			CCharacter *tmpCharacter;
 			tmpCharacter = *iter;
+		//	tmpCharacter->GetDeadAnimation()->SetVisible(true);
 			m_llistZombie.erase(iter);
 			RemoveChild(tmpCharacter,true);
 			
