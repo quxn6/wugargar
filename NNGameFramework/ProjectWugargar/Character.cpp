@@ -118,6 +118,7 @@ void CCharacter::Update( float dTime )
 
 	ShowHitEffect(dTime);
 	UpdateHPBar();	
+	UpdateZindex();
 	UpdateAttackTarget();
 
 	//현재 얼어있는 상태라면 이동/공격이 불가
@@ -149,6 +150,12 @@ void CCharacter::UpdateHPBar( void )
 		m_pShowHP->SetCutSize(0,35,healthPointPercentage/2,40.f);
 	}
 }
+
+void CCharacter::UpdateZindex()
+{
+	m_Zindex = 20 + static_cast<int>(m_Position.GetY());
+}
+
 
 // 피흘리는 거 보여주기
 void CCharacter::ShowHitEffect( float dTime )

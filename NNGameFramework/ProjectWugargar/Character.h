@@ -34,6 +34,7 @@ public:
 
 	void UpdateHPBar(void);	
 	void UpdateAttackTarget();
+	void UpdateZindex();
 	bool CheckAttackTiming(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
 	void CheckMeltingTime(clock_t currentTime);
 	

@@ -52,7 +52,7 @@ void CPlayer::ReleaseInstance()
 void CPlayer::ReadyToPlay()
 {
 	m_playerStatus = ON_PLAYING;
-	m_LocalMoney = 300;
+	m_LocalMoney = 2000;
 	m_NumberOfKillInStage = 0;
 	m_NumberOfLossInStage = 0;
 }

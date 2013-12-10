@@ -44,7 +44,7 @@ CPlayScene::CPlayScene(void)
 	m_llistPolice = new std::list<CCharacter*>;
 	m_llistZombie = new std::list<CCharacter*>;
 	m_llistDeadPolice = new std::list<CDeadPolice*>;
-
+	dTimeCounter = 0;
 	_initBackground();
 	_initMap();
 	_initUI();
@@ -62,9 +62,6 @@ CPlayScene::CPlayScene(void)
 	m_pMapObstacleManager = MapObstaclManager::Create();
 	AddChild(m_pMapObstacleManager, 2);
 	
-	
-	SetStartTime(clock());
-	SetNowTime(clock());
 
 	// temporary
 	// FPS를 표시하고, 콘솔창을 띄움
@@ -156,14 +153,15 @@ void CPlayScene::Update( float dTime )
 
 	NNScene::Update(dTime);
 
-	int checkTimeChange = GetNowTimeSEC(); // 시간이 변했는가를 초단위로 체크
-	SetNowTime(clock());
-	if( checkTimeChange != GetNowTimeSEC() ) {
-		IncreaseLocalMoney(GetNowTimeSEC()-GetStartTimeSEC());
+	dTimeCounter+=dTime;
+	if (dTimeCounter > 1) {
+		m_pPlayer->IncreaseLocalMoney();
+		dTimeCounter = 0;
 	}
-
+	
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
 	Test_ShowFPS(); //FPS출력 임시 테스트
+	Test_ShowLocalMoney(); // local money 출력
 
 	// 좀비 생성 버튼 입력 처리를 한 함수로 빼버림 - 채원
 	MakeZombieButtonOperate(dTime);
@@ -400,10 +398,7 @@ void CPlayScene::IncreaseLocalMoney( int time )
 		m_pPlayer->SetLocalMoney(localMoney + 10); // 십원 증가
 
 
-	//로컬머니 임시 출력 코드
-	ZeroMemory(meat, 256);	
-	swprintf_s(meat, _countof(meat), L"local money = %d", m_pPlayer->GetLocalMoney() );
-	m_pShowMeatPoint->SetString(meat);
+
 }
 
 
@@ -433,6 +428,14 @@ void CPlayScene::Test_ShowFPS()
 	m_pShowMouseStatus->SetString(temp);
 }
 
+
+void CPlayScene::Test_ShowLocalMoney()
+{
+	//로컬머니 임시 출력 코드
+	ZeroMemory(localmoney, 256);	
+	swprintf_s(localmoney, _countof(localmoney), L"local money = %d", m_pPlayer->GetLocalMoney() );
+	m_pShowMeatPoint->SetString(localmoney);
+}
 
 
 void CPlayScene::loadPoliceInfo()

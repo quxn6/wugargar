@@ -42,10 +42,6 @@ public:
 	void CollectDeadPoliceByClick();
 	bool CheckGameOver();
 
-	void SetStartTime(clock_t time) {m_startTime = time;}
-	void SetNowTime(clock_t time) {m_nowTime = time;}
-	int GetStartTimeSEC() {return m_startTime/CLOCKS_PER_SEC;} 
-	int GetNowTimeSEC() {return m_nowTime/CLOCKS_PER_SEC;}
 	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;}
 	std::wstring string2wstring(std::string str);
 
@@ -79,11 +75,11 @@ private :
 	std::list<CDeadPolice*>		*m_llistDeadPolice;
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
-	wchar_t		meat[256]; //meat Point 표시를 위한 임시변수
-	clock_t m_startTime;
-	clock_t m_nowTime;
+	wchar_t		localmoney[256]; //meat Point 표시를 위한 임시변수
+	float		dTimeCounter;
 
 public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다 // Good job~
 	void Test_ShowMousePosition();
 	void Test_ShowFPS();
+	void Test_ShowLocalMoney();
 };
