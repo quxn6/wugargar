@@ -41,14 +41,8 @@ void CCharacter::InitSprite( std::wstring imagePath )
 
 	m_pShowHP = NNSpriteAtlas::Create(L"wugargar/HPbar.png");
 	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()+10.f);
+	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
 	AddChild(m_pShowHP, 20);
-
-
-//	m_Sprite = NNSprite::Create(imagePath);
-// 	m_Sprite->SetPosition(-m_Sprite->GetImageWidth()/2, -m_Sprite->GetImageHeight()/2);		
-//	AddChild(m_Sprite, 1);
-
 
 // 	if(GetIdentity() == Zombie)
 // 	{
@@ -61,12 +55,6 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 	AddChild(m_pShowHP, 20);
 	*/
-	
-// 
-// 	if( GetIdentity() == Zombie)
-// 		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()+10.f);
-// 	else
-// 		m_pShowHP->SetPosition(m_Sprite->GetPositionX(), m_Sprite->GetPositionY()+10.f);
 
 }
 
@@ -147,13 +135,10 @@ void CCharacter::UpdateHPBar( void )
 	float healthPointPercentage = m_HealthPoint/m_FullHP*100;
 	if( healthPointPercentage >= 70 ) {// HP 상태에 따라 파란색, 노란색, 빨간색으로 표시
 		m_pShowHP->SetCutSize(0,0,healthPointPercentage/2,5.f);
-		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY());
 	} else if( healthPointPercentage< 70 && healthPointPercentage >= 30){
 		m_pShowHP->SetCutSize(0,21,healthPointPercentage/2,26.f);
-		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY());
 	} else {
 		m_pShowHP->SetCutSize(0,35,healthPointPercentage/2,40.f);
-		m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY());
 	}
 }
 

@@ -42,6 +42,7 @@ void CIceZombie::initStatus( void )
 		m_Animation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
 		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
 	}
+	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
 	AddChild(m_Animation);
 
 	ApplyZombieLevel();
