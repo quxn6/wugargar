@@ -24,7 +24,7 @@ CStartScene::CStartScene(void)
 
 void CStartScene::InitBackGround( void )
 {
-	m_pStartSceneBackground = NNSprite::Create( L"wugargar/StartSceneImage.png");
+	m_pStartSceneBackground = NNSprite::Create( L"wugargar/StartSceneImage.jpg");
 	m_pStartSceneBackground->SetPosition(0.0f, 0.0f);
 	AddChild( m_pStartSceneBackground );
 }
@@ -33,21 +33,21 @@ void CStartScene::InitBackGround( void )
 void CStartScene::InitButtons( void )
 {
 	//기존 버튼에서 Label을 이용한 방식으로 변경. 라벨 설정
-	m_MenuBar[MENU_PLAY] = NNLabel::Create( L"NEW GAME", L"궁서체", 20.f );
-	m_MenuBar[MENU_PLAY]->SetPosition( GAME_SCREEN_MAX_SIZE_X - 200, 640 );
+	m_MenuBar[MENU_PLAY] = NNLabel::Create( L"NEW GAME", L"궁서체", 30.f );
+	m_MenuBar[MENU_PLAY]->SetPosition( 48, 500 );
 	AddChild( m_MenuBar[MENU_PLAY] );
 
-	m_MenuBar[MENU_LOAD] = NNLabel::Create( L"LOAD GAME", L"궁서체", 20.f );
-	m_MenuBar[MENU_LOAD]->SetPosition( GAME_SCREEN_MAX_SIZE_X - 200, 670 );
+	m_MenuBar[MENU_LOAD] = NNLabel::Create( L"LOAD GAME", L"궁서체", 30.f );
+	m_MenuBar[MENU_LOAD]->SetPosition(48, 550 );
 	AddChild( m_MenuBar[MENU_LOAD] );
 
-	m_MenuBar[MENU_QUIT] = NNLabel::Create( L"QUIT", L"궁서체", 20.f );
-	m_MenuBar[MENU_QUIT]->SetPosition( GAME_SCREEN_MAX_SIZE_X - 200, 700 );
+	m_MenuBar[MENU_QUIT] = NNLabel::Create( L"QUIT", L"궁서체", 30.f );
+	m_MenuBar[MENU_QUIT]->SetPosition(48, 600 );
 	AddChild( m_MenuBar[MENU_QUIT] );
 
 	//라벨의 색을 하얀색으로 설정(안보이니까)
 	for(int idx=0; idx<MENU_BAR_NUM; ++idx)
-		m_MenuBar[idx]->SetColor( 255.f, 255.f, 255.f );
+		m_MenuBar[idx]->SetColor( 230.f, 230.f, 230.f );
 
 	m_KeyOn = 0;			
 	// 현재 가리키고 있는 메뉴 위치
@@ -84,7 +84,7 @@ void CStartScene::Update( float dTime )
 	}
 	m_KeyOn = (m_KeyOn + MENU_BAR_NUM) % MENU_BAR_NUM;
 	//현재 가리키고 있는 부분의 색상을 빨간색으로
-	m_MenuBar[m_KeyOn]->SetColor( 255.f, 0.f, 0.f );
+	m_MenuBar[m_KeyOn]->SetColor( 255.f, 50.f, 50.f );
 
 
 	//엔터 버튼 누르면 선택된 부분 선택하게됨
@@ -115,7 +115,7 @@ void CStartScene::Update( float dTime )
 	//현재 선택되어 있는 부분 외 라벨을 흰색으로 재설정
 	for(int idx=0; idx<MENU_BAR_NUM; ++idx)
 		if(idx!= m_KeyOn)
-			m_MenuBar[idx]->SetColor( 255.f, 255.f, 255.f );
+			m_MenuBar[idx]->SetColor( 230.f, 230.f, 230.f );
 
 
 }
