@@ -3,7 +3,7 @@
 #define GAME_SCREEN_MIN_SIZE_X	0
 #define GAME_SCREEN_MAX_SIZE_X	1024
 #define GAME_SCREEN_MIN_SIZE_Y	0
-#define GAME_SCREEN_MAX_SIZE_Y	768
+#define GAME_SCREEN_MAX_SIZE_Y	640
 
 // 아래 정의 된 #define값들은 playScene의 화면출력 관련 값들이다.
 // x, y타일 한칸의 크기를 50으로 설정했다.
@@ -13,7 +13,7 @@
 #define FIRST_Y_COORDINATE_OF_BACKGROUND	0
 #define FIRST_Y_COORDINATE_OF_MAPTILE		220
 #define MAP_SIZE_X	21
-#define MAP_SIZE_Y	6
+#define MAP_SIZE_Y	5
 #define TILE_SIZE_X	50
 #define TILE_SIZE_Y	50
 #define SIZE_OF_UI_BACKGROUND_X				450

@@ -33,16 +33,16 @@ void CStartScene::InitBackGround( void )
 void CStartScene::InitButtons( void )
 {
 	//기존 버튼에서 Label을 이용한 방식으로 변경. 라벨 설정
-	m_MenuBar[MENU_PLAY] = NNLabel::Create( L"NEW GAME", L"궁서체", 30.f );
-	m_MenuBar[MENU_PLAY]->SetPosition( 48, 500 );
+	m_MenuBar[MENU_PLAY] = NNLabel::Create( L"NEW GAME", L"궁서체", 25.f );
+	m_MenuBar[MENU_PLAY]->SetPosition( 48, 480 );
 	AddChild( m_MenuBar[MENU_PLAY] );
 
-	m_MenuBar[MENU_LOAD] = NNLabel::Create( L"LOAD GAME", L"궁서체", 30.f );
-	m_MenuBar[MENU_LOAD]->SetPosition(48, 550 );
+	m_MenuBar[MENU_LOAD] = NNLabel::Create( L"LOAD GAME", L"궁서체", 25.f );
+	m_MenuBar[MENU_LOAD]->SetPosition(48, 520 );
 	AddChild( m_MenuBar[MENU_LOAD] );
 
-	m_MenuBar[MENU_QUIT] = NNLabel::Create( L"QUIT", L"궁서체", 30.f );
-	m_MenuBar[MENU_QUIT]->SetPosition(48, 600 );
+	m_MenuBar[MENU_QUIT] = NNLabel::Create( L"QUIT", L"궁서체", 25.f );
+	m_MenuBar[MENU_QUIT]->SetPosition(48, 560 );
 	AddChild( m_MenuBar[MENU_QUIT] );
 
 	//라벨의 색을 하얀색으로 설정(안보이니까)

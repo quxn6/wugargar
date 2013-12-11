@@ -3,7 +3,7 @@
 
 CBackground::CBackground(void)
 {
-	m_pBackgroundImage = NNSprite::Create( L"wugargar/background.jpg");
+	m_pBackgroundImage = NNSprite::Create( L"wugargar/background.png");
 	m_pBackgroundImage->SetPosition(0.0f, 0.0f);
 	AddChild( m_pBackgroundImage );
 }

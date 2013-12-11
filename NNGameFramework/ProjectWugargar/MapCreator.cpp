@@ -81,9 +81,9 @@ void CMapCreator::GetImagePathFromMapData( int x_coord, int y_coord, std::wstrin
 // tile의 x, y좌표 및 이미지path를 입력받고 add하는 부분까지 처리
 void CMapCreator::SetTileSprite( int x_coord, int y_coord, std::wstring* imagePath )
 {
- 	m_pSprites[x_coord][y_coord] = NNSprite::Create(*imagePath);
- 	m_pSprites[x_coord][y_coord]->SetPosition(static_cast<float>(x_coord * TILE_SIZE_X) , static_cast<float>(y_coord * TILE_SIZE_Y + FIRST_Y_COORDINATE_OF_MAPTILE) );
- 	AddChild( m_pSprites[x_coord][y_coord], static_cast<int>(TILE) );
+//  	m_pSprites[x_coord][y_coord] = NNSprite::Create(*imagePath);
+//  	m_pSprites[x_coord][y_coord]->SetPosition(static_cast<float>(x_coord * TILE_SIZE_X) , static_cast<float>(y_coord * TILE_SIZE_Y + FIRST_Y_COORDINATE_OF_MAPTILE) );
+//  	AddChild( m_pSprites[x_coord][y_coord], static_cast<int>(TILE) );
 
 	if ( m_Map[x_coord][y_coord] == ZOMBIE_BASE ) {
 		BuildBase(x_coord, y_coord, Zombie);
