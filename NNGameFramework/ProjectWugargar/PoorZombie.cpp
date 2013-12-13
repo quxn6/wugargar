@@ -36,6 +36,7 @@ void CPoorZombie::initStatus( void )
 	WalkAnimationImagePath.push_back(L"wugargar/poor/walk/4.png");
 	WalkAnimationImagePath.push_back(L"wugargar/poor/walk/5.png");
 	WalkAnimationImagePath.push_back(L"wugargar/poor/walk/6.png");
+	WalkAnimationImagePath.push_back(L"wugargar/poor/walk/7.png");
 
 	DeadAnimationImagePath.push_back(L"wugargar/poor/dead/0.png");
 	DeadAnimationImagePath.push_back(L"wugargar/poor/dead/1.png");
@@ -51,7 +52,7 @@ void CPoorZombie::initStatus( void )
 	for(auto &iter = WalkAnimationImagePath.begin(); iter != WalkAnimationImagePath.end(); ++iter)
 	{
 		m_Animation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
-		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
+		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.13f );
 	}
 	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
 
@@ -60,7 +61,7 @@ void CPoorZombie::initStatus( void )
 	for(auto &iter = DeadAnimationImagePath.begin(); iter != DeadAnimationImagePath.end(); ++iter)
 	{
 		m_DeadAnimation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
-		m_DeadAnimation->GetSpriteList()[i++]->SetFrameTime( 0.1f );
+		m_DeadAnimation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
 	}
 	m_DeadAnimation->SetLoop(false);
 

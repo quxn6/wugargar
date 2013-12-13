@@ -8,6 +8,9 @@ CZombie::CZombie(void)
 {
 	PlayCreationSound();
 //	enemyList = &(CPlayScene::GetInstance()->GetPoliceList());
+	m_Shadow = NNSprite::Create(L"wugargar/shadow.png");
+	m_Shadow->SetPosition(-35,20);
+	AddChild(m_Shadow);
 }
 
 
