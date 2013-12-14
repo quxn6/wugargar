@@ -60,6 +60,7 @@ void CStageSelectScene::Update( float dTime )
 				break;
 			}
 
+			//Exit버튼이 눌리면 다시 스테이지 선택 화면으로 돌아감
 			if(m_pExitButton->CheckButtonArea())
 			{
 				m_pExitButton->SetVisible(false);
