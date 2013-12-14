@@ -36,6 +36,7 @@ void CStageSelectScene::Update( float dTime )
 	int current_stage =  CPlayer::GetInstance()->GetCurrentStage() / 100;
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON))
 	{
+	
 		for (int idx=0; idx<STAGE_NUM; ++idx)
 		{
 			//StageFlag(동그란 거)가 입력되었을 때의 처리
@@ -53,6 +54,9 @@ void CStageSelectScene::Update( float dTime )
 				break;
 			}
 
+
+			
+			
 			
 			//선택된 스테이지 버튼이 클리어 할 수 있는 스테이지 인 경우 선택됨
 			if(m_pPlayButton->CheckButtonArea() && tmp_current_stage  <= current_stage)
@@ -62,18 +66,21 @@ void CStageSelectScene::Update( float dTime )
 				//이미 진행한 스테이지도 진행하게 하기 위함.
 				CPlayer::GetInstance()->SetPlayingStage(idx+1);
 				NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-				break;
+				return ;
 			}
 
-			//Exit버튼이 눌리면 다시 스테이지 선택 화면으로 돌아감
-			if(m_pExitButton->CheckButtonArea())
-			{
-				m_pExitButton->SetVisible(false);
-				m_pPlayButton->SetVisible(false);
-				m_pShowDifficulty->SetVisible(false);
-				m_stageIllustrate->SetVisible(false);
-			}
+
 			
+		}
+
+		//Exit버튼이 눌리면 다시 스테이지 선택 화면으로 돌아감
+		if(m_pExitButton->CheckButtonArea())
+		{
+			m_pExitButton->SetVisible(false);
+			m_pPlayButton->SetVisible(false);
+			//왜 이것만 안될까./.
+			m_pShowDifficulty->SetVisible(false);
+			m_stageIllustrate->SetVisible(false);
 		}
 
 		
