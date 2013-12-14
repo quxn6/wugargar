@@ -27,5 +27,4 @@ void CUpgradeScene::InitUpgradeUI()
 	AddChild(m_pBackground);
 
 	NNAnimation* tmpforAnimation;
-	tmpforAnimation = 
 }
