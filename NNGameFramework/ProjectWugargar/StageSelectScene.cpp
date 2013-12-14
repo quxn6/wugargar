@@ -22,5 +22,5 @@ void CStageSelectScene::Render()
 
 void CStageSelectScene::Update( float dTime )
 {
-
+	NNScene::Update(dTime);
 }

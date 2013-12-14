@@ -40,6 +40,7 @@
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Trap.cpp" />
     <ClCompile Include="UIButton.cpp" />
+    <ClCompile Include="UpgradeScene.cpp" />
     <ClCompile Include="VomitZombie.cpp" />
     <ClCompile Include="XMLWriter.cpp" />
     <ClCompile Include="Zombie.cpp" />
@@ -75,6 +76,7 @@
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="Trap.h" />
     <ClInclude Include="UIButton.h" />
+    <ClInclude Include="UpgradeScene.h" />
     <ClInclude Include="VomitZombie.h" />
     <ClInclude Include="XMLWriter.h" />
     <ClInclude Include="Zombie.h" />

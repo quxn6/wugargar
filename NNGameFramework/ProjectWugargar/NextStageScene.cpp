@@ -143,7 +143,7 @@ void CNextStageScene::Render()
 void CNextStageScene::Update( float dTime )
 {
 	// zombie upgrade 
-
+	NNScene::Update(dTime);
 
 	if ( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {
 		// 업그레이드 버튼 처리		

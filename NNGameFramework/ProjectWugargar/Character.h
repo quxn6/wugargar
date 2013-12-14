@@ -63,6 +63,7 @@ public:
 	CharacterIdentity GetIdentity() {return m_Identity;}
 	NNSprite *GetSprite(){return m_Sprite;}
 	std::wstring GetSpritepath(){return m_spritePath;}
+	NNAnimation* GetAnimation() {return m_Animation;}
 	NNAnimation* GetDeadAnimation() {return m_DeadAnimation;}
 	NNSprite* GetHitEffect() const { return m_HitEffect; }
 	bool GetIsBleeding() const { return m_IsBleeding; }
@@ -84,6 +85,8 @@ public:
 
 	void PlayDeadSound();
 	
+	void InitZombieAnimation();
+
 protected: 
 	virtual void initStatus( void ) {};	
 

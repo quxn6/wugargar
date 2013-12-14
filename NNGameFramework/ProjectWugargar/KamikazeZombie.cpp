@@ -42,32 +42,7 @@ void CKamikazeZombie::initStatus( void )
 	DeadAnimationImagePath.push_back(L"wugargar/bomb/bomb/5.png");
 	DeadAnimationImagePath.push_back(L"wugargar/bomb/bomb/6.png");
 
-	m_Animation = NNAnimation::Create();
-	int i = 0;
-	for(auto &iter = WalkAnimationImagePath.begin(); iter != WalkAnimationImagePath.end(); ++iter)
-	{
-		m_Animation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
-		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
-	}
-	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
-
-	m_DeadAnimation = NNAnimation::Create();
-	i=0;
-	for(auto &iter = DeadAnimationImagePath.begin(); iter != DeadAnimationImagePath.end(); ++iter)
-	{
-		m_DeadAnimation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
-		m_DeadAnimation->GetSpriteList()[i++]->SetFrameTime( 0.1f );
-	}
-	m_DeadAnimation->SetLoop(false);
-
-	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
-	AddChild(m_Animation);
-	m_DeadAnimation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
-	m_DeadAnimation->SetVisible(false);
-	AddChild(m_DeadAnimation);
-
-	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
+	InitZombieAnimation();
 }
 
 
