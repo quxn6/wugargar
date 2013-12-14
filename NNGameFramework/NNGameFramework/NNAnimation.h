@@ -23,6 +23,7 @@ public:
 	void AddSpriteNode( wchar_t* path );
 	void SetLoop( bool loop ) { m_Loop = loop; }
 
+	void SetFrameTimeInSection(float frameRate, int start, int end);
 	std::vector<NNSpriteNode*> GetSpriteList() { return m_SpriteList; }
 
 private:

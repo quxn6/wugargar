@@ -40,7 +40,9 @@
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Trap.cpp" />
     <ClCompile Include="UIButton.cpp" />
-    <ClCompile Include="UpgradeScene.cpp" />
+    <ClCompile Include="UpgradeScene.cpp">
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</SDLCheck>
+    </ClCompile>
     <ClCompile Include="VomitZombie.cpp" />
     <ClCompile Include="XMLWriter.cpp" />
     <ClCompile Include="Zombie.cpp" />

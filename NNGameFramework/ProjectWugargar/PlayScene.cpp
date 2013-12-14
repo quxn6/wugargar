@@ -216,7 +216,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 //	imagePath[SMOG_ZOMBIE] = L"wugargar/smog_zombie.png";
 //	imagePath[MUSCLE_ZOMBIE] = L"wugargar/muscle_zombie.png";
 //	imagePath[KAMIKAJE_ZOMBIE] = L"wugargar/kamikaze_zombie.png";
-//	imagePath[HERO_ZOMBIE_SM9] = L"wugargar/sm9_zombie.png";
+//	imagePath[HERO_ZOMBIE_SM9] = L"wugargar/hero/0.png";
 
 	switch(type)
 	{

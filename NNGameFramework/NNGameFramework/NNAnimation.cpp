@@ -83,3 +83,8 @@ void NNAnimation::Update( float dTime )
 		}
 	}
 }
+void NNAnimation::SetFrameTimeInSection( float frameRate, int start, int end )
+{
+	for (; start <= end; ++start)
+		m_SpriteList[start]->SetFrameTime(frameRate);
+}
