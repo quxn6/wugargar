@@ -29,12 +29,17 @@ void CStageSelectScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
 
+	//static변수로 Update를 사정없이 돌면서도 '현재 선택중인' 스테이지의 번호를 알게 함.
+	//..더 좋은 방법이 없을까?
+	static int tmp_current_stage;
 
 	int current_stage =  CPlayer::GetInstance()->GetCurrentStage() / 100;
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON))
 	{
 		for (int idx=0; idx<STAGE_NUM; ++idx)
 		{
+			//StageFlag(동그란 거)가 입력되었을 때의 처리
+			//Stage의 정보를 띄워주는 것들을 생성.
 			if(m_stageFlag[idx]->CheckButtonArea())
 			{
 				m_stageIllustrate->SetPosition(m_stageFlag[idx]->GetPositionX()+50, m_stageFlag[idx]->GetPositionY()-50);
@@ -44,13 +49,13 @@ void CStageSelectScene::Update( float dTime )
 				m_pExitButton->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY()+50);
 				m_pPlayButton->SetVisible(true);
 				m_pExitButton->SetVisible(true);
-
+				tmp_current_stage = idx+1;
 				break;
 			}
 
 			
 			//선택된 스테이지 버튼이 클리어 할 수 있는 스테이지 인 경우 선택됨
-			if(m_pPlayButton->CheckButtonArea() &&  (idx+1) <= current_stage)
+			if(m_pPlayButton->CheckButtonArea() && tmp_current_stage  <= current_stage)
 			{
 				//Player의 현재 스테이지 진행 현황 외에 PlayScene에서 진행되는
 				//스테이지를 표시하기 위한 변수 추가.
