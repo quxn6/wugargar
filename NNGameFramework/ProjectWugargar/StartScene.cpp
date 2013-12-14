@@ -7,6 +7,7 @@
 #include "CharacterConfig.h"
 #include "NNApplication.h"
 #include "NNAudioSystem.h"
+#include "StageSelectScene.h"
 
 
 
@@ -93,12 +94,12 @@ void CStartScene::Update( float dTime )
 		switch (m_KeyOn)
 		{
 		case MENU_PLAY:
-			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+			NNSceneDirector::GetInstance()->ChangeScene(CStageSelectScene::Create());
 			return ;
 			break;
 		case MENU_LOAD:
 			load();
-			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+			NNSceneDirector::GetInstance()->ChangeScene(CStageSelectScene::Create());
 			return ;
 			break;
 		case MENU_QUIT:

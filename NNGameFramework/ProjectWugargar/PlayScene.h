@@ -45,6 +45,9 @@ public:
 	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;}
 	std::wstring string2wstring(std::string str);
 
+	int GetCurrentStageNum() {return m_currentStageNum;}
+	void SetCurrentStageNum(int set) {m_currentStageNum = set;}
+
 	void loadPoliceInfo();
 
 
@@ -77,6 +80,8 @@ private :
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 	wchar_t		localmoney[256]; //meat Point 표시를 위한 임시변수
 	float		dTimeCounter;
+
+	int m_currentStageNum;
 
 public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다 // Good job~
 	void Test_ShowMousePosition();

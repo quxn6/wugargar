@@ -33,7 +33,7 @@ void CCreatePolice::ReturnTableByFile()
 	NNXML *create_police_xml;
 
 	create_police_xml = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Stage/StageInfo.txt");
-	int current_stage = CPlayer::GetInstance()->GetCurrentStage() / 100;
+	int current_stage = CPlayer::GetInstance()->GetPlayingStage();
 	std::string Xpath = "/StageInfo/Stage" + std::to_string(current_stage);
 	int num_stage_info = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
 	

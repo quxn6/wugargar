@@ -61,6 +61,9 @@ public:
 
 	void SetMeatPoint(int meatPoint) { m_pMeatPoint = meatPoint;}
 	int GetMeatPoint() { return m_pMeatPoint;}
+
+	void SetPlayingStage(int set){m_playingStage = set;}
+	int GetPlayingStage(){return m_playingStage;}
 	
 private:
 	PlayerStatus m_playerStatus;
@@ -68,6 +71,8 @@ private:
 	int m_LocalMoney;
 	int m_NumberOfKillInStage;
 	int m_NumberOfLossInStage;	
+
+	int m_playingStage;
 
 	// 이하는 save할 때 저장할 데이터들
 	int m_CharacterLevel[NUMBER_OF_ZOMBIE_TYPES];
@@ -77,6 +82,8 @@ private:
 	int m_TotalLoss;
 	float m_InfectionRate;
 	int m_pMeatPoint;
+
+	
 
 };
 

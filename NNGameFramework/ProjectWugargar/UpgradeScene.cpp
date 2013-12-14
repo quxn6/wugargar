@@ -1,4 +1,5 @@
 #include "UpgradeScene.h"
+#include "NNAnimation.h"
 
 
 CUpgradeScene::CUpgradeScene(void)
@@ -26,5 +27,5 @@ void CUpgradeScene::InitUpgradeUI()
 	m_pBackground->SetPosition(0,0);
 	AddChild(m_pBackground);
 
-	NNAnimation* tmpforAnimation;
+//	NNAnimation* tmpforAnimation;
 }
