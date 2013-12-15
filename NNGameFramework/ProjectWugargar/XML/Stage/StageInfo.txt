@@ -3,7 +3,7 @@
 <StageInfo>
 <Stage1>
 	<StageNum>1000</StageNum>
-	<StageInfoNum>3</StageInfoNum>
+	<StageInfoNum>8</StageInfoNum>
 	<StageInfo1>
 		<Time>2000</Time>
 		<PoliceType>2</PoliceType>
@@ -16,6 +16,26 @@
 		<Time>4000</Time>
 		<PoliceType>1</PoliceType>
 	</StageInfo3>
+	  <StageInfo4>
+		<Time>4500</Time>
+		<PoliceType>2</PoliceType>
+	</StageInfo4>
+	  <StageInfo5>
+		<Time>5000</Time>
+		<PoliceType>1</PoliceType>
+	</StageInfo5>
+	  <StageInfo6>
+		<Time>7000</Time>
+		<PoliceType>1</PoliceType>
+	</StageInfo6>
+	  <StageInfo7>
+		<Time>8000</Time>
+		<PoliceType>3</PoliceType>
+	</StageInfo7>
+	  <StageInfo8>
+		<Time>9000</Time>
+		<PoliceType>4</PoliceType>
+	</StageInfo8>
 </Stage1>
 
 <Stage2>
