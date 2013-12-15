@@ -51,6 +51,7 @@ private:
 	clock_t begin_time;
 	clock_t current_time;
 	int gap_time;
+	int num_stage_info;
 	int tableTopIndex;
 };
 

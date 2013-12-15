@@ -169,9 +169,7 @@ void CPlayScene::Update( float dTime )
 	DeadCharacterCollector();
 	CollectDeadPoliceByClick();
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
-	if(m_pCreatePolice->GetTableTopIndex() < 7) {
-		MakePoliceFromScript();
-	}
+	MakePoliceFromScript();
 
 	// next stage 화면으로 이동하기 위한 임시 구문
 	// 엔터 치면 이동함

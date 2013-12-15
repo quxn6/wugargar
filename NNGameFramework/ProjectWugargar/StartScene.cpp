@@ -96,7 +96,7 @@ void CStartScene::Update( float dTime )
 		{
 		case MENU_PLAY:
 			//NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-			NNSceneDirector::GetInstance()->ChangeScene(CUpgradeScene::Create());
+			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
 			return ;
 			break;
 		case MENU_LOAD:

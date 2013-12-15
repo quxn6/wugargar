@@ -17,7 +17,7 @@ void CKamikazeZombie::initStatus( void )
 	m_HealthPoint = 50;
 	m_FullHP = m_HealthPoint;
 	m_MovingSpeed = 50.0f;
-	m_AttackPower = 50;
+	m_AttackPower = 70;
 	m_DefensivePower = 3;
 	m_AttackRange = 10.0f;
 	m_NumberOfTarget = 3;

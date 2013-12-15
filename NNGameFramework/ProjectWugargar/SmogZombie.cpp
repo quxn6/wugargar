@@ -17,7 +17,7 @@ void CSmogZombie::initStatus( void )
 	m_HealthPoint = 800;
 	m_FullHP = m_HealthPoint;
 	m_MovingSpeed = 80.0f;
-	m_AttackPower = 10;
+	m_AttackPower = 20;
 	m_DefensivePower = 1;
 	m_AttackRange = 30.0f;
 	m_NumberOfTarget = 5;

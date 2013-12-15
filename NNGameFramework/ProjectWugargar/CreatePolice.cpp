@@ -35,7 +35,7 @@ void CCreatePolice::ReturnTableByFile()
 	create_police_xml = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Stage/StageInfo.txt");
 	int current_stage = CPlayer::GetInstance()->GetPlayingStage();
 	std::string Xpath = "/StageInfo/Stage" + std::to_string(current_stage);
-	int num_stage_info = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
+	num_stage_info = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
 	
 	create_enemy_table = new CreateEnemyTable[num_stage_info];
 	Xpath.append("/StageInfo");
@@ -57,6 +57,10 @@ void CCreatePolice::ReturnTableByFile()
 */
 PoliceType CCreatePolice::ReturnCreateEnemyInfo()
 {	
+	
+	if((tableTopIndex+1) >= num_stage_info)
+		return NONE_POLICE;
+
 	current_time = clock();
 	
 	gap_time = (int)(current_time - begin_time);

@@ -25,6 +25,8 @@ void CPolice::Update( float dTime )
 		FrozenStatus->SetVisible(true);
 	else
 		FrozenStatus->SetVisible(false);
+
+//	printf_s("%f",GetHP());
 }
 
 
