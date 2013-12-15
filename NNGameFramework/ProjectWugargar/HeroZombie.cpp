@@ -15,15 +15,15 @@ void CHeroZombie::initStatus( void )
 {
 	m_zombieType = HERO_ZOMBIE_SM9;
 
-	m_HealthPoint = 300;
+	m_HealthPoint = 1000;
 	m_FullHP = m_HealthPoint;
-	m_MovingSpeed = 20.0f;
-	m_AttackPower = 30;
-	m_DefensivePower = 5;
-	m_AttackRange = 120.0f;
-	m_NumberOfTarget = 5;
-	m_AttackSpeed = 3000;
-	m_CreateCost = 500;
+	m_MovingSpeed = 40.0f;
+	m_AttackPower = 100;
+	m_DefensivePower = 8;
+	m_AttackRange = 50.0f;
+	m_NumberOfTarget = 1;
+	m_AttackSpeed = 500;
+	m_CreateCost = 0;
 	m_Identity = Zombie;
 	m_SplashAttack = false;
 }

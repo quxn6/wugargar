@@ -16,16 +16,16 @@ void CIceZombie::initStatus( void )
 	m_zombieType = ICE_ZOMBIE;
 	m_HealthPoint = 100;
 	m_FullHP = m_HealthPoint;
-	m_MovingSpeed = 30.0f;
+	m_MovingSpeed = 40.0f;
 	m_AttackPower = 20;
 	m_DefensivePower = 1;
 	m_AttackRange = 100.0f;
 	m_NumberOfTarget = 1;
 	m_AttackSpeed = 2000;
-	m_CreateCost = 100;
+	m_CreateCost = 300;
 	m_Identity = Zombie;
 	m_SplashAttack = false;
-	m_FreezingAttackDuration = 5000;
+	m_FreezingAttackDuration = 3000;
 	m_FreezingAttack = true;
 
 	WalkAnimationImagePath.push_back(L"wugargar/ice/walk/0.png");

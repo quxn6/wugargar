@@ -67,7 +67,7 @@ void CCharacter::InitHitEffect( std::wstring imagePath )
 // 기지주변에서 캐릭터 랜덤 생성
 void CCharacter::SetRandomPositionAroundBase()
 {
-	float randomPositonY = static_cast<float>(rand() % ((MAP_SIZE_Y-2) * TILE_SIZE_Y) + FIRST_Y_COORDINATE_OF_MAPTILE + TILE_SIZE_Y);
+	float randomPositonY = static_cast<float>(rand() % ((MAP_SIZE_Y-3) * TILE_SIZE_Y) + FIRST_Y_COORDINATE_OF_MAPTILE + TILE_SIZE_Y);
 	switch (m_Identity)
 	{
 	case Zombie:

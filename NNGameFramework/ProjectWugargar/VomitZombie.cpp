@@ -14,15 +14,15 @@ CVomitZombie::~CVomitZombie(void)
 void CVomitZombie::initStatus( void )
 {
 	m_zombieType = VOMIT_ZOMBIE;
-	m_HealthPoint = 100;
+	m_HealthPoint = 80;
 	m_FullHP = m_HealthPoint;
 	m_MovingSpeed = 40.0f;
-	m_AttackPower = 35;
+	m_AttackPower = 40;
 	m_DefensivePower = 2;
-	m_AttackRange = 30.0f;
+	m_AttackRange = 100.0f;
 	m_NumberOfTarget = 1;
-	m_AttackSpeed = 3000;
-	m_CreateCost = 100;
+	m_AttackSpeed = 1500;
+	m_CreateCost = 200;
 	m_Identity = Zombie;
 	m_SplashAttack = false;
 
