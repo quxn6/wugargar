@@ -3,6 +3,7 @@
 #include "PlayScene.h"
 #include "NNInputSystem.h"
 #include "NNSceneDirector.h"
+#include "UpgradeScene.h"
 
 
 CStageSelectScene::CStageSelectScene(void)
@@ -67,7 +68,7 @@ void CStageSelectScene::Update( float dTime )
 				//스테이지를 표시하기 위한 변수 추가.
 				//이미 진행한 스테이지도 진행하게 하기 위함.
 				CPlayer::GetInstance()->SetPlayingStage(idx+1);
-				NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+				NNSceneDirector::GetInstance()->ChangeScene(CUpgradeScene::Create());
 				return ;
 			}
 
@@ -100,7 +101,7 @@ void CStageSelectScene::InitMapSprite()
 	m_mapSprite->SetPosition(0.0f, 0.0f);
 	AddChild( m_mapSprite );
 
-	int current_stage = CPlayer::GetInstance()->GetCurrentStage() / 100;
+	int current_stage = CPlayer::GetInstance()->GetCurrentStage() % 100;
 
 	//MapStageFlag Sprite배치. 클리어 한 스테이지는 빨강, 아닌 스테이지는 파란색 원으로 표시 (임시)
 	for(int idx=0; idx<current_stage; ++idx)
