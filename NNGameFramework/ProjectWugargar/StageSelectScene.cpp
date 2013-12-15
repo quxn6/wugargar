@@ -8,6 +8,7 @@
 CStageSelectScene::CStageSelectScene(void)
 {
 	InitMapSprite();
+	m_isShowDifficulty = true;
 }
 
 
@@ -33,7 +34,7 @@ void CStageSelectScene::Update( float dTime )
 	//..더 좋은 방법이 없을까?
 	static int tmp_current_stage;
 
-	int current_stage =  CPlayer::GetInstance()->GetCurrentStage() / 100;
+	int current_stage =  CPlayer::GetInstance()->GetCurrentStage() % 100;
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON))
 	{
 	
@@ -45,7 +46,8 @@ void CStageSelectScene::Update( float dTime )
 			{
 				m_stageIllustrate->SetPosition(m_stageFlag[idx]->GetPositionX()+50, m_stageFlag[idx]->GetPositionY()-50);
 				m_stageIllustrate->SetVisible(true);
-				ShowMapDetail(idx+1);
+				if(m_isShowDifficulty)
+					ShowMapDetail(idx+1);
 				m_pPlayButton->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY()+30);
 				m_pExitButton->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY()+50);
 				m_pPlayButton->SetVisible(true);
@@ -79,7 +81,9 @@ void CStageSelectScene::Update( float dTime )
 			m_pExitButton->SetVisible(false);
 			m_pPlayButton->SetVisible(false);
 			//왜 이것만 안될까./.
-			m_pShowDifficulty->SetVisible(false);
+			RemoveChild(m_pShowDifficulty);
+			//안되는 걸 방지하기 위해서 설정한 bool 변수.. 더 좋은 방법이..
+			m_isShowDifficulty = true;
 			m_stageIllustrate->SetVisible(false);
 		}
 
@@ -158,4 +162,5 @@ void CStageSelectScene::ShowMapDetail( int stageNum )
 
 	m_pShowDifficulty->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY());
 	AddChild(m_pShowDifficulty);
+	m_isShowDifficulty = false;
 }
