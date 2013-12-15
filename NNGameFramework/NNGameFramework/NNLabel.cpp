@@ -63,6 +63,9 @@ void NND2DLabel::Destroy()
 
 void NND2DLabel::Render()
 {
+	if(m_Visible == false)
+		return;
+
 	NNObject::Render();
 	m_pD2DRenderer->GetHwndRenderTarget()->SetTransform( m_Matrix );
 	m_pD2DRenderer->GetHwndRenderTarget()->DrawTextW( m_String,

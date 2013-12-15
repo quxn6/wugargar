@@ -55,7 +55,7 @@ public:
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
 	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }	
 	void IncreaseInfectionRate() {m_InfectionRate += 10.0f;}
-	void IncreaseLocalMoney() {m_LocalMoney += 10;}
+	void IncreaseLocalMoney() {m_LocalMoney += 50;}
 	void IncreaseStage() {++m_CurrentStage;}
 	void NextCity() {m_CurrentStage += 100;}
 

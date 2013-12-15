@@ -389,16 +389,6 @@ bool CPlayScene::CheckGameOver()
 
 }
 
-void CPlayScene::IncreaseLocalMoney( int time )
-{
-	int localMoney = m_pPlayer->GetLocalMoney();
-	if(time % 1 == 0)// 1초당
-		m_pPlayer->SetLocalMoney(localMoney + 10); // 십원 증가
-
-
-
-}
-
 
 
 

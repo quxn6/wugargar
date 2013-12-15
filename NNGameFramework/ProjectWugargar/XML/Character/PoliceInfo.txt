@@ -5,14 +5,14 @@
 	<Police1>
 		<PoliceType>0</PoliceType>
 		<TypeName>NormalPolice</TypeName>
-		<HealthPoint>80</HealthPoint>
+		<HealthPoint>200</HealthPoint>
 		<MovingSpeed>35</MovingSpeed>
-		<AttackPower>20</AttackPower>
-		<AttackSpeed>2000</AttackSpeed>
+		<AttackPower>60</AttackPower>
+		<AttackSpeed>1000</AttackSpeed>
 		<DefensivePower>2</DefensivePower>
 		<IsSplash>0</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
-		<AttackRange>60</AttackRange>
+		<AttackRange>150</AttackRange>
 		<SplashRange>0</SplashRange>
 		<SpritePath>wugargar/normal_police.png</SpritePath>
 	</Police1>
@@ -20,26 +20,26 @@
 	<Police2>
 		<PoliceType>1</PoliceType>
 		<TypeName>MachinegunPolice</TypeName>
-		<HealthPoint>60</HealthPoint>
+		<HealthPoint>200</HealthPoint>
 		<MovingSpeed>40</MovingSpeed>
-		<AttackPower>12</AttackPower>
-		<AttackSpeed>2000</AttackSpeed>
+		<AttackPower>30</AttackPower>
+		<AttackSpeed>300</AttackSpeed>
 		<DefensivePower>4</DefensivePower>
 		<IsSplash>0</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
-		<AttackRange>40</AttackRange>
+		<AttackRange>100</AttackRange>
 		<SplashRange>0</SplashRange>
 		<SpritePath>wugargar/machinegun_police.png</SpritePath>
-	</Police2>	
+	</Police2>
 	
 	<Police3>
 		<PoliceType>2</PoliceType>
 		<TypeName>ShieldPolice</TypeName>
-		<HealthPoint>80</HealthPoint>
-		<MovingSpeed>10</MovingSpeed>
-		<AttackPower>1</AttackPower>
-		<AttackSpeed>1000</AttackSpeed>
-		<DefensivePower>25</DefensivePower>
+		<HealthPoint>400</HealthPoint>
+		<MovingSpeed>40</MovingSpeed>
+		<AttackPower>15</AttackPower>
+		<AttackSpeed>3000</AttackSpeed>
+		<DefensivePower>9</DefensivePower>
 		<IsSplash>0</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>10</AttackRange>
@@ -50,44 +50,44 @@
 	<Police4>
 	    <PoliceType>3</PoliceType>
 		<TypeName>GrenadePolice</TypeName>
-		<HealthPoint>90</HealthPoint>
-		<MovingSpeed>60</MovingSpeed>
-		<AttackPower>80</AttackPower>
-		<AttackSpeed>5000</AttackSpeed>
+		<HealthPoint>70</HealthPoint>
+		<MovingSpeed>30</MovingSpeed>
+		<AttackPower>60</AttackPower>
+		<AttackSpeed>3000</AttackSpeed>
 		<DefensivePower>1</DefensivePower>
 		<IsSplash>1</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
-		<AttackRange>40</AttackRange>
+		<AttackRange>150</AttackRange>
 		<SplashRange>50</SplashRange>
-		<SpritePath>wugargar/machinegun_police.png</SpritePath>
+		<SpritePath>wugargar/granade_police.png</SpritePath>
 	</Police4>
 	
 	<Police5>
 	    <PoliceType>4</PoliceType>
 		<TypeName>ShotgunPolice</TypeName>
-		<HealthPoint>90</HealthPoint>
+		<HealthPoint>200</HealthPoint>
 		<MovingSpeed>50</MovingSpeed>
-		<AttackPower>50</AttackPower>
+		<AttackPower>150</AttackPower>
 		<AttackSpeed>2000</AttackSpeed>
 		<DefensivePower>3</DefensivePower>
 		<IsSplash>1</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
-		<AttackRange>80</AttackRange>
+		<AttackRange>60</AttackRange>
 		<SplashRange>20</SplashRange>
 		<SpritePath>wugargar/shotgun_police.png</SpritePath>
 	</Police5>
 	
 	<Police6>
-	    <PoliceType>4</PoliceType>
+	    <PoliceType>5</PoliceType>
 		<TypeName>FirebatPolice</TypeName>
-		<HealthPoint>100</HealthPoint>
+		<HealthPoint>150</HealthPoint>
 		<MovingSpeed>50</MovingSpeed>
-		<AttackPower>30</AttackPower>
-		<AttackSpeed>1000</AttackSpeed>
+		<AttackPower>15</AttackPower>
+		<AttackSpeed>200</AttackSpeed>
 		<DefensivePower>1</DefensivePower>
 		<IsSplash>1</IsSplash>
 		<IsIceAttack>0</IsIceAttack>
-		<AttackRange>30</AttackRange>
+		<AttackRange>150</AttackRange>
 		<SplashRange>70</SplashRange>
 		<SpritePath>wugargar/firebat_police.png</SpritePath>
 	</Police6>

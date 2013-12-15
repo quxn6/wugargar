@@ -38,7 +38,6 @@ public:
 	void MakeZombieButtonOperate(float dTime);
 	void DeadCharacterCollector();
 	void MakePoliceFromScript();
-	void IncreaseLocalMoney(int time);
 	void CollectDeadPoliceByClick();
 	bool CheckGameOver();
 

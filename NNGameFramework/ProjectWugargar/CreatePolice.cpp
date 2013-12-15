@@ -58,7 +58,7 @@ void CCreatePolice::ReturnTableByFile()
 PoliceType CCreatePolice::ReturnCreateEnemyInfo()
 {	
 	
-	if((tableTopIndex+1) >= num_stage_info)
+	if((tableTopIndex) >= num_stage_info)
 		return NONE_POLICE;
 
 	current_time = clock();
@@ -66,8 +66,8 @@ PoliceType CCreatePolice::ReturnCreateEnemyInfo()
 	gap_time = (int)(current_time - begin_time);
 
 	if((gap_time) >= create_enemy_table[tableTopIndex].time){
-		++tableTopIndex;
-		return create_enemy_table[tableTopIndex].enemy_type;
+		//++tableTopIndex;
+		return create_enemy_table[tableTopIndex++].enemy_type;
 	}
 
 	return NONE_POLICE;
