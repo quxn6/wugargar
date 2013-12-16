@@ -77,12 +77,12 @@ private:
 	// 이하는 save할 때 저장할 데이터들
 	int m_CharacterLevel[NUMBER_OF_ZOMBIE_TYPES];
 	int m_GlobalMoney;	
-	int m_CurrentStage;		//201, 301 등으로 진행된 스테이지 표시
+	int m_CurrentStage;		//1,2,3,4 등으로 진행된 스테이지 표시
 	int m_TotalKill;
 	int m_TotalLoss;
 	float m_InfectionRate;
 	int m_pMeatPoint;
-
+	
 	
 
 };

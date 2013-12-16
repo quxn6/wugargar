@@ -38,9 +38,10 @@ CPlayScene::CPlayScene(void)
 	m_llistPolice = new std::list<CCharacter*>;
 	m_llistZombie = new std::list<CCharacter*>;
 	m_llistDeadPolice = new std::list<CDeadPolice*>;
-
-
+	
 	dTimeCounter = 0;
+	m_StageTimeCounter = 0;
+
 	_initBackground();
 	_initMap();
 	_initUI();

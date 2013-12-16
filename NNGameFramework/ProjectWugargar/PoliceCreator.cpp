@@ -9,7 +9,7 @@ CPoliceCreator::CPoliceCreator(void)
 {
 	begin_time = clock();
 	tableTopIndex = 0;
-	ReturnTableByFile();
+	LoadScriptFromFile();
 	
 	//printf_s("CreatePolice 생성자\n");
 	//printf_s("beginetime : %d\n", begin_time);
@@ -18,7 +18,7 @@ CPoliceCreator::CPoliceCreator(void)
 
 CPoliceCreator::~CPoliceCreator(void)
 {
-	SafeArrayDelete<CreateEnemyTable>(create_enemy_table);
+	SafeArrayDelete<PoliceTable>(create_enemy_table);
 }
 
 /*
@@ -26,18 +26,17 @@ CPoliceCreator::~CPoliceCreator(void)
 반환값 : 지정된 파일에서 CreateEnemyTable의 형식에 맞춰 데이터를 삽입하고 반환
 **현재 임시로 직접 값을 넣어줌. 차후 파일 I/O로 수정될 예정
 */
-// 리턴하는 포인터가 local variable를 가리킴, local variable은 함수가 끝나면 사라지므로 결국 없는 값을 반환하게 됨.
-// 수정 완료
-void CPoliceCreator::ReturnTableByFile()
+void CPoliceCreator::LoadScriptFromFile()
 {
 	NNXML *create_police_xml;
 
+	//create_police_xml = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Stage/PoliceCreatorScript.txt");
 	create_police_xml = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Stage/StageInfo.txt");
 	int current_stage = CPlayer::GetInstance()->GetPlayingStage();
 	std::string Xpath = "/StageInfo/Stage" + std::to_string(current_stage);
 	num_stage_info = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
 	
-	create_enemy_table = new CreateEnemyTable[num_stage_info];
+	create_enemy_table = new PoliceTable[num_stage_info];
 	Xpath.append("/StageInfo");
 	
 	for (int idx=0; idx<num_stage_info; ++idx) {
@@ -72,6 +71,7 @@ PoliceType CPoliceCreator::ReturnCreateEnemyInfo()
 
 	return NONE_POLICE;
 }
+
 
 //void CCreatePolice::SetCreateInfoByXML( NNXML *StageXML )
 //{

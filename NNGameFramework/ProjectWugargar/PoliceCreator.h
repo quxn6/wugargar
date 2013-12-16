@@ -27,7 +27,7 @@
 */
 
 
-struct CreateEnemyTable
+struct PoliceTable
 {
 	int time;
 	PoliceType enemy_type;
@@ -41,14 +41,17 @@ public:
 	virtual ~CPoliceCreator(void);
 	
 	NNCREATE_FUNC(CPoliceCreator);
-	void				ReturnTableByFile();
+	void				LoadScriptFromFile();
 	PoliceType			ReturnCreateEnemyInfo();
+	void				LoadScript();
+
 
 	int GetTableTopIndex() const { return tableTopIndex; }
 	void SetTableTopIndex(int val) { tableTopIndex = val; }
 	
+	
 private:
-	CreateEnemyTable *create_enemy_table;
+	PoliceTable *create_enemy_table;
 	clock_t begin_time;
 	clock_t current_time;
 	int gap_time;
