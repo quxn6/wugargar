@@ -30,25 +30,7 @@
     <ClCompile Include="Character.cpp">
       <Filter>Wugargar\Character</Filter>
     </ClCompile>
-    <ClCompile Include="IceZombie.cpp">
-      <Filter>Wugargar\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="KamikazeZombie.cpp">
-      <Filter>Wugargar\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="MuscleZombie.cpp">
-      <Filter>Wugargar\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Police.cpp">
-      <Filter>Wugargar\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="PoorZombie.cpp">
-      <Filter>Wugargar\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="SmogZombie.cpp">
-      <Filter>Wugargar\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="VomitZombie.cpp">
       <Filter>Wugargar\Character</Filter>
     </ClCompile>
     <ClCompile Include="Zombie.cpp">
@@ -81,13 +63,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Wugargar\Player</Filter>
     </ClCompile>
-    <ClCompile Include="CreatePolice.cpp">
-      <Filter>Wugargar\AI</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="HeroZombie.cpp">
-      <Filter>Wugargar\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Mine.cpp">
       <Filter>Wugargar\ExtraContents</Filter>
     </ClCompile>
@@ -124,30 +100,15 @@
     <ClCompile Include="UpgradeScene.cpp">
       <Filter>Wugargar\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="PoliceCreator.cpp">
+      <Filter>Wugargar\AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
       <Filter>Wugargar\Character</Filter>
     </ClInclude>
-    <ClInclude Include="IceZombie.h">
-      <Filter>Wugargar\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="KamikazeZombie.h">
-      <Filter>Wugargar\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="MuscleZombie.h">
-      <Filter>Wugargar\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Police.h">
-      <Filter>Wugargar\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="PoorZombie.h">
-      <Filter>Wugargar\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="SmogZombie.h">
-      <Filter>Wugargar\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="VomitZombie.h">
       <Filter>Wugargar\Character</Filter>
     </ClInclude>
     <ClInclude Include="Zombie.h">
@@ -179,12 +140,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Wugargar\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="CreatePolice.h">
-      <Filter>Wugargar\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="HeroZombie.h">
-      <Filter>Wugargar\Character</Filter>
     </ClInclude>
     <ClInclude Include="Trap.h">
       <Filter>Wugargar\ExtraContents</Filter>
@@ -227,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="UpgradeScene.h">
       <Filter>Wugargar\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PoliceCreator.h">
+      <Filter>Wugargar\AI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -155,6 +155,7 @@ void CCharacterConfig::InitZombieInfo( NNXML *ZombieInfoXml )
 			zombieInfo[idx].DeadAniImagePath[dead_ani_idx] = (ZombieInfoXml->XPathToString(xPath));
 
 		}
+
 		initialize_Xpath_Zombie(&xPath, idx);
 		if(int tmp_isSplash = (std::stoi(ZombieInfoXml->XPathToString(xPath.append("/IsSplash/text()").c_str()) )))
 			zombieInfo[idx].IsSplash = true;

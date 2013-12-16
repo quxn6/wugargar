@@ -6,15 +6,8 @@
 #include "PrintConsole.h"
 
 #include "Player.h"
-#include "PoorZombie.h"
-#include "VomitZombie.h"
-#include "MuscleZombie.h"
-#include "KamikazeZombie.h"
-#include "SmogZombie.h"
-#include "IceZombie.h"
 #include "NNSceneDirector.h"
 #include "NextStageScene.h"
-#include "HeroZombie.h"
 #include "CharacterConfig.h"
 #include "NNResourceManager.h"
 
@@ -61,7 +54,7 @@ CPlayScene::CPlayScene(void)
 	m_pPlayer->ReadyToPlay();
 
 	// police creator 초기화
-	m_pCreatePolice = CCreatePolice::Create();
+	m_pCreatePolice = CPoliceCreator::Create();
 
 	// 장애물 생성기 초기화
 	m_pMapObstacleManager = MapObstaclManager::Create();

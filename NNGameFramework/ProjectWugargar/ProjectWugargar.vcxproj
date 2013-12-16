@@ -15,27 +15,21 @@
     <ClCompile Include="Base.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterConfig.cpp" />
-    <ClCompile Include="CreatePolice.cpp" />
     <ClCompile Include="DeadPolice.cpp" />
-    <ClCompile Include="HeroZombie.cpp" />
     <ClCompile Include="HumanFarm.cpp" />
     <ClCompile Include="HumanInFarm.cpp" />
-    <ClCompile Include="IceZombie.cpp" />
-    <ClCompile Include="KamikazeZombie.cpp" />
     <ClCompile Include="Lightning.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapCreator.cpp" />
     <ClCompile Include="MapObstacle.cpp" />
     <ClCompile Include="MapObstaclManager.cpp" />
     <ClCompile Include="Mine.cpp" />
-    <ClCompile Include="MuscleZombie.cpp" />
     <ClCompile Include="NextStageScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Police.cpp" />
-    <ClCompile Include="PoorZombie.cpp" />
+    <ClCompile Include="PoliceCreator.cpp" />
     <ClCompile Include="PrintConsole.cpp" />
-    <ClCompile Include="SmogZombie.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Trap.cpp" />
@@ -43,7 +37,6 @@
     <ClCompile Include="UpgradeScene.cpp">
       <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</SDLCheck>
     </ClCompile>
-    <ClCompile Include="VomitZombie.cpp" />
     <ClCompile Include="XMLWriter.cpp" />
     <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
@@ -52,34 +45,27 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterConfig.h" />
-    <ClInclude Include="CreatePolice.h" />
     <ClInclude Include="DeadPolice.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="headers.h" />
-    <ClInclude Include="HeroZombie.h" />
     <ClInclude Include="HumanFarm.h" />
     <ClInclude Include="HumanInFarm.h" />
-    <ClInclude Include="IceZombie.h" />
-    <ClInclude Include="KamikazeZombie.h" />
     <ClInclude Include="Lightning.h" />
     <ClInclude Include="MapCreator.h" />
     <ClInclude Include="MapObstacle.h" />
     <ClInclude Include="MapObstaclManager.h" />
     <ClInclude Include="Mine.h" />
-    <ClInclude Include="MuscleZombie.h" />
     <ClInclude Include="NextStageScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Police.h" />
-    <ClInclude Include="PoorZombie.h" />
+    <ClInclude Include="PoliceCreator.h" />
     <ClInclude Include="PrintConsole.h" />
-    <ClInclude Include="SmogZombie.h" />
     <ClInclude Include="StageSelectScene.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="Trap.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UpgradeScene.h" />
-    <ClInclude Include="VomitZombie.h" />
     <ClInclude Include="XMLWriter.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>

@@ -39,17 +39,12 @@ public:
 	CCharacterConfig(void);
 	virtual ~CCharacterConfig(void);
 
-	static CCharacterConfig* m_pInstance;
-
-	CharacterInfo *policeInfo;
-	//임시 변수 7
-	CharacterInfo *zombieInfo;
-
+	static CCharacterConfig* m_pInstance;	
+	static CCharacterConfig* GetInstance();
+	static void ReleaseInstance();
+	
 	void InitPoliceInfo(NNXML *PoliceInfoXml);
 	void InitZombieInfo(NNXML *ZombieInfoXml);
-
-	static void ReleaseInstance();
-	static CCharacterConfig* GetInstance();
 
 	void initialize_Xpath_Police(std::string *xPath, int idx);
 	void initialize_Xpath_Zombie(std::string *xPath, int idx);
@@ -62,6 +57,10 @@ public:
 private:
 	int num_of_police_type;
 	int num_of_zombie_type;
+
+	CharacterInfo *policeInfo;
+	CharacterInfo *zombieInfo;
+
 
 };
 

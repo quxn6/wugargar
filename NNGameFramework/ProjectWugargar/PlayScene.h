@@ -6,7 +6,7 @@
 #include "Background.h"
 #include "UIButton.h"
 #include "MapCreator.h"
-#include "CreatePolice.h"
+#include "PoliceCreator.h"
 #include "Police.h"
 #include "Zombie.h"
 #include "GameConfig.h"
@@ -65,7 +65,7 @@ private :
 	NNLabel		*m_pShowMouseStatus;
 	NNLabel		*m_pShowMeatPoint;
 	NNPoint		m_CursorPos;
-	CCreatePolice *m_pCreatePolice;
+	CPoliceCreator *m_pCreatePolice;
 	CHumanFarm *m_pHumanFarm;
 	CLightning	*m_pLightning;
 	MapObstaclManager *m_pMapObstacleManager;

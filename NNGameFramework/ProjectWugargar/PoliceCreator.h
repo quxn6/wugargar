@@ -26,6 +26,7 @@
 지정된 시간(time)에 지정된 적의 타입(enemy_type)으로 지정된 적의 수(num_enemy)를 생성
 */
 
+
 struct CreateEnemyTable
 {
 	int time;
@@ -33,13 +34,13 @@ struct CreateEnemyTable
 };
 
 
-class CCreatePolice
+class CPoliceCreator
 {
 public:
-	CCreatePolice(void);
-	virtual ~CCreatePolice(void);
+	CPoliceCreator(void);
+	virtual ~CPoliceCreator(void);
 	
-	NNCREATE_FUNC(CCreatePolice);
+	NNCREATE_FUNC(CPoliceCreator);
 	void				ReturnTableByFile();
 	PoliceType			ReturnCreateEnemyInfo();
 

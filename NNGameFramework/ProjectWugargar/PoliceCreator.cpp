@@ -1,11 +1,11 @@
-#include "CreatePolice.h"
+#include "PoliceCreator.h"
 #include "Police.h"
 #include "PlayScene.h"
 #include "PrintConsole.h"
 #include "NNResourceManager.h"
 #include "NNXML.h"
 
-CCreatePolice::CCreatePolice(void)
+CPoliceCreator::CPoliceCreator(void)
 {
 	begin_time = clock();
 	tableTopIndex = 0;
@@ -16,7 +16,7 @@ CCreatePolice::CCreatePolice(void)
 }
 
 
-CCreatePolice::~CCreatePolice(void)
+CPoliceCreator::~CPoliceCreator(void)
 {
 	SafeArrayDelete<CreateEnemyTable>(create_enemy_table);
 }
@@ -28,7 +28,7 @@ CCreatePolice::~CCreatePolice(void)
 */
 // 리턴하는 포인터가 local variable를 가리킴, local variable은 함수가 끝나면 사라지므로 결국 없는 값을 반환하게 됨.
 // 수정 완료
-void CCreatePolice::ReturnTableByFile()
+void CPoliceCreator::ReturnTableByFile()
 {
 	NNXML *create_police_xml;
 
@@ -55,7 +55,7 @@ void CCreatePolice::ReturnTableByFile()
 			gap_time이 지정된 테이블의 생성 시간보다 큰 경우 지정된 갯수만큼 지정된 타입의 경찰 생성
 			생성후엔 index를 늘려주어 다음에 지정된 부분으로 이동하게 함.
 */
-PoliceType CCreatePolice::ReturnCreateEnemyInfo()
+PoliceType CPoliceCreator::ReturnCreateEnemyInfo()
 {	
 	
 	if((tableTopIndex) >= num_stage_info)
