@@ -1,6 +1,7 @@
 #pragma once
 #include "nnscene.h"
 #include "UIButton.h"
+#include "NNSound.h"
 
 #define  STAGE_NUM 4
 class CStageSelectScene :
@@ -30,6 +31,8 @@ private:
 	NNLabel *m_pShowDifficulty;
 	NNLabel *m_pShowCleared;
 	NNLabel *m_pShowUnacceptable;
+
+	NNSound *m_pBackgroundSound;
 
 	CUIButton *m_pPlayButton;
 	CUIButton *m_pExitButton;

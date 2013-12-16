@@ -4,16 +4,23 @@
 #include "NNInputSystem.h"
 #include "NNSceneDirector.h"
 #include "UpgradeScene.h"
+#include "NNResourceManager.h"
+#include "NNAudioSystem.h"
 
 
 CStageSelectScene::CStageSelectScene(void)
 {
 	InitMapSprite();
+
+	m_pBackgroundSound = NNResourceManager::GetInstance()->LoadSoundFromFile("sound/StageSelectSceneBackground.mp3", true, true);
+	NNAudioSystem::GetInstance()->Play(m_pBackgroundSound);
+
 }
 
 
 CStageSelectScene::~CStageSelectScene(void)
 {
+	NNAudioSystem::GetInstance()->Stop( m_pBackgroundSound );
 }
 
 void CStageSelectScene::InitMenuButtons( void )
