@@ -18,7 +18,7 @@ void CPlayer::InitPlayer()
 	m_TotalKill = 0;
 	m_TotalLoss = 0;
 	m_InfectionRate = 20.0f;
-	m_pMeatPoint = 50;
+	m_MeatPoint = 50;
 	m_CurrentStage = 1;
 	m_playingStage = 1;
 

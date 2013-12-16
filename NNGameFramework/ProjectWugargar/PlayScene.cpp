@@ -189,16 +189,32 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	// 모든 종류의 좀비 생성을 처리함 - 채원
 
 	// 코드 refactoring함. zombie type을 int처럼 사용하는데 이게 좀 걸림. - 성환
-	// baby버튼 별도로 빠져잇던거 한 for문 아능로 삽입함.
-	//int count = 0;
+	// baby버튼 별도로 빠져잇던거 한 for문 안으로 삽입함.	
+	int localMoney = m_pPlayer->GetLocalMoney();	
+	int meatPoint = m_pPlayer->GetMeatPoint();
+
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
 		for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 			if ( m_pUIButtons[i]->CheckButtonArea()) {
-				if ( i != BABY_HUMAN ) {
+				if ( i == BABY_HUMAN && localMoney >= BABY_PRICE) 
+				{
+					m_pPlayer->SetLocalMoney(localMoney - 100);
+					m_pHumanFarm->MakeHuman();				
+					return ;
+				}
+				else if ( i == HERO_ZOMBIE_SM9 && meatPoint >= HERO_ZOMBIE_PRICE ) 
+				{
+					m_pPlayer->SetMeatPoint(meatPoint - HERO_ZOMBIE_PRICE );
 					MakeZombie(static_cast<ZombieType>(i));
-				} else if(m_pPlayer->GetLocalMoney() >=100){//아기 생성시 local money 소모
-					m_pPlayer->SetLocalMoney(m_pPlayer->GetLocalMoney() - 100);
-					m_pHumanFarm->MakeHuman();
+					return ;
+				} 
+				else if( i != BABY_HUMAN )
+				{
+					int cost = (CCharacterConfig::GetInstance())->GetZombieInfo()[i].CreationCost;
+					if( localMoney >= cost ) {
+						m_pPlayer->SetLocalMoney( localMoney - cost);		
+						MakeZombie(static_cast<ZombieType>(i));										
+					}
 				}
 			}
 		}
@@ -208,73 +224,32 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 {
 	CZombie *tmpZombieObject = nullptr;
-	int localMoney = m_pPlayer->GetLocalMoney();
-	bool CheckHero = 0;
-
-//	imagePath[POOR_ZOMBIE] = L"wugargar/poor_zombie.png";
-//	imagePath[ICE_ZOMBIE] = L"wugargar/ice_zombie.png";
-//	imagePath[VOMIT_ZOMBIE] = L"wugargar/vomit_zombie.png";
-//	imagePath[SMOG_ZOMBIE] = L"wugargar/smog_zombie.png";
-//	imagePath[MUSCLE_ZOMBIE] = L"wugargar/muscle_zombie.png";
-//	imagePath[KAMIKAJE_ZOMBIE] = L"wugargar/kamikaze_zombie.png";
-//	imagePath[HERO_ZOMBIE_SM9] = L"wugargar/hero/0.png";
 
 	tmpZombieObject = CZombie::Create();
-	tmpZombieObject->initStatus(CCharacterConfig::GetInstance()->GetZombieInfo(), (int)type);
-	if(type == HERO_ZOMBIE_SM9)
-		CheckHero = 1;
-
-
-	/*switch(type)
-	{
-	case POOR_ZOMBIE :
-	tmpZombieObject = CPoorZombie::Create();
-	break;
-	case ICE_ZOMBIE :
-	tmpZombieObject = CIceZombie::Create();
-	break;
-	case VOMIT_ZOMBIE :
-	tmpZombieObject = CVomitZombie::Create();
-	break;
-	case SMOG_ZOMBIE :
-	tmpZombieObject = CSmogZombie::Create();
-	break;
-	case MUSCLE_ZOMBIE :
-	tmpZombieObject = CMuscleZombie::Create();
-	break;
-	case KAMIKAJE_ZOMBIE :
-	tmpZombieObject = CKamikazeZombie::Create();
-	break;
-	case HERO_ZOMBIE_SM9 :
-	tmpZombieObject = CHeroZombie::Create();
-	CheckHero = 1;
-	break;
-	default:
-	break; 
-	}*/
-
-	int cost = tmpZombieObject->GetCreateCost();
-
-	// when player has not enough money
-	if (localMoney < cost || (CheckHero && m_pPlayer->GetMeatPoint() < 100) ) {
-		SafeDelete(tmpZombieObject);
-		return;
-	}
-	else if(CheckHero && m_pPlayer->GetMeatPoint() >= 100)
-		m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint()-100);// 영웅좀비 meat point 감소
-
-	// when position is nullptr, set position around zombie base
+	tmpZombieObject->initStatus(CCharacterConfig::GetInstance()->GetZombieInfo(), static_cast<int>(type));
+	
 	if (position == nullptr ) {
 		tmpZombieObject->SetRandomPositionAroundBase();
 	} else {
 		tmpZombieObject->SetPosition(*position);
-
 	}
-
-	// set Z-index for suitable viewing
-	AddChild( tmpZombieObject , static_cast<int> (10 + tmpZombieObject->GetPositionY() / 10) );
-	m_pPlayer->SetLocalMoney( localMoney - cost);	
+	
+	AddChild( tmpZombieObject );	
 	m_llistZombie->push_back(tmpZombieObject);
+
+	// when player has not enough money
+// 	if (localMoney < cost || (CheckHero && m_pPlayer->GetMeatPoint() < 100) ) {
+// 		SafeDelete(tmpZombieObject);
+// 		return;
+// 	}
+// 	else if(CheckHero && m_pPlayer->GetMeatPoint() >= 100)
+// 		m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint()-100);// 영웅좀비 meat point 감소
+
+	// when position is nullptr, set position around zombie base
+	
+
+	
+	
 
 }
 

@@ -28,7 +28,7 @@ public:
 	void InitPlayer();
 	void ReadyToPlay();
 	void ReadyToUpgrade();
-
+	
 	int GetGlobalMoney(){return m_GlobalMoney;}
 	int GetLocalMoney(){return m_LocalMoney;}
 	int GetCurrentStage() {return m_CurrentStage;}
@@ -59,8 +59,8 @@ public:
 	void IncreaseStage() {++m_CurrentStage;}
 	void NextCity() {m_CurrentStage += 100;}
 
-	void SetMeatPoint(int meatPoint) { m_pMeatPoint = meatPoint;}
-	int GetMeatPoint() { return m_pMeatPoint;}
+	void SetMeatPoint(int meatPoint) { m_MeatPoint = meatPoint;}
+	int GetMeatPoint() { return m_MeatPoint;}
 
 	void SetPlayingStage(int set){m_playingStage = set;}
 	int GetPlayingStage(){return m_playingStage;}
@@ -69,6 +69,7 @@ private:
 	PlayerStatus m_playerStatus;
 	std::string m_PlayerName;
 	int m_LocalMoney;
+	int m_MeatPoint;
 	int m_NumberOfKillInStage;
 	int m_NumberOfLossInStage;	
 
@@ -81,7 +82,6 @@ private:
 	int m_TotalKill;
 	int m_TotalLoss;
 	float m_InfectionRate;
-	int m_pMeatPoint;
 	
 	
 

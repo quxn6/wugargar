@@ -61,6 +61,9 @@ enum PoliceType
 	NONE_POLICE //CreatePolice를 위한 상수, 없애는 것 고심중
 };
 
+#define BABY_PRICE			100
+#define HERO_ZOMBIE_PRICE	100
+
 //
 //#define POLICE_TYPE_NUM 6
 //#define ZOMBIE_TYPE_NUM 8

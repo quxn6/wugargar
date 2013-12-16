@@ -151,6 +151,7 @@ void CCharacter::UpdateHPBar( void )
 	}
 }
 
+// set Z-index for suitable viewing
 void CCharacter::UpdateZindex()
 {
 	m_Zindex = 20 + static_cast<int>(m_Position.GetY());
