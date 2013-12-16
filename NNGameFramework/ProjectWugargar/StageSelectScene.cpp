@@ -67,7 +67,7 @@ void CStageSelectScene::Update( float dTime )
 				//스테이지를 표시하기 위한 변수 추가.
 				//이미 진행한 스테이지도 진행하게 하기 위함.
 				CPlayer::GetInstance()->SetPlayingStage(idx+1);
-				NNSceneDirector::GetInstance()->ChangeScene(CUpgradeScene::Create());
+				NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
 				return ;
 			}
 			else if(m_pPlayButton->CheckButtonArea() && !m_pShowUnacceptable)

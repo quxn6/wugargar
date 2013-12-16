@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <ZombieInfo>
-	<ZombieTypeNum></ZombieTypeNum>
+	<ZombieTypeNum>7</ZombieTypeNum>
 	<Zombie1>
 		<ZombieType>0</ZombieType>
 		<TypeName>PoorZombie</TypeName>
@@ -203,7 +203,11 @@
 		<AttackRange>0</AttackRange>
 		<SplashRange>0</SplashRange>
 		<CreationPrice>0</CreationPrice>
-		
+		<WalkAniImageNum>1</WalkAniImageNum>
+			<WalkAniImagePath1>wugargar/hero/0.png</WalkAniImagePath1>
+		<DeadAniImageNum>1</DeadAniImageNum>
+			<DeadAniImagePath1>wugargar/hero/0.png</DeadAniImagePath1>
+
 	</Zombie7>
 
 </ZombieInfo>

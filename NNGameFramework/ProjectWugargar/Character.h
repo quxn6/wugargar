@@ -137,5 +137,7 @@ protected:
 	
 	std::list<std::wstring>	WalkAnimationImagePath;
 	std::list<std::wstring> DeadAnimationImagePath;
+	int				m_WalkAniImageNum;
+	int				m_DeadAniImageNum;
 };
 

@@ -20,6 +20,17 @@ struct CharacterInfo{
 	std::string TypeName;
 	CharacterIdentity identity;
 	PoliceType policeType;
+
+
+	//요기부터 12/16 현재는 좀비만 쓰이는 변수들
+	int WalkAniImageNum;
+	std::string *WalkAniImagePath;
+	int DeadAniImageNum;
+	std::string *DeadAniImagePath;
+	int CreationCost;
+	ZombieType zombieType;
+	clock_t FreezingAttackDuration;
+
 };
 
 class CCharacterConfig
@@ -30,13 +41,19 @@ public:
 
 	static CCharacterConfig* m_pInstance;
 
-	CharacterInfo policeInfo[NUMBER_OF_POLICE_TYPES];
-	CharacterInfo zombieInfo[NUMBER_OF_ZOMBIE_TYPES];
+	CharacterInfo *policeInfo;
+	//임시 변수 7
+	CharacterInfo *zombieInfo;
 
 	void InitPoliceInfo(NNXML *PoliceInfoXml);
+	void InitZombieInfo(NNXML *ZombieInfoXml);
+
 	static void ReleaseInstance();
 	static CCharacterConfig* GetInstance();
-	void initialize_Xpath(std::string *xPath, int idx);
+
+	void initialize_Xpath_Police(std::string *xPath, int idx);
+	void initialize_Xpath_Zombie(std::string *xPath, int idx);
+
 	CharacterInfo *GetPoliceInfo(){return policeInfo;};
 	CharacterInfo *GetZombieInfo(){return zombieInfo;};
 

@@ -48,6 +48,7 @@ public:
 	void SetCurrentStageNum(int set) {m_currentStageNum = set;}
 
 	void loadPoliceInfo();
+	void loadZombieInfo();
 
 
 private :
@@ -71,6 +72,7 @@ private :
 	NNSound		*m_backgraound_sound;
 
 	NNXML*		m_PoliceXML;
+	NNXML*		m_ZombieXML;
 
 	std::list<CCharacter*>		*m_llistZombie;
 	std::list<CCharacter*>		*m_llistPolice;

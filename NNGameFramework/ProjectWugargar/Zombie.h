@@ -1,5 +1,6 @@
 #pragma once
 #include "Character.h"
+#include "CharacterConfig.h"
 
 class CZombie : public CCharacter
 {
@@ -20,6 +21,8 @@ public:
 	void	ApplyZombieLevel();
 
 	void	PlayCreationSound();
+
+	virtual void initStatus( CharacterInfo *zombieInfo, int zombie_type_idx );
 
 protected:
 	int			m_CreateCost;

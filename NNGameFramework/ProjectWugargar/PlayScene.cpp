@@ -52,6 +52,8 @@ CPlayScene::CPlayScene(void)
 	_initMap();
 	_initUI();
 	loadPoliceInfo();
+	loadZombieInfo();
+	
 	
 
 	// player초기화
@@ -212,7 +214,6 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 {
 	CZombie *tmpZombieObject = nullptr;
-	std::wstring imagePath[NUMBER_OF_ZOMBIE_TYPES];
 	int localMoney = m_pPlayer->GetLocalMoney();
 	bool CheckHero = 0;
 
@@ -224,33 +225,39 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 //	imagePath[KAMIKAJE_ZOMBIE] = L"wugargar/kamikaze_zombie.png";
 //	imagePath[HERO_ZOMBIE_SM9] = L"wugargar/hero/0.png";
 
-	switch(type)
+	tmpZombieObject = CZombie::Create();
+	tmpZombieObject->initStatus(CCharacterConfig::GetInstance()->GetZombieInfo(), (int)type);
+	if(type == HERO_ZOMBIE_SM9)
+		CheckHero = 1;
+
+
+	/*switch(type)
 	{
 	case POOR_ZOMBIE :
-		tmpZombieObject = CPoorZombie::Create();
-		break;
+	tmpZombieObject = CPoorZombie::Create();
+	break;
 	case ICE_ZOMBIE :
-		tmpZombieObject = CIceZombie::Create();
-		break;
+	tmpZombieObject = CIceZombie::Create();
+	break;
 	case VOMIT_ZOMBIE :
-		tmpZombieObject = CVomitZombie::Create();
-		break;
+	tmpZombieObject = CVomitZombie::Create();
+	break;
 	case SMOG_ZOMBIE :
-		tmpZombieObject = CSmogZombie::Create();
-		break;
+	tmpZombieObject = CSmogZombie::Create();
+	break;
 	case MUSCLE_ZOMBIE :
-		tmpZombieObject = CMuscleZombie::Create();
-		break;
+	tmpZombieObject = CMuscleZombie::Create();
+	break;
 	case KAMIKAJE_ZOMBIE :
-		tmpZombieObject = CKamikazeZombie::Create();
-		break;
+	tmpZombieObject = CKamikazeZombie::Create();
+	break;
 	case HERO_ZOMBIE_SM9 :
-		tmpZombieObject = CHeroZombie::Create();
-		CheckHero = 1;
-		break;
+	tmpZombieObject = CHeroZombie::Create();
+	CheckHero = 1;
+	break;
 	default:
-		break; 
-	}
+	break; 
+	}*/
 
 	int cost = tmpZombieObject->GetCreateCost();
 
@@ -438,10 +445,7 @@ void CPlayScene::loadPoliceInfo()
 {
 	CCharacterConfig *pCharacterConfig = CCharacterConfig::GetInstance();
 	m_PoliceXML = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/PoliceInfo.txt");
-	int num_police = std::stoi(m_PoliceXML->XPathToString("/PoliceInfo/PoliceTypeNum/text()").c_str());
-
-
-	std::string xPath = "/PoliceInfo/Police";
+	
 
 	//MemoryLeak?
 	if(!(m_PoliceXML->GetLoadSuccess())){
@@ -451,6 +455,19 @@ void CPlayScene::loadPoliceInfo()
 	pCharacterConfig->GetInstance()->InitPoliceInfo(m_PoliceXML);
 
 
+
+
+}
+
+void CPlayScene::loadZombieInfo()
+{
+	CCharacterConfig *pCharacterConfig = CCharacterConfig::GetInstance();
+	m_ZombieXML = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/ZombieInfo.txt");
+	if(!(m_ZombieXML->GetLoadSuccess())){
+		printf_s("Zombie Information XML Load Fail!\n");
+		return;
+	}
+	pCharacterConfig->GetInstance()->InitZombieInfo(m_ZombieXML);
 
 
 }

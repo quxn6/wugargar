@@ -20,12 +20,12 @@ CZombie::~CZombie(void)
 
 void CZombie::Render()
 {
-
+	NNObject::Render();
 }
 
 void CZombie::Update( float dTime )
 {
-
+	CCharacter::Update(dTime);
 }
 
 void CZombie::ApplyZombieLevel()
@@ -64,5 +64,37 @@ void CZombie::PlayCreationSound()
 	NNAudioSystem::GetInstance()->Play(m_creation_sound);
 
 }
+
+void CZombie::initStatus( CharacterInfo *zombieInfo, int zombie_type_idx )
+{
+	m_FullHP = zombieInfo[zombie_type_idx].FullHP;
+	m_HealthPoint = m_FullHP;
+	m_MovingSpeed = zombieInfo[zombie_type_idx].MovingSpeed;
+	m_AttackPower = zombieInfo[zombie_type_idx].AttackPower;
+	m_DefensivePower = zombieInfo[zombie_type_idx].DefensivePower;
+	m_AttackRange = zombieInfo[zombie_type_idx].AttackRange;
+	m_SplashAttackRange = zombieInfo[zombie_type_idx].SplashRange;
+	m_AttackSpeed = zombieInfo[zombie_type_idx].AttackSpeed;
+	m_SplashAttack = zombieInfo[zombie_type_idx].IsSplash;
+	m_Identity = zombieInfo[zombie_type_idx].identity;
+	m_zombieType = zombieInfo[zombie_type_idx].zombieType;
+	m_spritePath = CCharacter::string2wstring(zombieInfo[zombie_type_idx].SpritePath.c_str());
+	m_typeName = zombieInfo[zombie_type_idx].TypeName;
+	m_WalkAniImageNum = zombieInfo[zombie_type_idx].WalkAniImageNum;
+	m_DeadAniImageNum = zombieInfo[zombie_type_idx].DeadAniImageNum;
+	for(int idx=0; idx<m_WalkAniImageNum; ++idx)
+		WalkAnimationImagePath.push_back(CCharacter::string2wstring(zombieInfo[zombie_type_idx].WalkAniImagePath[idx]));
+
+	for(int idx=0; idx<m_DeadAniImageNum; ++idx)
+		DeadAnimationImagePath.push_back(CCharacter::string2wstring(zombieInfo[zombie_type_idx].DeadAniImagePath[idx]));
+	m_CreateCost = zombieInfo[zombie_type_idx].CreationCost;
+	m_FreezingAttackDuration = zombieInfo[zombie_type_idx].FreezingAttackDuration;
+	
+	InitZombieAnimation();
+	ApplyZombieLevel();
+
+
+}
+
 
 
