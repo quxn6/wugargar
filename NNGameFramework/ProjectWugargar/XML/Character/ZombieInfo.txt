@@ -14,6 +14,7 @@
 		<AttackRange>50</AttackRange>
 		<SplashRange>0</SplashRange>
 		<CreationPrice>50</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
 		<WalkAniImageNum>8</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/poor/walk/0.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/poor/walk/1.png</WalkAniImagePath2>
@@ -48,6 +49,7 @@
 		<AttackRange>100</AttackRange>
 		<SplashRange>0</SplashRange>
 		<CreationPrice>200</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
 		<WalkAniImageNum>4</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/vomit/walk/0.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/vomit/walk/1.png</WalkAniImagePath2>
@@ -79,6 +81,7 @@
 		<AttackRange>30</AttackRange>
 		<SplashRange>0</SplashRange>
 		<CreationPrice>300</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
 		<WalkAniImageNum>4</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/mom/walk/0.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/mom/walk/1.png</WalkAniImagePath2>
@@ -109,6 +112,7 @@
 		<AttackRange>40</AttackRange>
 		<SplashRange>50</SplashRange>
 		<CreationPrice>250</CreationPrice>
+		<IsSelfDestruction>1</IsSelfDestruction>
 		<WalkAniImageNum>3</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/bomb/walk/0.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/bomb/walk/1.png</WalkAniImagePath2>
@@ -137,6 +141,7 @@
 		<AttackRange>50</AttackRange>
 		<SplashRange>70</SplashRange>
 		<CreationPrice>500</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
 		<WalkAniImageNum>8</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/smog/walk/0.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/smog/walk/1.png</WalkAniImagePath2>
@@ -170,6 +175,7 @@
 		<AttackRange>100</AttackRange>
 		<SplashRange>0</SplashRange>
 		<CreationPrice>300</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>3000</FreezingAttackDuration>
 		<WalkAniImageNum>6</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/ice/walk/0.png</WalkAniImagePath1>
@@ -203,6 +209,7 @@
 		<AttackRange>0</AttackRange>
 		<SplashRange>0</SplashRange>
 		<CreationPrice>0</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
 		<WalkAniImageNum>1</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/hero/0.png</WalkAniImagePath1>
 		<DeadAniImageNum>1</DeadAniImageNum>

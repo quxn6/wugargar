@@ -78,6 +78,7 @@ void CZombie::initStatus( CharacterInfo *zombieInfo, int zombie_type_idx )
 	m_SplashAttack = zombieInfo[zombie_type_idx].IsSplash;
 	m_Identity = zombieInfo[zombie_type_idx].identity;
 	m_zombieType = zombieInfo[zombie_type_idx].zombieType;
+	m_FreezingAttack = zombieInfo[zombie_type_idx].IsIceAttack;
 	m_spritePath = CCharacter::string2wstring(zombieInfo[zombie_type_idx].SpritePath.c_str());
 	m_typeName = zombieInfo[zombie_type_idx].TypeName;
 	m_WalkAniImageNum = zombieInfo[zombie_type_idx].WalkAniImageNum;
@@ -89,7 +90,8 @@ void CZombie::initStatus( CharacterInfo *zombieInfo, int zombie_type_idx )
 		DeadAnimationImagePath.push_back(CCharacter::string2wstring(zombieInfo[zombie_type_idx].DeadAniImagePath[idx]));
 	m_CreateCost = zombieInfo[zombie_type_idx].CreationCost;
 	m_FreezingAttackDuration = zombieInfo[zombie_type_idx].FreezingAttackDuration;
-	
+	m_SuicideBomber = zombieInfo[zombie_type_idx].IsSelfDestruction;
+
 	InitZombieAnimation();
 	ApplyZombieLevel();
 

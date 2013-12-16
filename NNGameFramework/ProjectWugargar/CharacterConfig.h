@@ -30,7 +30,7 @@ struct CharacterInfo{
 	int CreationCost;
 	ZombieType zombieType;
 	clock_t FreezingAttackDuration;
-
+	bool IsSelfDestruction;
 };
 
 class CCharacterConfig

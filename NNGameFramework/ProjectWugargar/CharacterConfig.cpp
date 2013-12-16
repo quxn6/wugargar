@@ -168,6 +168,13 @@ void CCharacterConfig::InitZombieInfo( NNXML *ZombieInfoXml )
 		else
 			zombieInfo[idx].IsIceAttack = false;
 
+		initialize_Xpath_Zombie(&xPath, idx);
+		if(int tmp_isSelf = (std::stoi(ZombieInfoXml->XPathToString(xPath.append("/IsSelfDestruction/text()").c_str()) )))
+			zombieInfo[idx].IsSelfDestruction = true;
+		else
+			zombieInfo[idx].IsSelfDestruction = false;
+
+
 		if(zombieInfo[idx].IsIceAttack)
 		{
 			initialize_Xpath_Zombie(&xPath, idx);
