@@ -41,9 +41,12 @@ void CPlayScene::ReleaseInstance()
 
 CPlayScene::CPlayScene(void)
 {	
+	//이부분에서 메모리 누수 있었음
 	m_llistPolice = new std::list<CCharacter*>;
 	m_llistZombie = new std::list<CCharacter*>;
 	m_llistDeadPolice = new std::list<CDeadPolice*>;
+
+
 	dTimeCounter = 0;
 	_initBackground();
 	_initMap();
@@ -79,6 +82,11 @@ CPlayScene::~CPlayScene(void)
 {
 	SafeDelete(m_pCreatePolice);
 	CCharacterConfig::ReleaseInstance();
+
+	//메모리 릭이 나서 처리
+	SafeDelete(m_llistDeadPolice);
+	SafeDelete(m_llistPolice);
+	SafeDelete(m_llistZombie);
 }
 
 // init background
@@ -441,6 +449,7 @@ void CPlayScene::loadPoliceInfo()
 		return;
 	}
 	pCharacterConfig->GetInstance()->InitPoliceInfo(m_PoliceXML);
+
 
 
 
