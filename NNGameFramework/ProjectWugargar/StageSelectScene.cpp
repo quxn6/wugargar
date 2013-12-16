@@ -9,7 +9,6 @@
 CStageSelectScene::CStageSelectScene(void)
 {
 	InitMapSprite();
-	m_isShowDifficulty = true;
 }
 
 
@@ -47,7 +46,7 @@ void CStageSelectScene::Update( float dTime )
 			{
 				m_stageIllustrate->SetPosition(m_stageFlag[idx]->GetPositionX()+50, m_stageFlag[idx]->GetPositionY()-50);
 				m_stageIllustrate->SetVisible(true);
-				if(m_isShowDifficulty)
+				if(!m_pShowDifficulty)
 					ShowMapDetail(idx+1);
 				m_pPlayButton->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY()+30);
 				m_pExitButton->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY()+50);
@@ -71,6 +70,12 @@ void CStageSelectScene::Update( float dTime )
 				NNSceneDirector::GetInstance()->ChangeScene(CUpgradeScene::Create());
 				return ;
 			}
+			else if(m_pPlayButton->CheckButtonArea() && !m_pShowUnacceptable)
+			{
+				m_pShowUnacceptable = NNLabel::Create(L"This Stage is not accept now!", L"궁서체", 30);
+				m_pShowUnacceptable->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MAX_SIZE_Y/2);
+				AddChild(m_pShowUnacceptable);
+			}
 
 
 			
@@ -81,15 +86,17 @@ void CStageSelectScene::Update( float dTime )
 		{
 			m_pExitButton->SetVisible(false);
 			m_pPlayButton->SetVisible(false);
-			//왜 이것만 안될까./.
 			RemoveChild(m_pShowDifficulty);
-			//안되는 걸 방지하기 위해서 설정한 bool 변수.. 더 좋은 방법이..
-			m_isShowDifficulty = true;
+			m_pShowDifficulty = nullptr;
 			m_stageIllustrate->SetVisible(false);
+			RemoveChild(m_pShowUnacceptable);
+			m_pShowUnacceptable = nullptr;
+			
 		}
 
-		
 	}
+	
+
 
 
 }
@@ -163,5 +170,4 @@ void CStageSelectScene::ShowMapDetail( int stageNum )
 
 	m_pShowDifficulty->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY());
 	AddChild(m_pShowDifficulty);
-	m_isShowDifficulty = false;
 }

@@ -29,12 +29,11 @@ private:
 
 	NNLabel *m_pShowDifficulty;
 	NNLabel *m_pShowCleared;
-	
+	NNLabel *m_pShowUnacceptable;
 
 	CUIButton *m_pPlayButton;
 	CUIButton *m_pExitButton;
 
-	bool m_isShowDifficulty;
 
 };
 
