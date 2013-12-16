@@ -18,7 +18,8 @@ CPoliceCreator::CPoliceCreator(void)
 
 CPoliceCreator::~CPoliceCreator(void)
 {
-	SafeArrayDelete<PoliceTable>(create_enemy_table);
+	SafeArrayDelete<PoliceTable>(m_aCreateEnemyTable);
+	SafeArrayDelete<float>(m_aPoliceScriptCallTime);
 }
 
 /*
@@ -34,14 +35,16 @@ void CPoliceCreator::LoadScriptFromFile()
 	create_police_xml = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Stage/StageInfo.txt");
 	int current_stage = CPlayer::GetInstance()->GetPlayingStage();
 	std::string Xpath = "/StageInfo/Stage" + std::to_string(current_stage);
-	num_stage_info = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
+	m_NumStageInfo = std::stoi(create_police_xml->XPathToString(Xpath + "/StageInfoNum/text()").c_str());
 	
-	create_enemy_table = new PoliceTable[num_stage_info];
+	m_aCreateEnemyTable = new PoliceTable[m_NumStageInfo];
+	m_aPoliceScriptCallTime = new float[m_NumStageInfo];
+	ZeroMemory(m_aPoliceScriptCallTime,m_NumStageInfo);
 	Xpath.append("/StageInfo");
 	
-	for (int idx=0; idx<num_stage_info; ++idx) {
-		create_enemy_table[idx].time = std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/Time/text()").c_str());
-		create_enemy_table[idx].enemy_type = (PoliceType)std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/PoliceType/text()").c_str());
+	for (int idx=0; idx<m_NumStageInfo; ++idx) {
+		m_aCreateEnemyTable[idx].time = std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/Time/text()").c_str());
+		m_aCreateEnemyTable[idx].enemy_type = (PoliceType)std::stoi(create_police_xml->XPathToString(Xpath + std::to_string(idx+1) + "/PoliceType/text()").c_str());
 	}
 }
 
@@ -57,20 +60,42 @@ void CPoliceCreator::LoadScriptFromFile()
 PoliceType CPoliceCreator::ReturnCreateEnemyInfo()
 {	
 	
-	if((tableTopIndex) >= num_stage_info)
+	if((tableTopIndex) >= m_NumStageInfo)
 		return NONE_POLICE;
 
 	current_time = clock();
 	
 	gap_time = (int)(current_time - begin_time);
 
-	if((gap_time) >= create_enemy_table[tableTopIndex].time){
+	if((gap_time) >= m_aCreateEnemyTable[tableTopIndex].time){
 		//++tableTopIndex;
-		return create_enemy_table[tableTopIndex++].enemy_type;
+		return m_aCreateEnemyTable[tableTopIndex++].enemy_type;
 	}
 
 	return NONE_POLICE;
 }
+
+// 지금 뱉어야할 폴리스가 있다면 폴리스를 리턴, 아니라면 null 리턴
+CPolice* CPoliceCreator::GetPoliceAtTheMoment( float stageElapsedTime )
+{
+	CPolice* returnPolice = nullptr;
+	for ( int i=0 ; i<m_NumStageInfo ; ++i ) {
+		if (stageElapsedTime - m_aPoliceScriptCallTime[i] > m_aCreateEnemyTable[i].time ) {
+			// 해당 script phase의 police생성 시간을 기록
+			m_aPoliceScriptCallTime[i] = stageElapsedTime;
+
+			// 새로운 police 객체를 생성하고 그 포인터를 반환
+			returnPolice = CPolice::Create();
+			returnPolice->initStatus(
+				CCharacterConfig::GetInstance()->GetPoliceInfo(),
+				m_aCreateEnemyTable[i].enemy_type);
+			return returnPolice;
+		}
+	}
+	// 없다면 null을 반환하게 될거임
+	return returnPolice;
+}
+
 
 
 //void CCreatePolice::SetCreateInfoByXML( NNXML *StageXML )

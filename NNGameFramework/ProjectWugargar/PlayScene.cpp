@@ -39,8 +39,8 @@ CPlayScene::CPlayScene(void)
 	m_llistZombie = new std::list<CCharacter*>;
 	m_llistDeadPolice = new std::list<CDeadPolice*>;
 	
-	dTimeCounter = 0;
-	m_StageTimeCounter = 0;
+	m_LocalMoneyTimeChecker = 0;
+	m_StageElapsedTime = 0;
 
 	_initBackground();
 	_initMap();
@@ -55,7 +55,7 @@ CPlayScene::CPlayScene(void)
 	m_pPlayer->ReadyToPlay();
 
 	// police creator 초기화
-	m_pCreatePolice = CPoliceCreator::Create();
+	m_pPoliceCreator = CPoliceCreator::Create();
 
 	// 장애물 생성기 초기화
 	m_pMapObstacleManager = MapObstaclManager::Create();
@@ -76,7 +76,7 @@ CPlayScene::CPlayScene(void)
 
 CPlayScene::~CPlayScene(void)
 {
-	SafeDelete(m_pCreatePolice);
+	SafeDelete(m_pPoliceCreator);
 	CCharacterConfig::ReleaseInstance();
 
 	//메모리 릭이 나서 처리
@@ -157,10 +157,10 @@ void CPlayScene::Update( float dTime )
 
 	NNScene::Update(dTime);
 
-	dTimeCounter+=dTime;
-	if (dTimeCounter > 1) {
+	m_StageElapsedTime+=dTime;
+	if (m_StageElapsedTime - m_LocalMoneyTimeChecker >= 1) {
 		m_pPlayer->IncreaseLocalMoney();
-		dTimeCounter = 0;
+		m_LocalMoneyTimeChecker = m_StageElapsedTime;
 	}
 	
 	//Test_ShowMousePosition(); // 마우스 커서 위치 임시 테스트
@@ -173,8 +173,8 @@ void CPlayScene::Update( float dTime )
 	DeadCharacterCollector();
 	CollectDeadPoliceByClick();
 	//기존 지정해놓은 파일 범위를 넘어갈때를 위한 처리. 임시.
-	MakePoliceFromScript();
-
+	//MakePoliceFromScript();
+	MakePoliceFromScriptWithTimeInterval(m_StageElapsedTime);
 	// next stage 화면으로 이동하기 위한 임시 구문
 	// 엔터 치면 이동함
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN ) {
@@ -290,7 +290,7 @@ void CPlayScene::MakeZombie(ZombieType type)
 void CPlayScene::MakePoliceFromScript()
 {
 	PoliceType create_enemy_type;
-	create_enemy_type =	m_pCreatePolice->ReturnCreateEnemyInfo();
+	create_enemy_type =	m_pPoliceCreator->ReturnCreateEnemyInfo();
 	if(create_enemy_type != NONE_POLICE){
 		CPolice *tmpPoliceObject = CPolice::Create();
 		tmpPoliceObject->initStatus(CCharacterConfig::GetInstance()->GetPoliceInfo(), create_enemy_type);
@@ -301,6 +301,23 @@ void CPlayScene::MakePoliceFromScript()
 		m_llistPolice->push_back(tmpPoliceObject);
 	}	
 }
+
+
+void CPlayScene::MakePoliceFromScriptWithTimeInterval( float stageElapsedTime )
+{
+	CPolice *tmpPoliceObject = m_pPoliceCreator->GetPoliceAtTheMoment(stageElapsedTime);
+	if ( tmpPoliceObject == nullptr) {
+		return ;
+	}
+
+	tmpPoliceObject->SetRandomPositionAroundBase();
+	tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
+	AddChild(tmpPoliceObject, 10);
+	m_llistPolice->push_back(tmpPoliceObject);
+
+}
+
+
 
 // 죽은 캐릭터 수집기,
 // update시마다 실행되면서 hp가 0이거나 화면밖으로 나간 캐릭터를 삭제함

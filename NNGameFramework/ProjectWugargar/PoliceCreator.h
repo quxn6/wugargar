@@ -2,6 +2,7 @@
 #include "NNObject.h"
 #include "GameConfig.h"
 #include "NNXML.h"
+#include "Police.h"
 /*
 클래스 이름 : CCreatePolice
 클래스 목적 : 적(경찰)이 생성되는 기준을 세우고 해당 기준에 맞게
@@ -43,19 +44,22 @@ public:
 	NNCREATE_FUNC(CPoliceCreator);
 	void				LoadScriptFromFile();
 	PoliceType			ReturnCreateEnemyInfo();
-	void				LoadScript();
+	CPolice*			GetPoliceAtTheMoment(float stageElapsedTime);
 
-
-	int GetTableTopIndex() const { return tableTopIndex; }
-	void SetTableTopIndex(int val) { tableTopIndex = val; }
-	
-	
+// 	int GetNumStageInfo() const { return m_NumStageInfo; }
+// 	int GetTableTopIndex() const { return tableTopIndex; }
+// 	float* GetPoliceScriptCallTime() const { return m_aPoliceScriptCallTime; }
+// 	
+// 	void SetTableTopIndex(int val) { tableTopIndex = val; }
+// 	void SetPoliceScriptCallTime(float time, int index) { m_aPoliceScriptCallTime[index] = time; }
+// 	
 private:
-	PoliceTable *create_enemy_table;
+	PoliceTable *m_aCreateEnemyTable;
+	float* m_aPoliceScriptCallTime;
 	clock_t begin_time;
 	clock_t current_time;
 	int gap_time;
-	int num_stage_info;
+	int m_NumStageInfo;
 	int tableTopIndex;
 };
 

@@ -38,6 +38,7 @@ public:
 	void MakeZombieButtonOperate(float dTime);
 	void DeadCharacterCollector();
 	void MakePoliceFromScript();
+	void MakePoliceFromScriptWithTimeInterval(float stageElapsedTime);
 	void CollectDeadPoliceByClick();
 	bool CheckGameOver();
 
@@ -65,7 +66,7 @@ private :
 	NNLabel		*m_pShowMouseStatus;
 	NNLabel		*m_pShowMeatPoint;
 	NNPoint		m_CursorPos;
-	CPoliceCreator *m_pCreatePolice;
+	CPoliceCreator *m_pPoliceCreator;
 	CHumanFarm *m_pHumanFarm;
 	CLightning	*m_pLightning;
 	MapObstaclManager *m_pMapObstacleManager;
@@ -80,8 +81,8 @@ private :
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 	wchar_t		localmoney[256]; //meat Point 표시를 위한 임시변수
-	float		dTimeCounter; // local money증가를 위한 1초단위 카운터
-	float		m_StageTimeCounter;// 게임이 시작된 후부터 진행된 시간 정보를 저장
+	float		m_LocalMoneyTimeChecker; // local money증가를 위한 1초단위 카운터
+	float		m_StageElapsedTime;// 게임이 시작된 후부터 진행된 시간 정보를 저장
 
 	int m_currentStageNum;
 
