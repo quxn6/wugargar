@@ -18,6 +18,7 @@ public:
 	void Update( float dTime );
 
 	void ShowMapDetail(int stageNum);
+	void SettingButton(int stage_idx);
 
 
 	NNCREATE_FUNC(CStageSelectScene);
@@ -25,8 +26,13 @@ public:
 private:
 	NNSprite *m_mapSprite;
 	CUIButton *m_stageFlag[STAGE_NUM];
+	bool IsStageClear[STAGE_NUM];
+	NNSprite *m_stageIllust[STAGE_NUM];
+	NNSprite *m_lockStageIllust;
+
 	NNSprite *m_difficultyStar;
 	NNSprite *m_stageIllustrate;
+	
 
 	NNLabel *m_pShowDifficulty;
 	NNLabel *m_pShowCleared;

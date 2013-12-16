@@ -12,7 +12,7 @@ public:
 	void Render();
 	void Update( float dTime );
 	NNCREATE_FUNC(CMine);
-	void Boom(CZombie* boom_target);
+	virtual void Boom(CZombie* boom_target);
 	void InitStatus();
 
 

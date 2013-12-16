@@ -14,7 +14,8 @@ CStageSelectScene::CStageSelectScene(void)
 
 	m_pBackgroundSound = NNResourceManager::GetInstance()->LoadSoundFromFile("sound/StageSelectSceneBackground.mp3", true, true);
 	NNAudioSystem::GetInstance()->Play(m_pBackgroundSound);
-
+	m_pPlayButton = nullptr;
+	m_pExitButton = nullptr;
 }
 
 
@@ -37,11 +38,7 @@ void CStageSelectScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
 
-	//static변수로 Update를 사정없이 돌면서도 '현재 선택중인' 스테이지의 번호를 알게 함.
-	//..더 좋은 방법이 없을까?
-	static int tmp_current_stage;
 
-	int current_stage =  CPlayer::GetInstance()->GetCurrentStage() % 100;
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON))
 	{
 	
@@ -51,15 +48,15 @@ void CStageSelectScene::Update( float dTime )
 			//Stage의 정보를 띄워주는 것들을 생성.
 			if(m_stageFlag[idx]->CheckButtonArea())
 			{
-				m_stageIllustrate->SetPosition(m_stageFlag[idx]->GetPositionX()+50, m_stageFlag[idx]->GetPositionY()-50);
-				m_stageIllustrate->SetVisible(true);
-				if(!m_pShowDifficulty)
-					ShowMapDetail(idx+1);
-				m_pPlayButton->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY()+30);
-				m_pExitButton->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY()+50);
-				m_pPlayButton->SetVisible(true);
-				m_pExitButton->SetVisible(true);
-				tmp_current_stage = idx+1;
+				if(IsStageClear[idx]){
+					m_stageIllust[idx]->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
+					m_stageIllust[idx]->SetVisible(true);
+				}
+				else{
+					m_lockStageIllust->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
+					m_lockStageIllust->SetVisible(true);
+				}
+				SettingButton(idx);
 				break;
 			}
 
@@ -68,7 +65,7 @@ void CStageSelectScene::Update( float dTime )
 			
 			
 			//선택된 스테이지 버튼이 클리어 할 수 있는 스테이지 인 경우 선택됨
-			if(m_pPlayButton->CheckButtonArea() && tmp_current_stage  <= current_stage)
+			if(m_pPlayButton && m_pPlayButton->CheckButtonArea())
 			{
 				//Player의 현재 스테이지 진행 현황 외에 PlayScene에서 진행되는
 				//스테이지를 표시하기 위한 변수 추가.
@@ -77,27 +74,22 @@ void CStageSelectScene::Update( float dTime )
 				NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
 				return ;
 			}
-			else if(m_pPlayButton->CheckButtonArea() && !m_pShowUnacceptable)
-			{
-				m_pShowUnacceptable = NNLabel::Create(L"This Stage is not accept now!", L"궁서체", 30);
-				m_pShowUnacceptable->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MAX_SIZE_Y/2);
-				AddChild(m_pShowUnacceptable);
-			}
 
 
 			
 		}
 
 		//Exit버튼이 눌리면 다시 스테이지 선택 화면으로 돌아감
-		if(m_pExitButton->CheckButtonArea())
+		if(m_pExitButton && m_pExitButton->CheckButtonArea())
 		{
-			m_pExitButton->SetVisible(false);
-			m_pPlayButton->SetVisible(false);
-			RemoveChild(m_pShowDifficulty);
-			m_pShowDifficulty = nullptr;
-			m_stageIllustrate->SetVisible(false);
-			RemoveChild(m_pShowUnacceptable);
-			m_pShowUnacceptable = nullptr;
+			for(int idx=0; idx<STAGE_NUM; ++idx)
+				m_stageIllust[idx]->SetVisible(false);
+
+			m_lockStageIllust->SetVisible(false);
+			RemoveChild(m_pExitButton);
+			RemoveChild(m_pPlayButton);
+			m_pPlayButton = nullptr;
+			m_pExitButton = nullptr;
 			
 		}
 
@@ -122,11 +114,13 @@ void CStageSelectScene::InitMapSprite()
 	{
 		m_stageFlag[idx] = CUIButton::Create(L"wugargar/stageselect_on.png", L"wugargar/stageselect_on.png");
 		AddChild( m_stageFlag[idx] );
+		IsStageClear[idx] = true;
 	}
 	for(int idx=current_stage; idx<STAGE_NUM; ++idx)
 	{
 		m_stageFlag[idx] = CUIButton::Create(L"wugargar/stageselect_off.png",L"wugargar/stageselect_off.png");
 		AddChild( m_stageFlag[idx] );
+		IsStageClear[idx] = false;
 	}
 
 	m_stageFlag[0]->SetPosition(301,219);
@@ -134,47 +128,49 @@ void CStageSelectScene::InitMapSprite()
 	m_stageFlag[2]->SetPosition(465,321);
 	m_stageFlag[3]->SetPosition(601,403);
 
-	//StageIllustrate Sprite(말풍선) 미리 배치. 보여주는 경우 포지션 세팅하고 visible을 true로
-	m_stageIllustrate = NNSprite::Create(L"wugargar/StageIllustrate.png");
-	AddChild(m_stageIllustrate);
-	m_stageIllustrate->SetVisible(false);
 
-	//마찬가지로 UI버튼 두개 Play, exit도 배치
-	m_pPlayButton = CUIButton::Create(L"wugargar/playbutton.png", L"wugargar/playbutton.png");
-	AddChild(m_pPlayButton);
-	m_pPlayButton->SetVisible(false);
-	m_pExitButton = CUIButton::Create(L"wugargar/exitbutton.png", L"wugargar/exitbutton.png");
-	AddChild(m_pExitButton);
-	m_pExitButton->SetVisible(false);
+	m_stageIllust[0] = NNSprite::Create(L"wugargar/StageSelect/Stage1ExplainImage.png");
+	m_stageIllust[1] = NNSprite::Create(L"wugargar/StageSelect/Stage2ExplainImage.png");
+	m_stageIllust[2] = NNSprite::Create(L"wugargar/StageSelect/Stage3ExplainImage.png");
+	m_stageIllust[3] = NNSprite::Create(L"wugargar/StageSelect/Stage4ExplainImage.png");
+	m_lockStageIllust = NNSprite::Create(L"wugargar/StageSelect/LockStageImage.png");
+	AddChild(m_lockStageIllust);
+	m_lockStageIllust->SetVisible(false);
+	
+	for(int idx=0; idx<STAGE_NUM; ++idx)
+	{
+		AddChild(m_stageIllust[idx]);
+		m_stageIllust[idx]->SetVisible(false);
+	}
+	
+
+	//StageIllustrate Sprite(말풍선) 미리 배치. 보여주는 경우 포지션 세팅하고 visible을 true로
+	//m_stageIllustrate = NNSprite::Create(L"wugargar/StageIllustrate.png");
+	//AddChild(m_stageIllustrate);
+	//m_stageIllustrate->SetVisible(false);
+
+	
 	
 	
 
 }
 
-void CStageSelectScene::ShowMapDetail( int stageNum )
+//Button을 다른 Sprite 생성과 분리한 이유~
+//Sprite는 Set Visible 조정만 해줘도 문제가 없지만
+//Button의 경우는 그렇게 처리할 경우, 보이지 않을 뿐, 그 위치를
+//클릭할 경우 플레이가 가능해짐.
+//따라서 따로 Set Button을 빼놓고 그때그때 Remove해주기 위함.
+void CStageSelectScene::SettingButton(int stage_idx)
 {
-	//선택한 Map의 Detail을 보여줌..
-	//XML에서 데이터를 불러옴이 바람직하지만, 현재 구조상
-	//데이터를 불러오는 부분이 PlayScene에 있으므로 임시로 설정하도록 함.
-
-	switch (stageNum)
-	{
-	case 1:
-		m_pShowDifficulty = NNLabel::Create(L"★☆☆☆☆", L"맑은 고딕", 20);
-		break;
-	case 2:
-		m_pShowDifficulty = NNLabel::Create(L"★★☆☆☆", L"맑은 고딕", 20);
-		break;
-	case 3:
-		m_pShowDifficulty = NNLabel::Create(L"★★★☆☆", L"맑은 고딕", 20);
-		break;
-	case 4:
-		m_pShowDifficulty = NNLabel::Create(L"★★★★★", L"맑은 고딕", 20);
-		break;
-	default:
-		break;
+	if(IsStageClear[stage_idx]){
+		m_pPlayButton = CUIButton::Create(L"wugargar/playbutton.png", L"wugargar/playbutton.png");
+		AddChild(m_pPlayButton);
+		m_pPlayButton->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
 	}
+	
+	m_pExitButton = CUIButton::Create(L"wugargar/exitbutton.png", L"wugargar/exitbutton.png");
+	AddChild(m_pExitButton);
+	m_pExitButton->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y+20);
 
-	m_pShowDifficulty->SetPosition(m_stageIllustrate->GetPositionX(), m_stageIllustrate->GetPositionY());
-	AddChild(m_pShowDifficulty);
+
 }
