@@ -99,11 +99,23 @@ void CUpgradeScene::InitUpgradeUI()
 	m_ShowGlobalMoney = NNLabel::Create(L"global money", L"¸¼Àº °íµñ", 25.f);
 	m_ShowGlobalMoney -> SetPosition(750.f , 100.f);
 	AddChild(m_ShowGlobalMoney);
-
+	
+	//upgrade button set
 	for(int i = 0; i<(NUMBER_OF_ZOMBIE_TYPES - 1); ++i){
 		m_UpgradeButton[i] = CUIButton::Create(L"wugargar/upgrade_button.png",L"wugargar/upgrade_button_pressed.png");
 		m_UpgradeButton[i] -> SetPosition(100.f * (i+1) + 20.f*i, 370.f);
 		AddChild(m_UpgradeButton[i]);
+	}
+
+	for(int i = 0; i<(NUMBER_OF_ZOMBIE_TYPES-1);++i){
+		//show upgrade cost
+		m_ShowUpgradeCost[i] = NNLabel::Create(L"cost",L"¸¼Àº °íµñ",20.f);
+		m_ShowUpgradeCost[i] -> SetPosition(100.f * (i+1) + 20.f*i + 35, 220.f);
+		AddChild(m_ShowUpgradeCost[i]);
+		//show upgrade level
+		m_ShowUpgradeLevel[i] = NNLabel::Create(L"level",L"¸¼Àº °íµñ",20.f);
+		m_ShowUpgradeLevel[i] ->SetPosition(100.f * (i+1) + 20.f*i +10, 250.f);
+		AddChild(m_ShowUpgradeLevel[i]);
 	}
 }
 
@@ -129,8 +141,14 @@ void CUpgradeScene::OperateUpgradeButton()
 
 void CUpgradeScene::UpgradeCostSet()
 {
+	static wchar_t UpgradeCost[256][NUMBER_OF_ZOMBIE_TYPES-1];
+	static wchar_t ZombieLevel[256][NUMBER_OF_ZOMBIE_TYPES-1];
 	for(int i = 0; i < (NUMBER_OF_ZOMBIE_TYPES - 1) ; ++i) 
 	{
 		m_UpgradeCost[i] = 200 + 100*CPlayer::GetInstance()->GetZombieLevel(static_cast<ZombieType>(i));
+		swprintf_s( UpgradeCost[i], L"%d", m_UpgradeCost[i]);
+		m_ShowUpgradeCost[i] -> SetString(UpgradeCost[i]);
+		swprintf_s( ZombieLevel[i], L"Lv.%d", CPlayer::GetInstance()->GetZombieLevel(static_cast<ZombieType>(i)));
+		m_ShowUpgradeLevel[i] -> SetString(ZombieLevel[i]);
 	}
 }
