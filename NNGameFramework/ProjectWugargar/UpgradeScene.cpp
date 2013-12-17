@@ -21,11 +21,12 @@ void CUpgradeScene::Render()
 void CUpgradeScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
+	ShowGlobalMoney();
 }
 
 void CUpgradeScene::InitUpgradeUI()
 {
-	int zombieCount = NUMBER_OF_ZOMBIE_TYPES-1;
+	int zombieCount = NUMBER_OF_ZOMBIE_TYPES-1; //enum °ªÀÌ ¾È¸Â¾Æ¼­ -1
 	int count[NUMBER_OF_ZOMBIE_TYPES-1] ;
 	std::wstring path[NUMBER_OF_ZOMBIE_TYPES-1] = {
 		L"wugargar/poor/walk/",
@@ -85,5 +86,24 @@ void CUpgradeScene::InitUpgradeUI()
 	for(int i=0; i<zombieCount; ++i)
 		m_Frame[i]->SetPosition(100.f * (i+1) + 20.f*i, 250.f);
 
-	m_CoinAnimation->SetPosition(100,200);
+	m_CoinAnimation->SetPosition(700,100);
+
+	//set global money label
+	m_ShowGlobalMoney = NNLabel::Create(L"global money", L"¸¼Àº °íµñ", 25.f);
+	m_ShowGlobalMoney -> SetPosition(750.f , 100.f);
+	AddChild(m_ShowGlobalMoney);
+
+	for(int i = 0; i<7; ++i){
+		m_UpgradeButton[i] = CUIButton::Create(L"wugargar/upgrade_button.png",L"wugargar/upgrade_button_pressed.png");
+		m_UpgradeButton[i] -> SetPosition(100.f * (i+1) + 20.f*i, 370.f);
+		AddChild(m_UpgradeButton[i]);
+	}
+}
+
+void CUpgradeScene::ShowGlobalMoney()
+{
+	static wchar_t globalMoney[256];
+	ZeroMemory(globalMoney, 256);	
+	swprintf_s(globalMoney, _countof(globalMoney), L"%d", CPlayer::GetInstance()->GetGlobalMoney() );
+	m_ShowGlobalMoney->SetString(globalMoney);
 }
