@@ -3,6 +3,7 @@
 #include <windows.h>
 #include "NNSceneDirector.h"
 #include "PlayScene.h"
+#include "StageSelectScene.h"
 
 
 CUpgradeScene::CUpgradeScene(void)
@@ -122,9 +123,14 @@ void CUpgradeScene::InitUpgradeUI()
 	}
 
 	// 임시로 다음 스테이지 버튼 만들었음
-	m_pNextStageButton = CUIButton::Create(L"wugargar/UIbuttons/nextlevel.png", L"wugargar/UIbuttons/nextlevel.png");
+	m_pNextStageButton = CUIButton::Create(L"wugargar/arrow.png", L"wugargar/arrow.png");
 	m_pNextStageButton->SetPosition(GAME_SCREEN_MAX_SIZE_X-240.0f,GAME_SCREEN_MAX_SIZE_Y-200.0f );
 	AddChild(m_pNextStageButton, 100);
+
+	m_pPreStageButton = CUIButton::Create(L"wugargar/arrow-opp.png", L"wugargar/arrow-opp.png");
+	m_pPreStageButton->SetPosition(80.f, GAME_SCREEN_MAX_SIZE_Y-200.0f);
+	AddChild(m_pPreStageButton, 100);
+
 }
 
 void CUpgradeScene::ShowGlobalMoney()
@@ -148,6 +154,11 @@ void CUpgradeScene::OperateUpgradeButton()
 		// 다음 스테이지 버튼 클릭시
 		if ( m_pNextStageButton->CheckButtonArea() ) {
 			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+		}
+
+		//이전 스테이지 버튼 클릭시
+		if ( m_pPreStageButton->CheckButtonArea() ) {
+			NNSceneDirector::GetInstance()->ChangeScene(CStageSelectScene::Create());
 		}
 	}
 }
