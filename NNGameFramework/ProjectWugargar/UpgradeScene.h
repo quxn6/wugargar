@@ -5,6 +5,7 @@
 #include "GameConfig.h"
 #include "UIButton.h"
 #include "Player.h"
+#include "NNInputSystem.h"
 
 class CUpgradeScene :
 	public NNScene
@@ -18,7 +19,9 @@ public:
 	void Update( float dTime );
 	void InitUpgradeUI();
 	void ShowGlobalMoney();
-	
+	void OperateUpgradeButton();
+	void UpgradeCostSet();
+
 	NNCREATE_FUNC(CUpgradeScene);
 
 protected:
@@ -27,7 +30,10 @@ protected:
 	NNSprite *m_Frame[NUMBER_OF_ZOMBIE_TYPES - 1];
 	NNSprite* m_pBackground;
 
-	CUIButton* m_UpgradeButton[7]; //upgrade : 7
+	CUIButton* m_UpgradeButton[NUMBER_OF_ZOMBIE_TYPES - 1]; 
 	NNLabel* m_ShowGlobalMoney;
+	NNLabel* m_ShowUpgradeLevel[NUMBER_OF_ZOMBIE_TYPES - 1];
+	int		m_UpgradeCost[NUMBER_OF_ZOMBIE_TYPES-1];
+
 };
 

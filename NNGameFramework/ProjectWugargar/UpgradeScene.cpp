@@ -22,10 +22,18 @@ void CUpgradeScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
 	ShowGlobalMoney();
+	UpgradeCostSet();
+	OperateUpgradeButton();
 }
 
 void CUpgradeScene::InitUpgradeUI()
-{
+{	
+	//background set
+	m_pBackground = NNSprite::Create(L"wugargar/upgrade.png");
+	m_pBackground->SetPosition(0,0);
+	AddChild(m_pBackground);
+
+	//zombie animation path set
 	int zombieCount = NUMBER_OF_ZOMBIE_TYPES-1; //enum 값이 안맞아서 -1
 	int count[NUMBER_OF_ZOMBIE_TYPES-1] ;
 	std::wstring path[NUMBER_OF_ZOMBIE_TYPES-1] = {
@@ -36,9 +44,6 @@ void CUpgradeScene::InitUpgradeUI()
 		L"wugargar/smog/walk/",
 		L"wugargar/ice/walk/",
 		L"wugargar/hero/"};
-	m_pBackground = NNSprite::Create(L"wugargar/upgrade.png");
-	m_pBackground->SetPosition(0,0);
-	AddChild(m_pBackground);
 
 	count[POOR_ZOMBIE] = 8;
 	count[VOMIT_ZOMBIE] = 4;
@@ -48,11 +53,16 @@ void CUpgradeScene::InitUpgradeUI()
 	count[ICE_ZOMBIE] = 6;
 	count[HERO_ZOMBIE_SM9] = 1;
 
+	//frame Set
 	for ( int i=0; i< zombieCount; ++i )
 	{
 		m_Frame[i] = NNSprite::Create(L"wugargar/UpgradeFrame.png");
 		AddChild(m_Frame[i]);
 	}
+	for(int i=0; i<zombieCount; ++i)
+		m_Frame[i]->SetPosition(100.f * (i+1) + 20.f*i, 250.f);
+
+	//Animation Set
 	for(int i=0; i < zombieCount; ++i)
 	{
 		m_ZombieAnimation[i] = NNAnimation::Create();
@@ -73,6 +83,7 @@ void CUpgradeScene::InitUpgradeUI()
 	m_ZombieAnimation[5]->SetCenter( -25.f, 0.f);
 	m_ZombieAnimation[6]->SetCenter( -5.f, -5.f);
 
+	//coin animation set
 	m_CoinAnimation = NNAnimation::Create();
 	for(int i=0; i<10; ++i)
 	{
@@ -82,10 +93,6 @@ void CUpgradeScene::InitUpgradeUI()
 	}
 	m_CoinAnimation->SetFrameTimeInSection(0.05f, 0, 9);
 	AddChild(m_CoinAnimation);
-
-	for(int i=0; i<zombieCount; ++i)
-		m_Frame[i]->SetPosition(100.f * (i+1) + 20.f*i, 250.f);
-
 	m_CoinAnimation->SetPosition(700,100);
 
 	//set global money label
@@ -93,7 +100,7 @@ void CUpgradeScene::InitUpgradeUI()
 	m_ShowGlobalMoney -> SetPosition(750.f , 100.f);
 	AddChild(m_ShowGlobalMoney);
 
-	for(int i = 0; i<7; ++i){
+	for(int i = 0; i<(NUMBER_OF_ZOMBIE_TYPES - 1); ++i){
 		m_UpgradeButton[i] = CUIButton::Create(L"wugargar/upgrade_button.png",L"wugargar/upgrade_button_pressed.png");
 		m_UpgradeButton[i] -> SetPosition(100.f * (i+1) + 20.f*i, 370.f);
 		AddChild(m_UpgradeButton[i]);
@@ -106,4 +113,24 @@ void CUpgradeScene::ShowGlobalMoney()
 	ZeroMemory(globalMoney, 256);	
 	swprintf_s(globalMoney, _countof(globalMoney), L"%d", CPlayer::GetInstance()->GetGlobalMoney() );
 	m_ShowGlobalMoney->SetString(globalMoney);
+}
+
+void CUpgradeScene::OperateUpgradeButton()
+{
+	if ( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
+		for ( int i=0 ; i<(NUMBER_OF_ZOMBIE_TYPES -1); ++i ) {		
+			if ( m_UpgradeButton[i]->CheckButtonArea() && (CPlayer::GetInstance()->GetGlobalMoney() >= m_UpgradeCost[i]) ) {							
+				CPlayer::GetInstance()->SetGlobalMoney( CPlayer::GetInstance()->GetGlobalMoney() - m_UpgradeCost[i] );
+				CPlayer::GetInstance()->IncreaseZombieLevel(static_cast<ZombieType>(i));
+			}
+		}
+	}
+}
+
+void CUpgradeScene::UpgradeCostSet()
+{
+	for(int i = 0; i < (NUMBER_OF_ZOMBIE_TYPES - 1) ; ++i) 
+	{
+		m_UpgradeCost[i] = 200 + 100*CPlayer::GetInstance()->GetZombieLevel(static_cast<ZombieType>(i));
+	}
 }
