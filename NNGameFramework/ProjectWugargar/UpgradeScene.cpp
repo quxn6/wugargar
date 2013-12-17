@@ -1,11 +1,14 @@
 #include "UpgradeScene.h"
 #include "NNAnimation.h"
 #include <windows.h>
+#include "NNSceneDirector.h"
+#include "PlayScene.h"
 
 
 CUpgradeScene::CUpgradeScene(void)
 {
 	InitUpgradeUI();
+	CPlayer::GetInstance()->ReadyToUpgrade();
 }
 
 
@@ -117,6 +120,11 @@ void CUpgradeScene::InitUpgradeUI()
 		m_ShowUpgradeLevel[i] ->SetPosition(100.f * (i+1) + 20.f*i +10, 250.f);
 		AddChild(m_ShowUpgradeLevel[i]);
 	}
+
+	// 임시로 다음 스테이지 버튼 만들었음
+	m_pNextStageButton = CUIButton::Create(L"wugargar/UIbuttons/nextlevel.png", L"wugargar/UIbuttons/nextlevel.png");
+	m_pNextStageButton->SetPosition(GAME_SCREEN_MAX_SIZE_X-200.0f,GAME_SCREEN_MAX_SIZE_Y-200.0f );
+	AddChild(m_pNextStageButton, 100);
 }
 
 void CUpgradeScene::ShowGlobalMoney()
@@ -135,6 +143,11 @@ void CUpgradeScene::OperateUpgradeButton()
 				CPlayer::GetInstance()->SetGlobalMoney( CPlayer::GetInstance()->GetGlobalMoney() - m_UpgradeCost[i] );
 				CPlayer::GetInstance()->IncreaseZombieLevel(static_cast<ZombieType>(i));
 			}
+		}
+
+		// 다음 스테이지 버튼 클릭시
+		if ( m_pNextStageButton->CheckButtonArea() ) {
+			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
 		}
 	}
 }

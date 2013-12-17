@@ -10,6 +10,7 @@
 #include "NextStageScene.h"
 #include "CharacterConfig.h"
 #include "NNResourceManager.h"
+#include "StageSelectScene.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -210,7 +211,7 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 					MakeZombie(static_cast<ZombieType>(i));
 					return ;
 				} 
-				else if( i != BABY_HUMAN )
+				else if( i != BABY_HUMAN && i != HERO_ZOMBIE_SM9 )
 				{
 					int cost = (CCharacterConfig::GetInstance())->GetZombieInfo()[i].CreationCost;
 					if( localMoney >= cost ) {
@@ -378,10 +379,15 @@ bool CPlayScene::CheckGameOver()
 	if (m_pPlayer->GetPlayerStatus() == ON_PLAYING ) {
 		if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
 			m_pPlayer->SetPlayerStatus(WIN);
-			ShowResult(L"WIN");
+			m_pPlayer->IncreaseClearedStage();
+			m_pPlayer->ReadyToSave();
+			SaveGame();
+			ShowResult(L"WIN");			
 			printf_s("WIN!\n");
 		} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
 			m_pPlayer->SetPlayerStatus(LOSE);
+			m_pPlayer->ReadyToSave();
+			SaveGame();
 			ShowResult(L"LOSE");
 			printf_s("LOSE!\n");
 		} else {
@@ -392,7 +398,7 @@ bool CPlayScene::CheckGameOver()
 	{
 		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) && m_pResultOKButton->CheckButtonArea() ) 
 		{
-			NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+			NNSceneDirector::GetInstance()->ChangeScene(CStageSelectScene::Create());
 			m_pInstance = nullptr;		
 		}
 	}
@@ -431,6 +437,38 @@ void CPlayScene::ShowResult( std::wstring result )
 	AddChild(m_pResultOKButton, 10001);
 }
 
+void CPlayScene::SaveGame( void )
+{
+	// set root using player name
+	std::string root = m_pPlayer->GetPlayerName();
+
+	// set root
+	m_SaveManager = CXMLWriter::Create("savegame.sav");
+	m_SaveManager->AddRoot(m_pPlayer->GetPlayerName());
+
+	// write contents
+	m_SaveManager->AddNode("GlobalMoney", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetGlobalMoney() ), "GlobalMoney" );
+	m_SaveManager->AddNode("TotalKill", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetTotalKill() ), "TotalKill");
+	m_SaveManager->AddNode("TotalLoss", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetTotalLoss() ), "TotalLoss");
+	m_SaveManager->AddNode("CurrentStage", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetClearedStage() ), "CurrentStage");
+	m_SaveManager->AddNode("InfectionRate", root);
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetInfectionRate() ), "InfectionRate");
+
+	m_SaveManager->AddNode("UnitLevel", root);
+	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
+		std::string nodeName = "UnitNo";
+		nodeName.append(std::to_string(i));
+		m_SaveManager->AddNode(nodeName, "UnitLevel");
+		m_SaveManager->AddText(std::to_string(m_pPlayer->GetZombieLevel(static_cast<ZombieType>(i))), nodeName );
+	}
+
+	m_SaveManager->ExportXMLFile();
+	SafeDelete(m_SaveManager);
+}
 
 /////////////////////////////////////////////////////////
 ///////////////////test �Լ� /////////////////////////////

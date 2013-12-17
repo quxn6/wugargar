@@ -36,6 +36,6 @@ protected:
 	NNLabel* m_ShowUpgradeLevel[NUMBER_OF_ZOMBIE_TYPES - 1];
 	int		m_UpgradeCost[NUMBER_OF_ZOMBIE_TYPES-1];
 	NNLabel* m_ShowUpgradeCost[NUMBER_OF_ZOMBIE_TYPES - 1];
-
+	CUIButton* m_pNextStageButton;
 };
 

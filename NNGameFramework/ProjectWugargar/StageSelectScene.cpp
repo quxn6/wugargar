@@ -48,35 +48,31 @@ void CStageSelectScene::Update( float dTime )
 			//Stage의 정보를 띄워주는 것들을 생성.
 			if(m_stageFlag[idx]->CheckButtonArea())
 			{
-				if(IsStageClear[idx]){
+				if(IsStageClear[idx])
+				{
 					m_stageIllust[idx]->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
 					m_stageIllust[idx]->SetVisible(true);
+
+					//Player의 현재 스테이지 진행 현황 외에 PlayScene에서 진행되는
+					//스테이지를 표시하기 위한 변수 추가.
+					//이미 진행한 스테이지도 진행하게 하기 위함.
+					CPlayer::GetInstance()->SetPlayingStage(idx+1);
 				}
-				else{
+				else
+				{
 					m_lockStageIllust->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
 					m_lockStageIllust->SetVisible(true);
 				}
 				SettingButton(idx);
 				break;
 			}
+		}
 
-
-			
-			
-			
-			//선택된 스테이지 버튼이 클리어 할 수 있는 스테이지 인 경우 선택됨
-			if(m_pPlayButton && m_pPlayButton->CheckButtonArea())
-			{
-				//Player의 현재 스테이지 진행 현황 외에 PlayScene에서 진행되는
-				//스테이지를 표시하기 위한 변수 추가.
-				//이미 진행한 스테이지도 진행하게 하기 위함.
-				CPlayer::GetInstance()->SetPlayingStage(idx+1);
-				NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
-				return ;
-			}
-
-
-			
+		//선택된 스테이지 버튼이 클리어 할 수 있는 스테이지 인 경우 선택됨
+		if(m_pPlayButton && m_pPlayButton->CheckButtonArea())
+		{
+			NNSceneDirector::GetInstance()->ChangeScene(CUpgradeScene::Create());
+			return ;
 		}
 
 		//Exit버튼이 눌리면 다시 스테이지 선택 화면으로 돌아감
@@ -86,8 +82,9 @@ void CStageSelectScene::Update( float dTime )
 				m_stageIllust[idx]->SetVisible(false);
 
 			m_lockStageIllust->SetVisible(false);
-			RemoveChild(m_pExitButton);
-			RemoveChild(m_pPlayButton);
+			// remove시 리스트에서만 없애고 객체를 안날려서(true를 안붙여서) label이 살아있었음.
+			RemoveChild(m_pExitButton, true);
+			RemoveChild(m_pPlayButton, true);
 			m_pPlayButton = nullptr;
 			m_pExitButton = nullptr;
 			
@@ -107,7 +104,7 @@ void CStageSelectScene::InitMapSprite()
 	m_mapSprite->SetPosition(0.0f, 0.0f);
 	AddChild( m_mapSprite );
 
-	int current_stage = CPlayer::GetInstance()->GetCurrentStage() % 100;
+	int current_stage = CPlayer::GetInstance()->GetClearedStage() % 100;
 
 	//MapStageFlag Sprite배치. 클리어 한 스테이지는 빨강, 아닌 스테이지는 파란색 원으로 표시 (임시)
 	for(int idx=0; idx<current_stage; ++idx)

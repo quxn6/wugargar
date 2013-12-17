@@ -14,12 +14,12 @@ void CPlayer::InitPlayer()
 	m_PlayerName = "player1";
 	m_playerStatus = ON_MAINMENU;
 	m_GlobalMoney = 1000;
-	m_CurrentStage = 101;
+	m_ClearedStage = 101;
 	m_TotalKill = 0;
 	m_TotalLoss = 0;
 	m_InfectionRate = 20.0f;
 	m_MeatPoint = 50;
-	m_CurrentStage = 1;
+	m_ClearedStage = 1;
 	m_playingStage = 1;
 
 	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
@@ -62,8 +62,14 @@ void CPlayer::ReadyToPlay()
 void CPlayer::ReadyToUpgrade()
 {
 	m_playerStatus = ON_UPGRADEMENU;
+}
+
+void CPlayer::ReadyToSave()
+{
+	m_playerStatus = ON_RESULT;
 	m_TotalKill += m_NumberOfKillInStage;
 	m_TotalLoss += m_NumberOfLossInStage;
 	m_GlobalMoney += 10 * m_NumberOfKillInStage;
 }
+
 

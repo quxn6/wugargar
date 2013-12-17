@@ -155,7 +155,7 @@ void CStartScene::load()
 	printf("%d\n", pPlayer->GetGlobalMoney() );
 	printf("%d\n", pPlayer->GetTotalKill() );
 	printf("%d\n", pPlayer->GetTotalLoss() );
-	printf("%d\n", pPlayer->GetCurrentStage() );
+	printf("%d\n", pPlayer->GetClearedStage() );
 	printf("%f\n", pPlayer->GetInfectionRate() );
 	for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
 		printf("%d ", pPlayer->GetZombieLevel(static_cast<ZombieType>(i)) );

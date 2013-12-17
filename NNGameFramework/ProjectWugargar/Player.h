@@ -6,7 +6,8 @@ enum PlayerStatus {
 	WIN,
 	LOSE,
 	ON_PLAYING,
-	ON_MAINMENU,
+	ON_MAINMENU,	
+	ON_RESULT,
 	ON_UPGRADEMENU
 };
 
@@ -28,10 +29,11 @@ public:
 	void InitPlayer();
 	void ReadyToPlay();
 	void ReadyToUpgrade();
+	void ReadyToSave();
 	
 	int GetGlobalMoney(){return m_GlobalMoney;}
 	int GetLocalMoney(){return m_LocalMoney;}
-	int GetCurrentStage() {return m_CurrentStage;}
+	int GetClearedStage() {return m_ClearedStage;}
 	int GetZombieLevel(ZombieType character) { return m_CharacterLevel[character]; }
 	int GetNumberOfKillInStage() const { return m_NumberOfKillInStage; }
 	int GetNumberOfLossInStage() const { return m_NumberOfLossInStage; }
@@ -43,7 +45,7 @@ public:
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
-	void SetCurrentStage(int ClearedStage) {m_CurrentStage = ClearedStage; }
+	void SetCurrentStage(int ClearedStage) {m_ClearedStage = ClearedStage; }
 	void SetZombieLevel(ZombieType character, int level) { m_CharacterLevel[character] = level; }
 	void SetPlayerStatus(PlayerStatus ps) { m_playerStatus = ps; }
 	void SetInfectionRate(float ir) { m_InfectionRate = ir; }
@@ -56,8 +58,7 @@ public:
 	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }	
 	void IncreaseInfectionRate() {m_InfectionRate += 10.0f;}
 	void IncreaseLocalMoney() {m_LocalMoney += 50;}
-	void IncreaseStage() {++m_CurrentStage;}
-	void NextCity() {m_CurrentStage += 100;}
+	void IncreaseClearedStage() {++m_ClearedStage;}
 
 	void SetMeatPoint(int meatPoint) { m_MeatPoint = meatPoint;}
 	int GetMeatPoint() { return m_MeatPoint;}
@@ -78,7 +79,7 @@ private:
 	// 이하는 save할 때 저장할 데이터들
 	int m_CharacterLevel[NUMBER_OF_ZOMBIE_TYPES];
 	int m_GlobalMoney;	
-	int m_CurrentStage;		//1,2,3,4 등으로 진행된 스테이지 표시
+	int m_ClearedStage;		//1,2,3,4 등으로 진행된 스테이지 표시
 	int m_TotalKill;
 	int m_TotalLoss;
 	float m_InfectionRate;

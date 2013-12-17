@@ -15,6 +15,7 @@
 #include "DeadPolice.h"
 #include "MapObstaclManager.h"
 #include "NNSound.h"
+#include "XMLWriter.h"
 
 class CPlayScene : public NNScene
 {
@@ -42,6 +43,7 @@ public:
 	void CollectDeadPoliceByClick();
 	bool CheckGameOver();
 	void ShowResult( std::wstring result );	
+	void SaveGame(void);
 
 	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;}
 	std::wstring string2wstring(std::string str);
@@ -68,6 +70,7 @@ private :
 	NNLabel		*m_pResultLabel;
 	wchar_t		m_aResultBuffer[255];
 	CUIButton	*m_pResultOKButton;
+	CXMLWriter*	m_SaveManager;
 
 	CUIButton	*m_pUIButtons[NUM_OF_UIBUTTON];
 	NNLabel		*m_pShowMouseStatus;

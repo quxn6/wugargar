@@ -18,7 +18,7 @@ void CNextStageScene::InitPlayer( void )
 	m_pPlayer = CPlayer::GetInstance();
 	if ( m_pPlayer->GetPlayerStatus() == WIN  ) {
 		m_TryAgain = false;
-		m_pPlayer->IncreaseStage();
+		m_pPlayer->IncreaseClearedStage();
 	} else {
 		m_TryAgain = true;
 	}
@@ -201,7 +201,7 @@ void CNextStageScene::SaveGame( void )
 	m_SaveManager->AddNode("TotalLoss", root);
 	m_SaveManager->AddText(std::to_string(m_pPlayer->GetTotalLoss() ), "TotalLoss");
 	m_SaveManager->AddNode("CurrentStage", root);
-	m_SaveManager->AddText(std::to_string(m_pPlayer->GetCurrentStage() ), "CurrentStage");
+	m_SaveManager->AddText(std::to_string(m_pPlayer->GetClearedStage() ), "CurrentStage");
 	m_SaveManager->AddNode("InfectionRate", root);
 	m_SaveManager->AddText(std::to_string(m_pPlayer->GetInfectionRate() ), "InfectionRate");
 
