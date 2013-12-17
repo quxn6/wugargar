@@ -375,22 +375,51 @@ bool CPlayScene::CheckGameOver()
 {
 	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
 		m_pPlayer->SetPlayerStatus(WIN);
+		ShowResult(L"WIN");
 		printf_s("WIN!\n");
 	} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
 		m_pPlayer->SetPlayerStatus(LOSE);
+		ShowResult(L"LOSE");
 		printf_s("LOSE!\n");
 	} else {
 		return false;	
 	}
 	
-	NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
 
-	m_pInstance = nullptr;		
+
+// 	NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+// 	m_pInstance = nullptr;		
+
 	return true;
-
 }
 
 
+// 결과 표시
+void CPlayScene::ShowResult( std::wstring result )
+{
+	// result background image
+	m_pResultImage = NNSprite::Create(L"wugargar/result.png");
+	float resultPositionX = GAME_SCREEN_MAX_SIZE_X/2.0f - m_pResultImage->GetImageWidth()/2.0f;
+	float resultPositionY = GAME_SCREEN_MAX_SIZE_Y/5.0f;
+	m_pResultImage->SetPosition(resultPositionX, resultPositionY);
+	AddChild(m_pResultImage,10000);
+
+	swprintf_s(
+		m_aResultBuffer, 
+		_countof(m_aResultBuffer), 
+		L"Results : %s\n\nGlobalMoney : %d \nTotal Kill : %d \nTotal Loss : %d \nStage Kill : %d \nStage Loss : %d \n", 
+		result,
+		m_pPlayer->GetGlobalMoney(),
+		m_pPlayer->GetTotalKill(),
+		m_pPlayer->GetTotalLoss(),
+		m_pPlayer->GetNumberOfKillInStage(), 
+		m_pPlayer->GetNumberOfLossInStage()
+		);
+	m_pResultLabel = NNLabel::Create(m_aResultBuffer, L"맑은 고딕", 15.0f);
+	m_pResultLabel->SetPosition(resultPositionX+50, resultPositionY+30);
+
+	AddChild(m_pResultLabel, 10001);
+}
 
 
 /////////////////////////////////////////////////////////

@@ -41,6 +41,7 @@ public:
 	void MakePoliceFromScriptWithTimeInterval(float stageElapsedTime);
 	void CollectDeadPoliceByClick();
 	bool CheckGameOver();
+	void ShowResult(std::wstring result);
 
 	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;}
 	std::wstring string2wstring(std::string str);
@@ -62,6 +63,11 @@ private :
 	CBackground *m_pBackground;
 	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
+
+	NNSprite	*m_pResultImage;
+	NNLabel		*m_pResultLabel;
+	wchar_t		m_aResultBuffer[255];
+
 	CUIButton	*m_pUIButtons[NUM_OF_UIBUTTON];
 	NNLabel		*m_pShowMouseStatus;
 	NNLabel		*m_pShowMeatPoint;

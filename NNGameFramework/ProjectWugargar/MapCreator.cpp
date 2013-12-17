@@ -29,10 +29,10 @@ void CMapCreator::initMap( bool fromFile )
 		}
 
 		// set zombie base
-		m_Map[1][3] = ZOMBIE_BASE;
+		m_Map[1][2] = ZOMBIE_BASE;
 
 		// set police station
-		m_Map[MAP_SIZE_X-2][3] = POLICE_STATION;
+		m_Map[MAP_SIZE_X-2][2] = POLICE_STATION;
 		//경찰기지를 밑에쪽에 두면 어떨까?
 		//	m_Map[MAP_SIZE_X-2][MAP_SIZE_Y-3] = POLICE_STATION_1;
 	}
