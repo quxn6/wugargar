@@ -144,6 +144,8 @@ void CPlayScene::_initUI( void )
 		AddChild( m_pUIButtons[i] , 20);
 	}
 }
+
+
 void CPlayScene::Render()
 {
 	NNObject::Render();
@@ -373,28 +375,32 @@ void CPlayScene::CollectDeadPoliceByClick()
 */
 bool CPlayScene::CheckGameOver()
 {
-	if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
-		m_pPlayer->SetPlayerStatus(WIN);
-		ShowResult(L"WIN");
-		printf_s("WIN!\n");
-	} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
-		m_pPlayer->SetPlayerStatus(LOSE);
-		ShowResult(L"LOSE");
-		printf_s("LOSE!\n");
-	} else {
-		return false;	
+	if (m_pPlayer->GetPlayerStatus() == ON_PLAYING ) {
+		if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
+			m_pPlayer->SetPlayerStatus(WIN);
+			ShowResult(L"WIN");
+			printf_s("WIN!\n");
+		} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
+			m_pPlayer->SetPlayerStatus(LOSE);
+			ShowResult(L"LOSE");
+			printf_s("LOSE!\n");
+		} else {
+			return false;	
+		}
+	} 
+	else  // when the game is over
+	{
+		if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) && m_pResultOKButton->CheckButtonArea() ) 
+		{
+			NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+			m_pInstance = nullptr;		
+		}
 	}
 	
-
-
-// 	NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
-// 	m_pInstance = nullptr;		
-
 	return true;
 }
 
 
-// 결과 표시
 void CPlayScene::ShowResult( std::wstring result )
 {
 	// result background image
@@ -404,21 +410,25 @@ void CPlayScene::ShowResult( std::wstring result )
 	m_pResultImage->SetPosition(resultPositionX, resultPositionY);
 	AddChild(m_pResultImage,10000);
 
+	// set label
 	swprintf_s(
 		m_aResultBuffer, 
 		_countof(m_aResultBuffer), 
 		L"Results : %s\n\nGlobalMoney : %d \nTotal Kill : %d \nTotal Loss : %d \nStage Kill : %d \nStage Loss : %d \n", 
-		result,
+		result.c_str(),
 		m_pPlayer->GetGlobalMoney(),
 		m_pPlayer->GetTotalKill(),
 		m_pPlayer->GetTotalLoss(),
 		m_pPlayer->GetNumberOfKillInStage(), 
-		m_pPlayer->GetNumberOfLossInStage()
-		);
+		m_pPlayer->GetNumberOfLossInStage() );
 	m_pResultLabel = NNLabel::Create(m_aResultBuffer, L"맑은 고딕", 15.0f);
 	m_pResultLabel->SetPosition(resultPositionX+50, resultPositionY+30);
-
 	AddChild(m_pResultLabel, 10001);
+
+	// set ok button
+	m_pResultOKButton = CUIButton::Create(L"wugargar/ok.png", L"wugargar/ok.png");
+	m_pResultOKButton->SetPosition(GAME_SCREEN_MAX_SIZE_X/2.0f - 20, GAME_SCREEN_MAX_SIZE_Y/2.0f);
+	AddChild(m_pResultOKButton, 10001);
 }
 
 
