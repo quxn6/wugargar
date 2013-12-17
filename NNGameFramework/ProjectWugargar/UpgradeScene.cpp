@@ -123,7 +123,7 @@ void CUpgradeScene::InitUpgradeUI()
 
 	// 임시로 다음 스테이지 버튼 만들었음
 	m_pNextStageButton = CUIButton::Create(L"wugargar/UIbuttons/nextlevel.png", L"wugargar/UIbuttons/nextlevel.png");
-	m_pNextStageButton->SetPosition(GAME_SCREEN_MAX_SIZE_X-200.0f,GAME_SCREEN_MAX_SIZE_Y-200.0f );
+	m_pNextStageButton->SetPosition(GAME_SCREEN_MAX_SIZE_X-240.0f,GAME_SCREEN_MAX_SIZE_Y-200.0f );
 	AddChild(m_pNextStageButton, 100);
 }
 
