@@ -3,14 +3,16 @@
 #include "headers.h"
 
 enum PlayerStatus {
-	WIN,
-	LOSE,
-	ON_PLAYING,
-	ON_MAINMENU,	
-	ON_RESULT,
-	ON_UPGRADEMENU
+	PLAYER_WIN,
+	PLAYER_LOSE,
+	PLAYER_ON_PLAYING,
+	PLAYER_ON_MAINMENU,	
+	PLAYER_ON_RESULT,
+	PLAYER_ON_UPGRADEMENU
 };
 
+
+//Player의 정보들을 나타내주는 클래스
 class CPlayer
 {
 

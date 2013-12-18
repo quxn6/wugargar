@@ -376,9 +376,9 @@ void CPlayScene::CollectDeadPoliceByClick()
 */
 bool CPlayScene::CheckGameOver()
 {
-	if (m_pPlayer->GetPlayerStatus() == ON_PLAYING ) {
+	if (m_pPlayer->GetPlayerStatus() == PLAYER_ON_PLAYING ) {
 		if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
-			m_pPlayer->SetPlayerStatus(WIN);
+			m_pPlayer->SetPlayerStatus(PLAYER_WIN);
 			if (m_pPlayer->GetClearedStage() == m_pPlayer->GetPlayingStage() )
 			{
 				m_pPlayer->IncreaseClearedStage();
@@ -388,7 +388,7 @@ bool CPlayScene::CheckGameOver()
 			ShowResult(L"WIN");			
 			printf_s("WIN!\n");
 		} else if(m_pMapCreator->GetZombieBase()->GetHP() <= 0) {
-			m_pPlayer->SetPlayerStatus(LOSE);
+			m_pPlayer->SetPlayerStatus(PLAYER_LOSE);
 			m_pPlayer->ReadyToSave();
 			SaveGame();
 			ShowResult(L"LOSE");

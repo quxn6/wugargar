@@ -16,7 +16,7 @@ CNextStageScene::CNextStageScene(void)
 void CNextStageScene::InitPlayer( void )
 {
 	m_pPlayer = CPlayer::GetInstance();
-	if ( m_pPlayer->GetPlayerStatus() == WIN  ) {
+	if ( m_pPlayer->GetPlayerStatus() == PLAYER_WIN  ) {
 		m_TryAgain = false;
 		m_pPlayer->IncreaseClearedStage();
 	} else {

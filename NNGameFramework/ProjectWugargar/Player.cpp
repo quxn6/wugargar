@@ -12,7 +12,7 @@ void CPlayer::InitPlayer()
 {
 	//초기화 내용 추가
 	m_PlayerName = "player1";
-	m_playerStatus = ON_MAINMENU;
+	m_playerStatus = PLAYER_ON_MAINMENU;
 	m_GlobalMoney = 1000;
 	m_ClearedStage = 101;
 	m_TotalKill = 0;
@@ -53,7 +53,7 @@ void CPlayer::ReleaseInstance()
 
 void CPlayer::ReadyToPlay()
 {
-	m_playerStatus = ON_PLAYING;
+	m_playerStatus = PLAYER_ON_PLAYING;
 	m_LocalMoney = 4000;
 	m_NumberOfKillInStage = 0;
 	m_NumberOfLossInStage = 0;
@@ -61,12 +61,12 @@ void CPlayer::ReadyToPlay()
 
 void CPlayer::ReadyToUpgrade()
 {
-	m_playerStatus = ON_UPGRADEMENU;
+	m_playerStatus = PLAYER_ON_UPGRADEMENU;
 }
 
 void CPlayer::ReadyToSave()
 {
-	m_playerStatus = ON_RESULT;
+	m_playerStatus = PLAYER_ON_RESULT;
 	m_TotalKill += m_NumberOfKillInStage;
 	m_TotalLoss += m_NumberOfLossInStage;
 	m_GlobalMoney += 10 * m_NumberOfKillInStage;
