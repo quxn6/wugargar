@@ -69,7 +69,7 @@ void CPolice::InitAttackEffect()
 	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame7.png");
 
 	m_AttackEffect -> SetFrameTimeInSection(0.2f,0,7);
-	m_AttackEffect -> SetPosition(-40,-30);
+	m_AttackEffect -> SetPosition(-190,-70);
 
 	AddChild(m_AttackEffect);
 }
