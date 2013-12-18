@@ -60,7 +60,7 @@ public:
 	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
 	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }	
-	void IncreaseInfectionRate() {m_InfectionRate += 10.0f;}
+	void IncreaseInfectionRate() {m_InfectionRate += 10.0f; }
 	void IncreaseLocalMoney() {m_LocalMoney += 50;}
 	void IncreaseClearedStage() {++m_ClearedStage;}
 
