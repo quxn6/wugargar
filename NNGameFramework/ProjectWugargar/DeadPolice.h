@@ -1,6 +1,8 @@
 #pragma once
 #include "nnobject.h"
+#include "NNPoint.h"
 #include "NNSprite.h"
+
 class CDeadPolice :
 	public NNObject
 {

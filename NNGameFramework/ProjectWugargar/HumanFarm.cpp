@@ -2,6 +2,10 @@
 #include "GameConfig.h"
 #include "HumanInFarm.h"
 #include "Player.h"
+#include "NNSprite.h"
+#include "NNLabel.h"
+#include "NNMacroSet.h"
+#include "Player.h"
 
 CHumanFarm::CHumanFarm(void)
 {

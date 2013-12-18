@@ -1,5 +1,10 @@
 #include "HumanInFarm.h"
 #include "GameConfig.h"
+#include "nnAnimation.h"
+#include "NNMacroSet.h"
+#include "NNSpriteAtlas.h"
+#include "NNInputSystem.h"
+#include "PlayScene.h"
 #include "Player.h"
 
 

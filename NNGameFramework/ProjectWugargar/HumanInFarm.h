@@ -1,10 +1,11 @@
 #pragma once
-#include "nnAnimation.h"
-#include "NNMacroSet.h"
 #include "NNObject.h"
-#include "NNSpriteAtlas.h"
-#include "NNInputSystem.h"
-#include "PlayScene.h"
+
+//클래스 전방선언
+class NNAnimation;
+class NNSpriteAtlas;
+class NNSprite;
+
 enum Age
 {
 	SMALL_BABY,
