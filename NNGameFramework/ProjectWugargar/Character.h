@@ -1,15 +1,17 @@
 #pragma once
-#include "Character.h"
+
 #include "NNMacroSet.h"
 #include "NNObject.h"
 #include "NNLabel.h"
 #include "GameConfig.h"
-#include "Player.h"
+#include "headers.h"
+#include "PlayScene.h"
 
 class NNSound;
 class NNAnimation;
 class NNSprite;
 class NNSpriteAtlas;
+class CPlayer;
 
 enum CharacterIdentity{
 	Zombie,
@@ -22,7 +24,6 @@ public:
 	CCharacter(void);
 	virtual ~CCharacter(void);
 	
-public:
 	void Render();
 	void Update( float dTime );
 	NNCREATE_FUNC(CCharacter);	
@@ -30,19 +31,6 @@ public:
 	void InitHPBar(void );
 	void SetRandomPositionAroundBase();
 
-	bool CheckAttackTiming(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
-	void CheckMeltingTime(clock_t currentTime);
-	
-	void AttackEnemy(clock_t currentTime);
-	void NormalAttack(CCharacter* target, clock_t currentTime);
-	void SplashAttack(NNPoint splashPoint, clock_t currentTime);
-
-	void GoToAttackTarget(float dTime);
-	void GoForward(float dTime);
-
-	bool TargetInRange() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_AttackRange; }
-	bool TargetInSight() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_Sight; }
-	
 
 	std::wstring string2wstring(std::string str);
 
@@ -90,7 +78,19 @@ protected:
 	void UpdateZindex();
 	void ShowHitEffect(float dTime);
 
-protected:
+	bool CheckAttackTiming(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
+	void CheckMeltingTime(clock_t currentTime);
+
+	void AttackEnemy(clock_t currentTime);
+	void NormalAttack(CCharacter* target, clock_t currentTime);
+	void SplashAttack(NNPoint splashPoint, clock_t currentTime);
+
+	void GoToAttackTarget(float dTime);
+	void GoForward(float dTime);
+
+	bool TargetInRange() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_AttackRange; }
+	bool TargetInSight() { return m_Position.GetDistance(m_AttackTarget->GetPosition()) <= m_Sight; }
+
 	// variations for Character status
 	CharacterIdentity	m_Identity;
 	std::string			m_typeName; // xml parser를 위한 변수인가?
@@ -116,7 +116,7 @@ protected:
 
 
 	// 공격 및 이동 관련 내부 변수	
-//	(std::list<CCharacter*>)*	enemyList;
+	LIST_CHARACTER	*enemyList;
 	CCharacter*		m_AttackTarget;	
 	clock_t			m_LastAttackTime;
 	bool			m_Freeze;
@@ -126,18 +126,18 @@ protected:
 	
 
 	// 기본 내부 변수
-	NNSprite*		m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
-	NNAnimation*	m_Animation;
-	NNAnimation*	m_AttackEffect;
-	NNAnimation*	m_DeadAnimation;
-	NNAnimation*	m_CreateAnimation;
-	NNAnimation*	m_AttackAnimation;
+	NNSprite		*m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
+	NNAnimation		*m_Animation;
+	NNAnimation		*m_AttackEffect;
+	NNAnimation		*m_DeadAnimation;
+	NNAnimation		*m_CreateAnimation;
+	NNAnimation		*m_AttackAnimation;
 
-	NNSprite*		m_HitEffect;
+	NNSprite		*m_HitEffect;
 	bool			m_IsBleeding;
 	float			m_bleedingTime;
 	std::wstring	m_spritePath;
-	NNSpriteAtlas*	m_pShowHP;
+	NNSpriteAtlas	*m_pShowHP;
 	
 	std::list<std::wstring>	WalkAnimationImagePath;
 	std::list<std::wstring> DeadAnimationImagePath;

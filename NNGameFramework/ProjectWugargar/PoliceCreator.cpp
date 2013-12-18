@@ -5,6 +5,7 @@
 #include "PlayScene.h"
 #include "PrintConsole.h"
 #include "Police.h"
+#include "Player.h"
 
 CPoliceCreator::CPoliceCreator(void)
 {

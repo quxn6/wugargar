@@ -1,6 +1,6 @@
-#include "Character.h"
-#include "PlayScene.h"
+
 #include <math.h>
+
 #include "NNResourceManager.h"
 #include "NNAudioSystem.h"
 #include "NNSpriteAtlas.h"
@@ -8,6 +8,9 @@
 #include "NNSound.h"
 #include "NNSprite.h"
 
+#include "Player.h"
+#include "Character.h"
+#include "PlayScene.h"
 
 CCharacter::CCharacter(void)
 {	

@@ -3,6 +3,7 @@
 #include "NNResourceManager.h"
 #include "NNAudioSystem.h"
 #include "NNAnimation.h"
+#include "Player.h"
 
 
 CZombie::CZombie(void)

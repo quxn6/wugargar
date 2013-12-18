@@ -1,13 +1,14 @@
 #pragma once
 
 #include "NNScene.h"
-#include "NNLabel.h"
-#include "NNPoint.h"
-#include "NNSound.h"
-#include "NNSprite.h"
 
+#include "NNPoint.h"
 #include "GameConfig.h"
 
+class NNLabel;
+class NNSprite;
+class NNSound;
+class NNXML;
 class CPlayer;
 class CHumanFarm;
 class CBackground;
@@ -21,7 +22,6 @@ class MapObstaclManager;
 class CUIButton;
 class CMapCreator;
 class CCharacter;
-class NNXML;
 class CHumanInFarm;
 
 typedef std::list<CCharacter*> LIST_CHARACTER;

@@ -1,12 +1,20 @@
 #include "Lightning.h"
-#include "GameConfig.h"
+
 #include "NNInputSystem.h"
+#include "NNSound.h"
+#include "NNSprite.h"
+#include "NNLabel.h"
+#include "NNSprite.h"
+
+#include "GameConfig.h"
+
 #include "PlayScene.h"
 #include "MapCreator.h"
-#include "NNSprite.h"
 #include "Character.h"
 #include "Base.h"
 #include "MapObstacle.h"
+#include "Player.h"
+
 
 #define LIGHTNING_SPEED 130
 #define FALLING_FIGHTNING_SPEED 230
