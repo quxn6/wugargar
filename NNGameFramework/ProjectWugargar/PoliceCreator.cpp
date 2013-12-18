@@ -1,9 +1,10 @@
+
+#include "NNResourceManager.h"
+
 #include "PoliceCreator.h"
-#include "Police.h"
 #include "PlayScene.h"
 #include "PrintConsole.h"
-#include "NNResourceManager.h"
-#include "NNXML.h"
+#include "Police.h"
 
 CPoliceCreator::CPoliceCreator(void)
 {

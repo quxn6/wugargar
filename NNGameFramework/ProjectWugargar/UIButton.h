@@ -1,5 +1,5 @@
 #pragma once
-#include "nnobject.h"
+#include "NNObject.h"
 #include "NNSprite.h"
 #include "NNPoint.h"
 #include "NNLabel.h"
@@ -11,7 +11,6 @@ public :
 	CUIButton( std::wstring normalImagePath, std::wstring pressedImagePath );
 	virtual ~CUIButton(void);
 
-public :
 	static CUIButton* Create( std::wstring normalImagePath, std::wstring pressedImagePath );
 	void Render();
 	void Update( float dTime );
