@@ -4,8 +4,10 @@
 #include "NNMacroSet.h"
 
 #include "GameConfig.h"
-#include "Base.h"
+#include "Character.h"
 
+
+class CBase;
 
 enum MapType{
 	TILE = 0x1,
@@ -36,9 +38,9 @@ private:
 	void BuildBase(int x_coord, int y_coord, CharacterIdentity identity);
 	
 private:
-	CBase*		m_pZombieBase;
-	CBase*		m_pPoliceBase;
+	CBase		*m_pZombieBase;
+	CBase		*m_pPoliceBase;
 	MapType		m_Map[MAP_SIZE_X][MAP_SIZE_Y];
-	NNSprite*	m_pSprites[MAP_SIZE_X][MAP_SIZE_Y];
+	NNSprite	*m_pSprites[MAP_SIZE_X][MAP_SIZE_Y];
 };
 

@@ -1,4 +1,5 @@
 #include "MapCreator.h"
+#include "Base.h"
 
 
 CMapCreator::CMapCreator(void)

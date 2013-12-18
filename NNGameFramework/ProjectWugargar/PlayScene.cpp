@@ -20,6 +20,7 @@
 #include "MapObstaclManager.h"
 #include "UIButton.h"
 #include "MapCreator.h"
+#include "Base.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 

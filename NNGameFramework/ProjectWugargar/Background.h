@@ -1,5 +1,5 @@
 #pragma once
-#include "nnobject.h"
+#include "NNObject.h"
 #include "NNSprite.h"
 
 class CBackground : public NNObject
@@ -7,13 +7,13 @@ class CBackground : public NNObject
 public:
 	CBackground(void);
 	virtual ~CBackground(void);
-
-public : 
-	NNSprite*		m_pBackgroundImage;
 	
 	void Render();
 	void Update( float dTime );
 
 	NNCREATE_FUNC(CBackground);
+
+private :
+	NNSprite*		m_pBackgroundImage;
 };
 
