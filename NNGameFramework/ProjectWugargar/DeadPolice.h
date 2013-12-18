@@ -1,10 +1,10 @@
 #pragma once
-#include "nnobject.h"
+#include "NNObject.h"
 #include "NNPoint.h"
 #include "NNSprite.h"
+#include "Character.h"
 
-class CDeadPolice :
-	public NNObject
+class CDeadPolice :	public CCharacter
 {
 public:
 	CDeadPolice(void);

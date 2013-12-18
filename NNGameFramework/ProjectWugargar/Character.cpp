@@ -200,7 +200,7 @@ void  CCharacter::UpdateAttackTarget()
 	switch(this->GetIdentity())
 	{
 	case Zombie:
-		for(const auto& enemy : CPlayScene::GetInstance()->GetPoliceList())
+		for(const auto& enemy : *(CPlayScene::GetInstance()->GetPoliceList()))
 		{
 			nextTargetDistance = this->GetPosition().GetDistance(enemy->GetPosition());
 			if(closestTargetDistance > nextTargetDistance)
@@ -212,7 +212,7 @@ void  CCharacter::UpdateAttackTarget()
 		break;
 
 	case Police:
-		for(const auto& enemy : CPlayScene::GetInstance()->GetZombieList())
+		for(const auto& enemy : *CPlayScene::GetInstance()->GetZombieList())
 		{
 			nextTargetDistance= this->GetPosition().GetDistance(enemy->GetPosition());
 			if(closestTargetDistance > nextTargetDistance)
@@ -275,14 +275,14 @@ void CCharacter::SplashAttack( NNPoint splashPoint, clock_t currentTime )
 	 switch (m_Identity)
 	 {
 	 case Zombie:
-		 for (const auto& enemy : CPlayScene::GetInstance()->GetPoliceList()) {		 
+		 for (const auto& enemy : *CPlayScene::GetInstance()->GetPoliceList()) {		 
 			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
 				 NormalAttack(enemy, currentTime);
 			 }
 		 }
 		 break;
 	 case Police:
-		 for (const auto& enemy : CPlayScene::GetInstance()->GetZombieList()) {
+		 for (const auto& enemy : *CPlayScene::GetInstance()->GetZombieList()) {
 			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
 				 NormalAttack(enemy, currentTime);
 			 }

@@ -32,7 +32,7 @@ void CMapObstacle::Update( float dTime )
 {
 
 	//Zombie리스트를 돌면서 좀비가 Obstacle에 닿았는지를 체크
-	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
+	for (const auto& child : *CPlayScene::GetInstance()->GetZombieList())
 	{
 		if(child != CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase() && IsCrash(child) ) 
 		{

@@ -24,6 +24,8 @@ class CCharacter;
 class NNXML;
 class CHumanInFarm;
 
+typedef std::list<CCharacter*> LIST_CHARACTER;
+
 class CPlayScene : public NNScene
 {
 private :
@@ -37,9 +39,9 @@ public:
 
 	void Render();
 	void Update( float dTime );
-	std::list<CCharacter*> GetZombieList() { return *m_llistZombie; }
-	std::list<CCharacter*> GetPoliceList() { return *m_llistPolice; }
-	std::list<CDeadPolice*> GetDeadPoliceList() { return *m_llistDeadPolice;}
+	LIST_CHARACTER *GetZombieList() { return &m_llistZombie; }
+	LIST_CHARACTER *GetPoliceList() { return &m_llistPolice; }
+	LIST_CHARACTER *GetDeadPoliceList() { return &m_llistDeadPolice;}
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
 
 private:
@@ -69,6 +71,7 @@ private :
 	CMapCreator *m_pMapCreator;
 	NNSprite	*m_pUIBackground;
 
+	//result 관련 변수
 	NNSprite	*m_pResultImage;
 	NNLabel		*m_pResultLabel;
 	wchar_t		m_aResultBuffer[255];
@@ -88,9 +91,9 @@ private :
 	NNXML		*m_PoliceXML;
 	NNXML		*m_ZombieXML;
 
-	std::list<CCharacter*>		*m_llistZombie;
-	std::list<CCharacter*>		*m_llistPolice;
-	std::list<CDeadPolice*>		*m_llistDeadPolice;
+	LIST_CHARACTER		m_llistZombie;
+	LIST_CHARACTER		m_llistPolice;
+	LIST_CHARACTER 		m_llistDeadPolice;
 
 	wchar_t		temp[256]; // 화면 마우스 커서 표시를 위한 임시변수
 	wchar_t		localmoney[256]; //meat Point 표시를 위한 임시변수

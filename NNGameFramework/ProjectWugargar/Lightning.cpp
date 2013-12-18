@@ -61,7 +61,7 @@ void CLightning::Update( float dTime )
 		m_lightning_sprite->SetPosition
 			(m_lightning_sprite->GetPosition() + NNPoint(0.0f, LIGHTNING_SPEED) *dTime);
 		//Zombie와 Police를 돌면서 충돌 체크. 충돌하면 flag를 false로 바꾸고, 데미지 주고 번개 위치는 다시 0,0으로 셋팅
-		for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
+		for (const auto& child : *CPlayScene::GetInstance()->GetZombieList())
 		{
 			//List에 Base가 존재. Base는 번개에 의해 데미지를 받으면 안되므로 제외하도록 설정
 			if(child != CPlayScene::GetInstance()->
@@ -77,7 +77,7 @@ void CLightning::Update( float dTime )
 				}	
 		}
 		
-		for (const auto& child : CPlayScene::GetInstance()->GetPoliceList())
+		for (const auto& child : *CPlayScene::GetInstance()->GetPoliceList())
 		{
 			if(child != CPlayScene::GetInstance()->
 				GetMapCreator()->GetPoliceBase())

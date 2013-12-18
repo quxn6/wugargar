@@ -44,12 +44,7 @@ void CPlayScene::ReleaseInstance()
 }
 
 CPlayScene::CPlayScene(void)
-{	
-	//이부분에서 메모리 누수 있었음
-	m_llistPolice = new std::list<CCharacter*>;
-	m_llistZombie = new std::list<CCharacter*>;
-	m_llistDeadPolice = new std::list<CDeadPolice*>;
-	
+{		
 	m_LocalMoneyTimeChecker = 0;
 	m_StageElapsedTime = 0;
 
@@ -89,11 +84,6 @@ CPlayScene::~CPlayScene(void)
 {
 	SafeDelete(m_pPoliceCreator);
 	CCharacterConfig::ReleaseInstance();
-
-	//메모리 릭이 나서 처리
-	SafeDelete(m_llistDeadPolice);
-	SafeDelete(m_llistPolice);
-	SafeDelete(m_llistZombie);
 }
 
 // init background
@@ -114,8 +104,8 @@ void CPlayScene::_initMap( void )
 {	
 	m_pMapCreator = CMapCreator::Create();
 	AddChild( m_pMapCreator , 1);
-	m_llistZombie->push_back( m_pMapCreator->GetZombieBase() );
-	m_llistPolice->push_back( m_pMapCreator->GetPoliceBase() );
+	m_llistZombie.push_back( m_pMapCreator->GetZombieBase() );
+	m_llistPolice.push_back( m_pMapCreator->GetPoliceBase() );
 }
 
 
@@ -248,7 +238,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 	}
 	
 	AddChild( tmpZombieObject );	
-	m_llistZombie->push_back(tmpZombieObject);
+	m_llistZombie.push_back(tmpZombieObject);
 
 	// when player has not enough money
 // 	if (localMoney < cost || (CheckHero && m_pPlayer->GetMeatPoint() < 100) ) {
@@ -286,7 +276,7 @@ void CPlayScene::MakePoliceFromScript()
 		tmpPoliceObject->SetRandomPositionAroundBase();
 		tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
 		AddChild(tmpPoliceObject, 10);
-		m_llistPolice->push_back(tmpPoliceObject);
+		m_llistPolice.push_back(tmpPoliceObject);
 	}	
 }
 
@@ -301,7 +291,7 @@ void CPlayScene::MakePoliceFromScriptWithTimeInterval( float stageElapsedTime )
 	tmpPoliceObject->SetRandomPositionAroundBase();
 	tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
 	AddChild(tmpPoliceObject, 10);
-	m_llistPolice->push_back(tmpPoliceObject);
+	m_llistPolice.push_back(tmpPoliceObject);
 
 }
 
@@ -311,11 +301,11 @@ void CPlayScene::MakePoliceFromScriptWithTimeInterval( float stageElapsedTime )
 // update시마다 실행되면서 hp가 0이거나 화면밖으로 나간 캐릭터를 삭제함
 void CPlayScene::DeadCharacterCollector()
 {	
-	for ( auto& iter = m_llistPolice->begin() ; iter != m_llistPolice->end() ; iter++ ) {
+	for ( auto& iter = m_llistPolice.begin() ; iter != m_llistPolice.end() ; iter++ ) {
 		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() < GAME_SCREEN_MIN_SIZE_X)){
 			CCharacter *tmpCharacter;
 			tmpCharacter = *iter;
-			m_llistPolice->erase(iter);
+			m_llistPolice.erase(iter);
 			NNPoint DeadPosition = tmpCharacter->GetPosition();
 			RemoveChild(tmpCharacter,true);
 
@@ -327,19 +317,19 @@ void CPlayScene::DeadCharacterCollector()
 			CDeadPolice *tmpDeadPolice = CDeadPolice::Create(); 
 			tmpDeadPolice->SetDeadPosition(DeadPosition);
 			AddChild(tmpDeadPolice,10);
-			m_llistDeadPolice->push_back(tmpDeadPolice);
+			m_llistDeadPolice.push_back(tmpDeadPolice);
 
 
 			break;
 		}
 	}
 
-	for ( auto& iter = m_llistZombie->begin() ; iter != m_llistZombie->end() ; iter++ ) {
+	for ( auto& iter = m_llistZombie.begin() ; iter != m_llistZombie.end() ; iter++ ) {
 		if(( (*iter)->GetHP()<= 0 ) || ((*iter)->GetPositionX() > GAME_SCREEN_MAX_SIZE_X)){
 			CCharacter *tmpCharacter;
 			tmpCharacter = *iter;
 		//	tmpCharacter->GetDeadAnimation()->SetVisible(true);
-			m_llistZombie->erase(iter);
+			m_llistZombie.erase(iter);
 			RemoveChild(tmpCharacter,true);
 			
 			// 죽은 좀비가 있을때마다 player의 잃은 좀비 수를 증가.
@@ -354,20 +344,20 @@ void CPlayScene::CollectDeadPoliceByClick()
 {
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_UP ) {
 		NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
-		for ( auto& iter = m_llistDeadPolice->begin() ; iter != m_llistDeadPolice->end() ; iter++ )
+		for ( auto& iter = m_llistDeadPolice.begin() ; iter != m_llistDeadPolice.end() ; iter++ )
 		{
-			bool isInXCoordRange = ((*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( (*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
-			bool isInYCoordRange = ((*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( (*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
+			bool isInXCoordRange = (static_cast<CDeadPolice*>(*iter)->GetDeadPosition().GetX() < cursorPosition.GetX()) && ( ( static_cast<CDeadPolice*>(*iter)->GetDeadPosition().GetX() + DEAD_POLICE_IMAGE_WIDTH ) > cursorPosition.GetX() );
+			bool isInYCoordRange = (static_cast<CDeadPolice*>(*iter)->GetDeadPosition().GetY() < cursorPosition.GetY()) && ( ( static_cast<CDeadPolice*>(*iter)->GetDeadPosition().GetY() + DEAD_POLICE_IMAGE_HEIGHT ) > cursorPosition.GetY() );
 			if(isInXCoordRange && isInYCoordRange)
 			{
 				// 감염확률에 따라 감염된 포돌이 생성, 기본은 POOR_ZOMBIE로, 
 				if ( rand()% 100 <= m_pPlayer->GetInfectionRate()) {
-					NNPoint deadPosition = (*iter)->GetDeadPosition();
+					NNPoint deadPosition = static_cast<CDeadPolice*>(*iter)->GetDeadPosition();
 					MakeZombie(POOR_ZOMBIE, &deadPosition );
 				}
 
-				CDeadPolice *tmp = *iter;
-				m_llistDeadPolice->erase(iter);
+				CCharacter *tmp = *iter;
+				m_llistDeadPolice.erase(iter);
 				RemoveChild(tmp,true);
 
 				
