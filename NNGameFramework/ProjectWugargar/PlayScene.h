@@ -32,15 +32,16 @@ private :
 	virtual ~CPlayScene(void);
 
 public:
+	static CPlayScene* GetInstance();
+	static void ReleaseInstance();
+
 	void Render();
 	void Update( float dTime );
 	std::list<CCharacter*> GetZombieList() { return *m_llistZombie; }
 	std::list<CCharacter*> GetPoliceList() { return *m_llistPolice; }
 	std::list<CDeadPolice*> GetDeadPoliceList() { return *m_llistDeadPolice;}
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
-
-	static CPlayScene* GetInstance();
-	static void ReleaseInstance();
+private:
 	void MakeZombie(ZombieType type);
 	void MakeZombie(ZombieType type, NNPoint* position);
 	void MakeZombieButtonOperate(float dTime);
@@ -52,17 +53,11 @@ public:
 	void ShowResult( std::wstring result );	
 	void SaveGame(void);
 
-	CHumanFarm* GetHumanFarm() {return m_pHumanFarm;}
 	std::wstring string2wstring(std::string str);
-
-	int GetCurrentStageNum() {return m_currentStageNum;}
-	void SetCurrentStageNum(int set) {m_currentStageNum = set;}
 
 	void loadPoliceInfo();
 	void loadZombieInfo();
 
-
-private :
 	void _initBackground( void );
 	void _initUI( void );
 	void _initMap( void );
@@ -101,7 +96,6 @@ private :
 	float		m_LocalMoneyTimeChecker; // local money증가를 위한 1초단위 카운터
 	float		m_StageElapsedTime;// 게임이 시작된 후부터 진행된 시간 정보를 저장
 
-	int m_currentStageNum;
 
 public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다 // Good job~
 	void Test_ShowMousePosition();
