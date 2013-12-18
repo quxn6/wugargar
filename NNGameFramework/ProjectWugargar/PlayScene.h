@@ -41,6 +41,7 @@ public:
 	std::list<CCharacter*> GetPoliceList() { return *m_llistPolice; }
 	std::list<CDeadPolice*> GetDeadPoliceList() { return *m_llistDeadPolice;}
 	CMapCreator* GetMapCreator(void) { return m_pMapCreator;}
+
 private:
 	void MakeZombie(ZombieType type);
 	void MakeZombie(ZombieType type, NNPoint* position);
