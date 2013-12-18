@@ -351,7 +351,7 @@ void CPlayScene::CollectDeadPoliceByClick()
 			if(isInXCoordRange && isInYCoordRange)
 			{
 				// 감염확률에 따라 감염된 포돌이 생성, 기본은 POOR_ZOMBIE로, 
-				if ( rand()% 100 > m_pPlayer->GetInfectionRate()) {
+				if ( rand()% 100 <= m_pPlayer->GetInfectionRate()) {
 					NNPoint deadPosition = (*iter)->GetDeadPosition();
 					MakeZombie(POOR_ZOMBIE, &deadPosition );
 				}
