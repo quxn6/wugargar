@@ -3,7 +3,6 @@
 #include "Trap.h"
 
 
-
 /*
 MapObstacle들을 관리하고 소유하는 클래스
 PlayScene은 이 클래스를 하나 멤버 변수로 소유하며

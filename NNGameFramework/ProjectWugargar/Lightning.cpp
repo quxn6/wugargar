@@ -2,6 +2,7 @@
 #include "GameConfig.h"
 #include "NNInputSystem.h"
 #include "PlayScene.h"
+#include "MapCreator.h"
 
 #define LIGHTNING_SPEED 130
 #define FALLING_FIGHTNING_SPEED 230

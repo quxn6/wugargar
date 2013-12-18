@@ -3,6 +3,7 @@
 #include "PlayScene.h"
 #include "NNInputSystem.h"
 #include "NNPoint.h"
+#include "MapCreator.h"
 
 #define BATTALE_LINE 100
 

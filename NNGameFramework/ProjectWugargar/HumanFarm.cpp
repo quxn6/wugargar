@@ -1,6 +1,7 @@
 #include "HumanFarm.h"
 #include "GameConfig.h"
 #include "HumanInFarm.h"
+#include "Player.h"
 
 CHumanFarm::CHumanFarm(void)
 {

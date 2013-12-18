@@ -3,6 +3,7 @@
 #include "MapObstacle.h"
 #define REGEN_TIME 3
 
+
 class MapObstaclManager : 
 	public NNObject
 {
