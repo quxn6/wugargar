@@ -3,6 +3,10 @@
 #include <math.h>
 #include "NNResourceManager.h"
 #include "NNAudioSystem.h"
+#include "NNSpriteAtlas.h"
+#include "NNAnimation.h"
+#include "NNSound.h"
+#include "NNSprite.h"
 
 
 CCharacter::CCharacter(void)

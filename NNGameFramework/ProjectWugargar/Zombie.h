@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "CharacterConfig.h"
 
+class NNSprite;
 class CZombie : public CCharacter
 {
 public:

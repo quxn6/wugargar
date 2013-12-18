@@ -1,15 +1,15 @@
 #pragma once
+#include "Character.h"
 #include "NNMacroSet.h"
 #include "NNObject.h"
-#include "NNSprite.h"
 #include "NNLabel.h"
-
 #include "GameConfig.h"
 #include "Player.h"
-#include "NNSpriteAtlas.h"
-#include "NNAnimation.h"
-#include "NNSound.h"
 
+class NNSound;
+class NNAnimation;
+class NNSprite;
+class NNSpriteAtlas;
 
 enum CharacterIdentity{
 	Zombie,
@@ -26,22 +26,16 @@ public:
 	void Render();
 	void Update( float dTime );
 	NNCREATE_FUNC(CCharacter);	
-
-	void InitHPBar(void );
 	void InitSprite(std::wstring imagePath);
-	void InitHitEffect(std::wstring imagePath);
+	void InitHPBar(void );
 	void SetRandomPositionAroundBase();
 
-	void UpdateHPBar(void);	
-	void UpdateAttackTarget();
-	void UpdateZindex();
 	bool CheckAttackTiming(clock_t currentTime) { return currentTime - m_LastAttackTime > m_AttackSpeed; }
 	void CheckMeltingTime(clock_t currentTime);
 	
 	void AttackEnemy(clock_t currentTime);
 	void NormalAttack(CCharacter* target, clock_t currentTime);
 	void SplashAttack(NNPoint splashPoint, clock_t currentTime);
-	void ShowHitEffect(float dTime);
 
 	void GoToAttackTarget(float dTime);
 	void GoForward(float dTime);
@@ -89,6 +83,12 @@ public:
 
 protected: 
 	virtual void initStatus( void ) {};	
+	void InitHitEffect(std::wstring imagePath);
+
+	void UpdateHPBar(void);	
+	void UpdateAttackTarget();
+	void UpdateZindex();
+	void ShowHitEffect(float dTime);
 
 protected:
 	// variations for Character status
