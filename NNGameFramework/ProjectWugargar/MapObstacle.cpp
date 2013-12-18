@@ -4,6 +4,8 @@
 #include "NNInputSystem.h"
 #include "NNPoint.h"
 #include "MapCreator.h"
+#include "Character.h"
+#include "base.h"
 
 #define BATTALE_LINE 100
 
@@ -32,16 +34,12 @@ void CMapObstacle::Update( float dTime )
 	//Zombie리스트를 돌면서 좀비가 Obstacle에 닿았는지를 체크
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
-		if(child != CPlayScene::GetInstance()->GetMapCreator()->
-			GetZombieBase())
-		if(IsCrash(child))
+		if(child != CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase() && IsCrash(child) ) 
 		{
 			printf_s("Boom!\n");
 			Boom(child);
-			break;
+			break;			
 		}
-
-
 	}
 	
 }
