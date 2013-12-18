@@ -3,14 +3,23 @@
 #include "NNInputSystem.h"
 #include "NNApplication.h"
 
-#include "PrintConsole.h"
-
+#include "HumanFarm.h"
 #include "Player.h"
+#include "Background.h"
+#include "XMLWriter.h"
+#include "PoliceCreator.h"
 #include "NNSceneDirector.h"
 #include "NextStageScene.h"
 #include "CharacterConfig.h"
 #include "NNResourceManager.h"
 #include "StageSelectScene.h"
+#include "Police.h"
+#include "Zombie.h"
+#include "DeadPolice.h"
+#include "Lightning.h"
+#include "MapObstaclManager.h"
+#include "UIButton.h"
+#include "MapCreator.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 

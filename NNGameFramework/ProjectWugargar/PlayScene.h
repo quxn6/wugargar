@@ -3,19 +3,26 @@
 #include "NNScene.h"
 #include "NNLabel.h"
 #include "NNPoint.h"
-#include "Background.h"
-#include "UIButton.h"
-#include "MapCreator.h"
-#include "PoliceCreator.h"
-#include "Police.h"
-#include "Zombie.h"
-#include "GameConfig.h"
-#include "HumanFarm.h"
-#include "Lightning.h"
-#include "DeadPolice.h"
-#include "MapObstaclManager.h"
 #include "NNSound.h"
-#include "XMLWriter.h"
+#include "NNSprite.h"
+
+#include "GameConfig.h"
+
+class CPlayer;
+class CHumanFarm;
+class CBackground;
+class CXMLWriter;
+class CPoliceCreator;
+class CZombie;
+class CPolice;
+class CDeadPolice;
+class CLightning;
+class MapObstaclManager;
+class CUIButton;
+class CMapCreator;
+class CCharacter;
+class NNXML;
+class CHumanInFarm;
 
 class CPlayScene : public NNScene
 {
@@ -70,20 +77,20 @@ private :
 	NNLabel		*m_pResultLabel;
 	wchar_t		m_aResultBuffer[255];
 	CUIButton	*m_pResultOKButton;
-	CXMLWriter*	m_SaveManager;
+	CXMLWriter	*m_SaveManager;
 
 	CUIButton	*m_pUIButtons[NUM_OF_UIBUTTON];
 	NNLabel		*m_pShowMouseStatus;
 	NNLabel		*m_pShowMeatPoint;
 	NNPoint		m_CursorPos;
-	CPoliceCreator *m_pPoliceCreator;
-	CHumanFarm *m_pHumanFarm;
-	CLightning	*m_pLightning;
+	CPoliceCreator	*m_pPoliceCreator;
+	CHumanFarm		*m_pHumanFarm;
+	CLightning		*m_pLightning;
 	MapObstaclManager *m_pMapObstacleManager;
 	NNSound		*m_backgraound_sound;
 
-	NNXML*		m_PoliceXML;
-	NNXML*		m_ZombieXML;
+	NNXML		*m_PoliceXML;
+	NNXML		*m_ZombieXML;
 
 	std::list<CCharacter*>		*m_llistZombie;
 	std::list<CCharacter*>		*m_llistPolice;
