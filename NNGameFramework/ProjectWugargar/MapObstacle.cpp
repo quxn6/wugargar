@@ -32,7 +32,8 @@ void CMapObstacle::Update( float dTime )
 	//Zombie리스트를 돌면서 좀비가 Obstacle에 닿았는지를 체크
 	for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 	{
-		if(child != CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase())
+		if(child != CPlayScene::GetInstance()->GetMapCreator()->
+			GetZombieBase())
 		if(IsCrash(child))
 		{
 			printf_s("Boom!\n");
@@ -73,8 +74,13 @@ bool CMapObstacle::CheckClickArea()
 {
 	NNPoint cursorPosition = NNInputSystem::GetInstance()->GetMousePosition();
 
-	bool isInXCoordRange = (m_pObstacle_sprite->GetPositionX() < cursorPosition.GetX()) && ( ( m_pObstacle_sprite->GetPositionX() + m_pObstacle_sprite->GetImageWidth() ) > cursorPosition.GetX() );
-	bool isInYCoordRange = (m_pObstacle_sprite->GetPositionY() < cursorPosition.GetY()) && ( ( m_pObstacle_sprite->GetPositionY() + m_pObstacle_sprite->GetImageHeight() ) > cursorPosition.GetY() );
+	bool isInXCoordRange = (m_pObstacle_sprite->GetPositionX() < 
+		cursorPosition.GetX()) && ( ( m_pObstacle_sprite->GetPositionX()
+		+ m_pObstacle_sprite->GetImageWidth() ) > cursorPosition.GetX() );
+
+	bool isInYCoordRange = (m_pObstacle_sprite->GetPositionY() < 
+		cursorPosition.GetY()) && ( ( m_pObstacle_sprite->GetPositionY()
+		+ m_pObstacle_sprite->GetImageHeight() ) > cursorPosition.GetY() );
 
 	if ( !(isInXCoordRange && isInYCoordRange))
 	{
@@ -95,18 +101,12 @@ bool CMapObstacle::CheckClickArea()
 bool CMapObstacle::IsCrash( CCharacter *crash_check_character)
 {
 	float distance_attacktarget;
-	distance_attacktarget = m_pObstacle_sprite->GetPosition().GetDistance(crash_check_character->GetPosition());
+	distance_attacktarget = m_pObstacle_sprite->GetPosition().
+		GetDistance(crash_check_character->GetPosition());
 
 	if(distance_attacktarget <= 10/*this->GetSprite()->GetImageWidth()*/)
 		return true;
 	
 	return false;
-
-	/*if(((thi->GetCenterX() + thi->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() - crash_check_sprite->GetImageWidth()/2)) &&
-		(((thi->GetCenterX() + thi->GetImageWidth()/2) <= (crash_check_sprite->GetCenterX() + crash_check_sprite->GetImageWidth()/2)) &&
-		((thi->GetCenterY() <= (crash_check_sprite->GetCenterY() + crash_check_sprite->GetImageHeight()/2)) &&
-		((thi->GetCenterX() > (crash_check_sprite->GetCenterY() - crash_check_sprite->GetImageHeight()/2)) ))))
-		return true;
-
-	return false;*/
+	
 }

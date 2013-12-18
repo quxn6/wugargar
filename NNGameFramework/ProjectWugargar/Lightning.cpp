@@ -3,16 +3,22 @@
 #include "NNInputSystem.h"
 #include "PlayScene.h"
 #include "MapCreator.h"
+#include "NNSprite.h"
+#include "Character.h"
+#include "Base.h"
+#include "MapObstacle.h"
 
 #define LIGHTNING_SPEED 130
 #define FALLING_FIGHTNING_SPEED 230
+#define LIGHTNINIG_DAMAGE 100
+#define PAY_LIGHTNING 100
 
 CLightning::CLightning(void)
 {
 	InitSprite(L"wugargar/pika.png");
 	m_is_fall_lightning = false;
-	m_lightning_damage = 100;
-	m_pay_lightning = 100;
+	m_lightning_damage = LIGHTNINIG_DAMAGE;
+	m_pay_lightning = PAY_LIGHTNING;
 }
 
 
@@ -29,8 +35,12 @@ void CLightning::Update( float dTime )
 {
 	
 	//가만히 있으면 번개는 왼쪽으로 이동. 왼쪽 끝까지 이동하면 오른쪽 끝으로 다시 셋팅.
-	if(m_lightning_sprite->GetPositionX() < GAME_SCREEN_MAX_SIZE_X - 20 && !m_is_fall_lightning)
-		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(LIGHTNING_SPEED, 0.0f) * dTime);
+	if(m_lightning_sprite->GetPositionX() 
+		< GAME_SCREEN_MAX_SIZE_X - 20 && !m_is_fall_lightning)
+		m_lightning_sprite->SetPosition
+		(m_lightning_sprite->GetPosition() 
+		+ NNPoint(LIGHTNING_SPEED, 0.0f) * dTime);
+	
 	else if(!m_is_fall_lightning)
 		m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
 	
@@ -39,7 +49,8 @@ void CLightning::Update( float dTime )
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN && !m_fall_lightning_sprite)
 	{
 		printf_s("put");
-		CPlayer::GetInstance()->SetLocalMoney(CPlayer::GetInstance()->GetLocalMoney() - m_pay_lightning);
+		CPlayer::GetInstance()->SetLocalMoney
+			(CPlayer::GetInstance()->GetLocalMoney() - m_pay_lightning);
 		m_is_fall_lightning = true;
 		
 	}
@@ -47,33 +58,38 @@ void CLightning::Update( float dTime )
 	//현재 '떨어지고 있는 상태'라면 번개의 위치를 지속적으로 아래로 떨어지도록 변경
 	if(m_is_fall_lightning)
 	{
-		m_lightning_sprite->SetPosition(m_lightning_sprite->GetPosition() + NNPoint(0.0f, LIGHTNING_SPEED) *dTime);
+		m_lightning_sprite->SetPosition
+			(m_lightning_sprite->GetPosition() + NNPoint(0.0f, LIGHTNING_SPEED) *dTime);
 		//Zombie와 Police를 돌면서 충돌 체크. 충돌하면 flag를 false로 바꾸고, 데미지 주고 번개 위치는 다시 0,0으로 셋팅
 		for (const auto& child : CPlayScene::GetInstance()->GetZombieList())
 		{
 			//List에 Base가 존재. Base는 번개에 의해 데미지를 받으면 안되므로 제외하도록 설정
-			if(child != CPlayScene::GetInstance()->GetMapCreator()->GetZombieBase())
-			if(IsCrash(child))
-			{
-				child->SetHP(child->GetHP() - m_lightning_damage);
-				m_is_fall_lightning = false;
-
-				m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
-				break;
-			}
+			if(child != CPlayScene::GetInstance()->
+				GetMapCreator()->GetZombieBase())
+				if(IsCrash(child))
+				{
+					child->SetHP(child->GetHP() - m_lightning_damage);
+					m_is_fall_lightning = false;
+						
+					m_lightning_sprite->
+						SetPosition(0.0f, POSITION_OF_LIGHTNING);
+					break;
+				}	
 		}
 		
 		for (const auto& child : CPlayScene::GetInstance()->GetPoliceList())
 		{
-			if(child != CPlayScene::GetInstance()->GetMapCreator()->GetPoliceBase())
-			if(IsCrash(child))
-			{
-				child->SetHP(child->GetHP() - m_lightning_damage);
-				m_is_fall_lightning = false;
+			if(child != CPlayScene::GetInstance()->
+				GetMapCreator()->GetPoliceBase())
+				if(IsCrash(child))
+				{
+					child->SetHP(child->GetHP() - m_lightning_damage);
+					m_is_fall_lightning = false;
 
-				m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
-				break;
-			}
+					m_lightning_sprite->
+						SetPosition(0.0f, POSITION_OF_LIGHTNING);
+					break;
+				}
 		}
 
 
@@ -83,9 +99,6 @@ void CLightning::Update( float dTime )
 			m_is_fall_lightning = false;
 
 			m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
-		/*	RemoveChild(m_lightning_sprite, true);
-			m_lightning_sprite = false;
-			printf_s("번개 소멸\n");*/
 		}
 
 	}
@@ -107,22 +120,14 @@ bool CLightning::IsCrash( CCharacter *crash_check_character)
 {
 
 	float distance_attacktarget;
-	distance_attacktarget = m_lightning_sprite->GetPosition().GetDistance(crash_check_character->GetPosition());
+	distance_attacktarget = m_lightning_sprite->
+		GetPosition().GetDistance(crash_check_character->GetPosition());
 
-	if(distance_attacktarget <= 50/*m_lightning_sprite->GetImageWidth()*/){
+	if(distance_attacktarget <= 50){
 		printf_s("LightningAttack!\n");
 		return true;
 		}
 
 	return false;
 
-	/*if(((thi->GetCenterX() + thi->GetImageWidth()/2) > (crash_check_sprite->GetCenterX() - crash_check_sprite->GetImageWidth()/2)) &&
-		(((thi->GetCenterX() + thi->GetImageWidth()/2) <= (crash_check_sprite->GetCenterX() + crash_check_sprite->GetImageWidth()/2)) &&
-		((thi->GetCenterY() <= (crash_check_sprite->GetCenterY() + crash_check_sprite->GetImageHeight()/2)) &&
-		((thi->GetCenterX() > (crash_check_sprite->GetCenterY() - crash_check_sprite->GetImageHeight()/2)) ))))
-		return true;
-
-	return false;
-
-	*/
 }
