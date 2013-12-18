@@ -27,5 +27,5 @@ protected:
 	PoliceType m_policeType;
 
 	NNSprite* FrozenStatus;
-
+	void	InitAttackEffect();
 };

@@ -29,5 +29,7 @@ protected:
 	int			m_CreateCost;
 	ZombieType	m_zombieType;
 	NNSprite*	m_Shadow;
+
+	void InitAttackEffect();
 };
 

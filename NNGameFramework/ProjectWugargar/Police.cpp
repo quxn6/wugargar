@@ -1,11 +1,13 @@
 #include "Police.h"
 #include "Zombie.h"
 #include "PlayScene.h"
+#include "NNAnimation.h"
 
 
 CPolice::CPolice(void)
 {
 //	enemyList = &(CPlayScene::GetInstance()->GetZombieList());
+	InitAttackEffect();
 }
 
 
@@ -53,6 +55,25 @@ void CPolice::initStatus( CharacterInfo *policeInfo, int police_type_idx )
 	AddChild(FrozenStatus,20);
 
 }
+
+void CPolice::InitAttackEffect()
+{
+	m_AttackEffect = NNAnimation::Create();
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame0.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame1.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame2.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame3.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame4.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame5.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame6.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame7.png");
+
+	m_AttackEffect -> SetFrameTimeInSection(0.2f,0,7);
+	m_AttackEffect -> SetPosition(-40,-30);
+
+	AddChild(m_AttackEffect);
+}
+
 
 
 

@@ -2,6 +2,7 @@
 #include "PlayScene.h"
 #include "NNResourceManager.h"
 #include "NNAudioSystem.h"
+#include "NNAnimation.h"
 
 
 CZombie::CZombie(void)
@@ -11,6 +12,8 @@ CZombie::CZombie(void)
 	m_Shadow = NNSprite::Create(L"wugargar/shadow.png");
 	m_Shadow->SetPosition(-35,20);
 	AddChild(m_Shadow);
+
+	InitAttackEffect();
 }
 
 
@@ -109,6 +112,25 @@ void CZombie::initStatus( CharacterInfo *zombieInfo, int zombie_type_idx )
 
 
 }
+
+void CZombie::InitAttackEffect()
+{
+	m_AttackEffect = NNAnimation::Create();
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame0.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame1.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame2.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame3.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame4.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame5.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame6.png");
+	m_AttackEffect -> AddSpriteNode(L"wugargar/muzzle/Frame7.png");
+
+	m_AttackEffect -> SetFrameTimeInSection(0.2f,0,7);
+	m_AttackEffect -> SetPosition(5,10);
+
+	AddChild(m_AttackEffect);
+}
+
 
 
 
