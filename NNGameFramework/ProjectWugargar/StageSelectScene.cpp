@@ -6,13 +6,18 @@
 #include "UpgradeScene.h"
 #include "NNResourceManager.h"
 #include "NNAudioSystem.h"
+#include "UIButton.h"
+#include "NNSound.h"
+#include "NNSprite.h"
+#include "NNLabel.h"
 
 
 CStageSelectScene::CStageSelectScene(void)
 {
 	InitMapSprite();
 
-	m_pBackgroundSound = NNResourceManager::GetInstance()->LoadSoundFromFile("sound/StageSelectSceneBackground.mp3", true, true);
+	m_pBackgroundSound = NNResourceManager::GetInstance()->
+		LoadSoundFromFile("sound/StageSelectSceneBackground.mp3", true, true);
 	NNAudioSystem::GetInstance()->Play(m_pBackgroundSound);
 	m_pPlayButton = nullptr;
 	m_pExitButton = nullptr;
@@ -71,7 +76,8 @@ void CStageSelectScene::Update( float dTime )
 		//선택된 스테이지 버튼이 클리어 할 수 있는 스테이지 인 경우 선택됨
 		if(m_pPlayButton && m_pPlayButton->CheckButtonArea())
 		{
-			NNSceneDirector::GetInstance()->ChangeScene(CUpgradeScene::Create());
+			NNSceneDirector::GetInstance()->
+				ChangeScene(CUpgradeScene::Create());
 			return ;
 		}
 
@@ -109,13 +115,15 @@ void CStageSelectScene::InitMapSprite()
 	//MapStageFlag Sprite배치. 클리어 한 스테이지는 빨강, 아닌 스테이지는 파란색 원으로 표시 (임시)
 	for(int idx=0; idx<current_stage; ++idx)
 	{
-		m_stageFlag[idx] = CUIButton::Create(L"wugargar/stageselect_on.png", L"wugargar/stageselect_on.png");
+		m_stageFlag[idx] = CUIButton::Create
+			(L"wugargar/stageselect_on.png", L"wugargar/stageselect_on.png");
 		AddChild( m_stageFlag[idx] );
 		IsStageClear[idx] = true;
 	}
 	for(int idx=current_stage; idx<STAGE_NUM; ++idx)
 	{
-		m_stageFlag[idx] = CUIButton::Create(L"wugargar/stageselect_off.png",L"wugargar/stageselect_off.png");
+		m_stageFlag[idx] = CUIButton::Create
+			(L"wugargar/stageselect_off.png",L"wugargar/stageselect_off.png");
 		AddChild( m_stageFlag[idx] );
 		IsStageClear[idx] = false;
 	}
@@ -160,12 +168,16 @@ void CStageSelectScene::InitMapSprite()
 void CStageSelectScene::SettingButton(int stage_idx)
 {
 	if(IsStageClear[stage_idx]){
-		m_pPlayButton = CUIButton::Create(L"wugargar/playbutton.png", L"wugargar/playbutton.png");
+		m_pPlayButton = CUIButton::Create
+			(L"wugargar/playbutton.png", L"wugargar/playbutton.png");
+
 		AddChild(m_pPlayButton);
 		m_pPlayButton->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
 	}
 	
-	m_pExitButton = CUIButton::Create(L"wugargar/exitbutton.png", L"wugargar/exitbutton.png");
+	m_pExitButton = CUIButton::Create
+		(L"wugargar/exitbutton.png", L"wugargar/exitbutton.png");
+
 	AddChild(m_pExitButton);
 	m_pExitButton->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y+20);
 
