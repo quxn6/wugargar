@@ -87,7 +87,7 @@
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>150</AttackRange>
 		<SplashRange>50</SplashRange>
-		<SpritePath>wugargar/police/granade/walk/granade_police.png</SpritePath>
+		<SpritePath>wugargar/police/granade/walk/granade_police_1.png</SpritePath>
 		<WalkAniImageNum>1</WalkAniImageNum>
 			<WalkAniImagePath1>wugargar/police/granade/walk/granade_police_move_1.png</WalkAniImagePath1>
 		<DeadAniImageNum>1</DeadAniImageNum>

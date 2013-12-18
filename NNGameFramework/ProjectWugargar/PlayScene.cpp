@@ -379,7 +379,10 @@ bool CPlayScene::CheckGameOver()
 	if (m_pPlayer->GetPlayerStatus() == ON_PLAYING ) {
 		if(m_pMapCreator->GetPoliceBase()->GetHP() <= 0) {
 			m_pPlayer->SetPlayerStatus(WIN);
-			m_pPlayer->IncreaseClearedStage();
+			if (m_pPlayer->GetClearedStage() == m_pPlayer->GetPlayingStage() )
+			{
+				m_pPlayer->IncreaseClearedStage();
+			}
 			m_pPlayer->ReadyToSave();
 			SaveGame();
 			ShowResult(L"WIN");			

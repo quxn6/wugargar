@@ -33,7 +33,7 @@ public:
 	
 	int GetGlobalMoney(){return m_GlobalMoney;}
 	int GetLocalMoney(){return m_LocalMoney;}
-	int GetClearedStage() {return m_ClearedStage;}
+	int GetClearedStage() const { return m_ClearedStage; }
 	int GetZombieLevel(ZombieType character) { return m_CharacterLevel[character]; }
 	int GetNumberOfKillInStage() const { return m_NumberOfKillInStage; }
 	int GetNumberOfLossInStage() const { return m_NumberOfLossInStage; }
@@ -42,6 +42,7 @@ public:
 	std::string GetPlayerName() const { return m_PlayerName; }
 	int GetTotalLoss() const { return m_TotalLoss; }
 	int GetTotalKill() const { return m_TotalKill; }
+
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
@@ -52,6 +53,7 @@ public:
 	void SetPlayerName(std::string val) { m_PlayerName = val; }
 	void SetTotalLoss(int val) { m_TotalLoss = val; }
 	void SetTotalKill(int val) { m_TotalKill = val; }
+	void SetClearedStage(int val) { m_ClearedStage = val; }
 
 	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
