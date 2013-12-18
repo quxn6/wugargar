@@ -28,7 +28,8 @@ void MapObstaclManager::Update( float dTime )
 {
 	
 	//REGEN_TIME마다 Obstacle 생성
-	if(clock()/CLOCKS_PER_SEC - m_obstacle_start_time/CLOCKS_PER_SEC  > REGEN_TIME)
+	if(clock()/CLOCKS_PER_SEC - m_obstacle_start_time/CLOCKS_PER_SEC 
+										> REGEN_TIME)
 	{
 		CMapObstacle *tmpMapObstacle = nullptr;
 
@@ -40,13 +41,14 @@ void MapObstaclManager::Update( float dTime )
 
 		//생성한 obstacle은 리스트에 넣어진다.
 		printf_s("생성! %d %d\n", tmpMapObstacle->GetSprite()->GetPositionX(), tmpMapObstacle->GetPositionY());
-		m_pList_mapObstacle.push_back(tmpMapObstacle);
+		m_List_mapObstacle.push_back(tmpMapObstacle);
 		AddChild(tmpMapObstacle,10);
 		m_obstacle_start_time = clock();
 	}
 	
 	//Obstacle list를 매번 돌면서 Click여부를 확인한다.
-	for(auto& iter = m_pList_mapObstacle.begin() ; iter != m_pList_mapObstacle.end() ; iter++ )
+	for(auto& iter = m_List_mapObstacle.begin() ; 
+		iter != m_List_mapObstacle.end() ; iter++ )
 	{
 		(*iter)->Update(dTime);
 		//Obstacle의 Update함수가 저절로 동작하지 않아 임의로 넣은 코드
@@ -59,7 +61,7 @@ void MapObstaclManager::Update( float dTime )
 			if(!(*iter)->is_boom)
 				printf_s("Obstacle Click Check\n");
 
-			m_pList_mapObstacle.erase(iter);
+			m_List_mapObstacle.erase(iter);
 			RemoveChild(tmp_obstacle, true);
 			break; //오류가 났었던 부분
 		}

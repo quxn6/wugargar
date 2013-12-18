@@ -10,11 +10,11 @@ public:
 	MapObstaclManager(void);
 	~MapObstaclManager(void);
 
-	void Update(float dTime);
+	virtual void Update(float dTime);
 
 	NNCREATE_FUNC(MapObstaclManager);
 protected:
-	std::list<CMapObstacle*> m_pList_mapObstacle;
+	std::list<CMapObstacle*> m_List_mapObstacle;
 	clock_t m_obstacle_start_time;
 
 };
