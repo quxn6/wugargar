@@ -22,11 +22,17 @@ struct CharacterInfo{
 	PoliceType policeType;
 
 
-	//요기부터 12/16 현재는 좀비만 쓰이는 변수들
+	//애니메이션 변수
 	int WalkAniImageNum;
 	std::string *WalkAniImagePath;
 	int DeadAniImageNum;
 	std::string *DeadAniImagePath;
+	int CreateAniImageNum;
+	std::string *CreateAniImagePath;
+	int AttackAniImageNum;
+	std::string *AttackAniImagePath;
+
+
 	int CreationCost;
 	ZombieType zombieType;
 	clock_t FreezingAttackDuration;

@@ -129,6 +129,9 @@ protected:
 	NNSprite*		m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
 	NNAnimation*	m_Animation;
 	NNAnimation*	m_DeadAnimation;
+	NNAnimation*	m_CreateAnimation;
+	NNAnimation*	m_AttackAnimation;
+
 	NNSprite*		m_HitEffect;
 	bool			m_IsBleeding;
 	float			m_bleedingTime;
@@ -137,7 +140,12 @@ protected:
 	
 	std::list<std::wstring>	WalkAnimationImagePath;
 	std::list<std::wstring> DeadAnimationImagePath;
+	std::list<std::wstring> CreateAnimationImagePath;
+	std::list<std::wstring> AttackAnimationImagePath;
+	
 	int				m_WalkAniImageNum;
 	int				m_DeadAniImageNum;
+	int				m_CreateAniImageNum;
+	int				m_AttackAniImageNum;
 };
 

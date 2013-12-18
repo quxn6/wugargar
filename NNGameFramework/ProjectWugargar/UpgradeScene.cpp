@@ -3,6 +3,7 @@
 #include <windows.h>
 #include "NNSceneDirector.h"
 #include "PlayScene.h"
+#include "StageSelectScene.h"
 
 
 CUpgradeScene::CUpgradeScene(void)
@@ -40,13 +41,13 @@ void CUpgradeScene::InitUpgradeUI()
 	int zombieCount = NUMBER_OF_ZOMBIE_TYPES-1; //enum 값이 안맞아서 -1
 	int count[NUMBER_OF_ZOMBIE_TYPES-1] ;
 	std::wstring path[NUMBER_OF_ZOMBIE_TYPES-1] = {
-		L"wugargar/poor/walk/",
-		L"wugargar/vomit/walk/",
-		L"wugargar/mom/walk/",
-		L"wugargar/bomb/walk/",
-		L"wugargar/smog/walk/",
-		L"wugargar/ice/walk/",
-		L"wugargar/hero/"};
+		L"wugargar/zombie/poor/walk/",
+		L"wugargar/zombie/vomit/walk/",
+		L"wugargar/zombie/mom/walk/",
+		L"wugargar/zombie/bomb/walk/",
+		L"wugargar/zombie/smog/walk/",
+		L"wugargar/zombie/ice/walk/",
+		L"wugargar/zombie/hero/"};
 
 	count[POOR_ZOMBIE] = 8;
 	count[VOMIT_ZOMBIE] = 4;
@@ -122,9 +123,14 @@ void CUpgradeScene::InitUpgradeUI()
 	}
 
 	// 임시로 다음 스테이지 버튼 만들었음
-	m_pNextStageButton = CUIButton::Create(L"wugargar/UIbuttons/nextlevel.png", L"wugargar/UIbuttons/nextlevel.png");
+	m_pNextStageButton = CUIButton::Create(L"wugargar/arrow.png", L"wugargar/arrow.png");
 	m_pNextStageButton->SetPosition(GAME_SCREEN_MAX_SIZE_X-240.0f,GAME_SCREEN_MAX_SIZE_Y-200.0f );
 	AddChild(m_pNextStageButton, 100);
+
+	m_pPreStageButton = CUIButton::Create(L"wugargar/arrow-opp.png", L"wugargar/arrow-opp.png");
+	m_pPreStageButton->SetPosition(80.f, GAME_SCREEN_MAX_SIZE_Y-200.0f);
+	AddChild(m_pPreStageButton, 100);
+
 }
 
 void CUpgradeScene::ShowGlobalMoney()
@@ -148,6 +154,13 @@ void CUpgradeScene::OperateUpgradeButton()
 		// 다음 스테이지 버튼 클릭시
 		if ( m_pNextStageButton->CheckButtonArea() ) {
 			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+			return; 
+		}
+
+		//이전 스테이지 버튼 클릭시
+		if ( m_pPreStageButton->CheckButtonArea() ) {
+			NNSceneDirector::GetInstance()->ChangeScene(CStageSelectScene::Create());
+			return;
 		}
 	}
 }

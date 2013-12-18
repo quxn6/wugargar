@@ -83,11 +83,23 @@ void CZombie::initStatus( CharacterInfo *zombieInfo, int zombie_type_idx )
 	m_typeName = zombieInfo[zombie_type_idx].TypeName;
 	m_WalkAniImageNum = zombieInfo[zombie_type_idx].WalkAniImageNum;
 	m_DeadAniImageNum = zombieInfo[zombie_type_idx].DeadAniImageNum;
+	m_CreateAniImageNum = zombieInfo[zombie_type_idx].CreateAniImageNum;
+	m_AttackAniImageNum = zombieInfo[zombie_type_idx].AttackAniImageNum;
+
+
+	for(int idx=0; idx<m_CreateAniImageNum; ++idx)
+		CreateAnimationImagePath.push_back(CCharacter::string2wstring(zombieInfo[zombie_type_idx].CreateAniImagePath[idx]));
+
+	for(int idx=0; idx<m_AttackAniImageNum; ++idx)
+		AttackAnimationImagePath.push_back(CCharacter::string2wstring(zombieInfo[zombie_type_idx].AttackAniImagePath[idx]));
+
 	for(int idx=0; idx<m_WalkAniImageNum; ++idx)
 		WalkAnimationImagePath.push_back(CCharacter::string2wstring(zombieInfo[zombie_type_idx].WalkAniImagePath[idx]));
 
 	for(int idx=0; idx<m_DeadAniImageNum; ++idx)
 		DeadAnimationImagePath.push_back(CCharacter::string2wstring(zombieInfo[zombie_type_idx].DeadAniImagePath[idx]));
+
+
 	m_CreateCost = zombieInfo[zombie_type_idx].CreationCost;
 	m_FreezingAttackDuration = zombieInfo[zombie_type_idx].FreezingAttackDuration;
 	m_SuicideBomber = zombieInfo[zombie_type_idx].IsSelfDestruction;

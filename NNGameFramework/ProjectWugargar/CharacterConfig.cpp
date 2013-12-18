@@ -8,14 +8,25 @@ CCharacterConfig::CCharacterConfig(void)
 
 CCharacterConfig::~CCharacterConfig(void)
 {
-	SafeArrayDelete(policeInfo);
+	
 	for(int idx=0; idx<num_of_zombie_type; ++idx)
 	{
 		SafeArrayDelete(zombieInfo[idx].DeadAniImagePath);
 		SafeArrayDelete(zombieInfo[idx].WalkAniImagePath);
+		SafeArrayDelete(zombieInfo[idx].CreateAniImagePath);
+		SafeArrayDelete(zombieInfo[idx].AttackAniImagePath);
+			
+	}
+
+	for(int idx=0; idx<num_of_police_type; ++idx)
+	{
+		SafeArrayDelete(policeInfo[idx].DeadAniImagePath);
+		SafeArrayDelete(policeInfo[idx].WalkAniImagePath);
+		SafeArrayDelete(policeInfo[idx].CreateAniImagePath);
+		SafeArrayDelete(policeInfo[idx].AttackAniImagePath);	
 	}
 	SafeArrayDelete(zombieInfo);
-
+	SafeArrayDelete(policeInfo);
 	//delete policeInfo;
 	//delete zombieInfo;
 }
@@ -87,6 +98,55 @@ void CCharacterConfig::InitPoliceInfo( NNXML *PoliceInfoXml)
 		policeInfo[idx].TypeName = (PoliceInfoXml->XPathToString(xPath.append("/TypeName/text()").c_str()));
 		policeInfo[idx].identity = Police;
 
+		initialize_Xpath_Police(&xPath, idx);
+		policeInfo[idx].WalkAniImageNum = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/WalkAniImageNum/text()").c_str())));
+		initialize_Xpath_Police(&xPath, idx);
+		policeInfo[idx].DeadAniImageNum = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/DeadAniImageNum/text()").c_str())));
+		initialize_Xpath_Police(&xPath, idx);
+		policeInfo[idx].CreateAniImageNum = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/CreateAniImageNum/text()").c_str())));
+		initialize_Xpath_Police(&xPath, idx);
+		policeInfo[idx].AttackAniImageNum = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/AttackAniImageNum/text()").c_str())));
+
+		policeInfo[idx].WalkAniImagePath = new std::string[policeInfo[idx].WalkAniImageNum];
+		policeInfo[idx].DeadAniImagePath = new std::string[policeInfo[idx].DeadAniImageNum];
+		policeInfo[idx].CreateAniImagePath = new std::string[policeInfo[idx].CreateAniImageNum];
+		policeInfo[idx].AttackAniImagePath = new std::string[policeInfo[idx].AttackAniImageNum];
+
+
+		for(int walk_ani_idx=0; walk_ani_idx<policeInfo[idx].WalkAniImageNum; ++walk_ani_idx)
+		{
+			initialize_Xpath_Police(&xPath, idx);
+			xPath = (xPath + "/WalkAniImagePath" + std::to_string(walk_ani_idx+1) + "/text()").c_str();
+			policeInfo[idx].WalkAniImagePath[walk_ani_idx] = (PoliceInfoXml->XPathToString(xPath));
+
+		}
+
+		for(int dead_ani_idx=0; dead_ani_idx<policeInfo[idx].DeadAniImageNum; ++dead_ani_idx)
+		{
+			initialize_Xpath_Police(&xPath, idx);
+			xPath = xPath + "/DeadAniImagePath" + std::to_string(dead_ani_idx+1) + "/text()";
+			policeInfo[idx].DeadAniImagePath[dead_ani_idx] = (PoliceInfoXml->XPathToString(xPath));
+
+		}
+
+
+		for(int attack_ani_idx=0; attack_ani_idx<policeInfo[idx].AttackAniImageNum; ++attack_ani_idx)
+		{
+			initialize_Xpath_Police(&xPath, idx);
+			xPath = (xPath + "/AttackAniImagePath" + std::to_string(attack_ani_idx+1) + "/text()").c_str();
+			policeInfo[idx].AttackAniImagePath[attack_ani_idx] = (PoliceInfoXml->XPathToString(xPath));
+
+		}
+
+		for(int create_ani_idx=0; create_ani_idx<policeInfo[idx].CreateAniImageNum; ++create_ani_idx)
+		{
+			initialize_Xpath_Police(&xPath, idx);
+			xPath = xPath + "/CreateAniImagePath" + std::to_string(create_ani_idx+1) + "/text()";
+			policeInfo[idx].CreateAniImagePath[create_ani_idx] = (PoliceInfoXml->XPathToString(xPath));
+
+		}
+
+
 
 		initialize_Xpath_Police(&xPath, idx);
 		if(int tmp_isSplash = (std::stoi(PoliceInfoXml->XPathToString(xPath.append("/IsSplash/text()").c_str()) )))
@@ -134,11 +194,17 @@ void CCharacterConfig::InitZombieInfo( NNXML *ZombieInfoXml )
 		initialize_Xpath_Zombie(&xPath, idx);
 		zombieInfo[idx].WalkAniImageNum = (std::stoi(ZombieInfoXml->XPathToString(xPath.append("/WalkAniImageNum/text()").c_str())));
 		initialize_Xpath_Zombie(&xPath, idx);
-		
 		zombieInfo[idx].DeadAniImageNum = (std::stoi(ZombieInfoXml->XPathToString(xPath.append("/DeadAniImageNum/text()").c_str())));
-		
+		initialize_Xpath_Zombie(&xPath, idx);
+		zombieInfo[idx].CreateAniImageNum = (std::stoi(ZombieInfoXml->XPathToString(xPath.append("/CreateAniImageNum/text()").c_str())));
+		initialize_Xpath_Zombie(&xPath, idx);
+		zombieInfo[idx].AttackAniImageNum = (std::stoi(ZombieInfoXml->XPathToString(xPath.append("/AttackAniImageNum/text()").c_str())));
+
 		zombieInfo[idx].WalkAniImagePath = new std::string[zombieInfo[idx].WalkAniImageNum];
 		zombieInfo[idx].DeadAniImagePath = new std::string[zombieInfo[idx].DeadAniImageNum];
+		zombieInfo[idx].CreateAniImagePath = new std::string[zombieInfo[idx].CreateAniImageNum];
+		zombieInfo[idx].AttackAniImagePath = new std::string[zombieInfo[idx].AttackAniImageNum];
+
 
 		for(int walk_ani_idx=0; walk_ani_idx<zombieInfo[idx].WalkAniImageNum; ++walk_ani_idx)
 		{
@@ -153,6 +219,23 @@ void CCharacterConfig::InitZombieInfo( NNXML *ZombieInfoXml )
 			initialize_Xpath_Zombie(&xPath, idx);
 			xPath = xPath + "/DeadAniImagePath" + std::to_string(dead_ani_idx+1) + "/text()";
 			zombieInfo[idx].DeadAniImagePath[dead_ani_idx] = (ZombieInfoXml->XPathToString(xPath));
+
+		}
+
+
+		for(int attack_ani_idx=0; attack_ani_idx<zombieInfo[idx].AttackAniImageNum; ++attack_ani_idx)
+		{
+			initialize_Xpath_Zombie(&xPath, idx);
+			xPath = (xPath + "/AttackAniImagePath" + std::to_string(attack_ani_idx+1) + "/text()").c_str();
+			zombieInfo[idx].AttackAniImagePath[attack_ani_idx] = (ZombieInfoXml->XPathToString(xPath));
+
+		}
+
+		for(int create_ani_idx=0; create_ani_idx<zombieInfo[idx].CreateAniImageNum; ++create_ani_idx)
+		{
+			initialize_Xpath_Zombie(&xPath, idx);
+			xPath = xPath + "/CreateAniImagePath" + std::to_string(create_ani_idx+1) + "/text()";
+			zombieInfo[idx].CreateAniImagePath[create_ani_idx] = (ZombieInfoXml->XPathToString(xPath));
 
 		}
 
