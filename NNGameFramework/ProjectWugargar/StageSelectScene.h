@@ -27,8 +27,7 @@ private:
 	void InitMenuButtons( void );
 	void InitMapSprite();
 
-	void ShowMapDetail(int stageNum);
-	void SettingButton(int stage_idx);
+
 
 	
 private:
@@ -38,18 +37,9 @@ private:
 	NNSprite		*m_stageIllust[STAGE_NUM];
 	NNSprite		*m_lockStageIllust;
 
-	NNSprite *m_difficultyStar;
-	NNSprite *m_stageIllustrate;
-	
-
-	NNLabel *m_pShowDifficulty;
-	NNLabel *m_pShowCleared;
-	NNLabel *m_pShowUnacceptable;
 
 	NNSound *m_pBackgroundSound;
 
-	CUIButton *m_pPlayButton;
-	CUIButton *m_pExitButton;
 
 	bool m_onImage;
 

@@ -19,8 +19,6 @@ CStageSelectScene::CStageSelectScene(void)
 	m_pBackgroundSound = NNResourceManager::GetInstance()->
 		LoadSoundFromFile("sound/StageSelectSceneBackground.mp3", true, true);
 	NNAudioSystem::GetInstance()->Play(m_pBackgroundSound);
-	m_pPlayButton = nullptr;
-	m_pExitButton = nullptr;
 	m_onImage = false;
 }
 
@@ -153,29 +151,5 @@ void CStageSelectScene::InitMapSprite()
 	
 	
 	
-
-}
-
-//Button을 다른 Sprite 생성과 분리한 이유~
-//Sprite는 Set Visible 조정만 해줘도 문제가 없지만
-//Button의 경우는 그렇게 처리할 경우, 보이지 않을 뿐, 그 위치를
-//클릭할 경우 플레이가 가능해짐.
-//따라서 따로 Set Button을 빼놓고 그때그때 Remove해주기 위함.
-void CStageSelectScene::SettingButton(int stage_idx)
-{
-	if(IsStageClear[stage_idx]){
-		m_pPlayButton = CUIButton::Create
-			(L"wugargar/playbutton.png", L"wugargar/playbutton.png");
-
-		AddChild(m_pPlayButton);
-		m_pPlayButton->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
-	}
-	
-	m_pExitButton = CUIButton::Create
-		(L"wugargar/exitbutton.png", L"wugargar/exitbutton.png");
-
-	AddChild(m_pExitButton);
-	m_pExitButton->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y+20);
-
 
 }

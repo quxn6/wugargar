@@ -102,7 +102,7 @@ bool CMapObstacle::IsCrash( CCharacter *crash_check_character)
 	distance_attacktarget = m_pObstacle_sprite->GetPosition().
 		GetDistance(crash_check_character->GetPosition());
 
-	if(distance_attacktarget <= 10/*this->GetSprite()->GetImageWidth()*/)
+	if(distance_attacktarget <= m_pObstacle_sprite->GetImageHeight()/*this->GetSprite()->GetImageWidth()*/)
 		return true;
 	
 	return false;
