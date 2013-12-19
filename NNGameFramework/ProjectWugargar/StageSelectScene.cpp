@@ -21,6 +21,7 @@ CStageSelectScene::CStageSelectScene(void)
 	NNAudioSystem::GetInstance()->Play(m_pBackgroundSound);
 	m_pPlayButton = nullptr;
 	m_pExitButton = nullptr;
+	m_onImage = false;
 }
 
 
@@ -43,6 +44,7 @@ void CStageSelectScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
 
+	
 
 	if(NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON))
 	{
@@ -51,50 +53,49 @@ void CStageSelectScene::Update( float dTime )
 		{
 			//StageFlag(동그란 거)가 입력되었을 때의 처리
 			//Stage의 정보를 띄워주는 것들을 생성.
-			if(m_stageFlag[idx]->CheckButtonArea())
+			if(m_stageFlag[idx]->CheckButtonOn())
 			{
+				m_onImage = true;
+
 				if(IsStageClear[idx])
 				{
 					m_stageIllust[idx]->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
 					m_stageIllust[idx]->SetVisible(true);
 
-					//Player의 현재 스테이지 진행 현황 외에 PlayScene에서 진행되는
-					//스테이지를 표시하기 위한 변수 추가.
-					//이미 진행한 스테이지도 진행하게 하기 위함.
-					CPlayer::GetInstance()->SetPlayingStage(idx+1);
+					if(m_stageFlag[idx]->CheckButtonArea())
+					{
+						//Player의 현재 스테이지 진행 현황 외에 PlayScene에서 진행되는
+						//스테이지를 표시하기 위한 변수 추가.
+						//이미 진행한 스테이지도 진행하게 하기 위함.
+						CPlayer::GetInstance()->SetPlayingStage(idx+1);
+
+						NNSceneDirector::GetInstance()->
+							ChangeScene(CUpgradeScene::Create());
+						return;
+					}
+
 				}
 				else
 				{
 					m_lockStageIllust->SetPosition(GAME_SCREEN_MAX_SIZE_X/2, GAME_SCREEN_MIN_SIZE_Y);
 					m_lockStageIllust->SetVisible(true);
 				}
-				SettingButton(idx);
 				break;
 			}
-		}
 
-		//선택된 스테이지 버튼이 클리어 할 수 있는 스테이지 인 경우 선택됨
-		if(m_pPlayButton && m_pPlayButton->CheckButtonArea())
-		{
-			NNSceneDirector::GetInstance()->
-				ChangeScene(CUpgradeScene::Create());
-			return ;
-		}
 
-		//Exit버튼이 눌리면 다시 스테이지 선택 화면으로 돌아감
-		if(m_pExitButton && m_pExitButton->CheckButtonArea())
-		{
-			for(int idx=0; idx<STAGE_NUM; ++idx)
-				m_stageIllust[idx]->SetVisible(false);
+			if(m_onImage && !m_stageFlag[idx]->CheckButtonOn())
+			{
+				for(int idx=0; idx<STAGE_NUM; ++idx)
+					m_stageIllust[idx]->SetVisible(false);
 
-			m_lockStageIllust->SetVisible(false);
-			// remove시 리스트에서만 없애고 객체를 안날려서(true를 안붙여서) label이 살아있었음.
-			RemoveChild(m_pExitButton, true);
-			RemoveChild(m_pPlayButton, true);
-			m_pPlayButton = nullptr;
-			m_pExitButton = nullptr;
+				m_lockStageIllust->SetVisible(false);
+			}
 			
+
 		}
+
+
 
 	}
 	
@@ -116,14 +117,14 @@ void CStageSelectScene::InitMapSprite()
 	for(int idx=0; idx<current_stage; ++idx)
 	{
 		m_stageFlag[idx] = CUIButton::Create
-			(L"wugargar/stageselect_on.png", L"wugargar/stageselect_on.png");
+			(L"wugargar/stageselect_on.png", L"wugargar/stageselect_on.png", L"wugargar/stageselect_off.png");
 		AddChild( m_stageFlag[idx] );
 		IsStageClear[idx] = true;
 	}
 	for(int idx=current_stage; idx<STAGE_NUM; ++idx)
 	{
 		m_stageFlag[idx] = CUIButton::Create
-			(L"wugargar/stageselect_off.png",L"wugargar/stageselect_off.png");
+			(L"wugargar/stageselect_off.png",L"wugargar/stageselect_off.png",  L"wugargar/stageselect_on.png");
 		AddChild( m_stageFlag[idx] );
 		IsStageClear[idx] = false;
 	}
@@ -148,11 +149,6 @@ void CStageSelectScene::InitMapSprite()
 		m_stageIllust[idx]->SetVisible(false);
 	}
 	
-
-	//StageIllustrate Sprite(말풍선) 미리 배치. 보여주는 경우 포지션 세팅하고 visible을 true로
-	//m_stageIllustrate = NNSprite::Create(L"wugargar/StageIllustrate.png");
-	//AddChild(m_stageIllustrate);
-	//m_stageIllustrate->SetVisible(false);
 
 	
 	

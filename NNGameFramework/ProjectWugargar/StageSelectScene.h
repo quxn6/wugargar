@@ -51,6 +51,7 @@ private:
 	CUIButton *m_pPlayButton;
 	CUIButton *m_pExitButton;
 
+	bool m_onImage;
 
 };
 
