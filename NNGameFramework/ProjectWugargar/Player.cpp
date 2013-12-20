@@ -21,6 +21,7 @@ void CPlayer::InitPlayer()
 	m_MeatPoint = 50;
 	m_ClearedStage = 1;
 	m_playingStage = 1;
+	m_EarningInterval = DEFAULT_EARNING_INTERVAL;
 
 	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
 		m_CharacterLevel[i] = 0;
@@ -57,6 +58,7 @@ void CPlayer::ReadyToPlay()
 	m_LocalMoney = 4000;
 	m_NumberOfKillInStage = 0;
 	m_NumberOfLossInStage = 0;
+	m_EarningInterval = DEFAULT_EARNING_INTERVAL;
 }
 
 void CPlayer::ReadyToUpgrade()

@@ -64,6 +64,9 @@ enum PoliceType
 #define BABY_PRICE			100
 #define HERO_ZOMBIE_PRICE	100
 
+
+#define DEFAULT_EARNING_INTERVAL	0.1f
+#define EARNING_AMOUNTS				5
 //
 //#define POLICE_TYPE_NUM 6
 //#define ZOMBIE_TYPE_NUM 8

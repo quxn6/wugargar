@@ -99,6 +99,7 @@ private :
 	wchar_t		localmoney[256]; //meat Point 표시를 위한 임시변수
 	float		m_LocalMoneyTimeChecker; // local money증가를 위한 1초단위 카운터
 	float		m_StageElapsedTime;// 게임이 시작된 후부터 진행된 시간 정보를 저장
+	int			m_EarningIntervalUpgradeCost; // 돈 획득 속도를 상승시키는데 드는 비용
 
 
 public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다 // Good job~

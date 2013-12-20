@@ -45,7 +45,8 @@ public:
 	std::string GetPlayerName() const { return m_PlayerName; }
 	int GetTotalLoss() const { return m_TotalLoss; }
 	int GetTotalKill() const { return m_TotalKill; }
-
+	float GetEarningInterval() const { return m_EarningInterval; }
+	
 
 	void SetGlobalMoney(int globalMoney) {m_GlobalMoney = globalMoney; }
 	void SetLocalMoney(int localMoney) {m_LocalMoney = localMoney; }
@@ -57,12 +58,13 @@ public:
 	void SetTotalLoss(int val) { m_TotalLoss = val; }
 	void SetTotalKill(int val) { m_TotalKill = val; }
 	void SetClearedStage(int val) { m_ClearedStage = val; }
+	void SetEarningInterval(float val) { m_EarningInterval = val; }
 
 	void IncreaseZombieLevel(ZombieType character) { ++m_CharacterLevel[character] ; }
 	void IncreaseNumberOfKillInStage() { ++m_NumberOfKillInStage; }
 	void IncreaseNumberOfLossInStage() { ++m_NumberOfLossInStage; }	
 	void IncreaseInfectionRate() {m_InfectionRate += 10.0f; }
-	void IncreaseLocalMoney() {m_LocalMoney += 50;}
+	void IncreaseLocalMoney(int amount) {m_LocalMoney += amount;}
 	void IncreaseClearedStage() {++m_ClearedStage;}
 
 	void SetMeatPoint(int meatPoint) { m_MeatPoint = meatPoint;}
@@ -71,6 +73,7 @@ public:
 	void SetPlayingStage(int set){m_playingStage = set;}
 	int GetPlayingStage(){return m_playingStage;}
 	
+
 private:
 	PlayerStatus m_playerStatus;
 	std::string m_PlayerName;
@@ -87,6 +90,7 @@ private:
 	int m_ClearedStage;		//1,2,3,4 등으로 진행된 스테이지 표시
 	int m_TotalKill;
 	int m_TotalLoss;
+	float m_EarningInterval;
 	float m_InfectionRate;
 	
 	

@@ -161,8 +161,8 @@ void CPlayScene::Update( float dTime )
 	NNScene::Update(dTime);
 
 	m_StageElapsedTime+=dTime;
-	if (m_StageElapsedTime - m_LocalMoneyTimeChecker >= 1) {
-		m_pPlayer->IncreaseLocalMoney();
+	if (m_StageElapsedTime - m_LocalMoneyTimeChecker >= m_pPlayer->GetEarningInterval()) {
+		m_pPlayer->IncreaseLocalMoney(EARNING_AMOUNTS);
 		m_LocalMoneyTimeChecker = m_StageElapsedTime;
 	}
 	
