@@ -11,9 +11,7 @@ public:
 	void Render();
 	void Update( float dTime );
 	
-	NNCREATE_FUNC(CBase);
-
-protected :
 	virtual void initStatus(void);	
+	NNCREATE_FUNC(CBase);	
 };
 

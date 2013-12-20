@@ -6,6 +6,7 @@
 #include "GameConfig.h"
 #include "headers.h"
 #include "PlayScene.h"
+#include "CharacterConfig.h"
 
 class NNSound;
 class NNAnimation;
@@ -13,10 +14,6 @@ class NNSprite;
 class NNSpriteAtlas;
 class CPlayer;
 
-enum CharacterIdentity{
-	Zombie,
-	Police,
-};
 
 class CCharacter : public NNObject
 {
@@ -27,7 +24,9 @@ public:
 	void Render();
 	void Update( float dTime );
 	NNCREATE_FUNC(CCharacter);	
-	void InitSprite(std::wstring imagePath);
+	void InitSprite(std::wstring imagePath);	
+	virtual void initStatus( CharacterInfo *characterInfo, int characterType );
+	void InitZombieAnimation();
 	void InitHPBar(void );
 	void SetRandomPositionAroundBase();
 
@@ -45,8 +44,6 @@ public:
 	CharacterIdentity GetIdentity() {return m_Identity;}
 	NNSprite *GetSprite(){return m_Sprite;}
 	std::wstring GetSpritepath(){return m_spritePath;}
-	NNAnimation* GetAnimation() {return m_Animation;}
-	NNAnimation* GetDeadAnimation() {return m_DeadAnimation;}
 	NNSprite* GetHitEffect() const { return m_HitEffect; }
 	bool GetIsBleeding() const { return m_IsBleeding; }
 		
@@ -67,7 +64,6 @@ public:
 
 	void PlayDeadSound();
 	
-	void InitZombieAnimation();
 
 protected: 
 	virtual void initStatus( void ) {};	
@@ -127,26 +123,24 @@ protected:
 
 	// 기본 내부 변수
 	NNSprite		*m_Sprite;	//캐릭터는 기본적으로 sprite하나를 갖게함. 추후에 애니메이션으로 업그레이드되겠지?
-	NNAnimation		*m_Animation;
+	NNAnimation		*m_Animation[NUMBER_OF_CHARACTER_STATUS];
+	
 	NNAnimation		*m_AttackEffect;
-	NNAnimation		*m_DeadAnimation;
-	NNAnimation		*m_CreateAnimation;
-	NNAnimation		*m_AttackAnimation;
-
 	NNSprite		*m_HitEffect;
+
 	bool			m_IsBleeding;
 	float			m_bleedingTime;
 	std::wstring	m_spritePath;
 	NNSpriteAtlas	*m_pShowHP;
 	
-	std::list<std::wstring>	WalkAnimationImagePath;
-	std::list<std::wstring> DeadAnimationImagePath;
-	std::list<std::wstring> CreateAnimationImagePath;
-	std::list<std::wstring> AttackAnimationImagePath;
-	
-	int				m_WalkAniImageNum;
-	int				m_DeadAniImageNum;
-	int				m_CreateAniImageNum;
-	int				m_AttackAniImageNum;
+// 	std::list<std::wstring>	WalkAnimationImagePath;
+// 	std::list<std::wstring> DeadAnimationImagePath;
+// 	std::list<std::wstring> CreateAnimationImagePath;
+// 	std::list<std::wstring> AttackAnimationImagePath;
+// 	
+// 	int				m_WalkAniImageNum;
+// 	int				m_DeadAniImageNum;
+// 	int				m_CreateAniImageNum;
+// 	int				m_AttackAniImageNum;
 };
 

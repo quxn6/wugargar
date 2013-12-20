@@ -51,8 +51,7 @@ CPlayScene::CPlayScene(void)
 	_initBackground();
 	_initMap();
 	_initUI();
-	loadPoliceInfo();
-	loadZombieInfo();
+	loadCharacterInfo();	
 	
 	
 
@@ -213,7 +212,7 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 				} 
 				else if( i != BABY_HUMAN && i != HERO_ZOMBIE_SM9 )
 				{
-					int cost = (CCharacterConfig::GetInstance())->GetZombieInfo()[i].CreationCost;
+					int cost = (CCharacterConfig::GetInstance())->GetCharacterInfo(ZOMBIE)[i].CreationCost;
 					if( localMoney >= cost ) {
 						m_pPlayer->SetLocalMoney( localMoney - cost);		
 						MakeZombie(static_cast<ZombieType>(i));										
@@ -229,7 +228,7 @@ void CPlayScene::MakeZombie( ZombieType type, NNPoint* position )
 	CZombie *tmpZombieObject = nullptr;
 
 	tmpZombieObject = CZombie::Create();
-	tmpZombieObject->initStatus(CCharacterConfig::GetInstance()->GetZombieInfo(), static_cast<int>(type));
+	tmpZombieObject->initStatus(CCharacterConfig::GetInstance()->GetCharacterInfo(ZOMBIE), static_cast<int>(type));
 	
 	if (position == nullptr ) {
 		tmpZombieObject->SetRandomPositionAroundBase();
@@ -271,7 +270,7 @@ void CPlayScene::MakePoliceFromScript()
 	create_enemy_type =	m_pPoliceCreator->ReturnCreateEnemyInfo();
 	if(create_enemy_type != NONE_POLICE){
 		CPolice *tmpPoliceObject = CPolice::Create();
-		tmpPoliceObject->initStatus(CCharacterConfig::GetInstance()->GetPoliceInfo(), create_enemy_type);
+		tmpPoliceObject->initStatus(CCharacterConfig::GetInstance()->GetCharacterInfo(POLICE), create_enemy_type);
 		bool is_not_time = false;
 		tmpPoliceObject->SetRandomPositionAroundBase();
 		tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
@@ -283,13 +282,12 @@ void CPlayScene::MakePoliceFromScript()
 
 void CPlayScene::MakePoliceFromScriptWithTimeInterval( float stageElapsedTime )
 {
-	CPolice *tmpPoliceObject = m_pPoliceCreator->GetPoliceAtTheMoment(stageElapsedTime);
+	CPolice *tmpPoliceObject = m_pPoliceCreator->CreatePoliceOnTime(stageElapsedTime);
 	if ( tmpPoliceObject == nullptr) {
 		return ;
 	}
 
 	tmpPoliceObject->SetRandomPositionAroundBase();
-	tmpPoliceObject->InitSprite( tmpPoliceObject->GetSpritepath() );
 	AddChild(tmpPoliceObject, 10);
 	m_llistPolice.push_back(tmpPoliceObject);
 
@@ -507,33 +505,17 @@ void CPlayScene::Test_ShowLocalMoney()
 }
 
 
-void CPlayScene::loadPoliceInfo()
+void CPlayScene::loadCharacterInfo()
 {
 	CCharacterConfig *pCharacterConfig = CCharacterConfig::GetInstance();
 	m_PoliceXML = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/PoliceInfo.txt");
-	
-
-	//MemoryLeak?
-	if(!(m_PoliceXML->GetLoadSuccess())){
-		printf_s("Police Information XML Load Fail!\n");
-		return;
-	}
-	pCharacterConfig->GetInstance()->InitPoliceInfo(m_PoliceXML);
-
-
-
-
-}
-
-void CPlayScene::loadZombieInfo()
-{
-	CCharacterConfig *pCharacterConfig = CCharacterConfig::GetInstance();
 	m_ZombieXML = NNResourceManager::GetInstance()->LoadXMLFromFIle("XML/Character/ZombieInfo.txt");
-	if(!(m_ZombieXML->GetLoadSuccess())){
-		printf_s("Zombie Information XML Load Fail!\n");
+		
+	if(!(m_PoliceXML->GetLoadSuccess() && m_ZombieXML->GetLoadSuccess() ) )
+	{
+		printf_s("Character Information XML Load Fail!\n");
 		return;
 	}
-	pCharacterConfig->GetInstance()->InitZombieInfo(m_ZombieXML);
-
-
+	pCharacterConfig->InitCharacterInfo(m_ZombieXML, ZOMBIE);
+	pCharacterConfig->InitCharacterInfo(m_PoliceXML, POLICE);
 }

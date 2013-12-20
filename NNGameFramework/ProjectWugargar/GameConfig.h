@@ -31,6 +31,13 @@
 #define DEAD_POLICE_IMAGE_WIDTH				58
 #define DEAD_POLICE_IMAGE_HEIGHT			17
 
+
+enum CharacterIdentity{
+	ZOMBIE,
+	POLICE,
+	NUMBER_OF_IDENTITIES
+};
+
 // 좀비 생성시 타입을 알아보기 위한 enum값 - 채원
 // array에서 사용하므로 각각의 enum에 상수를 할당하지 말 것. - 성환
 enum ZombieType // 버튼 생성할때도 이 enum값을 사용하기 때문에 버튼 init을 위해 마지막에 어쩔수없이 좀비가 아닌 BABY를 추가함. 
@@ -61,12 +68,25 @@ enum PoliceType
 	NONE_POLICE //CreatePolice를 위한 상수, 없애는 것 고심중
 };
 
+enum CharacterStatus {
+	CHARACTER_CREATE,
+	CHARACTER_WALK,
+	CHARACTER_ATTACK,
+	CHARACTER_DEAD,
+	NUMBER_OF_CHARACTER_STATUS
+};
+
 #define BABY_PRICE			100
 #define HERO_ZOMBIE_PRICE	100
 
 
 #define DEFAULT_EARNING_INTERVAL	0.1f
 #define EARNING_AMOUNTS				5
+
+#define		CHARACTER_ANIMATION_PLAY_TIME	0.5f
 //
 //#define POLICE_TYPE_NUM 6
 //#define ZOMBIE_TYPE_NUM 8
+
+
+

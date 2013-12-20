@@ -78,7 +78,7 @@ PoliceType CPoliceCreator::ReturnCreateEnemyInfo()
 }
 
 // 지금 뱉어야할 폴리스가 있다면 폴리스를 리턴, 아니라면 null 리턴
-CPolice* CPoliceCreator::GetPoliceAtTheMoment( float stageElapsedTime )
+CPolice* CPoliceCreator::CreatePoliceOnTime( float stageElapsedTime )
 {
 	CPolice* returnPolice = nullptr;
 	for ( int i=0 ; i<m_NumStageInfo ; ++i ) {
@@ -89,7 +89,7 @@ CPolice* CPoliceCreator::GetPoliceAtTheMoment( float stageElapsedTime )
 			// 새로운 police 객체를 생성하고 그 포인터를 반환
 			returnPolice = CPolice::Create();
 			returnPolice->initStatus(
-				CCharacterConfig::GetInstance()->GetPoliceInfo(),
+				CCharacterConfig::GetInstance()->GetCharacterInfo(POLICE),
 				m_aCreateEnemyTable[i].enemy_type);
 			return returnPolice;
 		}

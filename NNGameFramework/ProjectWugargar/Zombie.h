@@ -23,7 +23,7 @@ public:
 
 	void	PlayCreationSound();
 
-	virtual void initStatus( CharacterInfo *zombieInfo, int zombie_type_idx );
+	virtual void initStatus( CharacterInfo *characterInfo, int characterType );
 
 protected:
 	int			m_CreateCost;

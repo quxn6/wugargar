@@ -15,28 +15,29 @@
 		<SplashRange>0</SplashRange>
 		<CreationPrice>50</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>8</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/zombie/poor/walk/0.png</WalkAniImagePath1>
-			<WalkAniImagePath2>wugargar/zombie/poor/walk/1.png</WalkAniImagePath2>
-			<WalkAniImagePath3>wugargar/zombie/poor/walk/2.png</WalkAniImagePath3>
-			<WalkAniImagePath4>wugargar/zombie/poor/walk/3.png</WalkAniImagePath4>
-			<WalkAniImagePath5>wugargar/zombie/poor/walk/4.png</WalkAniImagePath5>
-			<WalkAniImagePath6>wugargar/zombie/poor/walk/5.png</WalkAniImagePath6>
-			<WalkAniImagePath7>wugargar/zombie/poor/walk/6.png</WalkAniImagePath7>
-			<WalkAniImagePath8>wugargar/zombie/poor/walk/7.png</WalkAniImagePath8>
+			<WalkAniImagePath0>wugargar/zombie/poor/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/zombie/poor/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/zombie/poor/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/zombie/poor/walk/3.png</WalkAniImagePath3>
+			<WalkAniImagePath4>wugargar/zombie/poor/walk/4.png</WalkAniImagePath4>
+			<WalkAniImagePath5>wugargar/zombie/poor/walk/5.png</WalkAniImagePath5>
+			<WalkAniImagePath6>wugargar/zombie/poor/walk/6.png</WalkAniImagePath6>
+			<WalkAniImagePath7>wugargar/zombie/poor/walk/7.png</WalkAniImagePath7>
 		<DeadAniImageNum>8</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/zombie/poor/dead/0.png</DeadAniImagePath1>
-			<DeadAniImagePath2>wugargar/zombie/poor/dead/1.png</DeadAniImagePath2>
-			<DeadAniImagePath3>wugargar/zombie/poor/dead/2.png</DeadAniImagePath3>
-			<DeadAniImagePath4>wugargar/zombie/poor/dead/3.png</DeadAniImagePath4>
-			<DeadAniImagePath5>wugargar/zombie/poor/dead/4.png</DeadAniImagePath5>
-			<DeadAniImagePath6>wugargar/zombie/poor/dead/5.png</DeadAniImagePath6>
-			<DeadAniImagePath7>wugargar/zombie/poor/dead/6.png</DeadAniImagePath7>
-			<DeadAniImagePath8>wugargar/zombie/poor/dead/7.png</DeadAniImagePath8>
+			<DeadAniImagePath0>wugargar/zombie/poor/dead/0.png</DeadAniImagePath0>
+			<DeadAniImagePath1>wugargar/zombie/poor/dead/1.png</DeadAniImagePath1>
+			<DeadAniImagePath2>wugargar/zombie/poor/dead/2.png</DeadAniImagePath2>
+			<DeadAniImagePath3>wugargar/zombie/poor/dead/3.png</DeadAniImagePath3>
+			<DeadAniImagePath4>wugargar/zombie/poor/dead/4.png</DeadAniImagePath4>
+			<DeadAniImagePath5>wugargar/zombie/poor/dead/5.png</DeadAniImagePath5>
+			<DeadAniImagePath6>wugargar/zombie/poor/dead/6.png</DeadAniImagePath6>
+			<DeadAniImagePath7>wugargar/zombie/poor/dead/7.png</DeadAniImagePath7>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/zombie/poor/walk/0.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/zombie/poor/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/zombie/poor/walk/0.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/zombie/poor/walk/0.png</AttackAniImagePath0>
 		
 		
 	</Zombie1>
@@ -55,25 +56,26 @@
 		<SplashRange>0</SplashRange>
 		<CreationPrice>200</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>4</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/zombie/vomit/walk/0.png</WalkAniImagePath1>
-			<WalkAniImagePath2>wugargar/zombie/vomit/walk/1.png</WalkAniImagePath2>
-			<WalkAniImagePath3>wugargar/zombie/vomit/walk/2.png</WalkAniImagePath3>
-			<WalkAniImagePath4>wugargar/zombie/vomit/walk/3.png</WalkAniImagePath4>
+			<WalkAniImagePath0>wugargar/zombie/vomit/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/zombie/vomit/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/zombie/vomit/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/zombie/vomit/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>9</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/zombie/vomit/dead/0.png</DeadAniImagePath1>
-			<DeadAniImagePath2>wugargar/zombie/vomit/dead/1.png</DeadAniImagePath2>
-			<DeadAniImagePath3>wugargar/zombie/vomit/dead/2.png</DeadAniImagePath3>
-			<DeadAniImagePath4>wugargar/zombie/vomit/dead/3.png</DeadAniImagePath4>
-			<DeadAniImagePath5>wugargar/zombie/vomit/dead/4.png</DeadAniImagePath5>
-			<DeadAniImagePath6>wugargar/zombie/vomit/dead/5.png</DeadAniImagePath6>
-			<DeadAniImagePath7>wugargar/zombie/vomit/dead/6.png</DeadAniImagePath7>
-			<DeadAniImagePath8>wugargar/zombie/vomit/dead/7.png</DeadAniImagePath8>
-			<DeadAniImagePath9>wugargar/zombie/vomit/dead/8.png</DeadAniImagePath9>
+			<DeadAniImagePath0>wugargar/zombie/vomit/dead/0.png</DeadAniImagePath0>
+			<DeadAniImagePath1>wugargar/zombie/vomit/dead/1.png</DeadAniImagePath1>
+			<DeadAniImagePath2>wugargar/zombie/vomit/dead/2.png</DeadAniImagePath2>
+			<DeadAniImagePath3>wugargar/zombie/vomit/dead/3.png</DeadAniImagePath3>
+			<DeadAniImagePath4>wugargar/zombie/vomit/dead/4.png</DeadAniImagePath4>
+			<DeadAniImagePath5>wugargar/zombie/vomit/dead/5.png</DeadAniImagePath5>
+			<DeadAniImagePath6>wugargar/zombie/vomit/dead/6.png</DeadAniImagePath6>
+			<DeadAniImagePath7>wugargar/zombie/vomit/dead/7.png</DeadAniImagePath7>
+			<DeadAniImagePath8>wugargar/zombie/vomit/dead/8.png</DeadAniImagePath8>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/zombie/vomit/walk/0.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/zombie/vomit/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/zombie/vomit/walk/0.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/zombie/vomit/walk/0.png</AttackAniImagePath0>
 			
 	</Zombie2>
 	
@@ -91,24 +93,25 @@
 		<SplashRange>0</SplashRange>
 		<CreationPrice>300</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>4</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/zombie/mom/walk/0.png</WalkAniImagePath1>
-			<WalkAniImagePath2>wugargar/zombie/mom/walk/1.png</WalkAniImagePath2>
-			<WalkAniImagePath3>wugargar/zombie/mom/walk/2.png</WalkAniImagePath3>
-			<WalkAniImagePath4>wugargar/zombie/mom/walk/3.png</WalkAniImagePath4>
+			<WalkAniImagePath0>wugargar/zombie/mom/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/zombie/mom/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/zombie/mom/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/zombie/mom/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>8</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/zombie/mom/dead/0.png</DeadAniImagePath1>
-			<DeadAniImagePath2>wugargar/zombie/mom/dead/1.png</DeadAniImagePath2>
-			<DeadAniImagePath3>wugargar/zombie/mom/dead/2.png</DeadAniImagePath3>
-			<DeadAniImagePath4>wugargar/zombie/mom/dead/3.png</DeadAniImagePath4>
-			<DeadAniImagePath5>wugargar/zombie/mom/dead/4.png</DeadAniImagePath5>
-			<DeadAniImagePath6>wugargar/zombie/mom/dead/5.png</DeadAniImagePath6>
-			<DeadAniImagePath7>wugargar/zombie/mom/dead/6.png</DeadAniImagePath7>
-			<DeadAniImagePath8>wugargar/zombie/mom/dead/7.png</DeadAniImagePath8>
+			<DeadAniImagePath0>wugargar/zombie/mom/dead/0.png</DeadAniImagePath0>
+			<DeadAniImagePath1>wugargar/zombie/mom/dead/1.png</DeadAniImagePath1>
+			<DeadAniImagePath2>wugargar/zombie/mom/dead/2.png</DeadAniImagePath2>
+			<DeadAniImagePath3>wugargar/zombie/mom/dead/3.png</DeadAniImagePath3>
+			<DeadAniImagePath4>wugargar/zombie/mom/dead/4.png</DeadAniImagePath4>
+			<DeadAniImagePath5>wugargar/zombie/mom/dead/5.png</DeadAniImagePath5>
+			<DeadAniImagePath6>wugargar/zombie/mom/dead/6.png</DeadAniImagePath6>
+			<DeadAniImagePath7>wugargar/zombie/mom/dead/7.png</DeadAniImagePath7>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/zombie/mom/walk/0.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/zombie/mom/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/zombie/mom/walk/0.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/zombie/mom/walk/0.png</AttackAniImagePath0>
 		
 	</Zombie3>
 	
@@ -126,22 +129,23 @@
 		<SplashRange>50</SplashRange>
 		<CreationPrice>250</CreationPrice>
 		<IsSelfDestruction>1</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>3</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/zombie/bomb/walk/0.png</WalkAniImagePath1>
-			<WalkAniImagePath2>wugargar/zombie/bomb/walk/1.png</WalkAniImagePath2>
-			<WalkAniImagePath3>wugargar/zombie/bomb/walk/2.png</WalkAniImagePath3>
+			<WalkAniImagePath0>wugargar/zombie/bomb/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/zombie/bomb/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/zombie/bomb/walk/2.png</WalkAniImagePath2>
 		<DeadAniImageNum>7</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/zombie/bomb/bomb/0.png</DeadAniImagePath1>
-			<DeadAniImagePath2>wugargar/zombie/bomb/bomb/1.png</DeadAniImagePath2>
-			<DeadAniImagePath3>wugargar/zombie/bomb/bomb/2.png</DeadAniImagePath3>
-			<DeadAniImagePath4>wugargar/zombie/bomb/bomb/3.png</DeadAniImagePath4>
-			<DeadAniImagePath5>wugargar/zombie/bomb/bomb/4.png</DeadAniImagePath5>
-			<DeadAniImagePath6>wugargar/zombie/bomb/bomb/5.png</DeadAniImagePath6>
-			<DeadAniImagePath7>wugargar/zombie/bomb/bomb/6.png</DeadAniImagePath7>
+			<DeadAniImagePath0>wugargar/zombie/bomb/bomb/0.png</DeadAniImagePath0>
+			<DeadAniImagePath1>wugargar/zombie/bomb/bomb/1.png</DeadAniImagePath1>
+			<DeadAniImagePath2>wugargar/zombie/bomb/bomb/2.png</DeadAniImagePath2>
+			<DeadAniImagePath3>wugargar/zombie/bomb/bomb/3.png</DeadAniImagePath3>
+			<DeadAniImagePath4>wugargar/zombie/bomb/bomb/4.png</DeadAniImagePath4>
+			<DeadAniImagePath5>wugargar/zombie/bomb/bomb/5.png</DeadAniImagePath5>
+			<DeadAniImagePath6>wugargar/zombie/bomb/bomb/6.png</DeadAniImagePath6>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/zombie/bomb/walk/0.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/zombie/bomb/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/zombie/bomb/walk/0.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/zombie/bomb/walk/0.png</AttackAniImagePath0>
 	</Zombie4>
 	
 	<Zombie5>
@@ -158,27 +162,28 @@
 		<SplashRange>70</SplashRange>
 		<CreationPrice>500</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>8</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/zombie/smog/walk/0.png</WalkAniImagePath1>
-			<WalkAniImagePath2>wugargar/zombie/smog/walk/1.png</WalkAniImagePath2>
-			<WalkAniImagePath3>wugargar/zombie/smog/walk/2.png</WalkAniImagePath3>
-			<WalkAniImagePath4>wugargar/zombie/smog/walk/3.png</WalkAniImagePath4>
-			<WalkAniImagePath5>wugargar/zombie/smog/walk/4.png</WalkAniImagePath5>
-			<WalkAniImagePath6>wugargar/zombie/smog/walk/5.png</WalkAniImagePath6>
-			<WalkAniImagePath7>wugargar/zombie/smog/walk/6.png</WalkAniImagePath7>
-			<WalkAniImagePath8>wugargar/zombie/smog/walk/7.png</WalkAniImagePath8>
+			<WalkAniImagePath0>wugargar/zombie/smog/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/zombie/smog/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/zombie/smog/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/zombie/smog/walk/3.png</WalkAniImagePath3>
+			<WalkAniImagePath4>wugargar/zombie/smog/walk/4.png</WalkAniImagePath4>
+			<WalkAniImagePath5>wugargar/zombie/smog/walk/5.png</WalkAniImagePath5>
+			<WalkAniImagePath6>wugargar/zombie/smog/walk/6.png</WalkAniImagePath6>
+			<WalkAniImagePath7>wugargar/zombie/smog/walk/7.png</WalkAniImagePath7>
 		<DeadAniImageNum>7</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/zombie/smog/dead/0.png</DeadAniImagePath1>
-			<DeadAniImagePath2>wugargar/zombie/smog/dead/1.png</DeadAniImagePath2>
-			<DeadAniImagePath3>wugargar/zombie/smog/dead/2.png</DeadAniImagePath3>
-			<DeadAniImagePath4>wugargar/zombie/smog/dead/3.png</DeadAniImagePath4>
-			<DeadAniImagePath5>wugargar/zombie/smog/dead/4.png</DeadAniImagePath5>
-			<DeadAniImagePath6>wugargar/zombie/smog/dead/5.png</DeadAniImagePath6>
-			<DeadAniImagePath7>wugargar/zombie/smog/dead/6.png</DeadAniImagePath7>
+			<DeadAniImagePath0>wugargar/zombie/smog/dead/0.png</DeadAniImagePath0>
+			<DeadAniImagePath1>wugargar/zombie/smog/dead/1.png</DeadAniImagePath1>
+			<DeadAniImagePath2>wugargar/zombie/smog/dead/2.png</DeadAniImagePath2>
+			<DeadAniImagePath3>wugargar/zombie/smog/dead/3.png</DeadAniImagePath3>
+			<DeadAniImagePath4>wugargar/zombie/smog/dead/4.png</DeadAniImagePath4>
+			<DeadAniImagePath5>wugargar/zombie/smog/dead/5.png</DeadAniImagePath5>
+			<DeadAniImagePath6>wugargar/zombie/smog/dead/6.png</DeadAniImagePath6>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/zombie/smog/walk/0.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/zombie/smog/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/zombie/smog/walk/0.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/zombie/smog/walk/0.png</AttackAniImagePath0>
 	</Zombie5>
 	
 	<Zombie6>
@@ -197,25 +202,25 @@
 		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>3000</FreezingAttackDuration>
 		<WalkAniImageNum>6</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/zombie/ice/walk/0.png</WalkAniImagePath1>
-			<WalkAniImagePath2>wugargar/zombie/ice/walk/1.png</WalkAniImagePath2>
-			<WalkAniImagePath3>wugargar/zombie/ice/walk/2.png</WalkAniImagePath3>
-			<WalkAniImagePath4>wugargar/zombie/ice/walk/3.png</WalkAniImagePath4>
-			<WalkAniImagePath5>wugargar/zombie/ice/walk/4.png</WalkAniImagePath5>
-			<WalkAniImagePath6>wugargar/zombie/ice/walk/5.png</WalkAniImagePath6>
+			<WalkAniImagePath0>wugargar/zombie/ice/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/zombie/ice/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/zombie/ice/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/zombie/ice/walk/3.png</WalkAniImagePath3>
+			<WalkAniImagePath4>wugargar/zombie/ice/walk/4.png</WalkAniImagePath4>
+			<WalkAniImagePath5>wugargar/zombie/ice/walk/5.png</WalkAniImagePath5>
 		<DeadAniImageNum>8</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/zombie/ice/dead/0.png</DeadAniImagePath1>
-			<DeadAniImagePath2>wugargar/zombie/ice/dead/1.png</DeadAniImagePath2>
-			<DeadAniImagePath3>wugargar/zombie/ice/dead/2.png</DeadAniImagePath3>
-			<DeadAniImagePath4>wugargar/zombie/ice/dead/3.png</DeadAniImagePath4>
-			<DeadAniImagePath5>wugargar/zombie/ice/dead/4.png</DeadAniImagePath5>
-			<DeadAniImagePath6>wugargar/zombie/ice/dead/5.png</DeadAniImagePath6>
-			<DeadAniImagePath7>wugargar/zombie/ice/dead/6.png</DeadAniImagePath7>
-			<DeadAniImagePath8>wugargar/zombie/ice/dead/7.png</DeadAniImagePath8>
+			<DeadAniImagePath0>wugargar/zombie/ice/dead/0.png</DeadAniImagePath0>
+			<DeadAniImagePath1>wugargar/zombie/ice/dead/1.png</DeadAniImagePath1>
+			<DeadAniImagePath2>wugargar/zombie/ice/dead/2.png</DeadAniImagePath2>
+			<DeadAniImagePath3>wugargar/zombie/ice/dead/3.png</DeadAniImagePath3>
+			<DeadAniImagePath4>wugargar/zombie/ice/dead/4.png</DeadAniImagePath4>
+			<DeadAniImagePath5>wugargar/zombie/ice/dead/5.png</DeadAniImagePath5>
+			<DeadAniImagePath6>wugargar/zombie/ice/dead/6.png</DeadAniImagePath6>
+			<DeadAniImagePath7>wugargar/zombie/ice/dead/7.png</DeadAniImagePath7>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/zombie/ice/walk/0.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/zombie/ice/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/zombie/ice/walk/0.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/zombie/ice/walk/0.png</AttackAniImagePath0>
 	</Zombie6>
 
 	<Zombie7>
@@ -232,14 +237,15 @@
 		<SplashRange>0</SplashRange>
 		<CreationPrice>0</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/zombie/hero/0.png</WalkAniImagePath1>
+			<WalkAniImagePath0>wugargar/zombie/hero/0.png</WalkAniImagePath0>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/zombie/hero/0.png</DeadAniImagePath1>
+			<DeadAniImagePath0>wugargar/zombie/hero/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/zombie/hero/0.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/zombie/hero/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/zombie/hero/0.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/zombie/hero/0.png</AttackAniImagePath0>
 	</Zombie7>
 
 </ZombieInfo>

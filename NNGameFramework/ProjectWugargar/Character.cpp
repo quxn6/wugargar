@@ -61,6 +61,41 @@ void CCharacter::InitSprite( std::wstring imagePath )
 	AddChild(m_Sprite,1);
 }
 
+void CCharacter::initStatus( CharacterInfo *characterInfo, int characterType )
+{
+	m_FullHP = characterInfo[characterType].FullHP;
+	m_HealthPoint = m_FullHP;
+	m_MovingSpeed = characterInfo[characterType].MovingSpeed;
+	m_AttackPower = characterInfo[characterType].AttackPower;
+	m_DefensivePower = characterInfo[characterType].DefensivePower;
+	m_AttackRange = characterInfo[characterType].AttackRange;
+	m_SplashAttackRange = characterInfo[characterType].SplashRange;
+	m_AttackSpeed = characterInfo[characterType].AttackSpeed;
+	m_SplashAttack = characterInfo[characterType].IsSplash;
+	m_Identity = characterInfo[characterType].identity;
+	//	m_spritePath = CCharacter::string2wstring(policeInfo[police_type_idx].SpritePath.c_str());
+	m_typeName = characterInfo[characterType].TypeName;
+
+	for (int type=0 ; type<NUMBER_OF_CHARACTER_STATUS ; ++type)
+	{
+		m_Animation[type] = NNAnimation::Create();
+		int animationLength = characterInfo[characterType].numberOfAnimationImage[type];
+		for (int sprite=0; sprite<animationLength ; ++sprite)
+		{
+			m_Animation[type]->AddSpriteNode(const_cast<wchar_t*>
+				( string2wstring(characterInfo[characterType].animationPath[type][sprite]).c_str() ) );
+		}
+		m_Animation[type]->SetFrameTimeInSection(CHARACTER_ANIMATION_PLAY_TIME/animationLength,0,animationLength-1);
+		m_Animation[type]->SetLoop(false);
+		m_Animation[type]->SetVisible(false);
+		m_Animation[type]->SetPosition(-((m_Animation[type]->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2),
+			-((m_Animation[type]->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
+		AddChild(m_Animation[type]);
+	}
+	m_Animation[CHARACTER_WALK]->SetVisible(true);
+	m_Animation[CHARACTER_WALK]->SetLoop(true);
+}
+
 
 void CCharacter::InitHitEffect( std::wstring imagePath )
 {
@@ -77,10 +112,10 @@ void CCharacter::SetRandomPositionAroundBase()
 	float randomPositonY = static_cast<float>(rand() % ((MAP_SIZE_Y-3) * TILE_SIZE_Y) + FIRST_Y_COORDINATE_OF_MAPTILE + TILE_SIZE_Y);
 	switch (m_Identity)
 	{
-	case Zombie:
+	case ZOMBIE:
 		SetPosition(GAME_SCREEN_MIN_SIZE_X + 30, randomPositonY);
 		break;
-	case Police:
+	case POLICE:
 		SetPosition(GAME_SCREEN_MAX_SIZE_X - 30, randomPositonY);
 		break;
 	default:
@@ -202,7 +237,7 @@ void  CCharacter::UpdateAttackTarget()
 
 	switch(this->GetIdentity())
 	{
-	case Zombie:
+	case ZOMBIE:
 		for(const auto& enemy : *(CPlayScene::GetInstance()->GetPoliceList()))
 		{
 			nextTargetDistance = this->GetPosition().GetDistance(enemy->GetPosition());
@@ -214,7 +249,7 @@ void  CCharacter::UpdateAttackTarget()
 		}
 		break;
 
-	case Police:
+	case POLICE:
 		for(const auto& enemy : *CPlayScene::GetInstance()->GetZombieList())
 		{
 			nextTargetDistance= this->GetPosition().GetDistance(enemy->GetPosition());
@@ -277,14 +312,14 @@ void CCharacter::SplashAttack( NNPoint splashPoint, clock_t currentTime )
 	
 	 switch (m_Identity)
 	 {
-	 case Zombie:
+	 case ZOMBIE:
 		 for (const auto& enemy : *CPlayScene::GetInstance()->GetPoliceList()) {		 
 			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
 				 NormalAttack(enemy, currentTime);
 			 }
 		 }
 		 break;
-	 case Police:
+	 case POLICE:
 		 for (const auto& enemy : *CPlayScene::GetInstance()->GetZombieList()) {
 			 if(this->m_SplashAttackRange >= splashPoint.GetDistance(enemy->GetPosition())) {
 				 NormalAttack(enemy, currentTime);
@@ -346,10 +381,10 @@ void CCharacter::GoForward(float dTime)
 {
 	switch (m_Identity)
 	{
-	case Zombie:
+	case ZOMBIE:
 		m_Position = m_Position + NNPoint( (m_MovingSpeed), 0.0f) * dTime;
 		break;
-	case Police:
+	case POLICE:
 		m_Position = m_Position - NNPoint( (m_MovingSpeed), 0.0f) * dTime;
 		break;
 	default:
@@ -374,10 +409,10 @@ void CCharacter::PlayDeadSound()
 	std::string soundPath;
 	switch (m_Identity)
 	{
-	case Zombie:
+	case ZOMBIE:
 		soundPath = "sound/ZombieDeadSound.wav";
 		break;
-	case Police:
+	case POLICE:
 		return;
 	default:
 		return;
@@ -387,34 +422,34 @@ void CCharacter::PlayDeadSound()
 
 	NNAudioSystem::GetInstance()->Play(m_dead_sound);
 }
-
-void CCharacter::InitZombieAnimation()
-{
-	m_Animation = NNAnimation::Create();
-	int i = 0;
-	for(auto &iter = WalkAnimationImagePath.begin(); iter != WalkAnimationImagePath.end(); ++iter)
-	{
-		m_Animation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
-		m_Animation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
-	}
-	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
-
-	m_DeadAnimation = NNAnimation::Create();
-	i=0;
-	for(auto &iter = DeadAnimationImagePath.begin(); iter != DeadAnimationImagePath.end(); ++iter)
-	{
-		m_DeadAnimation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
-		m_DeadAnimation->GetSpriteList()[i++]->SetFrameTime( 0.1f );
-	}
-	m_DeadAnimation->SetLoop(false);
-
-	m_Animation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
-	AddChild(m_Animation);
-
-	m_DeadAnimation->SetPosition(-((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_Animation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
-	m_DeadAnimation->SetVisible(false);
-	AddChild(m_DeadAnimation);
-
-	m_pShowHP->SetCutSize(0,0,50.f,5.f);
-	m_pShowHP->SetPosition(m_Animation->GetPositionX(), m_Animation->GetPositionY()); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
-}
+// 
+// void CCharacter::InitZombieAnimation()
+// {
+// 	m_WalkAnimation = NNAnimation::Create();
+// 	int i = 0;
+// 	for(auto &iter = WalkAnimationImagePath.begin(); iter != WalkAnimationImagePath.end(); ++iter)
+// 	{
+// 		m_WalkAnimation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
+// 		m_WalkAnimation->GetSpriteList()[i++]->SetFrameTime( 0.2f );
+// 	}
+// 	m_WalkAnimation->SetPosition(-((m_WalkAnimation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_WalkAnimation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
+// 
+// 	m_DeadAnimation = NNAnimation::Create();
+// 	i=0;
+// 	for(auto &iter = DeadAnimationImagePath.begin(); iter != DeadAnimationImagePath.end(); ++iter)
+// 	{
+// 		m_DeadAnimation->AddSpriteNode(const_cast<wchar_t*>((*iter).c_str()));
+// 		m_DeadAnimation->GetSpriteList()[i++]->SetFrameTime( 0.1f );
+// 	}
+// 	m_DeadAnimation->SetLoop(false);
+// 
+// 	m_WalkAnimation->SetPosition(-((m_WalkAnimation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_WalkAnimation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
+// 	AddChild(m_WalkAnimation);
+// 
+// 	m_DeadAnimation->SetPosition(-((m_WalkAnimation->GetSpriteList()[0])->GetSprite()->GetImageWidth()/2), -((m_WalkAnimation->GetSpriteList()[0])->GetSprite()->GetImageHeight()/2));
+// 	m_DeadAnimation->SetVisible(false);
+// 	AddChild(m_DeadAnimation);
+// 
+// 	m_pShowHP->SetCutSize(0,0,50.f,5.f);
+// 	m_pShowHP->SetPosition(m_WalkAnimation->GetPositionX(), m_WalkAnimation->GetPositionY()); //스프라이트와 이미지 크기에 맞게 배치는 나중에 고려
+// }

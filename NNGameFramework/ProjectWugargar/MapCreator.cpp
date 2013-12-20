@@ -87,10 +87,10 @@ void CMapCreator::SetTileSprite( int x_coord, int y_coord, std::wstring* imagePa
 //  	AddChild( m_pSprites[x_coord][y_coord], static_cast<int>(TILE) );
 
 	if ( m_Map[x_coord][y_coord] == ZOMBIE_BASE ) {
-		BuildBase(x_coord, y_coord, Zombie);
+		BuildBase(x_coord, y_coord, ZOMBIE);
 	}
 	if ( m_Map[x_coord][y_coord] == POLICE_STATION ) {
-		BuildBase(x_coord, y_coord, Police);
+		BuildBase(x_coord, y_coord, POLICE);
 	}
 }
 
@@ -99,8 +99,9 @@ void CMapCreator::BuildBase( int x_coord, int y_coord, CharacterIdentity identit
 {
 	switch (identity)
 	{
-	case Zombie:		
+	case ZOMBIE:		
 		m_pZombieBase = CBase::Create();
+		m_pZombieBase->initStatus();
 		m_pZombieBase->SetIdentity(identity);
 		m_pZombieBase->SetPosition(
 			static_cast<float>(x_coord * TILE_SIZE_X), 
@@ -110,8 +111,9 @@ void CMapCreator::BuildBase( int x_coord, int y_coord, CharacterIdentity identit
 		AddChild(m_pZombieBase, 10);
 
 		break;
-	case Police:		
+	case POLICE:		
 		m_pPoliceBase = CBase::Create();
+		m_pPoliceBase->initStatus();
 		m_pPoliceBase->SetIdentity(identity);
 		m_pPoliceBase->SetPosition(
 			static_cast<float>(x_coord * TILE_SIZE_X), 

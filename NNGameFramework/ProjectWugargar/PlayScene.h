@@ -58,8 +58,7 @@ private:
 
 	std::wstring string2wstring(std::string str);
 
-	void loadPoliceInfo();
-	void loadZombieInfo();
+	void loadCharacterInfo();	
 
 	void _initBackground( void );
 	void _initUI( void );

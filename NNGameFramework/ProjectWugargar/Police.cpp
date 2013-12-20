@@ -32,22 +32,15 @@ void CPolice::Update( float dTime )
 }
 
 
-void CPolice::initStatus( CharacterInfo *policeInfo, int police_type_idx )
-{
-	m_FullHP = policeInfo[police_type_idx].FullHP;
-	m_HealthPoint = m_FullHP;
-	m_MovingSpeed = policeInfo[police_type_idx].MovingSpeed;
-	m_AttackPower = policeInfo[police_type_idx].AttackPower;
-	m_DefensivePower = policeInfo[police_type_idx].DefensivePower;
-	m_AttackRange = policeInfo[police_type_idx].AttackRange;
-	m_SplashAttackRange = policeInfo[police_type_idx].SplashRange;
-	m_AttackSpeed = policeInfo[police_type_idx].AttackSpeed;
-	m_SplashAttack = policeInfo[police_type_idx].IsSplash;
-	m_Identity = policeInfo[police_type_idx].identity;
-	m_policeType = policeInfo[police_type_idx].policeType;
-	m_spritePath = CCharacter::string2wstring(policeInfo[police_type_idx].SpritePath.c_str());
-	m_typeName = policeInfo[police_type_idx].TypeName;
+void CPolice::initStatus( CharacterInfo *characterInfo, int characterType )
+{	
+	// 부모 클래스의 initstatus 호출
+	CCharacter::initStatus(characterInfo,characterType);
+	
+	// 포돌이 타입 설정
+	m_policeType = static_cast<PoliceType>(characterInfo[characterType].characterType);
 
+	// 포돌이 특유 init내용 호출
 	FrozenStatus = NNSprite::Create(L"wugargar/ice.png");
 	FrozenStatus->SetOpacity(0.5f);
 	FrozenStatus->SetPosition(-25,-25);//얼추

@@ -3,7 +3,6 @@
 
 CBase::CBase(void)
 {
-	initStatus();
 }
 
 void CBase::initStatus( void )

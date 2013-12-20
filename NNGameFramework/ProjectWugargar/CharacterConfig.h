@@ -1,7 +1,7 @@
 #pragma once
+
+#include "headers.h"
 #include "GameConfig.h"
-#include <string>
-#include "Character.h"
 #include "NNXML.h"
 
 
@@ -19,22 +19,24 @@ struct CharacterInfo{
 	std::string SpritePath;
 	std::string TypeName;
 	CharacterIdentity identity;
-	PoliceType policeType;
-
+	int characterType;
 
 	//애니메이션 변수
-	int WalkAniImageNum;
-	std::string *WalkAniImagePath;
-	int DeadAniImageNum;
-	std::string *DeadAniImagePath;
-	int CreateAniImageNum;
-	std::string *CreateAniImagePath;
-	int AttackAniImageNum;
-	std::string *AttackAniImagePath;
+	int				numberOfAnimationImage[NUMBER_OF_CHARACTER_STATUS];
+	std::string		*animationPath[NUMBER_OF_CHARACTER_STATUS];
+
+
+// 	int WalkAniImageNum;
+// 	std::string *WalkAniImagePath;
+// 	int DeadAniImageNum;
+// 	std::string *DeadAniImagePath;
+// 	int CreateAniImageNum;
+// 	std::string *CreateAniImagePath;
+// 	int AttackAniImageNum;
+// 	std::string *AttackAniImagePath;
 
 
 	int CreationCost;
-	ZombieType zombieType;
 	clock_t FreezingAttackDuration;
 	bool IsSelfDestruction;
 };
@@ -49,23 +51,15 @@ public:
 	static CCharacterConfig* GetInstance();
 	static void ReleaseInstance();
 	
-	void InitPoliceInfo(NNXML *PoliceInfoXml);
-	void InitZombieInfo(NNXML *ZombieInfoXml);
-
-	void initialize_Xpath_Police(std::string *xPath, int idx);
-	void initialize_Xpath_Zombie(std::string *xPath, int idx);
-
-	CharacterInfo *GetPoliceInfo(){return policeInfo;};
-	CharacterInfo *GetZombieInfo(){return zombieInfo;};
-
-
+	void InitCharacterInfo(NNXML *CharacterInfoXml, CharacterIdentity identity);
+	CharacterInfo* GetCharacterInfo(CharacterIdentity identity){ return m_CharacterInfo[identity]; }
 
 private:
-	int num_of_police_type;
-	int num_of_zombie_type;
+	void initialize_Xpath(std::string *xPath, int idx, CharacterIdentity identity);	
 
-	CharacterInfo *policeInfo;
-	CharacterInfo *zombieInfo;
+	int m_NumberOfCharacterType[NUMBER_OF_IDENTITIES];
+
+	CharacterInfo *m_CharacterInfo[NUMBER_OF_IDENTITIES];
 
 
 };

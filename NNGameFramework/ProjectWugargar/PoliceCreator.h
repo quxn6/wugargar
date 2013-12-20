@@ -36,7 +36,7 @@ public:
 	NNCREATE_FUNC(CPoliceCreator);
 	void				LoadScriptFromFile();
 	PoliceType			ReturnCreateEnemyInfo();
-	CPolice*			GetPoliceAtTheMoment(float stageElapsedTime);
+	CPolice*			CreatePoliceOnTime(float stageElapsedTime);
 
 // 	int GetNumStageInfo() const { return m_NumStageInfo; }
 // 	int GetTableTopIndex() const { return tableTopIndex; }

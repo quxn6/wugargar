@@ -14,15 +14,20 @@
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>150</AttackRange>
 		<SplashRange>0</SplashRange>
-		<SpritePath>wugargar/police/normal/walk/normal_police_move_1.png</SpritePath>
-		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/police/normal/walk/normal_police_move_1.png</WalkAniImagePath1>
+		<CreationPrice>50</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>		
+		<WalkAniImageNum>4</WalkAniImageNum>
+			<WalkAniImagePath0>wugargar/police/normal/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/police/normal/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/police/normal/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/police/normal/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/police/normal/dead/normal_police_dead_1.png</DeadAniImagePath1>
+			<DeadAniImagePath0>wugargar/police/normal/dead/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/police/normal/walk/normal_police_move_1.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/police/normal/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/police/normal/walk/normal_police_move_1.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/police/normal/walk/0.png</AttackAniImagePath0>
 			
 			
 		
@@ -40,15 +45,20 @@
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>100</AttackRange>
 		<SplashRange>0</SplashRange>
-		<SpritePath>wugargar/police/machinegun/walk/machinegun_police_move_1.png</SpritePath>
+		<CreationPrice>50</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/police/machinegun/walk/machinegun_police_move_1.png</WalkAniImagePath1>
+			<WalkAniImagePath0>wugargar/police/machinegun/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/police/machinegun/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/police/machinegun/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/police/machinegun/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/police/machinegun/dead/machinegun_police_dead_1.png</DeadAniImagePath1>
+			<DeadAniImagePath0>wugargar/police/machinegun/dead/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/police/machinegun/walk/machinegun_police_move_1.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/police/machinegun/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/police/machinegun/walk/machinegun_police_move_1.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/police/machinegun/walk/0.png</AttackAniImagePath0>
 		
 	</Police2>
 	
@@ -64,15 +74,20 @@
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>10</AttackRange>
 		<SplashRange>0</SplashRange>
-		<SpritePath>wugargar/police/shield/walk/shield_police_move_1.png</SpritePath>
+		<CreationPrice>50</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/police/shield/walk/shield_police_move_1.png</WalkAniImagePath1>
+			<WalkAniImagePath0>wugargar/police/shield/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/police/shield/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/police/shield/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/police/shield/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/police/shield/dead/shield_police_dead_1.png</DeadAniImagePath1>
+			<DeadAniImagePath0>wugargar/police/shield/dead/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/police/shield/walk/shield_police_move_1.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/police/shield/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/police/shield/walk/shield_police_move_1.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/police/shield/walk/0.png</AttackAniImagePath0>
 	</Police3>
 	
 	<Police4>
@@ -87,15 +102,20 @@
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>150</AttackRange>
 		<SplashRange>50</SplashRange>
-		<SpritePath>wugargar/police/granade/walk/granade_police_move_1.png</SpritePath>
+		<CreationPrice>50</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/police/granade/walk/granade_police_move_1.png</WalkAniImagePath1>
+			<WalkAniImagePath0>wugargar/police/granade/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/police/granade/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/police/granade/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/police/granade/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/police/granade/dead/granade_police_dead_1.png</DeadAniImagePath1>
+			<DeadAniImagePath0>wugargar/police/granade/dead/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/police/granade/walk/granade_police_move_1.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/police/granade/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/police/granade/walk/granade_police_move_1.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/police/granade/walk/0.png</AttackAniImagePath0>
 	</Police4>
 	
 	<Police5>
@@ -110,15 +130,20 @@
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>60</AttackRange>
 		<SplashRange>20</SplashRange>
-		<SpritePath>wugargar/police/shotgun/walk/shotgun_police_move_1.png</SpritePath>
+		<CreationPrice>50</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/police/shotgun/walk/shotgun_police_move_1.png</WalkAniImagePath1>
+			<WalkAniImagePath0>wugargar/police/shotgun/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/police/shotgun/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/police/shotgun/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/police/shotgun/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/police/shotgun/dead/shotgun_police_dead_1.png</DeadAniImagePath1>
+			<DeadAniImagePath0>wugargar/police/shotgun/dead/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/police/shotgun/walk/shotgun_police_move_1.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/police/shotgun/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/police/shotgun/walk/shotgun_police_move_1.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/police/shotgun/walk/0.png</AttackAniImagePath0>
 	</Police5>
 	
 	<Police6>
@@ -133,15 +158,20 @@
 		<IsIceAttack>0</IsIceAttack>
 		<AttackRange>150</AttackRange>
 		<SplashRange>70</SplashRange>
-		<SpritePath>wugargar/police/firebat/walk/firebat_police_move_1.png</SpritePath>
+		<CreationPrice>50</CreationPrice>
+		<IsSelfDestruction>0</IsSelfDestruction>
+		<FreezingAttackDuration>0</FreezingAttackDuration>
 		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath1>wugargar/police/firebat/walk/firebat_police_move_1.png</WalkAniImagePath1>
+			<WalkAniImagePath0>wugargar/police/firebat/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/police/firebat/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/police/firebat/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/police/firebat/walk/3.png</WalkAniImagePath3>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath1>wugargar/police/firebat/dead/firebat_police_dead_1.png</DeadAniImagePath1>
+			<DeadAniImagePath0>wugargar/police/firebat/dead/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath1>wugargar/police/firebat/walk/firebat_police_move_1.png</CreateAniImagePath1>
+			<CreateAniImagePath0>wugargar/police/firebat/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath1>wugargar/police/firebat/walk/firebat_police_move_1.png</AttackAniImagePath1>
+			<AttackAniImagePath0>wugargar/police/firebat/walk/0.png</AttackAniImagePath0>
 	</Police6>
 	
 </PoliceInfo>
