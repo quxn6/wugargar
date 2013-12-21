@@ -20,6 +20,7 @@
 #define FALLING_FIGHTNING_SPEED 230
 #define LIGHTNINIG_DAMAGE 100
 #define PAY_LIGHTNING 100
+#define LIGHTNING_COOL_TIME 5
 
 CLightning::CLightning(void)
 {
@@ -27,6 +28,7 @@ CLightning::CLightning(void)
 	m_is_fall_lightning = false;
 	m_lightning_damage = LIGHTNINIG_DAMAGE;
 	m_pay_lightning = PAY_LIGHTNING;
+	m_startTime = clock() / CLOCKS_PER_SEC;
 }
 
 
@@ -41,7 +43,6 @@ void CLightning::Render()
 
 void CLightning::Update( float dTime )
 {
-	
 	//가만히 있으면 번개는 왼쪽으로 이동. 왼쪽 끝까지 이동하면 오른쪽 끝으로 다시 셋팅.
 	if(m_lightning_sprite->GetPositionX() 
 		< GAME_SCREEN_MAX_SIZE_X - 20 && !m_is_fall_lightning)
@@ -52,14 +53,15 @@ void CLightning::Update( float dTime )
 	else if(!m_is_fall_lightning)
 		m_lightning_sprite->SetPosition(0.0f, POSITION_OF_LIGHTNING);
 	
+
+	m_currentTime = clock() / CLOCKS_PER_SEC;
 	
 	//Space바가 눌렸는지를 체크. 눌렸으면 Flag를 True로 바꿔준다.
-	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN && !m_fall_lightning_sprite)
+	if(NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN && !m_fall_lightning_sprite && (m_currentTime-m_startTime > LIGHTNING_COOL_TIME))
 	{
 		printf_s("put");
-		CPlayer::GetInstance()->SetLocalMoney
-			(CPlayer::GetInstance()->GetLocalMoney() - m_pay_lightning);
 		m_is_fall_lightning = true;
+		m_startTime = m_currentTime;
 		
 	}
 

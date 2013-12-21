@@ -29,5 +29,7 @@ protected:
 	bool		m_is_fall_lightning;
 	int			m_lightning_damage;
 	int			m_pay_lightning;
+	clock_t	m_startTime;
+	clock_t	m_currentTime;
 
 };
