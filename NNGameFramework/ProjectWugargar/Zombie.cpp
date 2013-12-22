@@ -97,6 +97,8 @@ void CZombie::InitAttackEffect()
 	m_AttackEffect -> SetFrameTimeInSection(0.2f,0,7);
 	m_AttackEffect -> SetPosition(5,10);
 
+	m_AttackEffect -> SetVisible(false);
+
 	AddChild(m_AttackEffect);
 }
 
