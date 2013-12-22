@@ -21,6 +21,7 @@
 #include "UIButton.h"
 #include "MapCreator.h"
 #include "Base.h"
+#include "NNAnimation.h"
 
 CPlayScene* CPlayScene::m_pInstance = nullptr;
 
@@ -44,7 +45,9 @@ void CPlayScene::ReleaseInstance()
 }
 
 CPlayScene::CPlayScene(void)
-{		
+{	
+	initLoading();
+
 	m_LocalMoneyTimeChecker = 0;
 	m_StageElapsedTime = 0;
 
@@ -77,6 +80,7 @@ CPlayScene::CPlayScene(void)
 	m_pShowMeatPoint->SetPosition(0.0f, 35.0f);
 	AddChild( m_pShowMeatPoint , 20);
 
+	RemoveChild(tmp);
 }
 
 CPlayScene::~CPlayScene(void)
@@ -518,4 +522,24 @@ void CPlayScene::loadCharacterInfo()
 	}
 	pCharacterConfig->InitCharacterInfo(m_ZombieXML, ZOMBIE);
 	pCharacterConfig->InitCharacterInfo(m_PoliceXML, POLICE);
+}
+
+void CPlayScene::initLoading()
+{
+	tmp = NNSprite::Create(L"wugargar/Loading/Loading 1.jpg");
+	
+	tmp->SetPosition(0,0);
+	AddChild(tmp);
+	//m_pLoadingAnimation = NNAnimation::Create();
+	//for(int i=0; i<6; ++i)
+	//{
+	//	wchar_t temp[256] = {0, };
+	//	swprintf_s(temp, _countof(temp), L"wugargar/Loading/Loading %d.jpg",i+1);
+	//	m_pLoadingAnimation->AddSpriteNode(temp);
+	//}
+
+	//m_pLoadingAnimation->SetFrameTimeInSection(0.05f, 0, 5);
+	//AddChild(m_pLoadingAnimation);
+	//m_pLoadingAnimation->SetPosition(0,0);
+
 }

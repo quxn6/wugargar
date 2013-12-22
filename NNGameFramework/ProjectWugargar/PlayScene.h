@@ -23,6 +23,7 @@ class CUIButton;
 class CMapCreator;
 class CCharacter;
 class CHumanInFarm;
+class NNAnimation;
 
 typedef std::list<CCharacter*> LIST_CHARACTER;
 
@@ -64,6 +65,8 @@ private:
 	void _initUI( void );
 	void _initMap( void );
 
+	void initLoading();
+
 private :
 	CPlayer		*m_pPlayer;
 	CBackground *m_pBackground;
@@ -100,6 +103,8 @@ private :
 	float		m_StageElapsedTime;// 게임이 시작된 후부터 진행된 시간 정보를 저장
 	int			m_EarningIntervalUpgradeCost; // 돈 획득 속도를 상승시키는데 드는 비용
 
+	NNAnimation *m_pLoadingAnimation;
+	NNSprite *tmp;
 
 public: // update함수가 지저분해서 테스트 함수 밖으로 다 뺐습니다 // Good job~
 	void Test_ShowMousePosition();
