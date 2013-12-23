@@ -188,5 +188,3 @@ void CStartScene::load()
 #endif
 
 }
-
-

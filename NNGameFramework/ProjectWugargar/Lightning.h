@@ -24,6 +24,7 @@ private:
 	bool IsCrash(CCharacter *crash_check_sprite);
 
 protected:
+	NNSprite	*m_cloudSprite;
 	NNSprite	*m_lightning_sprite;
 	NNSprite	*m_fall_lightning_sprite;
 	bool		m_is_fall_lightning;

@@ -49,6 +49,7 @@ public:
 	inline float GetRotation() const { return m_Rotation; }
 	inline int GetZindex() const { return m_Zindex; }
 	inline bool IsVisible() const { return m_Visible; }
+	bool GetVisible() const {return m_Visible;}
 
 	void SetPosition( float x, float y ) { m_Position = NNPoint(x,y); }
 	void SetPosition( NNPoint point ) { m_Position = point; }
