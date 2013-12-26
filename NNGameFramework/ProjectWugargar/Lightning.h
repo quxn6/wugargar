@@ -32,5 +32,6 @@ protected:
 	int			m_pay_lightning;
 	clock_t	m_startTime;
 	clock_t	m_currentTime;
+	clock_t	m_stopTime;
 
 };
