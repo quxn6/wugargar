@@ -5,6 +5,7 @@
 class NNSound;
 class NNLabel;
 class NNSprite;
+class CUIButton;
 
 #define MENU_BAR_NUM 3
 enum MenuList{
@@ -33,8 +34,11 @@ private :
 	void InitBackGround(void);
 
 private :
-	NNLabel*		m_MenuBar[MENU_BAR_NUM];
-	unsigned int	m_KeyOn;
+	CUIButton*		m_newGame;
+	CUIButton*		m_LoadGame;
+	CUIButton*		m_Exit;
+	//NNLabel*		m_MenuBar[MENU_BAR_NUM];
+	//unsigned int	m_KeyOn;
 	NNSound*		m_startscene_background_sound;
 	NNSprite*		m_pStartSceneBackground;
 };

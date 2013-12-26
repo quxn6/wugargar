@@ -131,6 +131,7 @@ void CUpgradeScene::InitUpgradeUI()
 	m_pPreStageButton->SetPosition(80.f, GAME_SCREEN_MAX_SIZE_Y-200.0f);
 	AddChild(m_pPreStageButton, 100);
 
+
 }
 
 void CUpgradeScene::ShowGlobalMoney()

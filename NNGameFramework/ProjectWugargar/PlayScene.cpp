@@ -529,7 +529,7 @@ void CPlayScene::initLoading()
 	tmp = NNSprite::Create(L"wugargar/Loading/Loading 1.jpg");
 	
 	tmp->SetPosition(0,0);
-	AddChild(tmp);
+	AddChild(tmp, 0);
 	//m_pLoadingAnimation = NNAnimation::Create();
 	//for(int i=0; i<6; ++i)
 	//{

@@ -12,6 +12,7 @@
 #include "NNSound.h"
 #include "NNSprite.h"
 #include "NNLabel.h"
+#include "UIButton.h"
 
 
 CStartScene::CStartScene(void)
@@ -37,28 +38,39 @@ void CStartScene::InitBackGround( void )
 
 void CStartScene::InitButtons( void )
 {
-	//기존 버튼에서 Label을 이용한 방식으로 변경. 라벨 설정
-	m_MenuBar[MENU_PLAY] = 
-		NNLabel::Create( L"NEW GAME", L"궁서체", 25.f );
-	m_MenuBar[MENU_PLAY]->SetPosition( 48, 480 );
-	AddChild( m_MenuBar[MENU_PLAY] );
+	m_newGame = CUIButton::Create(L"wugargar/newgame.png", L"wugargar/newgame_on.png",L"wugargar/newgame_on.png");
+	m_newGame->SetPosition(48, 480);
+	AddChild(m_newGame);
 
-	m_MenuBar[MENU_LOAD] =
-		NNLabel::Create( L"LOAD GAME", L"궁서체", 25.f );
-	m_MenuBar[MENU_LOAD]->SetPosition(48, 520 );
-	AddChild( m_MenuBar[MENU_LOAD] );
+	m_LoadGame = CUIButton::Create(L"wugargar/Loadgame.png", L"wugargar/Loadgame_on.png", L"wugargar/Loadgame_on.png");
+	m_LoadGame->SetPosition(48, 520);
+	AddChild(m_LoadGame);
 
-	m_MenuBar[MENU_QUIT] = 
-		NNLabel::Create( L"QUIT", L"궁서체", 25.f );
-	m_MenuBar[MENU_QUIT]->SetPosition(48, 560 );
-	AddChild( m_MenuBar[MENU_QUIT] );
+	m_Exit = CUIButton::Create(L"wugargar/exit.png", L"wugargar/exit_on.png", L"wugargar/exit_on.png");
+	m_Exit->SetPosition(48,560);
+	AddChild(m_Exit);
+	////기존 버튼에서 Label을 이용한 방식으로 변경. 라벨 설정
+	//m_MenuBar[MENU_PLAY] = 
+	//	NNLabel::Create( L"NEW GAME", L"궁서체", 25.f );
+	//m_MenuBar[MENU_PLAY]->SetPosition( 48, 480 );
+	//AddChild( m_MenuBar[MENU_PLAY] );
 
-	//라벨의 색을 하얀색으로 설정(안보이니까)
-	for(int idx=0; idx<MENU_BAR_NUM; ++idx)
-		m_MenuBar[idx]->SetColor( 230.f, 230.f, 230.f );
+	//m_MenuBar[MENU_LOAD] =
+	//	NNLabel::Create( L"LOAD GAME", L"궁서체", 25.f );
+	//m_MenuBar[MENU_LOAD]->SetPosition(48, 520 );
+	//AddChild( m_MenuBar[MENU_LOAD] );
 
-	m_KeyOn = 0;			
-	// 현재 가리키고 있는 메뉴 위치
+	//m_MenuBar[MENU_QUIT] = 
+	//	NNLabel::Create( L"QUIT", L"궁서체", 25.f );
+	//m_MenuBar[MENU_QUIT]->SetPosition(48, 560 );
+	//AddChild( m_MenuBar[MENU_QUIT] );
+
+	////라벨의 색을 하얀색으로 설정(안보이니까)
+	//for(int idx=0; idx<MENU_BAR_NUM; ++idx)
+	//	m_MenuBar[idx]->SetColor( 230.f, 230.f, 230.f );
+
+	//m_KeyOn = 0;			
+	//// 현재 가리키고 있는 메뉴 위치
 
 }
 
@@ -77,54 +89,79 @@ void CStartScene::Render()
 void CStartScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
+	m_newGame->CheckButtonOn();
+	m_LoadGame->CheckButtonOn();
+	m_Exit->CheckButtonOn();
 
-	
-	//m_KeyOn을 이용하여 라벨의 상태, 입력 설정
-	if ( NNInputSystem::GetInstance()->GetKeyState(VK_UP) == KEY_DOWN
-		&& m_KeyOn!=MENU_PLAY)
-		--m_KeyOn;
-
-	else if ( NNInputSystem::GetInstance()->GetKeyState(VK_DOWN) == KEY_DOWN 
-		&& m_KeyOn!=MENU_QUIT)
-		++m_KeyOn;
-
-	m_KeyOn = (m_KeyOn + MENU_BAR_NUM) % MENU_BAR_NUM;
-	//현재 가리키고 있는 부분의 색상을 빨간색으로
-	m_MenuBar[m_KeyOn]->SetColor( 255.f, 50.f, 50.f );
-
-
-	//엔터 버튼 누르면 선택된 부분 선택하게됨
-	if ( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN )
+	if(NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON))
 	{
-		switch (m_KeyOn)
+		if(m_newGame->CheckButtonArea())
 		{
-		case MENU_PLAY:
 			NNSceneDirector::GetInstance()->
-				ChangeScene(CStageSelectScene::Create());
+			ChangeScene(CStageSelectScene::Create());
 			return ;
-			break;
-		case MENU_LOAD:
+		}
+		else if(m_LoadGame->CheckButtonArea())
+		{
 			load();
 			NNSceneDirector::GetInstance()->
-				ChangeScene(CStageSelectScene::Create());
+			ChangeScene(CStageSelectScene::Create());
 			return ;
-			break;
-		case MENU_QUIT:
-			//종료 처리 로직
+		}
+		else if(m_Exit->CheckButtonArea())
+		{
 			PostMessage( NNApplication::GetInstance()->GetHWND(), 
 				WM_DESTROY, 0, 0 );
-			break;
-		default:
-			break;
+			return;
 		}
-
-
 	}
+	
+	//m_KeyOn을 이용하여 라벨의 상태, 입력 설정
+	//if ( NNInputSystem::GetInstance()->GetKeyState(VK_UP) == KEY_DOWN
+	//	&& m_KeyOn!=MENU_PLAY)
+	//	--m_KeyOn;
 
-	//현재 선택되어 있는 부분 외 라벨을 흰색으로 재설정
-	for(int idx=0; idx<MENU_BAR_NUM; ++idx)
-		if(idx!= m_KeyOn)
-			m_MenuBar[idx]->SetColor( 230.f, 230.f, 230.f );
+	//else if ( NNInputSystem::GetInstance()->GetKeyState(VK_DOWN) == KEY_DOWN 
+	//	&& m_KeyOn!=MENU_QUIT)
+	//	++m_KeyOn;
+
+	//m_KeyOn = (m_KeyOn + MENU_BAR_NUM) % MENU_BAR_NUM;
+	////현재 가리키고 있는 부분의 색상을 빨간색으로
+	//m_MenuBar[m_KeyOn]->SetColor( 255.f, 50.f, 50.f );
+
+
+	////엔터 버튼 누르면 선택된 부분 선택하게됨
+	//if ( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN )
+	//{
+	//	switch (m_KeyOn)
+	//	{
+	//	case MENU_PLAY:
+	//		NNSceneDirector::GetInstance()->
+	//			ChangeScene(CStageSelectScene::Create());
+	//		return ;
+	//		break;
+	//	case MENU_LOAD:
+	//		load();
+	//		NNSceneDirector::GetInstance()->
+	//			ChangeScene(CStageSelectScene::Create());
+	//		return ;
+	//		break;
+	//	case MENU_QUIT:
+	//		//종료 처리 로직
+	//		PostMessage( NNApplication::GetInstance()->GetHWND(), 
+	//			WM_DESTROY, 0, 0 );
+	//		break;
+	//	default:
+	//		break;
+	//	}
+
+
+	//}
+
+	////현재 선택되어 있는 부분 외 라벨을 흰색으로 재설정
+	//for(int idx=0; idx<MENU_BAR_NUM; ++idx)
+	//	if(idx!= m_KeyOn)
+	//		m_MenuBar[idx]->SetColor( 230.f, 230.f, 230.f );
 
 
 }
