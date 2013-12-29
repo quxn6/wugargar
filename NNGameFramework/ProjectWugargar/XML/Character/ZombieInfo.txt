@@ -238,8 +238,15 @@
 		<CreationPrice>0</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>0</FreezingAttackDuration>
-		<WalkAniImageNum>1</WalkAniImageNum>
-			<WalkAniImagePath0>wugargar/zombie/hero/0.png</WalkAniImagePath0>
+		<WalkAniImageNum>8</WalkAniImageNum>
+			<WalkAniImagePath0>wugargar/zombie/hero/walk/0.png</WalkAniImagePath0>
+			<WalkAniImagePath1>wugargar/zombie/hero/walk/1.png</WalkAniImagePath1>
+			<WalkAniImagePath2>wugargar/zombie/hero/walk/2.png</WalkAniImagePath2>
+			<WalkAniImagePath3>wugargar/zombie/hero/walk/3.png</WalkAniImagePath3>
+			<WalkAniImagePath4>wugargar/zombie/hero/walk/4.png</WalkAniImagePath4>
+			<WalkAniImagePath5>wugargar/zombie/hero/walk/5.png</WalkAniImagePath5>
+			<WalkAniImagePath6>wugargar/zombie/hero/walk/6.png</WalkAniImagePath6>
+			<WalkAniImagePath7>wugargar/zombie/hero/walk/7.png</WalkAniImagePath7>
 		<DeadAniImageNum>1</DeadAniImageNum>
 			<DeadAniImagePath0>wugargar/zombie/hero/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
