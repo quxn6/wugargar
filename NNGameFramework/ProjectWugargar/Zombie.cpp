@@ -30,6 +30,10 @@ void CZombie::Render()
 void CZombie::Update( float dTime )
 {
 	CCharacter::Update(dTime);
+//	if(GetCharacterStatus() == ATTACK)
+//		m_AttackEffect->SetVisible(true);
+//	else
+//		m_AttackEffect->SetVisible(false);
 }
 
 void CZombie::ApplyZombieLevel()

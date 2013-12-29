@@ -55,7 +55,7 @@ void CUpgradeScene::InitUpgradeUI()
 	count[KAMIKAJE_ZOMBIE] = 3;
 	count[SMOG_ZOMBIE] = 8;
 	count[ICE_ZOMBIE] = 6;
-	count[HERO_ZOMBIE_SM9] = 1;
+	count[HERO_ZOMBIE_SM9] = 8;
 
 	//frame Set
 	for ( int i=0; i< zombieCount; ++i )
