@@ -47,7 +47,7 @@ void CUpgradeScene::InitUpgradeUI()
 		L"wugargar/zombie/bomb/walk/",
 		L"wugargar/zombie/smog/walk/",
 		L"wugargar/zombie/ice/walk/",
-		L"wugargar/zombie/hero/"};
+		L"wugargar/zombie/hero/walk/"};
 
 	count[POOR_ZOMBIE] = 8;
 	count[VOMIT_ZOMBIE] = 4;
