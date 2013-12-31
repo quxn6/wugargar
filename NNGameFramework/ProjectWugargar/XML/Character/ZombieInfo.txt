@@ -248,11 +248,11 @@
 			<WalkAniImagePath6>wugargar/zombie/hero/walk/6.png</WalkAniImagePath6>
 			<WalkAniImagePath7>wugargar/zombie/hero/walk/7.png</WalkAniImagePath7>
 		<DeadAniImageNum>1</DeadAniImageNum>
-			<DeadAniImagePath0>wugargar/zombie/hero/0.png</DeadAniImagePath0>
+			<DeadAniImagePath0>wugargar/zombie/hero/walk/0.png</DeadAniImagePath0>
 		<CreateAniImageNum>1</CreateAniImageNum>
-			<CreateAniImagePath0>wugargar/zombie/hero/0.png</CreateAniImagePath0>
+			<CreateAniImagePath0>wugargar/zombie/hero/walk/0.png</CreateAniImagePath0>
 		<AttackAniImageNum>1</AttackAniImageNum>
-			<AttackAniImagePath0>wugargar/zombie/hero/0.png</AttackAniImagePath0>
+			<AttackAniImagePath0>wugargar/zombie/hero/walk/0.png</AttackAniImagePath0>
 	</Zombie7>
 
 </ZombieInfo>
