@@ -19,6 +19,7 @@ public :
 	bool CheckButtonArea( void );
 	bool CheckButtonOn(void);
 	bool ButtonPressed();
+	void SetButtonLabel(std::wstring label);
 
 
 protected :
@@ -26,6 +27,7 @@ protected :
 	NNSprite *m_pNormalImage;
 	NNSprite *m_pOnImage;
 	NNLabel	 *m_pButtonLabel; 
+	wchar_t	 m_labelContent[256];
 
 
 

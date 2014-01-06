@@ -45,9 +45,6 @@
     <ClCompile Include="MapCreator.cpp">
       <Filter>Wugargar\Map</Filter>
     </ClCompile>
-    <ClCompile Include="NextStageScene.cpp">
-      <Filter>Wugargar\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="StartScene.cpp">
       <Filter>Wugargar\Scene</Filter>
     </ClCompile>
@@ -125,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="MapCreator.h">
       <Filter>Wugargar\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="NextStageScene.h">
-      <Filter>Wugargar\Scene</Filter>
     </ClInclude>
     <ClInclude Include="StartScene.h">
       <Filter>Wugargar\Scene</Filter>

@@ -48,7 +48,7 @@
 		<CreationPrice>50</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>0</FreezingAttackDuration>
-		<WalkAniImageNum>1</WalkAniImageNum>
+		<WalkAniImageNum>4</WalkAniImageNum>
 			<WalkAniImagePath0>wugargar/police/machinegun/walk/0.png</WalkAniImagePath0>
 			<WalkAniImagePath1>wugargar/police/machinegun/walk/1.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/police/machinegun/walk/2.png</WalkAniImagePath2>
@@ -77,7 +77,7 @@
 		<CreationPrice>50</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>0</FreezingAttackDuration>
-		<WalkAniImageNum>1</WalkAniImageNum>
+		<WalkAniImageNum>4</WalkAniImageNum>
 			<WalkAniImagePath0>wugargar/police/shield/walk/0.png</WalkAniImagePath0>
 			<WalkAniImagePath1>wugargar/police/shield/walk/1.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/police/shield/walk/2.png</WalkAniImagePath2>
@@ -105,7 +105,7 @@
 		<CreationPrice>50</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>0</FreezingAttackDuration>
-		<WalkAniImageNum>1</WalkAniImageNum>
+		<WalkAniImageNum>4</WalkAniImageNum>
 			<WalkAniImagePath0>wugargar/police/granade/walk/0.png</WalkAniImagePath0>
 			<WalkAniImagePath1>wugargar/police/granade/walk/1.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/police/granade/walk/2.png</WalkAniImagePath2>
@@ -133,7 +133,7 @@
 		<CreationPrice>50</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>0</FreezingAttackDuration>
-		<WalkAniImageNum>1</WalkAniImageNum>
+		<WalkAniImageNum>4</WalkAniImageNum>
 			<WalkAniImagePath0>wugargar/police/shotgun/walk/0.png</WalkAniImagePath0>
 			<WalkAniImagePath1>wugargar/police/shotgun/walk/1.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/police/shotgun/walk/2.png</WalkAniImagePath2>
@@ -161,7 +161,7 @@
 		<CreationPrice>50</CreationPrice>
 		<IsSelfDestruction>0</IsSelfDestruction>
 		<FreezingAttackDuration>0</FreezingAttackDuration>
-		<WalkAniImageNum>1</WalkAniImageNum>
+		<WalkAniImageNum>4</WalkAniImageNum>
 			<WalkAniImagePath0>wugargar/police/firebat/walk/0.png</WalkAniImagePath0>
 			<WalkAniImagePath1>wugargar/police/firebat/walk/1.png</WalkAniImagePath1>
 			<WalkAniImagePath2>wugargar/police/firebat/walk/2.png</WalkAniImagePath2>

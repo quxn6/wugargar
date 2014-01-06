@@ -132,3 +132,12 @@ bool CUIButton::CheckButtonOn( void )
 	}
 	
 }
+
+void CUIButton::SetButtonLabel( std::wstring label )
+{
+	// 읽어온 인자를 swprintf같은걸로 m_labelContent안에 넣어주어야함
+	// input값을 바꿔야할듯함..
+	m_pButtonLabel = NNLabel::Create(m_labelContent, L"맑은 고딕", 15.0f);
+	m_pButtonLabel->SetPosition(0, 0);
+	AddChild(m_pButtonLabel, 10);
+}

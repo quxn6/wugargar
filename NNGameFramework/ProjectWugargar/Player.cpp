@@ -55,7 +55,7 @@ void CPlayer::ReleaseInstance()
 void CPlayer::ReadyToPlay()
 {
 	m_playerStatus = PLAYER_ON_PLAYING;
-	m_LocalMoney = 4000;
+	m_LocalMoney = 0;
 	m_NumberOfKillInStage = 0;
 	m_NumberOfLossInStage = 0;
 	m_EarningInterval = DEFAULT_EARNING_INTERVAL;
@@ -71,7 +71,7 @@ void CPlayer::ReadyToSave()
 	m_playerStatus = PLAYER_ON_RESULT;
 	m_TotalKill += m_NumberOfKillInStage;
 	m_TotalLoss += m_NumberOfLossInStage;
-	m_GlobalMoney += 10 * m_NumberOfKillInStage;
+	m_GlobalMoney += 50 * m_NumberOfKillInStage;
 }
 
 

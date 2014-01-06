@@ -41,7 +41,11 @@ void CPoliceCreator::LoadScriptFromFile()
 	
 	m_aCreateEnemyTable = new PoliceTable[m_NumStageInfo];
 	m_aPoliceScriptCallTime = new float[m_NumStageInfo];
-	ZeroMemory(m_aPoliceScriptCallTime,m_NumStageInfo);
+	for (int i=0 ; i<m_NumStageInfo ; ++i) 
+	{
+		m_aPoliceScriptCallTime[i] = 0.0f;
+	}
+	//ZeroMemory(m_aPoliceScriptCallTime,m_NumStageInfo);
 	Xpath.append("/StageInfo");
 	
 	for (int idx=0; idx<m_NumStageInfo; ++idx) {
@@ -69,8 +73,8 @@ PoliceType CPoliceCreator::ReturnCreateEnemyInfo()
 	
 	gap_time = (int)(current_time - begin_time);
 
-	if((gap_time) >= m_aCreateEnemyTable[tableTopIndex].time){
-		//++tableTopIndex;
+	if((gap_time) >= m_aCreateEnemyTable[tableTopIndex].time)
+	{
 		return m_aCreateEnemyTable[tableTopIndex++].enemy_type;
 	}
 

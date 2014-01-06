@@ -66,7 +66,7 @@ public:
 	void IncreaseInfectionRate() {m_InfectionRate += 10.0f; }
 	void IncreaseLocalMoney(int amount) {m_LocalMoney += amount;}
 	void IncreaseClearedStage() {++m_ClearedStage;}
-	void IncreaseEarningInterval() {m_EarningInterval*=0.6f;}
+	void IncreaseEarningInterval() {m_EarningInterval*=0.75f;}
 
 	void SetMeatPoint(int meatPoint) { m_MeatPoint = meatPoint;}
 	int GetMeatPoint() { return m_MeatPoint;}

@@ -190,10 +190,10 @@ void CPlayScene::Update( float dTime )
 	MakePoliceFromScriptWithTimeInterval(m_StageElapsedTime);
 	// next stage 화면으로 이동하기 위한 임시 구문
 	// 엔터 치면 이동함
-	if( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN ) {
-		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
-		m_pInstance = nullptr;
-	}
+// 	if( NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN ) {
+// 		NNSceneDirector::GetInstance()->ChangeScene(CNextStageScene::Create());
+// 		m_pInstance = nullptr;
+// 	}
 }
 
 void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙임
@@ -376,10 +376,9 @@ void CPlayScene::CollectDeadPoliceByClick()
 				CCharacter *tmp = *iter;
 				m_llistDeadPolice.erase(iter);
 				RemoveChild(tmp,true);
-
 				
-
 				m_pPlayer->SetMeatPoint(m_pPlayer->GetMeatPoint() + 10);
+				m_pPlayer->IncreaseLocalMoney(100);
 				break;
 			}
 		}

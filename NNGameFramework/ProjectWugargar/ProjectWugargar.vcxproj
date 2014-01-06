@@ -25,7 +25,6 @@
     <ClCompile Include="MapObstacle.cpp" />
     <ClCompile Include="MapObstaclManager.cpp" />
     <ClCompile Include="Mine.cpp" />
-    <ClCompile Include="NextStageScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Police.cpp" />
@@ -57,7 +56,6 @@
     <ClInclude Include="MapObstacle.h" />
     <ClInclude Include="MapObstaclManager.h" />
     <ClInclude Include="Mine.h" />
-    <ClInclude Include="NextStageScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Police.h" />
