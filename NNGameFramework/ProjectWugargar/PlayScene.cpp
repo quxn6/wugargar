@@ -135,6 +135,8 @@ void CPlayScene::_initUI( void )
 	buttonpath_pressed[HERO_ZOMBIE_SM9] = L"wugargar/UIbuttons/button_pressed_sm9.png";
 	buttonpath_normal[BABY_HUMAN] = L"wugargar/UIbuttons/button_normal_baby.png";
 	buttonpath_pressed[BABY_HUMAN] = L"wugargar/UIbuttons/button_pressed_baby.png";
+	std::wstring localmoneyImgPath = L"wugargar/UIbuttons/money_upgrade.jpg";
+	
 
 
 	m_pUIBackground = NNSprite::Create(L"wugargar/UIbuttons/UIBackground.jpg");
@@ -142,12 +144,16 @@ void CPlayScene::_initUI( void )
 	AddChild( m_pUIBackground , 19);
 
 	// zombie type을 사용하여 refactoring - 성환
-	for (int i=0 ; i<NUM_OF_UIBUTTON ; ++i) {
+	for (int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i) {
 		m_pUIButtons[i] = CUIButton::Create(buttonpath_normal[i], buttonpath_pressed[i]);
-		m_pUIButtons[i]->SetPosition(static_cast<float>( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % NUM_OF_UIBUTTON_IN_ROW)) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON ) ), 
-			static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y )+ (SIZE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y) * int(i/NUM_OF_UIBUTTON_IN_ROW));
+		m_pUIButtons[i]->SetPosition( static_cast<float>(FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS + ((i % (NUMBER_OF_ZOMBIE_TYPES/2))) * (GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON  )), 
+			static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y + (SIZE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y) * int(i*2/NUMBER_OF_ZOMBIE_TYPES)) );
 		AddChild( m_pUIButtons[i] , 20);
 	}
+	m_pUIButtons[LOCALMONEY_UPGRADE] = CUIButton::Create(localmoneyImgPath, localmoneyImgPath);
+	m_pUIButtons[LOCALMONEY_UPGRADE]->SetPosition( static_cast<float>(( FIRST_X_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS ) + 4*(GAP_BETWEEN_UIBUTTONS + SIZE_OF_UIBUTTON  )), 
+		static_cast<float>(FIRST_Y_COORDINATE_OF_UIBUTTON + GAP_BETWEEN_UIBUTTONS_Y) );
+	AddChild( m_pUIButtons[LOCALMONEY_UPGRADE] , 20);
 }
 
 
@@ -199,13 +205,14 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 	// baby버튼 별도로 빠져잇던거 한 for문 안으로 삽입함.	
 	int localMoney = m_pPlayer->GetLocalMoney();	
 	int meatPoint = m_pPlayer->GetMeatPoint();
+	float earningIntervalUpgradeCost = 50/(m_pPlayer->GetEarningInterval());
 
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) ) {	
-		for ( int i=0 ; i<NUMBER_OF_ZOMBIE_TYPES ; ++i ) {
+		for ( int i=0 ; i<NUM_OF_UIBUTTON ; ++i ) {
 			if ( m_pUIButtons[i]->CheckButtonArea()) {
 				if ( i == BABY_HUMAN && localMoney >= BABY_PRICE) 
 				{
-					m_pPlayer->SetLocalMoney(localMoney - 100);
+					m_pPlayer->SetLocalMoney(localMoney - BABY_PRICE);
 					m_pHumanFarm->MakeHuman();				
 					return ;
 				}
@@ -215,7 +222,14 @@ void CPlayScene::MakeZombieButtonOperate(float dTime) // 아기 생성도 덧붙
 					MakeZombie(static_cast<ZombieType>(i));
 					return ;
 				} 
-				else if( i != BABY_HUMAN && i != HERO_ZOMBIE_SM9 )
+				else if ( i == LOCALMONEY_UPGRADE && localMoney >= earningIntervalUpgradeCost ) {
+					m_pPlayer->IncreaseEarningInterval();
+					m_pPlayer->SetLocalMoney(localMoney - static_cast<int>(earningIntervalUpgradeCost));
+					earningIntervalUpgradeCost = 2 * earningIntervalUpgradeCost;
+					return ;
+				}
+
+				else if( i != BABY_HUMAN && i != HERO_ZOMBIE_SM9 && i != LOCALMONEY_UPGRADE )
 				{
 					int cost = (CCharacterConfig::GetInstance())->GetCharacterInfo(ZOMBIE)[i].CreationCost;
 					if( localMoney >= cost ) {
