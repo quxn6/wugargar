@@ -4,6 +4,7 @@
 #include "NNSceneDirector.h"
 #include "PlayScene.h"
 #include "StageSelectScene.h"
+#include "LoadingScene.h"
 
 
 CUpgradeScene::CUpgradeScene(void)
@@ -154,7 +155,9 @@ void CUpgradeScene::OperateUpgradeButton()
 
 		// 다음 스테이지 버튼 클릭시
 		if ( m_pNextStageButton->CheckButtonArea() ) {
-			NNSceneDirector::GetInstance()->ChangeScene(CPlayScene::GetInstance());
+
+
+			NNSceneDirector::GetInstance()->ChangeScene(CLoadingScene::Create());
 			return; 
 		}
 

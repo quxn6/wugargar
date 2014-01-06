@@ -19,6 +19,7 @@
     <ClCompile Include="HumanFarm.cpp" />
     <ClCompile Include="HumanInFarm.cpp" />
     <ClCompile Include="Lightning.cpp" />
+    <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapCreator.cpp" />
     <ClCompile Include="MapObstacle.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="HumanFarm.h" />
     <ClInclude Include="HumanInFarm.h" />
     <ClInclude Include="Lightning.h" />
+    <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MapCreator.h" />
     <ClInclude Include="MapObstacle.h" />
     <ClInclude Include="MapObstaclManager.h" />

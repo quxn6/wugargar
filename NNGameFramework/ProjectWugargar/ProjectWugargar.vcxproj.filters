@@ -103,6 +103,9 @@
     <ClCompile Include="PoliceCreator.cpp">
       <Filter>Wugargar\AI</Filter>
     </ClCompile>
+    <ClCompile Include="LoadingScene.cpp">
+      <Filter>Wugargar\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="PoliceCreator.h">
       <Filter>Wugargar\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScene.h">
+      <Filter>Wugargar\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
