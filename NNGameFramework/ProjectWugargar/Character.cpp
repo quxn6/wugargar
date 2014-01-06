@@ -75,7 +75,8 @@ void CCharacter::initStatus( CharacterInfo *characterInfo, int characterType )
 	m_Identity = characterInfo[characterType].identity;
 	//	m_spritePath = CCharacter::string2wstring(policeInfo[police_type_idx].SpritePath.c_str());
 	m_typeName = characterInfo[characterType].TypeName;
-
+	m_FreezingAttack = characterInfo[characterType].IsIceAttack;
+	m_FreezingAttackDuration = characterInfo[characterType].FreezingAttackDuration;
 	for (int type=0 ; type<NUMBER_OF_CHARACTER_STATUS ; ++type)
 	{
 		m_Animation[type] = NNAnimation::Create();

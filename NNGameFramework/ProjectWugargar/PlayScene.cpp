@@ -48,6 +48,7 @@ CPlayScene::CPlayScene(void)
 {	
 	initLoading();
 
+	//Sleep(1000);
 	m_LocalMoneyTimeChecker = 0;
 	m_StageElapsedTime = 0;
 
@@ -526,10 +527,10 @@ void CPlayScene::loadCharacterInfo()
 
 void CPlayScene::initLoading()
 {
-	tmp = NNSprite::Create(L"wugargar/Loading/Loading 1.jpg");
-	
+	tmp = NNSprite::Create(L"wugargar/Loading/Loading1.jpg");
+	 
 	tmp->SetPosition(0,0);
-	AddChild(tmp, 0);
+	AddChild(tmp);
 	//m_pLoadingAnimation = NNAnimation::Create();
 	//for(int i=0; i<6; ++i)
 	//{
