@@ -30,6 +30,7 @@ protected:
 	NNAnimation *m_ZombieAnimation[NUMBER_OF_ZOMBIE_TYPES-1];
 	NNSprite *m_Frame[NUMBER_OF_ZOMBIE_TYPES - 1];
 	NNSprite* m_pBackground;
+	NNAnimation* m_pLoading;
 
 	CUIButton* m_UpgradeButton[NUMBER_OF_ZOMBIE_TYPES - 1]; 
 	NNLabel* m_ShowGlobalMoney;

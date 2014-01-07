@@ -11,6 +11,7 @@ CUpgradeScene::CUpgradeScene(void)
 {
 	InitUpgradeUI();
 	CPlayer::GetInstance()->ReadyToUpgrade();
+
 }
 
 

@@ -46,7 +46,7 @@ void CPlayScene::ReleaseInstance()
 
 CPlayScene::CPlayScene(void)
 {	
-	initLoading();
+//	initLoading();
 
 	//Sleep(1000);
 	m_LocalMoneyTimeChecker = 0;
@@ -81,7 +81,7 @@ CPlayScene::CPlayScene(void)
 	m_pShowMeatPoint->SetPosition(0.0f, 35.0f);
 	AddChild( m_pShowMeatPoint , 20);
 
-	RemoveChild(tmp);
+	//RemoveChild(tmp);
 }
 
 CPlayScene::~CPlayScene(void)
