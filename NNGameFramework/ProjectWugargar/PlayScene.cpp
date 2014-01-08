@@ -511,6 +511,7 @@ void CPlayScene::Test_ShowFPS()
 	ZeroMemory(temp, 256);	
 	swprintf_s(temp, _countof(temp), L"FPS = %0.3f", NNApplication::GetInstance()->GetFPS() );
 	m_pShowMouseStatus->SetString(temp);
+	m_pShowMouseStatus->SetVisible(false);
 }
 
 
